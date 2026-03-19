@@ -1,0 +1,102 @@
+{
+  "$schema": "https://melvoridle.com/assets/schema/gameData.json",
+  "namespace": "rielkConstruction",
+  "data": {
+    "skillData": [
+      {
+        "skillID": "melvorD:Crafting",
+        "data": {
+          "categories": [
+            {
+              "id": "Leather_Slivers",
+              "media": "assets/items/slivers_category.webp",
+              "name": "Leather Slivers"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "modifications": {
+    "modifiers": [
+      {
+        "id": "melvorD:farmingSeedReturn",
+        "allowedScopes": [
+          {
+            "scopes": {
+              "skill": true
+            },
+            "descriptions": [
+              {
+                "text": "Up to ${value} Allotment or Herb seeds returned when harvesting in Farming ",
+                "lang": "MODIFIER_DATA_farmingSeedReturnActionMine"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "melvorD:runecraftingRuneCostReduction",
+        "inverted": true,
+        "allowedScopes": [
+          {
+            "scopes": {
+              "skill": true
+            },
+            "descriptions": [
+              {
+                "includeSign": false,
+                "text": "-${value}% Rune Costs for this item if it's Equipment or a Weapon (cannot be reduced below 1).",
+                "lang": "MODIFIER_DATA_runecraftingRuneCostReduction"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "melvorD:skillInterval",
+        "allowedScopes": [
+          {
+            "scopes": {
+              "skill": true,
+              "subcategory": true
+            },
+            "descriptions": [
+              {
+                "text": "${value}% ${skillName} Interval for ${subcategoryName}",
+                "lang": "MODIFIER_DATA_skillIntervalSubcategory"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "melvorD:skillItemDoublingChance",
+        "allowedScopes": [
+          {
+            "scopes": {
+              "skill": true,
+              "subcategory": true
+            },
+            "descriptions": [
+              {
+                "text": "${value}% ${skillName} Interval for ${subcategoryName}",
+                "lang": "MODIFIER_DATA_skillItemDoublingChanceSubcategory"
+              }
+            ]
+          },
+           {
+            "scopes": {
+            },
+            "descriptions": [
+              {
+                "text": "${value}% ${skillName} Interval for ${subcategoryName}",
+                "lang": "MODIFIER_DATA_skillItemDoublingChanceGlobal"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
