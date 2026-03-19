@@ -19,8 +19,7 @@ export class WeaponMasteryUI {
         this._content.append(getTemplateNode('weaponMastery-template'));
         this.type = null;
         this.weapon = null;
-        this.goldsrc = ctx.getResourceUrl('assets/others/goldlock_big.webp'); // heh gold source
-        this.redsrc = ctx.getResourceUrl('assets/others/redlock_big.webp');
+        
         // Grab the outer wrapper as the main container
         this.container = getElementFromFragment(this._content, 'outercont', 'div');
         this.block = getElementFromFragment(this._content, 'weaponMasteryContainer', 'div');

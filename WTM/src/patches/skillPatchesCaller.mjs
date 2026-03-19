@@ -1,13 +1,14 @@
 const { loadModule } = mod.getContext(import.meta);
 
 
-const { patchConditionalMod } = await loadModule('src/patches/patchConditionalMod.mjs');
+const { patchConditionalMod } = await loadModule('src/patches/patches/patchConditionalMod.mjs');
+const { patchDataRegistration } = await loadModule('src/patches/patches/patchDataRegistration.mjs');
 
 
-const { addWeaponType } = await loadModule('src/patches/skillPatches/combat/weaponMastery/addWeaponType.mjs');
-const { addWeaponMasteryUI } = await loadModule('src/patches/skillPatches/combat/weaponMastery/weaponMasteryUI.mjs');
+const { addWeaponType } = await loadModule('src/patches/patches/weaponMastery/addWeaponType.mjs');
+const { addWeaponMasteryUI } = await loadModule('src/patches/patches/weaponMastery/weaponMasteryUI.mjs');
 
-const { patchWeaponTypeLogic } = await loadModule('src/patches/skillPatches/combat/weaponMastery/patchWeaponTypeLogic.mjs');
+const { patchWeaponTypeLogic } = await loadModule('src/patches/patches/weaponMastery/patchWeaponTypeLogic.mjs');
 
 
 
@@ -16,8 +17,9 @@ const { patchWeaponTypeLogic } = await loadModule('src/patches/skillPatches/comb
 
 
 export function patchSkillsBeforeDataReg(ctx) {
+        patchDataRegistration(ctx);
         patchConditionalMod(ctx)
-        addWeaponMasteryUI();
+        addWeaponMasteryUI(ctx);
         patchWeaponTypeLogic(ctx);
 }
 export function patchSkillsAfterDataReg(ctx) {

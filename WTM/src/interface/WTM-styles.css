@@ -1,90 +1,4 @@
-body.darkMode .bg-rielk-construction,
-.bg-rielk-construction {
-  background-color: #e7874f !important
-}
 
-.bg-construction-50 {
-  background-color: #e7874f3d !important
-}
-
-.border-rielk-construction {
-  border-color: #e7874f !important;
-}
-
-.border-rielk-nonshiny {
-  border-color: #c8c6c3 !important;
-}
-
-.border-rielk-shiny {
-  border-color: #fca32f !important;
-}
-
-.orange-heart {
-  filter: hue-rotate(40deg) brightness(1.45) saturate(3) contrast(3);
-}
-
-.img-gray {
-  filter: grayscale(1) brightness(0.9);
-}
-
-.img-tint-blue {
-  filter: grayscale(0.4) brightness(1.05) sepia(0.4) hue-rotate(210deg) saturate(1.5);
-}
-
-.img-tint-gold {
-  filter: grayscale(0.3) brightness(1.05) sepia(0.6) hue-rotate(-10deg) saturate(1.6);
-}
-
-.convergence-group {
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-body.darkMode.superDark .bg-rielk-construction {
-  background-color: #000 !important
-}
-
-.gold-marks {
-  position: relative;
-  filter: hue-rotate(212deg) saturate(1.5);
-}
-
-.gold-marks::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: orange;
-  mix-blend-mode: color;
-  pointer-events: none;
-  /* keeps clicks through it */
-}
-
-.modifier-box.locked {
-  opacity: 0.85;
-}
-
-.btn-construction {
-  color: #fff;
-  background-color: #fca32f;
-  border-color: #fca32f;
-}
-
-.btn-construction:hover {
-  color: #fff;
-  background-color: #d88b27;
-  border-color: #c07616;
-}
-
-.btn-construction:focus,
-.btn-construction.focus {
-  color: #fff;
-  background-color: #d88b27;
-  border-color: #c07616;
-  box-shadow: 0 0 0 0.2rem rgba(220, 167, 107, 0.5);
-}
 
 /* why is it all !important and so specific i hate it i hate it i hate it I HATE IT */
 body.darkMode .text-success.fuck-you {
@@ -105,28 +19,9 @@ body.darkMode .bg-success.fuck-you {
 body.darkMode .text-danger.fuck-you {
   color: #fca32f !important;
 }
-
-.mastery.filled1 {
-  background-color: #fca32f;
-  height: 4px;
-  transition: width 0.3s ease;
-  border-radius: 2px;
-}
-
-.mastery.filled2 {
-  background-color: #ffca7b;
-  height: 4px;
-  transition: width 0.3s ease;
-  border-radius: 2px;
-}
-
 .construction-bar {
   background-color: #fca32f !important;
   /* text color */
-}
-
-.rune-shield {
-  color: #0057d1 !important
 }
 
 .construction-success {
@@ -137,52 +32,6 @@ body.darkMode .text-danger.fuck-you {
 .construction-victory {
   color: #fca32f !important;
   font-weight: bold;
-}
-
-.image-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: visible;
-}
-
-.border-item-danger {
-  border: 1px solid #c09a49;
-}
-
-.border-item-green {
-  border: 1px solid #49c063;
-}
-
-.mastery.empty {
-  background-color: #3e4856;
-  height: 4px;
-  border-radius: 2px;
-  flex: none;
-  width: 100%;
-}
-
-
-my-quantity-icons,
-my-current-quantity-icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-remaining-box>h5,
-remaining-haves-box>h5 {
-  font-size: 0.875rem;
-}
-
-requires-box.icon-box-small>h5,
-haves-box.icon-box-small>h5 {
-  font-size: 0.7rem;
-}
-
-.progress-bar.efficiency-flash {
-  background-color: #fca32f !important;
 }
 
 .weaponMasteryStepsButton {
@@ -315,22 +164,6 @@ body.darkMode.superDark .weaponMasteryBgIcon {
   z-index: 3;
 }
 
-.stock-item{
-  color: #2dd432 !important;
-    background-color: #2dd432 !important;
-
-}
-
-.unusual-item{
-  color: #2196F3 !important;
-    background-color: #2196F3 !important;
-
-}
-
-.distinct-item{
-  color: #E91E63 !important;
-  background-color: #E91E63 !important;
-}
 
 
 .singular-weapon-xp-container {
@@ -422,26 +255,4 @@ body.darkMode .xp-marker {
 
 body.darkMode .xp-label {
     color: #fff; 
-}
-
-@keyframes shake {
-
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  20%,
-  60% {
-    transform: translateX(-5px);
-  }
-
-  40%,
-  80% {
-    transform: translateX(5px);
-  }
-}
-
-.shake {
-  animation: shake 0.6s;
 }

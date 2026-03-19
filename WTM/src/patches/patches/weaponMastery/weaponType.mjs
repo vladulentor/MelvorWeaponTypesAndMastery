@@ -2,7 +2,7 @@
 const { loadModule, onInterfaceReady } = mod.getContext(import.meta);
 
 const { getRielkLangString, templateRielkLangString } = await loadModule('src/language/translationManager.mjs');
-const { EffectRegistry } = await loadModule('src/patches/skillPatches/patchRegistry.mjs');
+const { EffectRegistry } = await loadModule('src/patches/patchRegistry.mjs');
 
 game.weaponTypeStats = new StatProvider();
 game.combat.registerStatProvider(game.weaponTypeStats);
@@ -63,8 +63,8 @@ export class WeaponMastery extends RealmedObject {
         this.fixture = Array.isArray(data.fixture)
             ? data.fixture
             : [data.fixture];
-        for (let i = 0; i < this.fixture.length; i++)
-            this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);
+       // for (let i = 0; i < this.fixture.length; i++)
+         //   this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);
         this.allWeapons = [];
         this.masteredWeapons = new Map();
         this.levels = data.levels.map(
@@ -123,7 +123,7 @@ export class WeaponMastery extends RealmedObject {
         return 0;
     }
     get levelCap() {
-        return Math.min(...this.fixture.map(f => f.currentTier));
+        return 5 //Math.min(...this.fixture.map(f => f.currentTier));
     }
     get IndMods() {
         return this.levelCap >= 2;

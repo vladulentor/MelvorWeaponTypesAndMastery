@@ -81,7 +81,7 @@ const namespaces = ["melvorD", "melvorF", "melvorAoD", "melvorTotH", "melvorItA"
 export function addWeaponType(ctx) { // and make your funny map
     for (const type of [Finesse, Slashing, Great, Heavy, Air, Earth, Fire, Water, Swift, Precise, Steady, Thrown, Exotic, Arcane]) {
         // Handle material-based weapons
-        type.clas = game.weaponMasteries.getObject("rielkConstruction", type.clas);
+        type.clas = game.weaponMasteries.getObject("WTM", type.clas);
         if (type.mat) {
             for (const mat of type.mat) {
                 for (const material of type.kind) {

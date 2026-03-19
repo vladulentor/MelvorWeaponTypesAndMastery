@@ -1,7 +1,7 @@
 const { loadModule } = mod.getContext(import.meta);
 
 const { getRielkLangString, templateRielkLangString } = await loadModule('src/language/translationManager.mjs');
-const { WeaponMasteryUI } = await loadModule('src/interface/elements/constructionWeaponMastery.mjs');
+const { WeaponMasteryUI } = await loadModule('src/interface/elements/WeaponMastery.mjs');
 
 export function addWeaponMasteryUI(ctx) {
     ctx.onInterfaceReady(async (ctx) => {

@@ -2,10 +2,8 @@ const { loadModule, loadTemplates, loadStylesheet } = mod.getContext(import.meta
 
 const { patchTranslations } = await loadModule('src/language/translationManager.mjs');
 
-const { patchSkillsBeforeDataReg, patchSkillsAfterDataReg } = await loadModule('src/patches/skillPatches/skillPatchesCaller.mjs');
-const { patchMiscBeforeDataReg, patchMiscAfterDataReg } = await loadModule('src/patches/miscPatches/miscPatchesCaller.mjs');
+const { patchSkillsBeforeDataReg, patchSkillsAfterDataReg } = await loadModule('src/patches/skillPatchesCaller.mjs');
 const { patchMods } = await loadModule('src/patches/modPatches/modPatchesCaller.mjs');
-const { patchAoDbeforedatareg, patchAoDafterdatareg } = await loadModule('src/patches/skillPatches/atlasofdiscovery/patchaod.mjs');
 
 
 
@@ -13,7 +11,6 @@ export async function setup(ctx) {
     setup = new Setup(ctx);
     await setup.loadInterfaceElements();
 
-    game.construction = game.registerSkill(game.registeredNamespaces.getNamespace('rielkConstruction'), Construction);
     await setup.applyPatches();
     await setup.loadData();
     await setup.applyOtherPatches();
@@ -27,40 +24,26 @@ class Setup {
     constructor(ctx) {
         this.ctx = ctx;
         this.modList = [];
-        this.aod = cloudManager.hasAoDEntitlementAndIsEnabled;
-        this.toth = cloudManager.hasTotHEntitlementAndIsEnabled;
     }
 
     async loadInterfaceElements() {
         await loadStylesheet('src/interface/WTM-styles.css');
         await loadTemplates('src/interface/templates/WTM.html');
-        await loadModule('src/interface/elements/rielkLangStringElement.mjs');
-        await loadModule('src/interface/elements/constructionWeaponMastery.mjs');
+        await loadModule('src/interface/elements/WTMLangStringElement.mjs');
+        await loadModule('src/interface/elements/WeaponMastery.mjs');
 
     }
 
     async applyPatches() {
-        patchGameEventSystem(this.ctx);
         patchTranslations(this.ctx);
-        patchMiscBeforeDataReg(this.ctx);
         patchSkillsBeforeDataReg(this.ctx);
-        if (this.aod) patchAoDbeforedatareg(this.ctx);
-
-        game._events.on('offlineLoopEntered', () => game.construction.notifs = false);
-        game._events.on('offlineLoopExited', () => game.construction.notifs = true);
     }
     async applyOtherPatches() {
         patchSkillsAfterDataReg(this.ctx);
-        if (this.aod) patchAoDafterdatareg(this.ctx);
-        patchMiscAfterDataReg(this.ctx);
     }
     async loadData() {
         await this.ctx.gameData.addPackage('src/data/data_preentry.json');
         await this.ctx.gameData.addPackage('src/data/data.json');
-        if (this.aod)
-            await this.ctx.gameData.addPackage('src/data/data_AoD.json');
-        if (this.toth)
-            await this.ctx.gameData.addPackage('src/data/data_TotH.json');
 
     }
     async loadDataFlush() {
@@ -76,7 +59,6 @@ class Setup {
 
     }
     async lastChanges(ctx) {
-        ctx.onInterfaceReady(async (ctx) => {
-        });
+
     }
 }

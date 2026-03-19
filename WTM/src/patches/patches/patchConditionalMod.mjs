@@ -1,7 +1,7 @@
 const { loadModule } = mod.getContext(import.meta);
 
-const { WeaponTypeCondition } = await loadModule ('src/patches/skillPatches/combat/weaponMastery/weaponTypeCondition.mjs');
-const { WeaponCondition } = await loadModule ('src/patches/skillPatches/combat/weaponMastery/weaponCondition.mjs');
+const { WeaponTypeCondition } = await loadModule ('src/patches/patches/weaponMastery/weaponTypeCondition.mjs');
+const { WeaponCondition } = await loadModule ('src/patches/patches/weaponMastery/weaponCondition.mjs');
 
 
 const { getRielkLangString } = await loadModule ('src/language/translationManager.mjs');
