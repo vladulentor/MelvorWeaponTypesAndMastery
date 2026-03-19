@@ -1,8 +1,6 @@
 const { loadModule, loadTemplates, loadStylesheet } = mod.getContext(import.meta);
 
-const { Construction } = await loadModule('src/construction/construction.mjs');
 const { patchTranslations } = await loadModule('src/language/translationManager.mjs');
-const { patchGameEventSystem } = await loadModule('src/construction/gameEvents.mjs');
 
 const { patchSkillsBeforeDataReg, patchSkillsAfterDataReg } = await loadModule('src/patches/skillPatches/skillPatchesCaller.mjs');
 const { patchMiscBeforeDataReg, patchMiscAfterDataReg } = await loadModule('src/patches/miscPatches/miscPatchesCaller.mjs');
@@ -34,23 +32,10 @@ class Setup {
     }
 
     async loadInterfaceElements() {
-        await loadStylesheet('src/interface/construction-styles.css');
-
-        await loadTemplates('src/interface/templates/construction.html');
-        await loadModule('src/interface/elements/constructionRemainingIcons.mjs');
-        await loadModule('src/interface/elements/constructionEfficiencyIconTooltipElement.mjs');
-        await loadModule('src/interface/elements/constructionEfficiencyIconElement.mjs');
-        await loadModule('src/interface/elements/constructionArtisanMenu.mjs');
-        await loadModule('src/interface/elements/constructionFixtureNavElement.mjs');
-        await loadModule('src/interface/elements/constructionMasteryElement.mjs');
-        await loadModule('src/interface/elements/constructionTierMasteryBonusElement.mjs');
-        await loadModule('src/interface/elements/constructionModifierDisplayElement.mjs');
-        await loadModule('src/interface/elements/constructionRecipeOptionElement.mjs');
-        await loadModule('src/interface/elements/constructionRoomPanelElement.mjs');
-        await loadModule('src/interface/elements/constructionUpgradesPanelElement.mjs');
+        await loadStylesheet('src/interface/WTM-styles.css');
+        await loadTemplates('src/interface/templates/WTM.html');
         await loadModule('src/interface/elements/rielkLangStringElement.mjs');
         await loadModule('src/interface/elements/constructionWeaponMastery.mjs');
-        await loadModule('src/patches/skillPatches/astrology/starConvergenceIcons.mjs');
 
     }
 
