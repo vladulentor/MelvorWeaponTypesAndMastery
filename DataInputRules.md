@@ -96,6 +96,7 @@ A mastery consists of:
   "modifiers": {},
   "enemyModifiers": {},
   "conditionalModifiers": [],
+  "changeFunc":"exampleFunc",
   "shiny": true
 }
 ```
@@ -114,6 +115,9 @@ Any modifiers, enemymodifiers, conditionalModifiers are supported.
 | -------- | ------ | --------------- |
 | Locked   | Red    | Washed-out gold |
 | Unlocked | Green  | Blood orange    |
+
+* `changeFunc` (optional)
+  * Used to make modifiers that do cool stuff like add attacks, kind of hard to set up. Has to be the name of a function as defined in the `patchRegistry` file. Will execute that function on level Up or load. Creates no text so a fake modifier has to be used to explain the effect. 
 
 ---
 
