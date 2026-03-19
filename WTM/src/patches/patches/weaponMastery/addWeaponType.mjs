@@ -61,12 +61,12 @@ const Fire = {
 };
 const Water = {
     clas: "Water", kind: MeleeMaterial, uniq: ["Staff_of_Water1", "Water_Battlestaff1", "Mystic_Water_Staff1", "Water_Imbued_Wand1", "Cloudburst_Staff3", "Ocean_Song3", "Rotten_Staff3", "Water_Pulse_Staff3"
-        ,  "Cataclysm_Wand1", "Lacerating_Staff2", "Blight_Burst_Staff2"
+        , "Cataclysm_Wand1", "Lacerating_Staff2", "Blight_Burst_Staff2"
     ]
 };
 const Arcane = {
     clas: "Arcane", kind: MeleeMaterial, uniq: ["Magic_Wand_Basic1", "Magic_Wand_Powerful1", "Magic_Wand_Elite1", "Miolite_Sceptre3", "Water_Sceptre3", "Magical_Broomstick3", "Meteorite_Staff1", "Despair_Wand1", "Archaic_Wand1", "Calamity_Wand3"
-        , "Ethereal_Staff3", "Slicing_Maelstrom_Wand3", "Familiar_Staff2", "Basic_Staff1", "Soul_Taker_Wand2", "Trickery_Mirror3", "Powered_Red_Crystal3", "Unholy_Staff1", "Cursed_Staff1", "Abyssal_Wand1","Abyssal_Staff1", "Desolation_Wand1", "Shadow_Wand3" ]
+        , "Ethereal_Staff3", "Slicing_Maelstrom_Wand3", "Familiar_Staff2", "Basic_Staff1", "Soul_Taker_Wand2", "Trickery_Mirror3", "Powered_Red_Crystal3", "Unholy_Staff1", "Cursed_Staff1", "Abyssal_Wand1", "Abyssal_Staff1", "Desolation_Wand1", "Shadow_Wand3"]
 };
 
 const Exotic = {
@@ -144,11 +144,20 @@ export function addWeaponType(ctx) { // and make your funny map
     Object.defineProperty(WeaponItem.prototype, "_weaponXPBonus", {
         get: function () { return game.modifiers.getValue(`rielkConstruction:increaseWeaponXP${this.attackType}`, ModifierQuery.EMPTY); }
     });
-    // -- Mod Compat Stuff --
-    ctx.onModsLoaded(async (ctx) => {
 
+
+    ctx.patch(WeaponItem, "applyDataModification").after(function (_, modData, game) {
+        if (itemData.weaponType) {
+            const type = game.weaponMasteries.getObjectByID(itemData.weaponType);
+            if (itemData.uniqueness) this.uniqueness = itemData.uniqueness;
+            addClassToItem(this, type, this.uniqueness);
+        }
+    });
+
+    ctx.onModsLoaded(() => {
     });
 }
+
 
 function addClass(name, type, bonuniq = 1) {
     let item = -1;
@@ -158,15 +167,20 @@ function addClass(name, type, bonuniq = 1) {
         if (item) { namespacef = namespace; break; }
     }
     if (item) {
-        item.weaponType = type;
-        item.uniqueness = namespacef === "melvorTotH" || namespacef === "melvorItA" ? 0 : bonuniq;
-        item.attackSpeed = item.equipmentStats[0].key === 'attackSpeed' ? item.equipmentStats[0].value / 1000 : 4;
-
-        type.allWeapons.push(item);
-        if (type.isPerWepMod)
-            type.makeWeaponConditional(item);
+        bonuniq = namespacef === namespacef === "melvorItA" ? 0 : bonuniq;
+        addClassToItem(item, type, bonuniq);
     }
     else {
         console.log("Not found:", name);
     }
+}
+function addClassToItem(item, type, bonuniq = 1) {
+    item.weaponType = type;
+    item.uniqueness = bonuniq
+    item.attackSpeed = item.equipmentStats[0].key === 'attackSpeed' ? item.equipmentStats[0].value / 1000 : 4;
+
+    type.allWeapons.push(item);
+    if (type.isPerWepMod)
+        type.makeWeaponConditional(item);
+
 }

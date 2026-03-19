@@ -129,7 +129,7 @@ export class WeaponMastery extends RealmedObject {
         return this.levelCap >= 2;
     }
     get doubledIndBonuses(){
-        return this.levelCap >=5 ? 2 : 1;
+        return 1 // this.levelCap >=5 ? 2 : 1;
     }
     makeWeaponConditional(weapon) {
         const cond = new StatObject({ conditionalModifiers: [{ condition: { type: "Weapon", weapon: `${weapon._localID}` }, ...this.wepModifiers, descripiton: "Wow, it works!" }] }, this.game, null);

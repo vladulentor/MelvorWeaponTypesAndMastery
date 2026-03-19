@@ -2,7 +2,7 @@ const { loadModule } = mod.getContext(import.meta);
 
 const { getRielkLangString } = await loadModule('src/language/translationManager.mjs');
 
-export class RielkLangStringElement extends HTMLElement {
+export class WTMLangStringElement extends HTMLElement {
     constructor() {
         super();
     }
@@ -27,4 +27,4 @@ export class RielkLangStringElement extends HTMLElement {
         return ['lang-id'];
     }
 }
-window.customElements.define('rielk-lang-string', RielkLangStringElement);
+window.customElements.define('wtm-lang-string', WTMLangStringElement);
