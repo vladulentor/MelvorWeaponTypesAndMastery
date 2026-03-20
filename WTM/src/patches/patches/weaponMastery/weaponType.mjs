@@ -59,12 +59,13 @@ export class WeaponMastery extends RealmedObject {
             this.wepModifiers = new StatObject(data.wepModifiers, game, this._localID);
             this._uiWepMod = this.wepModifiers;
         }
-
-        this.fixture = Array.isArray(data.fixture)
-            ? data.fixture
-            : [data.fixture];
-       // for (let i = 0; i < this.fixture.length; i++)
-         //   this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);
+        if (data.fixture) {
+            this.fixture = Array.isArray(data.fixture)
+                ? data.fixture
+                : [data.fixture];
+        }
+        // for (let i = 0; i < this.fixture.length; i++)
+        //   this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);
         this.allWeapons = [];
         this.masteredWeapons = new Map();
         this.levels = data.levels.map(
@@ -128,7 +129,7 @@ export class WeaponMastery extends RealmedObject {
     get IndMods() {
         return this.levelCap >= 2;
     }
-    get doubledIndBonuses(){
+    get doubledIndBonuses() {
         return 1 // this.levelCap >=5 ? 2 : 1;
     }
     makeWeaponConditional(weapon) {
