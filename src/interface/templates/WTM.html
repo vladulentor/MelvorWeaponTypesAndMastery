@@ -1,0 +1,1070 @@
+<template id="rielk-construction-template">
+  <!-- CONSTRUCTION Content -->
+  <div class="content d-none" id="rielk-construction-container">
+    <div class="skill-info">
+      <skill-header id="skill-id" data-skill-id="rielkConstruction:Construction"
+        style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;"></skill-header>
+      <rielk-construction-mastery id="rielk-mastery"></rielk-construction-mastery>
+    </div>
+    <div class="row row-deck" id="rielk-construction-injected-container"></div>
+    <div class="row row-deck">
+      <realmed-category-menu class="col-12" id="rielk-construction-category-menu"></realmed-category-menu>
+      <div class="col-12">
+        <div class="block block-rounded block-link-pop border-top border-rielk-construction border-4x">
+          <div class="row no-gutters" id="rielk-construction-category-container">
+            <div class="col-12 col-md-4" id="rielk-construction-artisan-element">
+              <cons-artisan-menu id="rielk-construction-artisan-menu"></cons-artisan-menu>
+            </div>
+            <div class="col-12 d-none" id="rielk-construction-house-element"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END CONSTRUCTION Content -->
+</template>
+
+<template id="rielk-construction-room-panel-template">
+  <div class="block block-rounded border-top border-rielk-construction border-4x">
+    <div class="row no-gutters">
+      <div class="col-12 pointer-enabled" id="header">
+        <div class="block-content text-center">
+          <i class="fa fa-eye text-muted mr-2 font-w300" id="eye-icon"></i>
+          <span class="h5 font-w600" id="room-name"></span>
+          <img id="exclamation-mark" class="skill-icon-xs d-none">
+        </div>
+      </div>
+      <div class="col-12 col-md-6 row gutters-tiny">
+        <div class="block-content block-content-full text-center" id="target-container"></div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="block-content block-content-full" id="info-container">
+          <div class="row gutters-tiny">
+            <div class="col-12">
+              <div class="row row-deck gutters-tiny">
+                <div class="col-4" id="image-container" style="position:relative;">
+                  <div class="block block-rounded-double bg-combat-inner-dark text-center p-3">
+                    <div class="image-wrapper"
+                      style="position: relative; display: inline-block; overflow: visible; margin: 5px;">
+                      <img id="sparkle-underlay" class="bank-img-detail d-none"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+
+                      <div id="product-wrapper" style="position: relative; display: inline-block; overflow: visible;">
+                        <img id="product-image" class="bank-img-detail" style="position: relative; z-index: 1;">
+                      </div>
+                      <img id="sparkle-overlay" class="bank-img-detail"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8" id="details-container">
+                  <div class="block block-rounded-double bg-combat-inner-dark pt-2 pl-2 pr-2 pb-1">
+                    <h5 class="font-size-sm font-w600 text-muted m-1">
+                      <small id="construct-text">
+                      </small>
+                    </h5>
+                    <h5 class="font-w700 text-combat-smoke m-1">
+                      <span id="product-name">-</span>
+                    </h5>
+                    <div class="col-12">
+                      <div class="row icon-size-48" id="extra-details-container">
+                        <button class="btn btn-sm btn-info m-1 mt-3" style="min-height:44px; max-width:88px;"
+                          role="button" id="upgrades-button">
+                          <rielk-lang-string lang-id="MENU_TEXT_SHOW_UPGRADES"></rielk-lang-string>
+                        </button>
+                        <preservation-icon id="product-preservation"></preservation-icon>
+                        <efficiency-icon id="product-efficiency"></efficiency-icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 block block-rounded-double bg-combat-inner-dark" id="built-progress-container">
+                <div class="row no-gutters">
+                  <div class="col-md-2"></div>
+                  <div class="col-12 col-md-8">
+                    <div class="media-body">
+                      <div class="font-w400 text-center">
+                        <h5 class="font-w400 font-size-sm text-combat-smoke m-1">
+                          <small id="built-progress-text">-</small>
+                        </h5>
+                      </div>
+                      <div class="font-size-sm mb-2">
+                        <div class="col-12">
+                          <progress-bar class="progress-height-6" id="built-progress-bar"></progress-bar>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 block block-rounded-double bg-combat-inner-dark pt-2 pb-1 text-center"
+                id="ingredients-container">
+                <div class="row no-gutters">
+                  <remaining-box class="col-12 col-sm-6 pb-2 icon-size-48" id="remaining"></remaining-box>
+                  <remaining-haves-box class="col-12 col-sm-6 pb-2 icon-size-48"
+                    id="remaining-haves"></remaining-haves-box>
+                </div>
+              </div>
+              <div class="col-12 block block-rounded-double bg-combat-inner-dark pt-2 pb-1 text-center"
+                id="grants-container">
+                <div class="row justify-content-center icon-size-48">
+                  <grants-box id="grants"></grants-box>
+                </div>
+              </div>
+              <div class="col-12 block block-rounded-double bg-combat-inner-dark p-3 text-center" id="build-container">
+                <div class="row justify-content-center icon-size-48">
+                  <button class="btn btn-success m-2 p-2" type="button" style="min-height: 48px;" id="start-button">
+                    <rielk-lang-string lang-id="MENU_TEXT_BUILD"></rielk-lang-string>
+                  </button>
+                  <interval-icon id="interval"></interval-icon>
+                  <div class="col-12">
+                    <progress-bar class="progress-height-5" id="progress-bar"></progress-bar>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="rielk-construction-fixture-nav-template">
+  <ul class="nav nav-pills nav-justified">
+    <li class="nav-item mr-1">
+      <a class="block block-link-pop nav-link border pointer-enabled font-w600 p-1" id="button">
+        <div class="media d-flex align-items-center" id="button-content">
+          <div class="media d-flex align-items-center" id="button-content">
+            <div class="m-1">
+              <div class="image-wrapper"
+                style="position: relative; display: inline-block; overflow: visible; min-width: 64px;">
+                <img id="sparkle-underlay" class="bank-img-detail d-none"
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;">
+
+                <div id="fixture-wrapper" style="position: relative; display: inline-block; overflow: visible;">
+                  <img id="fixture-image" class="skill-icon-md mr-1" style="position: relative; z-index: 1;">
+
+                </div>
+
+
+                <img id="sparkle-overlay" class="bank-img-detail d-none"
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;">
+              </div>
+            </div>
+          </div>
+          <div class="media-body">
+            <div class="text-center">
+              <h5 class="font-w700 text-combat-smoke mb-1 d-flex flex-wrap justify-content-center">
+                <span id="fixture-name"></span>
+              </h5>
+              <small id="construction-progress"></small>
+            </div>
+          </div>
+        </div>
+        <div class="justify-vertical-center" id="unlock">
+          <span class="text-danger" id="level"></span>
+          <span class="text-danger" id="abyssal-level"></span>
+        </div>
+      </a>
+    </li>
+  </ul>
+</template>
+
+<template id="rielk-construction-upgrades-panel-template">
+  <div class="block block-rounded-double border-top border-rielk-construction border-4x">
+    <div class="block-content text-center">
+      <h5 class="font-w700 text-combat-smoke mb-1 d-flex flex-wrap">
+        <span id="fixture-name"></span>
+      </h5>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-12">
+        <div class="row no-gutters p-2" id="upgrades-container">
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="rielk-construction-modifier-display-template">
+  <div class="media d-flex align-items-center push m-0 row gutters-tiny">
+    <div class="m-1 font-w600">
+      <span style="position:relative;display:inline-block;width:45px;height:45px;">
+        <img id="fixture-image" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;">
+        <img id="tier-overlay" aria-hidden="true" style="position:absolute;top:0;left:0;width:100%;height:100%;
+                object-fit:contain;pointer-events:none;z-index:2;">
+      </span>
+    </div>
+    <div class="media-body">
+      <div class="block block-rounded-double bg-combat-inner-dark p-1 border-top border-3x text-left mb-2"
+        id="modifier-container">
+        <h5 class="font-w700 font-size-sm m-1" id="modifier-text"></h5>
+      </div>
+      <div class="justify-vertical-center" id="unlock-container">
+        <span id="level"></span>
+        <span class="text-danger" id="abyssal-level"></span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="Engraved_Construct_Diagram_Swal_Content" data-image-init="true">
+  <small>
+    <em>
+      <div><rielk-lang-string lang-id="MENU_TEXT_ENGRAVED_DIAGRAM_TEXT_0"></rielk-lang-string></div>
+      <div><rielk-lang-string lang-id="MENU_TEXT_ENGRAVED_DIAGRAM_TEXT_1"></rielk-lang-string></div>
+      <div><rielk-lang-string lang-id="MENU_TEXT_ENGRAVED_DIAGRAM_TEXT_2"></rielk-lang-string></div>
+      <div><rielk-lang-string lang-id="MENU_TEXT_ENGRAVED_DIAGRAM_TEXT_3"></rielk-lang-string></div>
+    </em>
+  </small>
+
+  <br>
+
+  <small class="text-success">
+    <div><rielk-lang-string lang-id="MENU_TEXT_ENGRAVED_DIAGRAM_UNLOCK_0"></rielk-lang-string></div>
+    <div><rielk-lang-string lang-id="MENU_TEXT_ENGRAVED_DIAGRAM_UNLOCK_1"></rielk-lang-string></div>
+  </small>
+</template>
+
+<template id="tier-mastery-menu">
+  <div class="modal fade" id="rielk-tier-mastery-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl" role="document" style="max-width: 700px;">
+      <div class="modal-content">
+
+        <div class="block block-themed block-transparent mb-3" style="max-width: 700px;">
+          <div class="block-header bg-primary-dark">
+            <h3 class="block-title"></h3>
+            <div class="block-options">
+              <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                <i class="fa fa-fw fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="block-content block-content-full pb-0">
+            <!-- Left text first -->
+            <div class="mb-4">
+              <h3 class="font-w900 text-warning">
+                <rielk-lang-string lang-id="MENU_TEXT_WHAT_ARE_HOUSE_TIERS"></rielk-lang-string>
+              </h3>
+              <p class="font-w500">
+                <rielk-lang-string lang-id="MENU_TEXT_HOUSE_TIER_EXPLANATION_1" lang-html="true"></rielk-lang-string>
+              </p>
+              <p class="font-w500">
+                <rielk-lang-string lang-id="MENU_TEXT_HOUSE_TIER_EXPLANATION_2" lang-html="true"></rielk-lang-string>
+              </p>
+            </div>
+
+            <div id="pips-container" class="d-flex flex-column gap-2">
+              <!--There could be a way to do this dynamically. Could.-->
+              <tier-mastery-bonus id="tier-1"></tier-mastery-bonus>
+
+              <tier-mastery-bonus id="tier-2"></tier-mastery-bonus>
+
+              <tier-mastery-bonus id="tier-3"></tier-mastery-bonus>
+
+              <tier-mastery-bonus id="tier-4"></tier-mastery-bonus>
+
+              <tier-mastery-bonus id="tier-5"></tier-mastery-bonus>
+
+              <tier-mastery-bonus id="tier-6"></tier-mastery-bonus>
+
+              <tier-mastery-bonus id="tier-7"></tier-mastery-bonus>
+
+              <tier-mastery-bonus id="tier-8"></tier-mastery-bonus>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</template>
+
+
+
+
+<template id="tier-mastery-bonus">
+  <div class="col-12 d-none" id="activation">
+    <h5 id="tier-title" class="mb-1"> </h5>
+    <div class="block block-rounded-double bg-combat-inner-dark p-2 mb-2">
+      <div class="media d-flex align-items-center push mb-0">
+        <!-- Fixture count -->
+        <div class="mr-3">
+          <h3 id="fixture-count" class="font-w700 text-danger mb-0"></h3>
+        </div>
+
+        <div class="media-body">
+          <div class="font-w600 font-size-sm justify-vertical-center text-center">
+
+            <!-- Passive Bonuses -->
+            <div id="modifier-container" class="d-none">
+              <h5 class="mb-0"></h5>
+              <div id="modifier-list" class="justify-vertical-center"></div>
+            </div>
+
+            <!-- Rewards -->
+            <div id="reward-container">
+              <h5 class="mb-0"><rielk-lang-string lang-id="MENU_TEXT_REWARDS">Rewards</lang-string></h5>
+              <div id="reward-list" class="justify-horizontal-center"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template id="rielk-construction-mastery">
+  <div id="skill-boosts-append" class="d-flex flex-column">
+    <div class="block block-link-pop p-2 mb-2 w-100" style="border-radius: 0 0 0.25rem 0.25rem; overflow: hidden;">
+      <div class="d-flex align-items-center">
+        <div class="m-1 d-flex align-items-start">
+          <img class="skill-icon-md mr-2" id="house-image">
+        </div>
+        <div class="media-body flex-column w-100">
+          <div class="d-flex flex-column w-100">
+            <h5 class="font-w700 text-combat-smoke mb-2">
+              <rielk-lang-string lang-id="MENU_HOUSE_COMPLETION"></rielk-lang-string>
+            </h5>
+            <div class="d-flex w-100 mb-1" id="mastery-bars-container">
+            </div>
+            <div class="d-flex w-100 mb-1 justify-content-between">
+              <small id="tiers-completed-aggregate" class="font-w400 font-size-sm text-combat-smoke"></small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="efficiency-icon-template">
+  <div id="container" class="btn-light pointer-enabled m-2 info-icon" aria-expanded="false">
+    <img id="image" class="p-2" alt="Efficiency bonus effect.">
+    <div class="font-size-sm text-white text-center">
+      <small id="chance" class="badge-pill bg-primary"></small>
+    </div>
+  </div>
+</template>
+
+<template id="efficiency-icon-tooltip-template" data-image-init="true">
+  <h5 id="top-tooltip" class="font-w400 font-size-sm mb-1 text-warning text-center"></h5>
+  <h5 class="font-w400 font-size-sm mb-1 text-danger text-center" id="cap"></h5>
+  <h5 class="font-w400 font-size-sm mb-1 text-center">
+    <small>
+      <lang-string lang-id="MENU_TEXT_TOOLTIP_CHANCE_BELOW"></lang-string>
+    </small>
+  </h5>
+  <h5 class="font-w400 font-size-sm mb-1 text-center text-info">
+    <small id="future-1">
+      <s>
+        <lang-string lang-id="MENU_TEXT_TOOLTIP_FUTURE_UPDATE"></lang-string>
+      </s>
+    </small>
+  </h5>
+  <h5 id="future-2" class="font-w400 font-size-sm mb-1 text-center text-warning">
+    <lang-string lang-id="FUTURE_IS_NOW_OLD_MAN"></lang-string>
+  </h5>
+  <div class="dropdown-divider"></div>
+  <div class="d-flex gap-2 w-100 px-3">
+    <div class="w-50">
+      <div id="potency-source-container" class="row mx-1"></div>
+    </div>
+    <div class="w-50">
+      <div id="chance-source-container" class="row  mx-1"></div>
+    </div>
+  </div>
+</template>
+
+<template id="tutorial-template-Construction">
+  <div id="tutorial-page-Construction" class="py-2 text-center">
+    <!-- Hero -->
+    <h2 class="h1 mb-2" data-guide="hero"></h2>
+    <h5 class="font-w400" data-guide="sub1"></h5>
+    <h5 class="font-w400 mb-5" data-guide="sub2"></h5>
+
+    <div class="col-12">
+      <div class="row gutters-tiny">
+
+        <!-- Materials, left column -->
+        <div class="col-md-6">
+          <div class="block-content block-content-full p-0 text-left">
+            <div class="py-2 text-left">
+              <h4 class="mb-2" data-guide="materials-title"></h4>
+            </div>
+
+            <!-- Planks -->
+            <div class="media d-flex align-items-center push" data-guide="mat-planks">
+              <div class="mr-3"><span data-node="Planks48"></span></div>
+              <div class="media-body text-left">
+                <div class="font-w600" data-guide="name"></div>
+                <div class="font-w400 font-size-sm" data-guide="text"></div>
+              </div>
+            </div>
+
+            <!-- Nails -->
+            <div class="media d-flex align-items-center push" data-guide="mat-nails">
+              <div class="mr-3"><span data-node="Nails48"></span></div>
+              <div class="media-body text-left">
+                <div class="font-w600" data-guide="name"></div>
+                <div class="font-w400 font-size-sm" data-guide="text"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Materials, right column -->
+        <div class="col-md-6">
+          <div class="block-content block-content-full p-0 text-left">
+            <div class="py-2 text-left">
+              <h4 class="mb-2 invisible" aria-hidden="true">&nbsp;</h4>
+            </div>
+
+            <!-- Straps -->
+            <div class="media d-flex align-items-center push" data-guide="mat-straps">
+              <div class="mr-3"><span data-node="Straps48"></span></div>
+              <div class="media-body text-left">
+                <div class="font-w600" data-guide="name"></div>
+                <div class="font-w400 font-size-sm" data-guide="text"></div>
+              </div>
+            </div>
+
+            <!-- Bricks -->
+            <div class="media d-flex align-items-center push" data-guide="mat-bricks">
+              <div class="mr-3"><span data-node="Bricks48"></span></div>
+              <div class="media-body text-left">
+                <div class="font-w600" data-guide="name"></div>
+                <div class="font-w400 font-size-sm" data-guide="text"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mechanics + House -->
+        <div class="row">
+          <!-- Efficiency -->
+          <div class="col-md-6">
+            <div class="block-content block-content-full p-0 text-left">
+              <div class="py-2 text-left">
+                <h4 class="mb-2" data-guide="mechanics-title"></h4>
+              </div>
+              <div class="block-content block-content-full text-left" data-guide="efficiency">
+                <span data-node="EffFloat56" style="float:left; margin:0 12px 0 0;"></span>
+                <div class="font-w600" data-guide="title"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p1"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p2"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="warn"></div>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Your House -->
+          <div class="col-md-6">
+            <div class="block-content block-content-full p-0 text-left">
+              <div class="py-2 text-left">
+                <h4 class="mb-2 invisible" data-guide="house-title"></h4>
+              </div>
+              <div class="block-content block-content-full text-left" data-guide="house">
+                <span data-node="HouseFloat56" style="float:left; margin:0 12px 0;"></span>
+                <div class="font-w600" data-guide="title"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p1"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p2"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p3"></div>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extended Features -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="block-content block-content-full p-0 text-left">
+              <div class="py-2 text-left">
+                <h4 class="mb-2" data-guide="extended-title"></h4>
+              </div>
+              <div class="block-content block-content-full text-left" data-guide="extended">
+                <span data-node="ExtFloat56" style="float:left; margin:0 12px 0 0;"></span>
+                <div class="font-w600" data-guide="title"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p1"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p2"></div>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block-content block-content-full text-left">
+          <h4 class="mb-2 text-warning">Change Log</h4>
+          <div class="font-w400 font-size-sm mb-3">
+            Lists all updates and patch notes for the construction mod, barring bug fixes. This Change Log is only
+            available in the English version of the game. For a more detailed change log with bug fixes you can check
+            the mod.io page's "view other versions" tab.
+          </div>
+          <div style="max-height:350px; overflow-y:auto;">
+            <div class="font-w600 mb-1 ">v4.9</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Updated the Training Room's Jungle Gym's picture and effects.<br>
+              - Changed Relic 4's effect from giving 5 levels to non-combat skills to giving 15% xp boost<br>
+              - Updated Agility obstacles and pillars with Construction material costs and modifiers<br>
+              - The rest of the Training Room fixtures will be updated in 4.10, it includes a lot of new systems, so
+              they've been pushed back.<br>
+            </div>
+
+            <div class="font-w600 mb-1 ">v4.8</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Updated the Outpost with custom effects. The Black Market now improves Thieving and Commersce, the Mines
+              improve Smithing as well as Mining, and the Hunter's Lodge unlock new enemies as well as buffing slayer
+              abilities.<br>
+              - Added 2 new thieving targets with custom rewards, added a new are unique item to Thieving.
+              - As part of the Hunter's Lodge update, 5 new enemies have been added, they only become visible once
+              unlocked.
+            </div>
+
+            <div class="font-w600 mb-1 ">v4.7</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Updated the Refectory with custom Effects. The Rune Altar has more varied effects about making runes.
+              The Prayer Altar has a new mechanic that makes low-level prayers free.<br>
+              - Removed the Dragon Statue entirely, replaced it with a Spirit Catcher furniture, meant to help with
+              Summoning, this comes with effects that change how summoning works.<br>
+              - Any House Tiers lost will be regained when this Fixtures is upgraded, note that the rewards will not be
+              rewarded twice. <br>
+              - This means the Hunter's Lodge is currently a bit empty, until it will be reworked with more unique
+              Slayer Effects.<br>
+              - Added the "Bee" summoning familiar, as well as a few synergies as well. More will be added later.<br>
+            </div>
+            <div class="font-w600 mb-1 ">v4.6</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Added Ancient Relics and a minor relic in Relic-compatible gamemodes. Added boost to Wood Beams made
+              from Fletching 50% Mastery Pool Bonus
+            </div>
+
+
+            <div class="font-w600 mb-1 ">v4.5</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Updated the Laboratory with custom effects. The Spell Library has more wizard-themed effects and buffs
+              to magic weapons.<br>
+              The Apparatus has more varied buffs and upgrades potion upgrading from the bank.<br>
+              The Telescope now gives Astrology an entirely new purpose as an all-around resource collecting system.<br>
+              Added new Enemies in the wizard tower. Made AoD Golems drop bricks.
+            </div>
+
+
+            <div class="font-w600 mb-1 ">v4.4</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Made Furniture show up in Skill Boosts properly. Refractored efficiency under the hood, buffed Tar
+              Jar.<br>
+              Fixed Cost Reduction not reducing item cost in Furniture.
+            </div>
+
+            <div class="font-w600 mb-1 ">v4.3</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Updated the Garden with custom effects. Forest now gives mastered trees global buffs like firemaking
+              logs. Lake now gives new items from fishing and buffs to max and minimum interval. Composter now gives
+              more seeds and general farming bonuses alongside new plots.
+            </div>
+
+            <div class="font-w600 mb-1 ">v4.2</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Updated the Kitchen with custom effects. Larder (now Pantry) gives overheal and food slots, Oven gives
+              passive/active bonuses, and Fire Pit gives a new way to buff other skills for logs.
+            </div>
+
+            <div class="font-w600 mb-1 ">v4.1</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Changed Modifier display, differentiated non-special modifiers from yes-special modifiers. And tiers
+              that do and don't have special modifiers. Added TinyIcons support. Other UI improvements and code
+              refractoring.
+            </div>
+            <div class="font-w600 mb-1 construction-victory">v4.0</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Two new Resources, Straps and Bricks have been added. Planks received an additional intermediate steps
+              through beams. <br />
+              - The cost of all Furniture has been changed to be more varied and interesting, making Construction more
+              akin to Township tasks and long-term goals. <br />
+              - The pictures or names of a third of all furniture has been changed to reflect its new costs or
+              soon-to-be new functions. <br />
+              - Workshop has been made to be give only Crafting and Fletching bonuses, and Tool Box has been made to
+              give exclusively Construction bonuses<br />
+              If any of the new costs seem too high for their tier mention it on the mod.io page or official Discord!
+            </div>
+
+            <div class="font-w600 mb-1 ">v3.10</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Build Menu changed majorly, now being different islands instead of one big menu. Max furniture now
+              looks very fancy. Efficiency has a notification and pulse on the progress bar.
+            </div>
+
+            <div class="font-w600 mb-1">v3.9</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Changed construction time to 4 seconds. Added purchasable Saw to decrease it. It, along with all other
+              purchasable tools now costing nails and planks. Changed Construction's order in the skill menu. Added
+              Game
+              Guide and Change Log.
+            </div>
+            <div class="font-w600 mb-1">v3.8</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Rewrite of Item Icon logic and furniture cost logic, big performance improvements. If this update
+              caused
+              you a crash, sorry. Changed normal planks and iron nails' icons.
+            </div>
+            <div class="font-w600 mb-1">v3.7</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Added nails and planks to few base-game enemies' loot tables, changed to UI reordering on 1080p
+              screens.
+            </div>
+            <div class="font-w600 mb-1">v3.6</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Added Barn Raiser and Iron Giant enemies. Added Construction bonuses to the Haemir star.
+            </div>
+            <div class="font-w600 mb-1 construction-victory">v3.5</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Removed doubling, added Efficiency. Changed House Tier, cape, workshop, toolbox, forge upgrades to
+              instead increase Efficiency chance and effect. Added Herblore potion.
+            </div>
+            <div class="font-w600 mb-1">v3.4</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Upgrades look more like astrology's
+            </div>
+            <div class="font-w600 mb-1">v3.3</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Scroll positions remembered on clicking "back", yellow border to incomplete resources added. New
+              Recipe
+              UI. Better rendering logic.
+            </div>
+            <div class="font-w600 mb-1">v3.2</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - XP from materials decreased, from furniture increased. Furniture action cost greatly reduced.
+            </div>
+            <div class="font-w600 mb-1">v3.1</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Nerf to chest, changed "Cold Box" to Larder, nerf to Dragon statue cost. Icon reworks.
+            </div>
+            <div class="font-w600 mb-1 construction-victory">v3.0</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Removed Mastery entirely. Added the House Tier system instead. Along with all of its bonuses and new
+              Pet.
+            </div>
+            <div class="font-w600 mb-1">v2.12</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Added Skill Boosts compatibility
+            </div>
+            <div class="font-w600 mb-1">v2.11</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Instead of per-action, building UI now shows resources needed in total. Changed Main developer.
+            </div>
+            <div class="font-w600 mb-1">v2.10</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Mastery log colour fixes, skill outfit icons revamped
+            </div>
+            <div class="font-w600 mb-1">v2.9</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Fixed language patcher to work in offline client, and fixed mastery count
+            </div>
+            <div class="font-w600 mb-1">v2.8</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Fixed UI bug with seeing wrong fixture's upgrades.
+            </div>
+            <div class="font-w600 mb-1">v2.7</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - 1.31 fixes.
+            </div>
+            <div class="font-w600 mb-1">v2.6</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Nerfed seed costs for Forest.
+            </div>
+            <div class="font-w600 mb-1">v2.5</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Made Skill caps work in standard mode and AR, both.
+            </div>
+            <div class="font-w600 mb-1">v2.4</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - The skill caps for Construction are now removed in standard mode.
+            </div>
+            <div class="font-w600 mb-1">v2.3</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Construction can now be unlocked from rolling in AR mode.
+            </div>
+            <div class="font-w600 mb-1">v2.2</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Changed media paths so Skillcape Tailer won't crash with the mod.
+            </div>
+            <div class="font-w600 mb-1">v2.1</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Tokens removed, now upgrading Flower Pots unlocks the farm plots directly.
+            </div>
+            <div class="font-w600 mb-1 construction-victory">v2.0</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Flower Pots changed to grant tokens, fixed harvgesting trees and added mastery to building furniture.
+              More AR fixes and UI improvements.
+            </div>
+            <div class="font-w600 mb-1">v1.3</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - More Translations were added
+            </div>
+            <div class="font-w600 mb-1">v1.2</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Fix for crash when multiple realms were unlocked
+            </div>
+
+
+            <div class="font-w600 mb-1">v1.1</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Added some Translations, made mod start in Ancient Relics
+            </div>
+            <div class="font-w600 mb-1">v1.0</div>
+            <div class="font-w400 font-size-sm mb-2">
+              - Release!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tutorial-template-Construction-translated">
+  <div id="tutorial-page-Construction-1" class="py-2 text-center">
+    <!-- Hero -->
+    <h2 class="h1 mb-2" data-guide="hero"></h2>
+    <h5 class="font-w400" data-guide="sub1"></h5>
+    <h5 class="font-w400 mb-5" data-guide="sub2"></h5>
+
+    <div class="col-12">
+      <div class="row gutters-tiny">
+
+        <!-- Materials, left column -->
+        <div class="col-md-6">
+          <div class="block-content block-content-full p-0 text-left">
+            <div class="py-2 text-left">
+              <h4 class="mb-2" data-guide="materials-title"></h4>
+            </div>
+
+            <!-- Planks -->
+            <div class="media d-flex align-items-center push" data-guide="mat-planks">
+              <div class="mr-3"><span data-node="Planks48"></span></div>
+              <div class="media-body text-left">
+                <div class="font-w600" data-guide="name"></div>
+                <div class="font-w400 font-size-sm" data-guide="text"></div>
+              </div>
+            </div>
+
+            <!-- Nails -->
+            <div class="media d-flex align-items-center push" data-guide="mat-nails">
+              <div class="mr-3"><span data-node="Nails48"></span></div>
+              <div class="media-body text-left">
+                <div class="font-w600" data-guide="name"></div>
+                <div class="font-w400 font-size-sm" data-guide="text"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Materials, right column -->
+        <div class="col-md-6">
+          <div class="block-content block-content-full p-0 text-left">
+            <div class="py-2 text-left">
+              <h4 class="mb-2 invisible" aria-hidden="true">&nbsp;</h4>
+            </div>
+
+            <!-- Straps -->
+            <div class="media d-flex align-items-center push" data-guide="mat-straps">
+              <div class="mr-3"><span data-node="Straps48"></span></div>
+              <div class="media-body text-left">
+                <div class="font-w600" data-guide="name"></div>
+                <div class="font-w400 font-size-sm" data-guide="text"></div>
+              </div>
+            </div>
+
+            <!-- Bricks -->
+            <div class="media d-flex align-items-center push" data-guide="mat-bricks">
+              <div class="mr-3"><span data-node="Bricks48"></span></div>
+              <div class="media-body text-left">
+                <div class="font-w600" data-guide="name"></div>
+                <div class="font-w400 font-size-sm" data-guide="text"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mechanics + House -->
+        <div class="row">
+          <!-- Efficiency -->
+          <div class="col-md-6">
+            <div class="block-content block-content-full p-0 text-left">
+              <div class="py-2 text-left">
+                <h4 class="mb-2" data-guide="mechanics-title"></h4>
+              </div>
+              <div class="block-content block-content-full text-left" data-guide="efficiency">
+                <span data-node="EffFloat56" style="float:left; margin:0 12px 0 0;"></span>
+                <div class="font-w600" data-guide="title"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p1"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p2"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="warn"></div>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Your House -->
+          <div class="col-md-6">
+            <div class="block-content block-content-full p-0 text-left">
+              <div class="py-2 text-left">
+                <h4 class="mb-2 invisible" data-guide="house-title"></h4>
+              </div>
+              <div class="block-content block-content-full text-left" data-guide="house">
+                <span data-node="HouseFloat56" style="float:left; margin:0 12px 0;"></span>
+                <div class="font-w600" data-guide="title"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p1"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p2"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p3"></div>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extended Features -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="block-content block-content-full p-0 text-left">
+              <div class="py-2 text-left">
+                <h4 class="mb-2" data-guide="extended-title"></h4>
+              </div>
+              <div class="block-content block-content-full text-left" data-guide="extended">
+                <span data-node="ExtFloat56" style="float:left; margin:0 12px 0 0;"></span>
+                <div class="font-w600" data-guide="title"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p1"></div>
+                <div class="font-w400 font-size-sm mb-2" data-guide="p2"></div>
+                <div style="clear:both;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="remaining-box-template" data-image-init="true">
+  <h5 class="font-w600 mb-1 text-center">
+    <rielk-lang-string id="remaining-text" lang-id="MENU_TEXT_REMAINING"></rielk-lang-string>
+  </h5>
+  <my-quantity-icons id="icons"></my-quantity-icons>
+</template>
+
+<template id="remaining-haves-box-template" data-image-init="true">
+  <h5 class="font-w600 mb-1 text-center">
+    <lang-string lang-id="MENU_TEXT_YOU_HAVE"></lang-string>
+  </h5>
+  <my-current-quantity-icons id="icons"></my-current-quantity-icons>
+</template>
+
+<template id="locked-icon-template">
+  <div id="container"
+    class="block block-rounded-double bg-combat-inner-dark m-2 border-top border-3x pointer-enabled info-icon icon-size-64"
+    style="position: relative; display: inline-block;">
+
+    <!-- Base item image -->
+    <img id="icon-image" class="p-2" style="display: block; width:64px; height:64px;">
+
+    <!-- Lock overlay -->
+    <img id="lock-overlay" alt="Locked" class="d-none"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+
+    <!-- Quantity badge wrapper -->
+    <div class="font-size-sm text-white text-center"
+      style="position: absolute; bottom: -0.5rem; left: 50%; transform: translateX(-50%); line-height: 1.15; white-space: nowrap; width: 100%;">
+      <small id="quantity" class="badge-pill">
+        0
+      </small>
+    </div>
+
+    <!-- Tooltip placeholder -->
+    <div class="tooltip-placeholder" style="display: none;"></div>
+
+  </div>
+
+</template>
+
+<template id="locked-icon-template-sm">
+  <div id="container"
+    class="block block-rounded-double bg-combat-inner-dark m-2 border-top border-3x pointer-enabled info-icon icon-size-48"
+    style="position: relative; display: inline-block;">
+
+    <!-- Base item image -->
+    <img id="icon-image" class="p-2" style="display: block; width:48px; height:48px;">
+
+    <!-- Lock overlay -->
+    <img id="lock-overlay" alt="Locked" class="d-none"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+
+    <!-- Quantity badge wrapper -->
+    <div class="font-size-sm text-white text-center"
+      style="position: absolute; bottom: -0.5rem; left: 50%; transform: translateX(-50%); line-height: 1.15; white-space: nowrap; width: 100%;">
+      <small id="quantity" class="badge-pill">
+        0
+      </small>
+    </div>
+
+    <!-- Tooltip placeholder -->
+    <div class="tooltip-placeholder" style="display: none;"></div>
+
+  </div>
+
+</template>
+
+
+<template id="convergence-template" data-image-init="true">
+  <div class="d-flex flex-wrap align-items-start w-100 p-2 row-gap-2">
+    <div class="flex-grow-1"></div>
+
+    <div class="convergence-group d-flex align-items-center flex-nowrap" id="group-left">
+      <img class="outer-icon skill-icon-md mr-2" id="outer-icon-left">
+      <locked-icons class="flex-nowrap" id="icons-left"></locked-icons>
+    </div>
+
+    <div class="flex-grow-1"></div>
+
+    <div class="convergence-group d-flex align-items-center flex-nowrap" id="group-right">
+      <locked-icons class="flex-nowrap ml-1" id="icons-right"></locked-icons>
+      <img class="outer-icon skill-icon-md mr-2" id="outer-icon-right">
+    </div>
+
+    <div class="flex-grow-1"></div>
+  </div>
+</template>
+
+<template id="convergence-template-phone" data-image-init="true">
+  <div class="d-flex flex-wrap align-items-start w-100 p-2 row-gap-2">
+
+    <div class="convergence-group d-flex align-items-center flex-nowrap" id="group-left">
+      <img class="outer-icon skill-icon-sm mr-2" id="outer-icon-left">
+      <locked-icons class="flex-nowrap" id="icons-left"></locked-icons>
+    </div>
+
+    <div class="flex-grow-1"></div>
+
+    <div class="convergence-group d-flex align-items-center flex-nowrap" id="group-right">
+      <locked-icons class="flex-nowrap ml-1" id="icons-right"></locked-icons>
+      <img class="outer-icon skill-icon-sm mr-2" id="outer-icon-right">
+    </div>
+
+  </div>
+</template>
+
+
+
+<template id="weaponMastery-template">
+  <div class="col-12 d-none" id="outercont">
+    <div class="block block-rounded-double bg-combat-inner-dark weaponMasteryContainer" id="weaponMasteryContainer">
+      <img class="weaponMasteryBgIcon " id="weaponMasteryBgIcon">
+      <div class="weaponMasteryTop block-header block-header-default bg-dark-bank-block-header px-3 py-1">
+        <h5 class="font-size-sm font-w600 mb-0">
+          Weapon Mastery
+        </h5>
+        <div class="block-options font-w600 font-size-sm text-right text-combat-smoke mb-0">
+          <img class="skill-icon-xxs mr-1 weapontypeicon" id="weaponMasteryIcon">
+          <rielk-lang-string lang-id="MENU_TEXT_TYPE"></rielk-lang-string>
+
+        </div>
+      </div>
+      <div class="weaponMasteryBgContainer" id="weaponMasteryBgContainer">
+        <div class="weaponMasteryMenu ">
+          <div class="row no-gutters p-2">
+            <div class="col-12">
+              <h5 id="weaponMasteryText" class="font-w900 font-size-md text-combat-smoke pt-2 text-center"
+                style="margin-bottom:1rem;"></h5>
+              <div id="weaponMasteryItem"
+                class="weapon-mastery-item d-flex justify-content-center align-items-center mb-3">
+                <div class="bg-dark-bank-block-header d-flex info-icon align-items-center border-item"
+                  style="margin-top: -6px; width:64px; height:64px; border-radius: 15px">
+                  <img id="weaponPic" class="weapon-pic p-2 icon-size-48" style="width:64px; height:64px;">
+                </div>
+                <div id="weaponInfo" class="weapon-info d-flex flex-column ml-2">
+                  <span id="weaponName" class="weapon-name font-w600 font-size-sm text-combat-smoke"></span>
+                  <span id="weaponRank" class="weapon-rank font-w600 font-size-sm"></span>
+                </div>
+              </div>
+
+              <!-- XP Bars -->
+              <div id="weaponXPBar" class="singular-weapon-xp-bar progress mb-2" style="height:6px">
+                <div id="weaponXpFill" class="singular-weapon-xp-fill" style="width: 40%;"></div>
+              </div>
+              <!-- New section for unlocked weapon modifier -->
+              <div id="unlockedWeaponMod" class="mb-3 text-center d-none">
+                <div class="font-w600 font-size-xs text-combat-smoke">Unlocked Weapon Modifier:</div>
+                <div id="weaponModifierValue" class="font-size-sm text-white">
+                </div>
+              </div>
+              <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 pb-4 text-center">
+                Type Proficiency:
+              </h5>
+              <div class="mastery-weapon-xp-container  pb-3 pt-10r">
+                <div class="mastery-weapon-xp-bar progress" id="weaponMasteryBar">
+                  <div class="mastery-weapon-xp-fill" id="weaponMasteryProgress" style="width: 0%;"></div>
+
+                  <div class="mastery-weapon-xp-overfill" id="weaponMasteryOverfill" style="width: 0%;"></div>
+
+                  <div id="marker-1" class="xp-marker" style="left: 7%;">
+                    <span id="label-1" class="xp-label font-w600 font-size-sm text-combat-smoke">1</span>
+                  </div>
+                  <div id="marker-2" class="xp-marker" style="left: 20%;">
+                    <span id="label-2" class="xp-label font-w600 font-size-sm text-combat-smoke">2</span>
+                  </div>
+                  <div id="marker-3" class="xp-marker" style="left: 40%;">
+                    <span id="label-3" class="xp-label font-w600 font-size-sm text-combat-smoke">3</span>
+                  </div>
+                  <div id="marker-4" class="xp-marker" style="left: 65%;">
+                    <span id="label-4" class="xp-label font-w600 font-size-sm text-combat-smoke">4</span>
+                  </div>
+                  <div id="marker-5" class="xp-marker" style="left: 95%;">
+                    <span id="label-5" class="xp-label font-w600 font-size-sm text-combat-smoke">5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters d-flex justify-content-center" id="weaponMasteryStepsContainer">
+          <div class="d-flex justify-content-center align-items-center fas weaponMasteryStepsButton"
+            id="weaponMasteryStepsButton"><span class="arrow"></span></div>
+          <div class="weaponMasteryModifiers collapsed font-w700 font-size-sm" id="weaponMasteryModifiers">
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock1" class="mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep1"></div>
+
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock2" class=" mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep2"></div>
+
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock3" class=" mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep3"></div>
+
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock4" class=" mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep4"></div>
+
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock5" class=" mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep5"></div>
+            <div id="modifierSpacer" style="height:0;"></div>
+
+          </div>
+        </div>
+        <div class="weaponMasteryCap block-header bg-dark-bank-block-header fuck-you" id="weaponMasteryCap"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</template>
