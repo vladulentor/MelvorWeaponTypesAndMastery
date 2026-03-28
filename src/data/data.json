@@ -4,6 +4,65 @@
   "data": {
     "attacks": [
       {
+        "id": "SlashGashMaim",
+        "name": "Slash, Gash, and Maim",
+        "description": "Perform ${attackCount} swift attacks that deal your normal damage on hit: ${attackDamageMaxValue0}% on the 1st, ${attackDamageMaxValue1}% on the 2nd, and ${attackDamageMaxValue2}% (+ ${attackDamageMaxValue3} if the Enemy is bleeding) on the 3rd.On hit, each attack has a ${onHitEffect0chance}% chance to inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s and a ${onHitEffect1modValue0}% Slow for ${onHitEffect1turns} turn(s). ",
+        "descriptionGenerator": "Perform <count> attacks, dealing <damage> damage. On hit, <hitEffect>.",
+        "defaultChance": 10,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 60,
+            "attackCount": 0
+          },
+          {
+            "damageType": "Normal",
+            "amplitude": 80,
+            "attackCount": 1
+          },
+          {
+            "damageType": "Normal",
+            "amplitude": 100,
+            "attackCount": 2
+          },
+          {
+            "damageType": "Custom",
+            "character": "Target",
+            "roll": false,
+            "maxRoll": "Bleeding",
+            "maxPercent": 20,
+            "attackCount": 2
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "melvorD:Bleed100",
+            "chance": 10
+          },
+          {
+            "effectID": "melvorD:Slow",
+            "chance": 20,
+            "initialParams": [
+              {
+                "name": "magnitude",
+                "value": 20
+              },
+              {
+                "name": "turns",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "cantMiss": false,
+        "canNormalAttack": false,
+        "attackCount": 3,
+        "attackInterval": 100,
+        "lifesteal": 0,
+        "usesRunesPerProc": false
+      },
+      {
         "id": "Counterattack",
         "defaultChance": 15,
         "damage": [
@@ -227,10 +286,10 @@
         "data": {
           "weaponMasteries": [
             {
-              "id": "Hugeswords",
-              "name": "Hugeswords",
+              "id": "Greatswords",
+              "name": "Greatswords",
               "fixture": "",
-              "media": "assets/hugeswords.webp",
+              "media": "assets/greatswords.webp",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -252,15 +311,15 @@
               },
               "levels": [
                 {
-                  "name": "Hugeswords1",
-                  "id": "Hugeswords1",
+                  "name": "Greatswords1",
+                  "id": "Greatswords1",
                   "shiny": true,
                   "level": 1,
                   "conditionalModifiers": [
                     {
                       "condition": {
                         "type": "WeaponType",
-                        "weaponType": "WTM:Hugeswords"
+                        "weaponType": "WTM:Greatswords"
                       },
                       "modifiers": {
                         "meleeMinHitBasedOnMaxHit": 5
@@ -269,15 +328,15 @@
                   ]
                 },
                 {
-                  "name": "Hugeswords2",
-                  "id": "Hugeswords2",
+                  "name": "Greatswords2",
+                  "id": "Greatswords2",
                   "shiny": true,
                   "level": 2,
                   "conditionalModifiers": [
                     {
                       "condition": {
                         "type": "WeaponType",
-                        "weaponType": "WTM:Hugeswords"
+                        "weaponType": "WTM:Greatswords"
                       },
                       "enemyModifiers": {
                         "evasionAgainstMelee": -15
@@ -286,15 +345,15 @@
                   ]
                 },
                 {
-                  "name": "Hugeswords3",
-                  "id": "Hugeswords3",
+                  "name": "Greatswords3",
+                  "id": "Greatswords3",
                   "shiny": true,
                   "level": 3,
                   "conditionalModifiers": [
                     {
                       "condition": {
                         "type": "WeaponType",
-                        "weaponType": "WTM:Hugeswords"
+                        "weaponType": "WTM:Greatswords"
                       },
                       "modifiers": {
                         "WTM:fakeModifierAddTextDescToWepType": 1
@@ -304,15 +363,15 @@
                   "changeFunc": "addSpecialAttack"
                 },
                 {
-                  "name": "Hugeswords4",
-                  "id": "Hugeswords4",
+                  "name": "Greatswords4",
+                  "id": "Greatswords4",
                   "shiny": true,
                   "level": 4,
                   "conditionalModifiers": [
                     {
                       "condition": {
                         "type": "WeaponType",
-                        "weaponType": "WTM:Hugeswords"
+                        "weaponType": "WTM:Greatswords"
                       },
                       "modifiers": {
                         "flatHiddenSkillLevelBasedOnLevels": [
@@ -334,8 +393,8 @@
                   ]
                 },
                 {
-                  "name": "Hugeswords5",
-                  "id": "Hugeswords5",
+                  "name": "Greatswords5",
+                  "id": "Greatswords5",
                   "shiny": true,
                   "level": 5,
                   "modifiers": {
@@ -373,7 +432,18 @@
                   "name": "StraightSwords3",
                   "id": "StraightSwords3",
                   "level": 3,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
                 },
                 {
                   "name": "StraightSwords4",
@@ -390,10 +460,10 @@
               ]
             },
             {
-              "id": "CurvySwords",
-              "name": "Curvy Swords",
+              "id": "CurvedSwords",
+              "name": "Curved Swords",
               "fixture": "",
-              "media": "assets/curvyswords.webp",
+              "media": "assets/curvedswords.webp",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -403,32 +473,32 @@
               },
               "levels": [
                 {
-                  "name": "CurvySwords1",
-                  "id": "CurvySwords1",
+                  "name": "CurvedSwords1",
+                  "id": "CurvedSwords1",
                   "level": 1,
                   "modifiers": {}
                 },
                 {
-                  "name": "CurvySwords2",
-                  "id": "CurvySwords2",
+                  "name": "CurvedSwords2",
+                  "id": "CurvedSwords2",
                   "level": 2,
                   "modifiers": {}
                 },
                 {
-                  "name": "CurvySwords3",
-                  "id": "CurvySwords3",
+                  "name": "CurvedSwords3",
+                  "id": "CurvedSwords3",
                   "level": 3,
                   "modifiers": {}
                 },
                 {
-                  "name": "CurvySwords4",
-                  "id": "CurvySwords4",
+                  "name": "CurvedSwords4",
+                  "id": "CurvedSwords4",
                   "level": 4,
                   "modifiers": {}
                 },
                 {
-                  "name": "CurvySwords5",
-                  "id": "CurvySwords5",
+                  "name": "CurvedSwords5",
+                  "id": "CurvedSwords5",
                   "level": 5,
                   "modifiers": {}
                 }
@@ -479,51 +549,6 @@
                 {
                   "name": "Daggers5",
                   "id": "Daggers5",
-                  "level": 5,
-                  "modifiers": {}
-                }
-              ]
-            },
-            {
-              "id": "StabbySwords",
-              "name": "Stabby Swords",
-              "fixture": "",
-              "media": "assets/stabbyswords.webp",
-              "isPerWepMod": true,
-              "wepModifiers": {
-                "modifiers": {
-                  "convertMissIntoHit": 20,
-                  "bleedLifesteal": 75
-                }
-              },
-              "levels": [
-                {
-                  "name": "StabbySwords1",
-                  "id": "StabbySwords1",
-                  "level": 1,
-                  "modifiers": {}
-                },
-                {
-                  "name": "StabbySwords2",
-                  "id": "StabbySwords2",
-                  "level": 2,
-                  "modifiers": {}
-                },
-                {
-                  "name": "StabbySwords3",
-                  "id": "StabbySwords3",
-                  "level": 3,
-                  "modifiers": {}
-                },
-                {
-                  "name": "StabbySwords4",
-                  "id": "StabbySwords4",
-                  "level": 4,
-                  "modifiers": {}
-                },
-                {
-                  "name": "StabbySwords5",
-                  "id": "StabbySwords5",
                   "level": 5,
                   "modifiers": {}
                 }
@@ -675,10 +700,10 @@
               ]
             },
             {
-              "id": "Handy",
-              "name": "Handy",
+              "id": "HandToHand",
+              "name": "Hand-to-Hand",
               "fixture": "",
-              "media": "assets/handy.webp",
+              "media": "assets/handtohand.webp",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -688,32 +713,32 @@
               },
               "levels": [
                 {
-                  "name": "Handy1",
-                  "id": "Handy1",
+                  "name": "HandToHand1",
+                  "id": "HandToHand1",
                   "level": 1,
                   "modifiers": {}
                 },
                 {
-                  "name": "Handy2",
-                  "id": "Handy2",
+                  "name": "HandToHand2",
+                  "id": "HandToHand2",
                   "level": 2,
                   "modifiers": {}
                 },
                 {
-                  "name": "Handy3",
-                  "id": "Handy3",
+                  "name": "HandToHand3",
+                  "id": "HandToHand3",
                   "level": 3,
                   "modifiers": {}
                 },
                 {
-                  "name": "Handy4",
-                  "id": "Handy4",
+                  "name": "HandToHand4",
+                  "id": "HandToHand4",
                   "level": 4,
                   "modifiers": {}
                 },
                 {
-                  "name": "Handy5",
-                  "id": "Handy5",
+                  "name": "HandToHand5",
+                  "id": "HandToHand5",
                   "level": 5,
                   "modifiers": {}
                 }
@@ -765,10 +790,10 @@
               ]
             },
             {
-              "id": "BigBows",
-              "name": "Big Bows",
+              "id": "HeavyBows",
+              "name": "Heavy Bows",
               "fixture": "",
-              "media": "assets/bigbows.webp",
+              "media": "assets/heavybows.webp",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -778,42 +803,42 @@
               },
               "levels": [
                 {
-                  "name": "BigBows1",
-                  "id": "BigBows1",
+                  "name": "HeavyBows1",
+                  "id": "HeavyBows1",
                   "level": 1,
                   "modifiers": {}
                 },
                 {
-                  "name": "BigBows2",
-                  "id": "BigBows2",
+                  "name": "HeavyBows2",
+                  "id": "HeavyBows2",
                   "level": 2,
                   "modifiers": {}
                 },
                 {
-                  "name": "BigBows3",
-                  "id": "BigBows3",
+                  "name": "HeavyBows3",
+                  "id": "HeavyBows3",
                   "level": 3,
                   "modifiers": {}
                 },
                 {
-                  "name": "BigBows4",
-                  "id": "BigBows4",
+                  "name": "HeavyBows4",
+                  "id": "HeavyBows4",
                   "level": 4,
                   "modifiers": {}
                 },
                 {
-                  "name": "BigBows5",
-                  "id": "BigBows5",
+                  "name": "HeavyBows5",
+                  "id": "HeavyBows5",
                   "level": 5,
                   "modifiers": {}
                 }
               ]
             },
             {
-              "id": "LittleBows",
-              "name": "Little Bows",
+              "id": "LightBows",
+              "name": "Light Bows",
               "fixture": "",
-              "media": "assets/littlebows.webp",
+              "media": "assets/lightbows.webp",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -823,32 +848,32 @@
               },
               "levels": [
                 {
-                  "name": "LittleBows1",
-                  "id": "LittleBows1",
+                  "name": "LightBows1",
+                  "id": "LightBows1",
                   "level": 1,
                   "modifiers": {}
                 },
                 {
-                  "name": "LittleBows2",
-                  "id": "LittleBows2",
+                  "name": "LightBows2",
+                  "id": "LightBows2",
                   "level": 2,
                   "modifiers": {}
                 },
                 {
-                  "name": "LittleBows3",
-                  "id": "LittleBows3",
+                  "name": "LightBows3",
+                  "id": "LightBows3",
                   "level": 3,
                   "modifiers": {}
                 },
                 {
-                  "name": "LittleBows4",
-                  "id": "LittleBows4",
+                  "name": "LightBows4",
+                  "id": "LightBows4",
                   "level": 4,
                   "modifiers": {}
                 },
                 {
-                  "name": "LittleBows5",
-                  "id": "LittleBows5",
+                  "name": "LightBows5",
+                  "id": "LightBows5",
                   "level": 5,
                   "modifiers": {}
                 }
@@ -1000,10 +1025,10 @@
               ]
             },
             {
-              "id": "Staffs",
-              "name": "Staffs",
+              "id": "Staves",
+              "name": "Staves",
               "fixture": "",
-              "media": "assets/staffs.webp",
+              "media": "assets/staves.webp",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {

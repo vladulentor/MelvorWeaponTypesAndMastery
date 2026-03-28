@@ -3,8 +3,8 @@ const RangedMaterial = ["Normal", "Oak", "Willow", "Crystal", "Maple", "Yew", "U
 const MagicMaterial = ["Air", "Water", "Earth", "Fire", "Crystal", "Unholy", "Mystic", "Pure_Crystal", "Poison", "Infernal", "Despair", "Lightning", "Archaic", "Meteorite", "Calamity", "Abyssal", "Brume", "Gloom", "Wither", "Nether", "Desolation", "Cataclysm"];
 
 // Yes I'm writing this out by hand and NOT using a .json fuck .json files!
-const Hugeswords = {
-    clas: "Hugeswords", kind: MeleeMaterial, mat: ["2H_Sword"], uniq: [
+const Greatswords = {
+    clas: "Greatswords", kind: MeleeMaterial, mat: ["2H_Sword"], uniq: [
         "Aeris_Godsword3",
         "Aranite_2H_Blade1",
         "Basic_2H_Sword",
@@ -29,27 +29,22 @@ const StraightSwords = {
         "Strange_Sword4",
         "FrostSpark_1H_Sword3",
         "Lightning_Strike_1H_Sword2",
-        "Spectral_Ice_Sword2"
+        "Spectral_Ice_Sword2",
+        "Agile_Wings_Rapier2",
+        "Crystal_Twin_Blades1",
+        "Sunset_Rapier2",
+        "Witherstab_Rapier3"
 
     ]
 };
 
-const CurvySwords = {
-    clas: "CurvySwords", kind: MeleeMaterial, mat: ["Scimitar"], uniq: [
+const CurvedSwords = {
+    clas: "CurvedSwords", kind: MeleeMaterial, mat: ["Scimitar"], uniq: [
         "Ancient_Sword3",
         "Ghost_Scimitar3",
         "Pirate_Captains_Sword2",
         "Tidal_Edge3",
         "Desert_Sabre1"
-    ]
-};
-
-const StabbySwords = {
-    clas: "StabbySwords", kind: MeleeMaterial, uniq: [
-        "Agile_Wings_Rapier2",
-        "Crystal_Twin_Blades1",
-        "Sunset_Rapier2",
-        "Witherstab_Rapier3"
     ]
 };
 
@@ -97,8 +92,8 @@ const Blunts = {
     ]
 };
 
-const Handy = {
-    clas: "Handy", kind: MeleeMaterial, uniq: [
+const HandToHand = {
+    clas: "HandToHand", kind: MeleeMaterial, uniq: [
         "Ancient_Claw2",
         "Blighted_Claw3",
         "Dragon_Claw2",
@@ -126,8 +121,8 @@ const Crossbows = {
     ]
 };
 
-const BigBows = {
-    clas: "BigBows", kind: RangedMaterial, mat: ["Longbow"], uniq: [
+const HeavyBows = {
+    clas: "HeavyBows", kind: RangedMaterial, mat: ["Longbow"], uniq: [
         "Ancient_Hunting_Bow3",
         "Ancient_Longbow3",
         "Blighted_Feather_Bow3",
@@ -146,8 +141,8 @@ const BigBows = {
     ]
 };
 
-const LittleBows = {
-    clas: "LittleBows", kind: RangedMaterial, mat: ["Shortbow"], uniq: [
+const LightBows = {
+    clas: "LightBows", kind: RangedMaterial, mat: ["Shortbow"], uniq: [
         "Basic_Shortbow1",
         "Desert_Shortbow2",
         "Ice_Shortbow2",
@@ -177,8 +172,8 @@ const Artifacts = {
     ]
 };
 
-const Staffs = {
-    clas: "Staffs", kind: MagicMaterial, mat: ["Staff", "Battlestaff", "Staff of"], uniq: [
+const Staves = {
+    clas: "Staves", kind: MagicMaterial, mat: ["Staff", "Battlestaff", "Staff of"], uniq: [
         "Basic_Staff1",
         "Blazing_Shadow_Staff3",
         "Blight_Burst_Staff2",
@@ -243,7 +238,7 @@ const Special = {
 const namespaces = ["melvorD", "melvorF", "melvorAoD", "melvorTotH", "melvorItA", "rielkConstruction"];
 
 export function addWeaponType(ctx) { // and make your funny map
-    for (const type of [Hugeswords, StraightSwords, CurvySwords, StabbySwords, Daggers, Axes, Polearms, Blunts, Handy, Crossbows, BigBows, LittleBows, ThrownShort, ThrownLong, Artifacts, Staffs, Wands, Special]) {
+    for (const type of [Greatswords, StraightSwords, CurvedSwords, Daggers, Axes, Polearms, Blunts, HandToHand, Crossbows, HeavyBows, LightBows, ThrownShort, ThrownLong, Artifacts, Staves, Wands, Special]) {
         // Handle material-based weapons
         type.clas = game.weaponMasteries.getObject("WTM", type.clas);
         if (type.mat) {
