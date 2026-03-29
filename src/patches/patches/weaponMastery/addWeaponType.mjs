@@ -238,7 +238,7 @@ const Special = {
 
 const namespaces = ["melvorD", "melvorF", "melvorAoD", "melvorTotH", "melvorItA", "rielkConstruction"];
 
-export function addWeaponType(ctx) { // and make your funny map
+export function addWeaponType(ctx) { 
     for (const type of [Greatswords, StraightSwords, CurvedSwords, Daggers, Axes, Polearms, Blunts, HandToHand, Crossbows, HeavyBows, LightBows, ThrownShort, ThrownLong, Artifacts, Staves, Wands, Special]) {
         // Handle material-based weapons
         type.clas = game.weaponMasteries.getObject("WTM", type.clas);
@@ -270,7 +270,7 @@ export function addWeaponType(ctx) { // and make your funny map
     });
     Object.defineProperty(WeaponItem.prototype, '_weaponXP', {
         get() {
-            const baseXP = this.timesAttacked * this.attackSpeed * 0.4626  // Magic number, balanced so you will get 833 xp per hour, so 6 hours for stock, 12 for unusual and 18 for distinct weapons before modifiers.
+            const baseXP = (this.timesAttacked * this.attackSpeed + this._enemiesKilledTime) * 0.4626  // Magic number, balanced so you will get 833 xp per hour, so 6 hours for stock, 12 for unusual and 18 for distinct weapons before modifiers.
             return Math.floor(baseXP + baseXP * this._weaponXPBonus / 100);
         }
     });
@@ -287,7 +287,12 @@ export function addWeaponType(ctx) { // and make your funny map
             return Math.min(100, this._weaponXP / this.weaponXPCap * 100)
         }
     });
+      Object.defineProperty(WeaponItem.prototype, '_enemiesKilledTime', {
+        get() {
 
+            return  game.stats.Items.get(this, ItemStats.EnemiesKilled) * 3 // using the default enemy respawn interval of 3 seconds, faster interval is faster xp get 
+        }
+    });
     Object.defineProperty(WeaponItem.prototype, 'masteryMaxed', {
         value: 0,
         writable: true,
@@ -297,7 +302,7 @@ export function addWeaponType(ctx) { // and make your funny map
     Object.defineProperty(WeaponItem.prototype, 'isMaxMastery', {
         get() {
 
-            return (this.uniqueness > 0 && this._weaponXP >= this.weaponXPCap);
+            return game.stats.Items.get(this, ItemStats.TotalAttacks)
         }
     });
 
