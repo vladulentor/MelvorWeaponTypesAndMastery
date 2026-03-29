@@ -2,12 +2,6 @@
   "$schema": "https://melvoridle.com/assets/schema/gameData.json",
   "namespace": "WTM",
   "data": {
-    "attacks": [
-
-    ],
-    "combatEffects": [
-      
-    ],
     "items": [
       {
         "id": "Ancient_Claw",
@@ -24,6 +18,9 @@
           "Weapon"
         ],
         "occupiesSlots": [],
+        "modifiers": {
+          "minHitBasedOnMaxHit": 1
+        },
         "equipRequirements": [
           {
             "type": "SkillLevel",
@@ -55,15 +52,6 @@
           {
             "key": "meleeDefenceBonus",
             "value": 39
-          }
-        ],
-        "modifiers": {},
-        "conditionalModifiers": [
-          {
-            "condition": {
-              "type": "ItemCharge",
-              "itemID":
-            }
           }
         ],
         "specialAttacks": [

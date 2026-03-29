@@ -66,7 +66,7 @@
           },
           {
             "effectID": "melvorD:Slow",
-            "chance": 20,
+            "chance": 10,
             "initialParams": [
               {
                 "name": "magnitude",
@@ -400,6 +400,7 @@
                   "level": 3,
                   "conditionalModifiers": [
                     {
+                      "description": "Adds the Counterattack special attack:<br>(15%) You focus on defensive manoeuvres, negating all attacks for 5s. For each attack blocked, gain Max Hit, then make an unavoidable attack.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Greatswords"
@@ -511,7 +512,7 @@
                   "level": 3,
                   "conditionalModifiers": [
                     {
-                      "description": "Adds a secret special attack to all Straight Swords",
+                      "description": "Adds the Slash, Gash, and Maim special attack:<br>(10%) Attack 3 times quickly, 60% normal damage on the 1st, 80% on the 2nd, and 100% on the 3rd. Each has 10% chance on hit to inflict 100% Bleed and 20% Slow (2 turns).",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:StraightSwords"
@@ -580,7 +581,8 @@
                   "modifiers": {
                     "accuracyRating": 5,
                     "evasion": 5,
-                    "lifesteal": 5
+                    "lifesteal": 5,
+                    "flatAttackInterval": -50
                   }
                 }
               ]
@@ -636,26 +638,47 @@
                   "level": 3,
                   "conditionalModifiers": [
                     {
-                      "description": "+10% Summoning Max Hit and +5% Max Hit while using Curved Swords",
+                      "description": "Adds the Forceful Sweep special attack:<br>(10%) Make a momentous, sweeping slash, dealing 2x your normal damage. On hit, your and your familiar's next attack deals 2x damage.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
                       },
-                      "modifiers": {}
+                      "modifiers": {
+                        "fakeModifierAddTextDescToWepType": 1
+                      }
                     }
-                  ]
+                  ],
+                  "changeFunc": "addSpecialAttack"
                 },
                 {
                   "name": "CurvedSwords4",
                   "id": "CurvedSwords4",
                   "level": 4,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "-10% Summoning Attack Interval, +10% Summoning Max Hit, and +10% Min Hit Based on Max Hit while using Curved Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:CurvedSwords"
+                      },
+                      "modifiers": {
+                        "summoningAttackInterval": -10,
+                        "summoningMaxHit": 10,
+                        "meleeMinHitBasedOnMaxHit": 10
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "CurvedSwords5",
                   "id": "CurvedSwords5",
                   "level": 5,
-                  "modifiers": {}
+                  "modifiers": {
+                    "summoningAttackInterval": -5,
+                    "maxHit": 2.5,
+                    "minHitBasedOnMaxHit": 2.5,
+                    "accuracyRating": 5
+                  }
                 }
               ]
             },
