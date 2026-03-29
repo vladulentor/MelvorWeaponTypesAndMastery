@@ -4,6 +4,30 @@
   "data": {
     "attacks": [
       {
+        "id": "ForcefulSweep",
+        "defaultChance": 10,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 200
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "WTM:ForcefulSweep0"
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 50,
+        "lifesteal": 0,
+        "name": "Forceful Sweep",
+        "description": "Make a momentous, sweeping slash at the Enemy, dealing ${attackDamageMaxValue0}% of your normal damage. On hit, your and your Familiar's next attack deals 2x damage.",
+        "descriptionGenerator": "Make a momentous, sweeping slash, dealing <damage> damage. On hit, your and your familiar's next attack deals 2x damage.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "SlashGashMaim",
         "name": "Slash, Gash, and Maim",
         "description": "Perform ${attackCount} swift attacks that deal your normal damage on hit: ${attackDamageMaxValue0}% on the 1st, ${attackDamageMaxValue1}% on the 2nd, and ${attackDamageMaxValue2}% (+ ${attackDamageMaxValue3} if the Enemy is bleeding) on the 3rd.On hit, each attack has a ${onHitEffect0chance}% chance to inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s and a ${onHitEffect1modValue0}% Slow for ${onHitEffect1turns} turn(s). ",
@@ -69,7 +93,7 @@
           {
             "damageType": "Normal",
             "amplitude": 100,
-            "attackCount": 2
+            "attackCount": 1
           }
         ],
         "prehitEffects": [
@@ -92,6 +116,31 @@
       }
     ],
     "combatEffects": [
+      {
+        "id": "ForcefulSweep0",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Forceful Sweep",
+        "media": "assets/combat/status/strength_increase.png",
+        "target": "Self",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "summoningMaxHit": 100,
+              "maxHit": 100
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 1
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
       {
         "id": "Counterattack0",
         "templateID": "melvorD:StaticSelfCountingModifier",
@@ -425,15 +474,15 @@
                   "level": 1,
                   "conditionalModifiers": [
                     {
-                      "description": "+5% Bleed Lifesteal, +10% Accuracy Rating, and +10% Evasion while using Straight Swords",
+                      "description": "-0.2s Attack Interval, +10% Accuracy Rating, and +10% Lifesteal while using Straight Swords",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:StraightSwords"
                       },
                       "modifiers": {
-                        "bleedLifesteal": 5,
+                        "flatAttackInterval": -200,
                         "accuracyRating": 10,
-                        "evasion": 10
+                        "lifesteal": 10
                       }
                     }
                   ]
@@ -444,13 +493,14 @@
                   "level": 2,
                   "conditionalModifiers": [
                     {
-                      "description": "+5% chance to convert a Miss into a Hit while using Straight Swords",
+                      "description": "+5% chance to convert a Miss into a Hit and +5% Dodge chance while using Straight Swords",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:StraightSwords"
                       },
                       "modifiers": {
-                        "convertMissIntoHit": 5
+                        "convertMissIntoHit": 5,
+                        "dodgeChance": 5
                       }
                     }
                   ]
@@ -528,8 +578,9 @@
                   "id": "StraightSwords5",
                   "level": 5,
                   "modifiers": {
-                    "accuracyRating": 10,
-                    "evasion": 10
+                    "accuracyRating": 5,
+                    "evasion": 5,
+                    "lifesteal": 5
                   }
                 }
               ]
@@ -541,29 +592,58 @@
               "media": "assets/curvedswords.webp",
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {
-                  "meleeMinHitBasedOnMaxHit": 15,
-                  "meleeMaxHit": 15
-                }
+                "modifiers": {}
               },
               "levels": [
                 {
                   "name": "CurvedSwords1",
                   "id": "CurvedSwords1",
                   "level": 1,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "+15% Slash Attack Bonus from Equipment while using Curved Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:CurvedSwords"
+                      },
+                      "modifiers": {
+                        "slashAttackBonus": 15
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "CurvedSwords2",
                   "id": "CurvedSwords2",
                   "level": 2,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "+10% Summoning Max Hit and +5% Max Hit while using Curved Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:CurvedSwords"
+                      },
+                      "modifiers": {
+                        "summoningMaxHit": 10,
+                        "maxHit": 5
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "CurvedSwords3",
                   "id": "CurvedSwords3",
                   "level": 3,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "+10% Summoning Max Hit and +5% Max Hit while using Curved Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:CurvedSwords"
+                      },
+                      "modifiers": {}
+                    }
+                  ]
                 },
                 {
                   "name": "CurvedSwords4",

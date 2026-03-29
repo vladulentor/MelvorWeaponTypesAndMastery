@@ -2,19 +2,75 @@
   "$schema": "https://melvoridle.com/assets/schema/gameData.json",
   "namespace": "WTM",
   "data": {
+    "attacks": [
+
+    ],
+    "combatEffects": [
+      
+    ],
     "items": [
       {
-        "itemType": "Item",
-        "id": "Magic_Planks",
-        "name": "Magic Planks",
-        "category": "Construction",
-        "type": "Planks",
-        "media": "assets/air.webp",
-        "ignoreCompletion": true,
+        "id": "Ancient_Claw",
+        "name": "Ancient Claw",
+        "category": "Combat",
+        "type": "Weapon",
+        "media": "assets/media/bank/weapon_claw_ancient.png",
+        "ignoreCompletion": false,
         "obtainFromItemLog": false,
         "golbinRaidExclusive": false,
-        "sellsFor": 500,
-        "customDescription": "Yes"
+        "sellsFor": 1850000,
+        "tier": "ancient",
+        "validSlots": [
+          "Weapon"
+        ],
+        "occupiesSlots": [],
+        "equipRequirements": [
+          {
+            "type": "SkillLevel",
+            "skillID": "melvorD:Attack",
+            "level": 70
+          }
+        ],
+        "equipmentStats": [
+          {
+            "key": "attackSpeed",
+            "value": 2200
+          },
+          {
+            "key": "stabAttackBonus",
+            "value": 71
+          },
+          {
+            "key": "slashAttackBonus",
+            "value": 71
+          },
+          {
+            "key": "blockAttackBonus",
+            "value": 71
+          },
+          {
+            "key": "meleeStrengthBonus",
+            "value": 75
+          },
+          {
+            "key": "meleeDefenceBonus",
+            "value": 39
+          }
+        ],
+        "modifiers": {},
+        "conditionalModifiers": [
+          {
+            "condition": {
+              "type": "ItemCharge",
+              "itemID":
+            }
+          }
+        ],
+        "specialAttacks": [
+          "melvorF:TripleSwipe"
+        ],
+        "itemType": "Weapon",
+        "attackType": "melee"
       }
     ]
   }
