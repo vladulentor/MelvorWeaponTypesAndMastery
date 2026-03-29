@@ -26,6 +26,7 @@ const Greatswords = {
 const StraightSwords = {
     clas: "StraightSwords", kind: MeleeMaterial, mat: ["Sword"], uniq: [
         "Ice_Sword2",
+        "Black_Sword3",
         "Strange_Sword4",
         "FrostSpark_1H_Sword3",
         "Lightning_Strike_1H_Sword2",
@@ -269,7 +270,7 @@ export function addWeaponType(ctx) { // and make your funny map
     });
     Object.defineProperty(WeaponItem.prototype, '_weaponXP', {
         get() {
-            const baseXP = this.timesAttacked * this.attackSpeed * 0.2313  // Magic number, balanced so you will get 833 xp per hour, so 6 hours for stock, 12 for unusual and 18 for distinct weapons before modifiers.
+            const baseXP = this.timesAttacked * this.attackSpeed * 0.4626  // Magic number, balanced so you will get 833 xp per hour, so 6 hours for stock, 12 for unusual and 18 for distinct weapons before modifiers.
             return Math.floor(baseXP + baseXP * this._weaponXPBonus / 100);
         }
     });

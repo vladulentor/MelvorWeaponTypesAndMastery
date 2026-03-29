@@ -398,7 +398,7 @@
                   "shiny": true,
                   "level": 5,
                   "modifiers": {
-                    "meleeCritChance": 5
+                    "critChance": 5
                   }
                 }
               ]
@@ -411,8 +411,11 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "meleeAccuracyRating": 30,
-                  "dodgeChance": 15
+                  "meleeAccuracyRating": 20,
+                  "evasion": 20
+                },
+                "enemyModifiers": {
+                  "bleedDOTDamageTaken": 50
                 }
               },
               "levels": [
@@ -420,13 +423,37 @@
                   "name": "StraightSwords1",
                   "id": "StraightSwords1",
                   "level": 1,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "+5% Bleed Lifesteal, +10% Accuracy Rating, and +10% Evasion while using Straight Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      },
+                      "modifiers": {
+                        "bleedLifesteal": 5,
+                        "accuracyRating": 10,
+                        "evasion": 10
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "StraightSwords2",
                   "id": "StraightSwords2",
                   "level": 2,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "+5% chance to convert a Miss into a Hit while using Straight Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      },
+                      "modifiers": {
+                        "convertMissIntoHit": 5
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "StraightSwords3",
@@ -434,6 +461,7 @@
                   "level": 3,
                   "conditionalModifiers": [
                     {
+                      "description": "Adds a secret special attack to all Straight Swords",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:StraightSwords"
@@ -449,13 +477,60 @@
                   "name": "StraightSwords4",
                   "id": "StraightSwords4",
                   "level": 4,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "+30% Bleed Lifesteal, inflict a 3% Slow on hit, and +20% chance to inflict a 100% Bleed on hit while using Straight Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      },
+                      "modifiers": {
+                        "bleedLifesteal": 30,
+                        "onHitSlowMagnitude": 3
+                      }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "customDescription": "No description given",
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 20,
+                      "effectID": "melvorD:Bleed100",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      }
+                    },
+                    {
+                      "customDescription": "No description given",
+                      "effectID": "melvorF:ModifierSlow",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "CharacterValue",
+                            "lhValue": "self.modifier.onHitSlowMagnitude",
+                            "operator": ">",
+                            "rhValue": 0
+                          },
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StraightSwords"
+                          }
+                        ],
+                        "appliesWhen": "HitWithAttack"
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "StraightSwords5",
                   "id": "StraightSwords5",
                   "level": 5,
-                  "modifiers": {}
+                  "modifiers": {
+                    "accuracyRating": 10,
+                    "evasion": 10
+                  }
                 }
               ]
             },
@@ -467,7 +542,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "meleeMinHitBasedOnMaxHit": 30,
+                  "meleeMinHitBasedOnMaxHit": 15,
                   "meleeMaxHit": 15
                 }
               },
