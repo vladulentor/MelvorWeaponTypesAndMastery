@@ -1,0 +1,21 @@
+{
+  "$schema": "https://melvoridle.com/assets/schema/gameData.json",
+  "namespace": "WTM",
+  "data": {
+    "items": [
+      {
+        "itemType": "Item",
+        "id": "Magic_Planks",
+        "name": "Magic Planks",
+        "category": "Construction",
+        "type": "Planks",
+        "media": "assets/air.webp",
+        "ignoreCompletion": true,
+        "obtainFromItemLog": false,
+        "golbinRaidExclusive": false,
+        "sellsFor": 500,
+        "customDescription": "Yes"
+      }
+    ]
+  }
+}

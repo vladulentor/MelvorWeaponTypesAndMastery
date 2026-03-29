@@ -1,0 +1,1242 @@
+{
+  "$schema": "https://melvoridle.com/assets/schema/gameData.json",
+  "namespace": "WTM",
+  "data": {
+    "attacks": [
+      {
+        "id": "SlashGashMaim",
+        "name": "Slash, Gash, and Maim",
+        "description": "Perform ${attackCount} swift attacks that deal your normal damage on hit: ${attackDamageMaxValue0}% on the 1st, ${attackDamageMaxValue1}% on the 2nd, and ${attackDamageMaxValue2}% (+ ${attackDamageMaxValue3} if the Enemy is bleeding) on the 3rd.On hit, each attack has a ${onHitEffect0chance}% chance to inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s and a ${onHitEffect1modValue0}% Slow for ${onHitEffect1turns} turn(s). ",
+        "descriptionGenerator": "Perform <count> attacks, dealing <damage> damage. On hit, <hitEffect>.",
+        "defaultChance": 10,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 60,
+            "attackCount": 0
+          },
+          {
+            "damageType": "Normal",
+            "amplitude": 80,
+            "attackCount": 1
+          },
+          {
+            "damageType": "Normal",
+            "amplitude": 100,
+            "attackCount": 2
+          },
+          {
+            "damageType": "Custom",
+            "character": "Target",
+            "roll": false,
+            "maxRoll": "Bleeding",
+            "maxPercent": 20,
+            "attackCount": 2
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "melvorD:Bleed100",
+            "chance": 10
+          },
+          {
+            "effectID": "melvorD:Slow",
+            "chance": 20,
+            "initialParams": [
+              {
+                "name": "magnitude",
+                "value": 20
+              },
+              {
+                "name": "turns",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "cantMiss": false,
+        "canNormalAttack": false,
+        "attackCount": 3,
+        "attackInterval": 100,
+        "lifesteal": 0,
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "Counterattack",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 100,
+            "attackCount": 2
+          }
+        ],
+        "prehitEffects": [
+          {
+            "effectID": "WTM:Counterattack0"
+          },
+          {
+            "effectID": "WTM:Counterattack1"
+          }
+        ],
+        "onhitEffects": [],
+        "cantMiss": true,
+        "attackCount": 2,
+        "attackInterval": 5000,
+        "lifesteal": 0,
+        "name": "Counterattack",
+        "description": "Focus on defensive manoeuvres. Gives you +${preHitEffect0modValue0}% Melee Maximum Hit for each attack blocked for the duration of this attack (Stacks up to ${preHitEffect0maxStacks} times). Follow up with an unavoidable counterattack that deals ${attackDamageMaxValue0}% of your normal damage.",
+        "descriptionGenerator": "<Attacker> focuses on defensive manoeuvres. On use, <prehitEffect>, followed up by a <avoidable> counterattack that deals <damage>.",
+        "usesRunesPerProc": false
+      }
+    ],
+    "combatEffects": [
+      {
+        "id": "Counterattack0",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Counterattack",
+        "media": "assets/status/evasion_increase.svg",
+        "target": "Self",
+        "tooltipSpans": [
+          {
+            "type": "Stats",
+            "statGroupName": "stacks"
+          },
+          {
+            "type": "Turns",
+            "turns": "p.turns"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 1
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "meleeImmunity": 1,
+              "rangedImmunity": 1,
+              "magicImmunity": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "Counterattack1",
+        "templateID": "WTM:SelfCountingDefensive",
+        "name": "Counterattack",
+        "media": "assets/status/attack_increase.svg",
+        "parameters": [
+          {
+            "name": "maxStacks",
+            "initialValue": 5
+          },
+          {
+            "name": "turns",
+            "initialValue": 0
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "meleeMaxHit": 10
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      }
+    ],
+    "combatEffectTemplates": [
+      {
+        "id": "Defensive",
+        "description": "Mixin Template. Defines behaviours for an effect that applies modifiers that increase in strength each time the character evades an attack, up to a maximum value.",
+        "baseEffectData": {
+          "turnText": "statGroup.stacks",
+          "descriptionTemplateData": {
+            "initialParameters": {
+              "maxStacks": "maxStacks"
+            },
+            "statGroups": {
+              "": "stacks"
+            }
+          },
+          "target": "Self",
+          "behaviours": [
+            {
+              "type": "ModifyStats",
+              "statGroupName": "stacks",
+              "newValue": "min(statGroup.stacks + 1, p.maxStacks)",
+              "triggersOn": [
+                {
+                  "type": "EvadedAttack"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "SelfCountingDefensive",
+        "baseTemplates": [
+          "melvorD:SelfTurnCounting",
+          "WTM:Defensive"
+        ],
+        "baseEffectData": {
+          "tooltipSpans": [
+            {
+              "type": "Stats",
+              "statGroupName": "stacks"
+            },
+            {
+              "type": "StacksWithMax",
+              "stacks": "statGroup.stacks",
+              "maxStacks": "p.maxStacks"
+            },
+            {
+              "type": "LastsForTurns",
+              "turns": "p.turns"
+            }
+          ],
+          "behaviours": [
+            {
+              "type": "ModifyParameter",
+              "paramName": "turns",
+              "newValue": "param.turns + 1",
+              "triggersOn": [
+                {
+                  "type": "EffectApplied"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "modifiers": [
+      {
+        "id": "increaseWeaponXPmelee",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_increaseWeaponXPMelee"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "increaseWeaponXPranged",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_increaseWeaponXPRanged"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "increaseWeaponXPmagic",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_increaseWeaponXPMagic"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fakeModifierAddTextDescToWepType",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_fakeModifierAddTextDescToWepType"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "skillData": [
+      {
+        "skillID": "melvorD:Agility",
+        "data": {
+          "weaponMasteries": [
+            {
+              "id": "Greatswords",
+              "name": "Greatswords",
+              "fixture": "",
+              "media": "assets/greatswords.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "flatHiddenSkillLevelBasedOnLevels": [
+                    {
+                      "skillID": "melvorD:Strength",
+                      "value": 30
+                    },
+                    {
+                      "skillID": "melvorD:Attack",
+                      "value": 30
+                    },
+                    {
+                      "skillID": "melvorD:Defence",
+                      "value": 30
+                    }
+                  ]
+                }
+              },
+              "levels": [
+                {
+                  "name": "Greatswords1",
+                  "id": "Greatswords1",
+                  "shiny": true,
+                  "level": 1,
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
+                      "modifiers": {
+                        "meleeMinHitBasedOnMaxHit": 5
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Greatswords2",
+                  "id": "Greatswords2",
+                  "shiny": true,
+                  "level": 2,
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
+                      "enemyModifiers": {
+                        "evasionAgainstMelee": -15
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Greatswords3",
+                  "id": "Greatswords3",
+                  "shiny": true,
+                  "level": 3,
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
+                },
+                {
+                  "name": "Greatswords4",
+                  "id": "Greatswords4",
+                  "shiny": true,
+                  "level": 4,
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
+                      "modifiers": {
+                        "flatHiddenSkillLevelBasedOnLevels": [
+                          {
+                            "skillID": "melvorD:Strength",
+                            "value": 20
+                          },
+                          {
+                            "skillID": "melvorD:Attack",
+                            "value": 20
+                          },
+                          {
+                            "skillID": "melvorD:Defence",
+                            "value": 20
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Greatswords5",
+                  "id": "Greatswords5",
+                  "shiny": true,
+                  "level": 5,
+                  "modifiers": {
+                    "critChance": 5
+                  }
+                }
+              ]
+            },
+            {
+              "id": "StraightSwords",
+              "name": "Straight Swords",
+              "fixture": "",
+              "media": "assets/straightswords.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "meleeAccuracyRating": 20,
+                  "evasion": 20
+                },
+                "enemyModifiers": {
+                  "bleedDOTDamageTaken": 50
+                }
+              },
+              "levels": [
+                {
+                  "name": "StraightSwords1",
+                  "id": "StraightSwords1",
+                  "level": 1,
+                  "conditionalModifiers": [
+                    {
+                      "description": "+5% Bleed Lifesteal, +10% Accuracy Rating, and +10% Evasion while using Straight Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      },
+                      "modifiers": {
+                        "bleedLifesteal": 5,
+                        "accuracyRating": 10,
+                        "evasion": 10
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "StraightSwords2",
+                  "id": "StraightSwords2",
+                  "level": 2,
+                  "conditionalModifiers": [
+                    {
+                      "description": "+5% chance to convert a Miss into a Hit while using Straight Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      },
+                      "modifiers": {
+                        "convertMissIntoHit": 5
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "StraightSwords3",
+                  "id": "StraightSwords3",
+                  "level": 3,
+                  "conditionalModifiers": [
+                    {
+                      "description": "Adds a secret special attack to all Straight Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
+                },
+                {
+                  "name": "StraightSwords4",
+                  "id": "StraightSwords4",
+                  "level": 4,
+                  "conditionalModifiers": [
+                    {
+                      "description": "+30% Bleed Lifesteal, inflict a 3% Slow on hit, and +20% chance to inflict a 100% Bleed on hit while using Straight Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      },
+                      "modifiers": {
+                        "bleedLifesteal": 30,
+                        "onHitSlowMagnitude": 3
+                      }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "customDescription": "No description given",
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 20,
+                      "effectID": "melvorD:Bleed100",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StraightSwords"
+                      }
+                    },
+                    {
+                      "customDescription": "No description given",
+                      "effectID": "melvorF:ModifierSlow",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "CharacterValue",
+                            "lhValue": "self.modifier.onHitSlowMagnitude",
+                            "operator": ">",
+                            "rhValue": 0
+                          },
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StraightSwords"
+                          }
+                        ],
+                        "appliesWhen": "HitWithAttack"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "StraightSwords5",
+                  "id": "StraightSwords5",
+                  "level": 5,
+                  "modifiers": {
+                    "accuracyRating": 10,
+                    "evasion": 10
+                  }
+                }
+              ]
+            },
+            {
+              "id": "CurvedSwords",
+              "name": "Curved Swords",
+              "fixture": "",
+              "media": "assets/curvedswords.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "meleeMinHitBasedOnMaxHit": 15,
+                  "meleeMaxHit": 15
+                }
+              },
+              "levels": [
+                {
+                  "name": "CurvedSwords1",
+                  "id": "CurvedSwords1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "CurvedSwords2",
+                  "id": "CurvedSwords2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "CurvedSwords3",
+                  "id": "CurvedSwords3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "CurvedSwords4",
+                  "id": "CurvedSwords4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "CurvedSwords5",
+                  "id": "CurvedSwords5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Daggers",
+              "name": "Daggers",
+              "fixture": "",
+              "media": "assets/daggers.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "meleeCritChance": 25,
+                  "ignoreResistanceWhenAttackingChance": [
+                    {
+                      "damageTypeID": "melvorD:Normal",
+                      "value": 15
+                    }
+                  ]
+                }
+              },
+              "levels": [
+                {
+                  "name": "Daggers1",
+                  "id": "Daggers1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Daggers2",
+                  "id": "Daggers2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Daggers3",
+                  "id": "Daggers3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Daggers4",
+                  "id": "Daggers4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Daggers5",
+                  "id": "Daggers5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Axes",
+              "name": "Axes",
+              "fixture": "",
+              "media": "assets/axes.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "maxHitBasedOnTargetResistance": [
+                    {
+                      "damageTypeID": "melvorD:Normal",
+                      "value": 2
+                    }
+                  ],
+                  "critMultiplier": 50
+                }
+              },
+              "levels": [
+                {
+                  "name": "Axes1",
+                  "id": "Axes1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Axes2",
+                  "id": "Axes2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Axes3",
+                  "id": "Axes3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Axes4",
+                  "id": "Axes4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Axes5",
+                  "id": "Axes5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Polearms",
+              "name": "Polearms",
+              "fixture": "",
+              "media": "assets/polearms.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "evasionBasedOnResistance": [
+                    {
+                      "damageTypeID": "melvorD:Normal",
+                      "value": 3
+                    }
+                  ],
+                  "attackInterval": -15
+                }
+              },
+              "levels": [
+                {
+                  "name": "Polearms1",
+                  "id": "Polearms1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Polearms2",
+                  "id": "Polearms2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Polearms3",
+                  "id": "Polearms3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Polearms4",
+                  "id": "Polearms4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Polearms5",
+                  "id": "Polearms5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Blunts",
+              "name": "Blunts",
+              "fixture": "",
+              "media": "assets/blunts.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "critChance": 50,
+                  "flatAttackInterval": 200
+                }
+              },
+              "levels": [
+                {
+                  "name": "Blunts1",
+                  "id": "Blunts1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Blunts2",
+                  "id": "Blunts2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Blunts3",
+                  "id": "Blunts3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Blunts4",
+                  "id": "Blunts4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Blunts5",
+                  "id": "Blunts5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "HandToHand",
+              "name": "Hand-to-Hand",
+              "fixture": "",
+              "media": "assets/handtohand.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "lifesteal": 20,
+                  "reflectDamage": 10
+                }
+              },
+              "levels": [
+                {
+                  "name": "HandToHand1",
+                  "id": "HandToHand1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "HandToHand2",
+                  "id": "HandToHand2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "HandToHand3",
+                  "id": "HandToHand3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "HandToHand4",
+                  "id": "HandToHand4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "HandToHand5",
+                  "id": "HandToHand5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Crossbows",
+              "name": "Crossbows",
+              "fixture": "",
+              "media": "assets/crossbows.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "ammoPreservationChance": 30,
+                  "rangedStrengthBonusPer8Ranged": 2
+                }
+              },
+              "levels": [
+                {
+                  "name": "Crossbows1",
+                  "id": "Crossbows1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Crossbows2",
+                  "id": "Crossbows2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Crossbows3",
+                  "id": "Crossbows3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Crossbows4",
+                  "id": "Crossbows4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Crossbows5",
+                  "id": "Crossbows5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "HeavyBows",
+              "name": "Heavy Bows",
+              "fixture": "",
+              "media": "assets/heavybows.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "critChance": 30,
+                  "accuracyRating": 60
+                }
+              },
+              "levels": [
+                {
+                  "name": "HeavyBows1",
+                  "id": "HeavyBows1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "HeavyBows2",
+                  "id": "HeavyBows2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "HeavyBows3",
+                  "id": "HeavyBows3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "HeavyBows4",
+                  "id": "HeavyBows4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "HeavyBows5",
+                  "id": "HeavyBows5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "LightBows",
+              "name": "Light Bows",
+              "fixture": "",
+              "media": "assets/lightbows.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "evasion": 30,
+                  "rangedAttackInterval": -15
+                }
+              },
+              "levels": [
+                {
+                  "name": "LightBows1",
+                  "id": "LightBows1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "LightBows2",
+                  "id": "LightBows2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "LightBows3",
+                  "id": "LightBows3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "LightBows4",
+                  "id": "LightBows4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "LightBows5",
+                  "id": "LightBows5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "ThrownShort",
+              "name": "Thrown (Short)",
+              "fixture": "",
+              "media": "assets/thrownshort.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "attackInterval": -50,
+                  "cantSpecialAttack": 1
+                }
+              },
+              "levels": [
+                {
+                  "name": "ThrownShort1",
+                  "id": "ThrownShort1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "ThrownShort2",
+                  "id": "ThrownShort2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "ThrownShort3",
+                  "id": "ThrownShort3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "ThrownShort4",
+                  "id": "ThrownShort4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "ThrownShort5",
+                  "id": "ThrownShort5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "ThrownLong",
+              "name": "Thrown (Long)",
+              "fixture": "",
+              "media": "assets/thrownlong.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "cantMiss": 1,
+                  "maxHit": -20
+                }
+              },
+              "levels": [
+                {
+                  "name": "ThrownLong1",
+                  "id": "ThrownLong1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "ThrownLong2",
+                  "id": "ThrownLong2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "ThrownLong3",
+                  "id": "ThrownLong3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "ThrownLong4",
+                  "id": "ThrownLong4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "ThrownLong5",
+                  "id": "ThrownLong5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Artifacts",
+              "name": "Artifacts",
+              "fixture": "",
+              "media": "assets/artifacts.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "resistance": [
+                    {
+                      "damageTypeID": "melvorD:Normal",
+                      "value": 10
+                    }
+                  ],
+                  "effectIgnoreChance": [
+                    {
+                      "effectGroupID": "melvorD:Debuff",
+                      "value": 20
+                    }
+                  ]
+                }
+              },
+              "levels": [
+                {
+                  "name": "Artifacts1",
+                  "id": "Artifacts1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Artifacts2",
+                  "id": "Artifacts2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Artifacts3",
+                  "id": "Artifacts3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Artifacts4",
+                  "id": "Artifacts4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Artifacts5",
+                  "id": "Artifacts5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Staves",
+              "name": "Staves",
+              "fixture": "",
+              "media": "assets/staves.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "endOfTurnEvasion2": 100,
+                  "onHitSlowMagnitude": 15
+                }
+              },
+              "levels": [
+                {
+                  "name": "Staffs1",
+                  "id": "Staffs1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Staffs2",
+                  "id": "Staffs2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Staffs3",
+                  "id": "Staffs3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Staffs4",
+                  "id": "Staffs4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Staffs5",
+                  "id": "Staffs5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Wands",
+              "name": "Wands",
+              "fixture": "",
+              "media": "assets/wands.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "runePreservationChance": 40,
+                  "magicDamageBonus": 20
+                }
+              },
+              "levels": [
+                {
+                  "name": "Wands1",
+                  "id": "Wands1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Wands2",
+                  "id": "Wands2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Wands3",
+                  "id": "Wands3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Wands4",
+                  "id": "Wands4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Wands5",
+                  "id": "Wands5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            },
+            {
+              "id": "Special",
+              "name": "Special",
+              "fixture": "",
+              "media": "assets/weird.webp",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "masteryXP": 10,
+                  "skillXP": 5
+                }
+              },
+              "levels": [
+                {
+                  "name": "Special1",
+                  "id": "Special1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Special2",
+                  "id": "Special2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Special3",
+                  "id": "Special3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Special4",
+                  "id": "Special4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Special5",
+                  "id": "Special5",
+                  "level": 5,
+                  "modifiers": {}
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
