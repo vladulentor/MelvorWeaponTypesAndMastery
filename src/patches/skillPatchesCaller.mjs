@@ -12,6 +12,7 @@ const { patchWeaponTypeLogic } = await loadModule('src/patches/patches/weaponMas
 
 
 
+const { patchSkillNotif } = await loadModule('src/patches/patches/patchSkillNotif.mjs');
 
 
 
@@ -21,6 +22,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchConditionalMod(ctx)
         addWeaponMasteryUI(ctx);
         patchWeaponTypeLogic(ctx);
+        patchSkillNotif(ctx);
 }
 export function patchSkillsAfterDataReg(ctx) {
         addWeaponType(ctx);

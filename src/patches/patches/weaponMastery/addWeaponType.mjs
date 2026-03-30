@@ -238,7 +238,7 @@ const Special = {
 
 const namespaces = ["melvorD", "melvorF", "melvorAoD", "melvorTotH", "melvorItA", "rielkConstruction"];
 
-export function addWeaponType(ctx) { 
+export function addWeaponType(ctx) {
     for (const type of [Greatswords, StraightSwords, CurvedSwords, Daggers, Axes, Polearms, Blunts, HandToHand, Crossbows, HeavyBows, LightBows, ThrownShort, ThrownLong, Artifacts, Staves, Wands, Special]) {
         // Handle material-based weapons
         type.clas = game.weaponMasteries.getObject("WTM", type.clas);
@@ -263,14 +263,37 @@ export function addWeaponType(ctx) {
             return game.stats.Items.get(this, ItemStats.TotalAttacks)
         }
     });
+    Object.defineProperty(WeaponItem.prototype, '_enemiesKilledTime', {
+        get() {
+
+            return game.stats.Items.get(this, ItemStats.EnemiesKilled) * 2 // the default respawn is 3 (seconds), we use 2 since fighting tougher enemies should give more xp
+        }
+    });
+
     Object.defineProperty(WeaponItem.prototype, 'weaponXPCap', {
         get() {
             return this.uniqueness * 5000;
         }
     });
+
+    Object.defineProperty(WeaponItem.prototype, '_weaponXPSpeedMod', {
+        get() {
+            return 0.4626  // Magic number, balanced so you will get 833 xp per hour, so 6 hours for stock, 12 for unusual and 18 for distinct weapons before modifiers
+        }
+    });
+    Object.defineProperty(WeaponItem.prototype, 'weaponXPperSwing', { // These are UI values
+        get() {
+            return this.attackSpeed * this._weaponXPSpeedMod * 10;
+        }
+    });
+    Object.defineProperty(WeaponItem.prototype, 'weaponXPperKill', {
+        get() {
+            return 9.3 // This is a constant from 20 times our _weaponXPSpeedMod, remember to change when changing _weaponXPSpeedMod
+        }
+    });
     Object.defineProperty(WeaponItem.prototype, '_weaponXP', {
         get() {
-            const baseXP = (this.timesAttacked * this.attackSpeed + this._enemiesKilledTime) * 0.4626  // Magic number, balanced so you will get 833 xp per hour, so 6 hours for stock, 12 for unusual and 18 for distinct weapons before modifiers.
+            const baseXP = (this.timesAttacked * this.attackSpeed + this._enemiesKilledTime) * this._weaponXPSpeedMod
             return Math.floor(baseXP + baseXP * this._weaponXPBonus / 100);
         }
     });
@@ -287,10 +310,13 @@ export function addWeaponType(ctx) {
             return Math.min(100, this._weaponXP / this.weaponXPCap * 100)
         }
     });
-      Object.defineProperty(WeaponItem.prototype, '_enemiesKilledTime', {
+    Object.defineProperty(WeaponItem.prototype, 'returnFakeSkillObj', {
         get() {
 
-            return  game.stats.Items.get(this, ItemStats.EnemiesKilled) * 3 // using the default enemy respawn interval of 3 seconds, faster interval is faster xp get 
+            if (!this._fakeSkillObj) {
+                this._fakeSkillObj = { name: this.name, media: this.media, weap: 1 };
+            }
+            return this._fakeSkillObj;
         }
     });
     Object.defineProperty(WeaponItem.prototype, 'masteryMaxed', {
@@ -301,8 +327,7 @@ export function addWeaponType(ctx) {
 
     Object.defineProperty(WeaponItem.prototype, 'isMaxMastery', {
         get() {
-
-            return game.stats.Items.get(this, ItemStats.TotalAttacks)
+            return this.uniqueness > 0 && (this._weaponXP >= this.weaponXPCap)
         }
     });
 
@@ -345,7 +370,5 @@ function addClassToItem(item, type, bonuniq = 1) {
     item.attackSpeed = item.equipmentStats[0].key === 'attackSpeed' ? item.equipmentStats[0].value / 1000 : 4;
 
     type.allWeapons.push(item);
-    if (type.isPerWepMod)
-        type.makeWeaponConditional(item);
 
 }

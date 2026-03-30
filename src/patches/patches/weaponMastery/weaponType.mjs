@@ -4,9 +4,6 @@ const { loadModule, onInterfaceReady } = mod.getContext(import.meta);
 const { getRielkLangString, templateRielkLangString } = await loadModule('src/language/translationManager.mjs');
 const { EffectRegistry } = await loadModule('src/patches/patchRegistry.mjs');
 
-game.weaponTypeStats = new StatProvider();
-game.combat.registerStatProvider(game.weaponTypeStats);
-
 class WeaponMasteryLevel extends RealmedObject {
     constructor(namespace, data, game, parentType, levelIndex) {
         super(namespace, data, game);
@@ -52,19 +49,19 @@ export class WeaponMastery extends RealmedObject {
 
         this.isPerWepMod = data.isPerWepMod ?? false;
         if (this.isPerWepMod) {
-            this.wepModifiers = data.wepModifiers;
-            this._uiWepMod = new StatObject({ conditionalModifiers: [{ condition: { type: "Weapon", weapon: `Fucking_NOTHING` }, ...this.wepModifiers, descriptionLang: "Wow, it works!" }] }, this.game, null);
-        }
-        else {
-            this.wepModifiers = new StatObject(data.wepModifiers, game, this._localID);
-            this._uiWepMod = this.wepModifiers;
-        }
+            this.wepProvidedStats = new StatProvider();
+            game.combat.registerStatProvider(this.wepProvidedStats);
+            this._providingMastWepStats = 0;
+        } // This is very stupid and inefficient but FUCK IT
+        this.wepModifiers = new StatObject(data.wepModifiers, game, this._localID);
+        this._uiWepMod = this.wepModifiers;
+
 
         this.fixture = Array.isArray(data.fixture)
             ? data.fixture
             : [data.fixture];
-       // for (let i = 0; i < this.fixture.length; i++)
-         //   this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);
+        // for (let i = 0; i < this.fixture.length; i++)
+        //   this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);
         this.allWeapons = [];
         this.masteredWeapons = new Map();
         this.levels = data.levels.map(
@@ -128,28 +125,31 @@ export class WeaponMastery extends RealmedObject {
     get IndMods() {
         return this.levelCap >= 2;
     }
-    get doubledIndBonuses(){
+    get doubledIndBonuses() {
         return 1 // this.levelCap >=5 ? 2 : 1;
     }
-    makeWeaponConditional(weapon) {
-        const cond = new StatObject({ conditionalModifiers: [{ condition: { type: "Weapon", weapon: `${weapon._localID}` }, ...this.wepModifiers, descripiton: "Wow, it works!" }] }, this.game, null);
+    makeWeaponConditional(weapon) { // deprecated
+        const cond = new StatObject(this.wepModifiers, this.game, null);
         weapon.uniqMasteryMod = cond;
     }
 
     makeMasteredWeaponsMap() {
         for (const weapon of this.allWeapons) {
             if (weapon.masteryMaxed || weapon.isMaxMastery) {
-                this.addweaponmastery(weapon);
+                this.addweaponmastery(weapon, 1);
             }
         }
     }
-    addweaponmastery(weapon) {
-        if (this.IndMods) {
-            let weapMod = this.isPerWepMod ? weapon.uniqMasteryMod : this.wepModifiers;
-            this.providedStats.addStatObject("Mastered Weapon", weapMod, this.doubledIndBonusesZ, 1);
+    addweaponmastery(weapon, init = 0) {
+        if (this.IndMods && !this.isPerWepMod) {
+            this.providedStats.addStatObject("Mastered Weapon", this.wepModifiers, this.doubledIndBonuses, 1);
         }
+        if (!init && this.isPerWepMod) // while not in init, this will only be called with the current weapon, so it's safe
+            this.toggleMasteredWeaponStats(true);
         weapon.masteryMaxed = 1;
         this.masteredWeapons.set(weapon.id, weapon);
+        if (!init)
+            this.game.combat.computeAllStats();
     }
     levelUp() {
         this._curLvl += 1;
@@ -160,7 +160,6 @@ export class WeaponMastery extends RealmedObject {
         this._curLvl = this.level;
         this.computeProvidedStats(false);
     }
-
     computeProvidedStats(updatePlayer = true) {
         this.providedStats.reset();
         for (let lvl = 1; lvl <= this._curLvl; lvl++) {
@@ -172,6 +171,19 @@ export class WeaponMastery extends RealmedObject {
         this.makeMasteredWeaponsMap();
         if (updatePlayer)
             this.game.combat.computeAllStats();
+    }
+    toggleMasteredWeaponStats(t) { // This is probably extremely stupid and inefficient, but I don't really care, it works.
+        if (t) {
+            if (this._providingMastWepStats) return;
+            this.wepProvidedStats.addStatObject("HoldingMasteredWeapon", this.wepModifiers, this.doubledIndBonuses, 1);
+            this._providingMastWepStats = 1;
+        }
+        else {
+            if (!this._providingMastWepStats) return;
+            this.wepProvidedStats.reset();
+            this._providingMastWepStats = 0;
+
+        }
     }
     checkXP() {
         const temlvl = this.level;

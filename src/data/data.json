@@ -594,7 +594,7 @@
               "media": "assets/curvedswords.webp",
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {}
+                "modifiers": {"lifesteal":50}
               },
               "levels": [
                 {

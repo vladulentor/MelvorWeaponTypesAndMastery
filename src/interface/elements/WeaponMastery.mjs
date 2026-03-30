@@ -133,8 +133,7 @@ export class WeaponMasteryUI {
         this.icon.src = this.type.media
         this.text.innerHTML = this.type.name;
         this.bgIcon.src = this.type.media;
-        this.weaponModText.innerHTML = '';
-        this.weaponModText.append(...this.type._uiWepMod.describeAsSpans(1, this.type.doubledIndBonuses))
+        this.weaponModText.innerHTML = this.type._uiWepMod.describeLineBreak(1, this.type.doubledIndBonuses);
 
         if (this.modifierListContainer.classList.contains('open'))
             this.closeModifierList()

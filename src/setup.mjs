@@ -14,7 +14,6 @@ export async function setup(ctx) {
     await setup.applyPatches();
     await setup.loadData();
     await setup.applyOtherPatches();
-    await setup.loadDataFlush();
     await setup.modCompatibility(ctx);
     await setup.lastChanges(ctx);
 }
@@ -44,9 +43,6 @@ class Setup {
     async loadData() {
         await this.ctx.gameData.addPackage('src/data/data.json');
 
-    }
-    async loadDataFlush() {
-        await this.ctx.gameData.addPackage('src/data/data_dummy.json');
     }
     async modCompatibility(ctx) {
         this.ctx.onModsLoaded(() => {
