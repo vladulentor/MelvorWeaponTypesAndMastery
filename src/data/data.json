@@ -644,7 +644,7 @@
                         "weaponType": "WTM:CurvedSwords"
                       },
                       "modifiers": {
-                        "fakeModifierAddTextDescToWepType": 1
+                        "WTM:fakeModifierAddTextDescToWepType": 1
                       }
                     }
                   ],
