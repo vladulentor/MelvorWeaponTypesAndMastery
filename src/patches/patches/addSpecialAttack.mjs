@@ -45,6 +45,18 @@ export function addSpecialAttack() {
         addEffecttoWeaponList(weapMap);
     }
 
+    if (this._localID == "Daggers3") {
+        const attack = game.specialAttacks.getObjectSafe('WTM:Heartseeker');
+        const weapMap = { weapons: this.type.allWeapons, attack: attack };
+        addEffecttoWeaponList(weapMap);
+    }
+
+    if (this._localID == "Axes3") {
+        const attack = game.specialAttacks.getObjectSafe('WTM:Warcry');
+        const weapMap = { weapons: this.type.allWeapons, attack: attack };
+        addEffecttoWeaponList(weapMap);
+    }
+
 
     /*let functionList = [];
     if (this._localID == "Training_Dummy4" && this.tier >= 4 && guardMelee == 0) {

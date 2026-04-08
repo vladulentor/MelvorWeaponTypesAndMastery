@@ -4,6 +4,60 @@
   "data": {
     "attacks": [
       {
+        "id": "Warcry",
+        "defaultChance": 10,
+        "damage": [],
+        "prehitEffects": [
+          {
+            "effectID": "WTM:WarcryPlayer"
+          },
+          {
+            "effectID": "WTM:WarcryEnemy1"
+          },
+          {
+            "effectID": "WTM:WarcryEnemy0"
+          }
+        ],
+        "onhitEffects": [],
+        "cantMiss": true,
+        "attackCount": 3,
+        "attackInterval": 50,
+        "lifesteal": 0,
+        "name": "Warcry",
+        "description": "You let out a bloodcurdling warcry, interrupting the Enemy and preventing them from using Special Attacks for 2 of its turns.<br>For the rest of the fight: Gives you +${preHitEffect0modValue0}% Max Hit, +${preHitEffect0modValue1}% Crit Chance, and ${preHitEffect0modValue2}% Attack Interval (stacking, max 10 stacks); and gives the Enemy -${preHitEffect1modValue0}% Max Hit, -${preHitEffect1modValue1}% Resistance, and +${preHitEffect1modValue2}% Attack Interval (stacking, max 10 stacks).",
+        "descriptionGenerator": "You let out a warcry. On use, <preHitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "Heartseeker",
+        "defaultChance": 10,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 80
+          },
+          {
+            "damageType": "Custom",
+            "character": "Target",
+            "maxRoll": "CurrentHP",
+            "minRoll": "CurrentHP",
+            "minPercent": 5,
+            "maxPercent": 10,
+            "roll": true
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 100,
+        "lifesteal": 0,
+        "name": "Heartseeker",
+        "description": "Avoidable attack for ${attackDamageMaxValue0}% of your normal damage + ${attackDamageMinValue1}%-${attackDamageMaxValue1}% of the Enemy's current HP.",
+        "descriptionGenerator": "<Avoidable> attack for <damage>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "ForcefulSweep",
         "defaultChance": 10,
         "damage": [
@@ -117,6 +171,145 @@
     ],
     "combatEffects": [
       {
+        "id": "WarcryPlayer",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "name": "Warcry",
+        "media": "assets/combat/status/warcry.png",
+        "target": "Self",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "maxHit": 4,
+              "critChance": 3,
+              "attackInterval": -2
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 10
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "WarcryEnemy0",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "name": "Warcry",
+        "media": "assets/combat/status/warcry.png",
+        "target": "Target",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "maxHit": -4,
+              "resistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": -3
+                }
+              ],
+              "attackInterval": 2
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 10
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
+      },
+      {
+        "id": "WarcryEnemy1",
+        "templateID": "melvorD:StaticTargetCountingModifier",
+        "name": "Warcry",
+        "media": "assets/combat/status/null.svg",
+        "target": "Target",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "cantSpecialAttack": 1
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 2
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "InterruptTurn",
+            "triggersOn": [
+              {
+                "type": "EffectApplied"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
+      },
+      {
+        "id": "Vulnerability",
+        "name": "Vulnerability",
+        "media": "assets/combat/status/vulnerability.png",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 25
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "damageTaken": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
+      },
+      {
         "id": "ForcefulSweep0",
         "templateID": "melvorD:StaticSelfCountingModifier",
         "name": "Forceful Sweep",
@@ -145,7 +338,7 @@
         "id": "Counterattack0",
         "templateID": "melvorD:StaticSelfCountingModifier",
         "name": "Counterattack",
-        "media": "assets/status/evasion_increase.svg",
+        "media": "assets/combat/status/evasion_increase.svg",
         "target": "Self",
         "tooltipSpans": [
           {
@@ -181,7 +374,7 @@
         "id": "Counterattack1",
         "templateID": "WTM:SelfCountingDefensive",
         "name": "Counterattack",
-        "media": "assets/status/attack_increase.svg",
+        "media": "assets/combat/status/attack_increase.svg",
         "parameters": [
           {
             "name": "maxStacks",
@@ -203,6 +396,13 @@
         "effectGroups": [
           "melvorD:Buff"
         ]
+      }
+    ],
+    "combatEffectGroups": [
+      {
+        "id": "Vulnerability",
+        "name": "Vulnerability",
+        "adjective": "Vulnerable"
       }
     ],
     "combatEffectTemplates": [
@@ -594,7 +794,9 @@
               "media": "assets/curvedswords.webp",
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {"lifesteal":50}
+                "modifiers": {
+                  "lifesteal": 50
+                }
               },
               "levels": [
                 {
@@ -704,31 +906,127 @@
                   "name": "Daggers1",
                   "id": "Daggers1",
                   "level": 1,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "+5% Crit Chance while using Daggers",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "modifiers": {
+                        "critChance": 5
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Daggers2",
                   "id": "Daggers2",
                   "level": 2,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "+5% Chance to ignore Enemy Resistance while using Daggers",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "modifiers": {
+                        "ignoreResistanceWhenAttackingChance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Daggers3",
                   "id": "Daggers3",
                   "level": 3,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "Adds the Heartseeker special attack:<br>(10%) Avoidable attack for 80% of your normal damage + 5-10% of the Enemy's current HP.",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
                 },
                 {
                   "name": "Daggers4",
                   "id": "Daggers4",
                   "level": 4,
-                  "modifiers": {}
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 16.67,
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "chance": 100,
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "chance": 100,
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "chance": 100,
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "chance": 100,
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "chance": 100,
+                      "effectID": "WTM:Vulnerability"
+                    }
+                  ]
                 },
                 {
                   "name": "Daggers5",
                   "id": "Daggers5",
                   "level": 5,
-                  "modifiers": {}
+                  "modifiers": {
+                    "meleeCritChance": 10
+                  }
                 }
               ]
             },
@@ -743,10 +1041,9 @@
                   "maxHitBasedOnTargetResistance": [
                     {
                       "damageTypeID": "melvorD:Normal",
-                      "value": 2
+                      "value": 0.25
                     }
-                  ],
-                  "critMultiplier": 50
+                  ]
                 }
               },
               "levels": [
@@ -754,31 +1051,100 @@
                   "name": "Axes1",
                   "id": "Axes1",
                   "level": 1,
-                  "modifiers": {}
+                  "modifiers": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "While using Axes, +0.25% Max Hit per 1% Enemy Resistance",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "modifiers": {
+                          "maxHitBasedOnTargetResistance": [
+                            {
+                              "damageTypeID": "melvorD:Normal",
+                              "value": 0.25
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
                 },
                 {
                   "name": "Axes2",
                   "id": "Axes2",
                   "level": 2,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "While using Axes, Enemy has -0.1% Max Hit per 1% Enemy Resistance",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      },
+                      "enemyModifiers": {
+                        "maxHitBasedOnResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": -0.1
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Axes3",
                   "id": "Axes3",
                   "level": 3,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "Adds the Warcry special attack:<br>(10%) Interrupts the Enemy and prevents them from using special attacks for 2 turns.<br>For the rest of the fight: Gives you +4% Max Hit, +3% Crit Chance, and -2% Attack Interval (stacking, max 10 stacks); gives the Enemy -4% Max Hit, -3% Resistance, and +2% Attack Interval (stacking, max 10 stacks).",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
                 },
                 {
                   "name": "Axes4",
                   "id": "Axes4",
                   "level": 4,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "Gain +5% Melee Strength Bonus from Equipment per 10% Enemy Resistance while using Axes",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      },
+                      "modifiers": {
+                        "meleeStrengthBonusPer10EnemyResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Axes5",
                   "id": "Axes5",
                   "level": 5,
-                  "modifiers": {}
+                  "enemyModifiers": {
+                    "flatResistance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": -5
+                      }
+                    ]
+                  }
                 }
               ]
             },
