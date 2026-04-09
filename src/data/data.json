@@ -1051,25 +1051,23 @@
                   "name": "Axes1",
                   "id": "Axes1",
                   "level": 1,
-                  "modifiers": {
-                    "conditionalModifiers": [
-                      {
-                        "description": "While using Axes, +0.25% Max Hit per 1% Enemy Resistance",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Axes"
-                        },
-                        "modifiers": {
-                          "maxHitBasedOnTargetResistance": [
-                            {
-                              "damageTypeID": "melvorD:Normal",
-                              "value": 0.25
-                            }
-                          ]
-                        }
+                  "conditionalModifiers": [
+                    {
+                      "description": "While using Axes, +0.25% Max Hit per 1% Enemy Resistance",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      },
+                      "modifiers": {
+                        "maxHitBasedOnTargetResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 0.25
+                          }
+                        ]
                       }
-                    ]
-                  }
+                    }
+                  ]
                 },
                 {
                   "name": "Axes2",
