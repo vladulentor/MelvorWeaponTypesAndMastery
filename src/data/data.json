@@ -538,6 +538,27 @@
               "id": "Greatswords",
               "name": "Greatswords",
               "fixture": "",
+              "mat": [
+                "2H_Sword"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Aeris_Godsword3",
+                "Aranite_2H_Blade1",
+                "Basic_2H_Sword",
+                "Black_2H_Sword3",
+                "Blighted_2H_Hook_Sword3",
+                "Cursed_2H_Sword2",
+                "Darksteel_2H_SWord2",
+                "Ice_2h_Sword2",
+                "Familiar_2H_Sword3",
+                "Glacia_Godsword3",
+                "Open_Wounds_Greatsword2",
+                "Ragnar_Godsword3",
+                "Sanguine_Blade3",
+                "Terran_Godsword3",
+                "Ultima_Godsword4"
+              ],
               "media": "assets/greatswords.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -657,6 +678,22 @@
               "id": "StraightSwords",
               "name": "Straight Swords",
               "fixture": "",
+              "mat": [
+                "Sword"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Ice_Sword2",
+                "Black_Sword3",
+                "Strange_Sword4",
+                "FrostSpark_1H_Sword3",
+                "Lightning_Strike_1H_Sword2",
+                "Spectral_Ice_Sword2",
+                "Agile_Wings_Rapier2",
+                "Crystal_Twin_Blades1",
+                "Sunset_Rapier2",
+                "Witherstab_Rapier3"
+              ],
               "media": "assets/straightswords.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -791,6 +828,17 @@
               "id": "CurvedSwords",
               "name": "Curved Swords",
               "fixture": "",
+              "mat": [
+                "Scimitar"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Ancient_Sword3",
+                "Ghost_Scimitar3",
+                "Pirate_Captains_Sword2",
+                "Tidal_Edge3",
+                "Desert_Sabre1"
+              ],
               "media": "assets/curvedswords.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -889,6 +937,18 @@
               "name": "Daggers",
               "fixture": "",
               "media": "assets/daggers.webp",
+              "mat": [
+                "Dagger"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Ice_Dagger2",
+                "Darksteel_Dagger1",
+                "Lacerating_Dagger2",
+                "Poisoned_Dagger2",
+                "Sacrificial_Dagger3",
+                "Shadow_Dagger1"
+              ],
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1034,6 +1094,17 @@
               "id": "Axes",
               "name": "Axes",
               "fixture": "",
+              "mat": [
+                "2H_Axe",
+                "Battleaxe"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Big_Ron2",
+                "Ethereal_Greataxe2",
+                "Ice_Battleaxe2",
+                "War_Axe1"
+              ],
               "media": "assets/axes.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1151,6 +1222,20 @@
               "name": "Polearms",
               "fixture": "",
               "media": "assets/polearms.webp",
+              "mat": [
+                "2H_Spear",
+                "Spear"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Blighting_Polearm2",
+                "Elerine_Spear2",
+                "Hasty_Trident3",
+                "Hollow_Reaper_Scythe3",
+                "Royal_Toxins_Spear2",
+                "Twin_Exiles3",
+                "Warberd3"
+              ],
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1199,6 +1284,20 @@
             {
               "id": "Blunts",
               "name": "Blunts",
+              "mat": [
+                "2H_Hammer",
+                "Hammer"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Granite_Mace3",
+                "Heated_Fury_2H_Hammer2",
+                "Magical_Broomstick3",
+                "Miolite_Sceptre3",
+                "Rune_Mallet3",
+                "Stone_Hammer2",
+                "Water_Sceptre3"
+              ],
               "fixture": "",
               "media": "assets/blunts.webp",
               "isPerWepMod": true,
@@ -1246,6 +1345,14 @@
               "name": "Hand-to-Hand",
               "fixture": "",
               "media": "assets/handtohand.webp",
+              "uniq": [
+                "Ancient_Claw2",
+                "Blighted_Claw3",
+                "Dragon_Claw2",
+                "Infernal_Claw3",
+                "Rune_Claw2",
+                "Silent_Surge_Crossblade4"
+              ],
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1289,6 +1396,25 @@
             {
               "id": "Crossbows",
               "name": "Crossbows",
+              "mat": [
+                "Crossbow"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Ancient_Crossbow3",
+                "Confetti_Crossbow2",
+                "Feather_Storm_Crossbow3",
+                "Ghost_Blunderbow3",
+                "Granite_Crossbow3",
+                "Poison_Crossbow2",
+                "Shockwave3",
+                "Slayer_Crossbow2",
+                "Stinging_Silence_Crossbow3",
+                "Torrential_Blast_Crossbow3",
+                "Toxic_Blast_Crossbow2",
+                "Voidburst_Barrage_Crossbow3",
+                "Witherslinger_Crossbow3"
+              ],
               "fixture": "",
               "media": "assets/crossbows.webp",
               "isPerWepMod": true,
@@ -1335,6 +1461,27 @@
               "id": "HeavyBows",
               "name": "Heavy Bows",
               "fixture": "",
+              "mat": [
+                "Longbow"
+              ],
+              "kind": "ranged",
+              "uniq": [
+                "Ancient_Hunting_Bow3",
+                "Ancient_Longbow3",
+                "Blighted_Feather_Bow3",
+                "Cursed_Longbow1",
+                "Ethereal_Longbow3",
+                "Elerine_Longbow2",
+                "Engulfing_Vortex_Longbow4",
+                "Familiar_Longbow3",
+                "Golden_Bow3",
+                "Hollow_Nightmare_Bow3",
+                "Ice_Longbow2",
+                "Malevolent_Blight_Longbow2",
+                "Old_Hunting_Bow2",
+                "Stormsnap3",
+                "Thorned_Power_Bow2"
+              ],
               "media": "assets/heavybows.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1380,6 +1527,17 @@
               "id": "LightBows",
               "name": "Light Bows",
               "fixture": "",
+              "mat": [
+                "Shortbow"
+              ],
+              "kind": "ranged",
+              "uniq": [
+                "Basic_Shortbow1",
+                "Desert_Shortbow2",
+                "Ice_Shortbow2",
+                "Lacerating_Shortbow2",
+                "Poisoned_Shortbow3"
+              ],
               "media": "assets/lightbows.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1425,6 +1583,14 @@
               "id": "ThrownShort",
               "name": "Thrown (Short)",
               "fixture": "",
+              "mat": [
+                "Throwing_Knife"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Ancient_Throwing_Knife3",
+                "Shadow_Throwing_Knife3"
+              ],
               "media": "assets/thrownshort.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1470,6 +1636,13 @@
               "id": "ThrownLong",
               "name": "Thrown (Long)",
               "fixture": "",
+              "mat": [
+                "Javelin"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Ancient_Javelin3"
+              ],
               "media": "assets/thrownlong.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1516,6 +1689,11 @@
               "name": "Artifacts",
               "fixture": "",
               "media": "assets/artifacts.webp",
+              "uniq": [
+                "Magic_Flute3",
+                "Powered_Red_Crystal3",
+                "Trickery_Mirror3"
+              ],
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1570,6 +1748,27 @@
               "id": "Staves",
               "name": "Staves",
               "fixture": "",
+              "mat":["Staff", "Battlestaff", "Staff_of"],
+              "kind": "magic",
+              "uniq": [
+                "Basic_Staff1",
+                "Blazing_Shadow_Staff3",
+                "Blight_Burst_Staff2",
+                "Blighted_Staff3",
+                "Cloudburst_Staff3",
+                "Cursed_Staff1",
+                "Ethereal_Staff3",
+                "Familiar_Staff2",
+                "Hollow_Doom_Staff3",
+                "Lacerating_Staff2",
+                "Lich_Staff3",
+                "Lightning_Coil_2H_Staff3",
+                "Mudball_Staff2",
+                "Natures_Call_Staff2",
+                "Natures_Wrath_Staff3",
+                "Rotten_Staff3",
+                "Water_Pulse_Staff3"
+              ],
               "media": "assets/staves.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1615,6 +1814,19 @@
               "id": "Wands",
               "name": "Wands",
               "fixture": "",
+                "mat":["Imbued", "Wand"],
+              "kind": "magic",
+              "uniq": [
+                "Foresight_Wand3",
+                "Ocean_Song3",
+                "Shadow_Wand3",
+                "Silent_Tangle_Wand3",
+                "Slicing_Maelstrom_Wand3",
+                "Soul_Taker_Wand2",
+                "Toxic_Fumes_Wand1",
+                "Voidfire_Cascade_Wand3",
+                "Witherbind_Wand3"
+              ],
               "media": "assets/wands.webp",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1660,6 +1872,31 @@
               "id": "Special",
               "name": "Special",
               "fixture": "",
+                            "uniq": [
+                "Abyssal_Hourglass_Inverted4",
+                "Abyssal_Hourglass_Upright4",
+                "Abyssal_Scythe2",
+                "Almighty_Lute4",
+                "Ancient_Scythe4",
+                "Archaeologists_Whip5",
+                "Bobs_Lost_Rake4",
+                "Bobs_Rake5",
+                "Chefs_Spoon4",
+                "Chisel4",
+                "Enhanced_Spyglass5",
+                "Fear_Hunter_Whip3",
+                "Fishing_Net5",
+                "Grappling_Hook4",
+                "Old_Fancy_Quill5",
+                "Old_Spyglass5",
+                "Old_Wooden_Ladle5",
+                "Potion_Stirrer4",
+                "Silentsnap_Crab_Claw2",
+                "Slingshot2",
+                "Sturdy_Fancy_Quill4",
+                "Void_Vortex_Whip3"
+              ],
+
               "media": "assets/weird.webp",
               "isPerWepMod": true,
               "wepModifiers": {

@@ -19,21 +19,30 @@ export class WeaponMasteryUI {
         this._content.append(getTemplateNode('weaponMastery-template'));
         this.type = null;
         this.weapon = null;
-        
+
         // Grab the outer wrapper as the main container
         this.container = getElementFromFragment(this._content, 'outercont', 'div');
         this.block = getElementFromFragment(this._content, 'weaponMasteryContainer', 'div');
         this.bgIcon = getElementFromFragment(this._content, 'weaponMasteryBgIcon', 'img');
         this.icon = getElementFromFragment(this._content, 'weaponMasteryIcon', 'img');
         this.text = getElementFromFragment(this._content, 'weaponMasteryText', 'h5');
-
+        this.title = getElementFromFragment(this._content, 'weaponMasteryTitle', 'h5');
+        const icon = document.createElement('i');
+        icon.className = 'fa fa-question-circle';
+        this.title.appendChild(icon);
+        this.setWeaponMasteryTooltip(this.title);
 
         this.weaponItem = getElementFromFragment(this._content, 'weaponMasteryItem', 'div');
         this.weaponPic = getElementFromFragment(this._content, 'weaponPic', 'img');
         this.weaponInfo = getElementFromFragment(this._content, 'weaponInfo', 'div');
         this.weaponName = getElementFromFragment(this._content, 'weaponName', 'span');
         this.weaponRank = getElementFromFragment(this._content, 'weaponRank', 'span');
+        // Why the fuck did I call it "weapon Rank"?
+        this.setWeaponUniquenessTooltip(this.weaponRank);
         this.weaponXPBar = getElementFromFragment(this._content, 'weaponXPBar', 'div');
+        this.weaponXPNumber = getElementFromFragment(this._content, 'weaponXPNumber', 'div');
+
+
         this.weaponXPFill = getElementFromFragment(this._content, 'weaponXpFill', 'div');
         this.weaponModDisc = getElementFromFragment(this._content, 'unlockedWeaponMod', 'div');
         this.weaponModText = getElementFromFragment(this._content, 'weaponModifierValue', 'div');
@@ -80,7 +89,81 @@ export class WeaponMasteryUI {
 
         this.stepsButton.onclick = () => this.toggleModifierList();
     }
+    // --- Tooltip shit --
 
+
+    setWeaponMasteryTooltip(elem) {
+        elem.tippyContent = createElement("div");
+
+        const expl = createElement("div", {
+            className: 'text-center text-size-sm mb-1 font-w400'
+        });
+        expl.innerText = "Weapon Masteries represent your use with a weapon and weapons of that type.";
+        elem.tippyContent.appendChild(expl);
+
+        elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
+
+        const hint = createElement("div", {
+            className: 'text-center text-size-sm font-w400 text-muted'
+        });
+        hint.innerText = "Mastery with a weapon is increased primarily by attacking with it, and secondarily by killing enemies.";
+        elem.tippyContent.appendChild(hint);
+        elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
+
+        const hint2 = createElement("div", {
+            className: 'text-center text-size-sm font-w400 text-muted'
+        });
+        hint2.innerText = "Hover over different elements to learn more about weapon masteries";
+        elem.tippyContent.appendChild(hint2);
+        tippy(elem, {
+            content: elem.tippyContent,
+            placement: 'top',
+            allowHTML: true,
+            interactive: true,
+            animation: false,
+            appendTo: document.body,
+            popperOptions: {
+                strategy: 'fixed',
+                modifiers: [
+                    { name: 'flip', options: { fallbackPlacements: ['top'] } },
+                    { name: 'preventOverflow', options: { altAxis: true, tether: false } },
+                ],
+            },
+        });
+    }
+    setWeaponUniquenessTooltip(elem) {
+        elem.tippyContent = createElement("div");
+
+        const expl = createElement("div", {
+            className: 'text-center text-size-sm mb-1 font-w400'
+        });
+        expl.innerHTML = "A weapon's <span class='text-success'>Uniqueness</span> determines how much training can be gotten out of it. Rare and unusual weapons are more unique.";
+        elem.tippyContent.appendChild(expl);
+
+        elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
+
+        const hint = createElement("div", {
+            className: 'text-center text-size-sm font-w400 text-muted'
+        });
+        hint.innerText = "A weapon's uniqueness is unrelated to its strength.";
+        elem.tippyContent.appendChild(hint);
+
+        tippy(elem, {
+            content: elem.tippyContent,
+            placement: 'top',
+            allowHTML: true,
+            interactive: false,
+            animation: false,
+            appendTo: this.title,
+            popperOptions: {
+                strategy: 'fixed',
+                modifiers: [
+                    { name: 'flip', options: { fallbackPlacements: ['top'] } },
+                    { name: 'preventOverflow', options: { altAxis: true, tether: false } },
+                ],
+            },
+        });
+    }
     openModifierList() {
         this.modifierListContainer.classList.remove('collapsed');
         this.modifierListContainer.classList.add('open');
@@ -144,6 +227,7 @@ export class WeaponMasteryUI {
         this.setXP();
     }
     setXP() {
+        if (!this.weapon.masteryMaxed) this.weaponXPNumber.innerText = `${this.weapon._weaponXP}/${this.weapon.weaponXPCap}`
         this.weaponXPFill.style.width = this.weapon.weaponXPPercentCapped + "%"
         this.typeProfOvFill.style.width = this.type.uncappedxpPercent + "%";
         const percentCapped = this.type.xpPercent;
@@ -167,8 +251,14 @@ export class WeaponMasteryUI {
     }
 
     toggleWeaponMod(maxed) {
-        if (maxed && this.type.IndMods) { showElement(this.weaponModDisc); }
-        else { hideElement(this.weaponModDisc); }
+        if (maxed) {
+            hideElement(this.weaponXPNumber);
+            if (this.type.IndMods) { showElement(this.weaponModDisc); }
+            else { hideElement(this.weaponModDisc); }
+
+
+        }
+        else { showElement(this.weaponXPNumber);hideElement(this.weaponModDisc); }
         if (this.modifierListContainer.classList.contains('collapsed')) {
             this.cap.classList.add('no-transition');
             this.cap.style.top = this.stepsButton.offsetTop + "px";
@@ -195,21 +285,21 @@ export class WeaponMasteryUI {
     setMods() {
 
         for (let i = 0; i < this.steps.length; i++) {
-        let lockText = this.type.fixture.length > 1 ? templateRielkLangStringWithNodes(
-            "MENU_UPGRADE_TYPE3",
-            {
-                fixImg0: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[0].media]] }),
-                fixImg1: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[1].media]] }),
-                fixImg2: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[2].media]] })
-            },
-            {
-                fixName0: this.type.fixture[0].name,
-                fixName1: this.type.fixture[1].name,
-                fixName2: this.type.fixture[2].name
-            }
-        )
-            : templateRielkLangStringWithNodes("MENU_UPGRADE_TYPE",
-                { fixImg: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[0].media]] }) }, { fixName: this.type.fixture[0].name });
+            let lockText = this.type.fixture.length > 1 ? templateRielkLangStringWithNodes(
+                "MENU_UPGRADE_TYPE3",
+                {
+                    fixImg0: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[0].media]] }),
+                    fixImg1: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[1].media]] }),
+                    fixImg2: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[2].media]] })
+                },
+                {
+                    fixName0: this.type.fixture[0].name,
+                    fixName1: this.type.fixture[1].name,
+                    fixName2: this.type.fixture[2].name
+                }
+            )
+                : templateRielkLangStringWithNodes("MENU_UPGRADE_TYPE",
+                    { fixImg: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[0].media]] }) }, { fixName: this.type.fixture[0].name });
 
             const shiny = !!this.type.levels[i].shiny;
             if (this.type.levelCap <= i) {

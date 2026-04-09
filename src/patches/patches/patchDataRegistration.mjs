@@ -14,4 +14,12 @@ export function patchDataRegistration({ patch }) {
             );
         });
     });
+    patch(Agility, "modifyData").before(function (data) {
+        var _a;
+        (_a = data.weaponMasteries) === null || _a === void 0 ? void 0 : _a.forEach((modData) => {
+           const mastery = game.weaponMasteries.getObjectByID(modData.id);
+          mastery.applyDataModification(modData, this.game);
+        });
+
+    });
 }

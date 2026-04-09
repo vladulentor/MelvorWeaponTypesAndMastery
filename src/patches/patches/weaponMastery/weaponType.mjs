@@ -35,6 +35,10 @@ class WeaponMasteryLevel extends RealmedObject {
 }
 
 const xpthresholds = [0, 7, 20, 40, 65, 95];
+const MeleeMaterial = ["Bronze", "Iron", "Steel", "Mithril", "Crystal", "Adamant", "Rune", "Unholy", "Dragon", "Pure_Crystal", "Corundum", "Augite", "Divine", "Meteorite", "Abyssium", "Brumite", "Gloomite", "Witherite", "Netherite"];
+const RangedMaterial = ["Normal", "Oak", "Willow", "Crystal", "Maple", "Yew", "Unholy", "Magic", "Redwood", "Pure_Crystal", "Elderwood", "Revenant", "Carrion", "Twisted", "Plagueroot", "Shadebark", "Crumbletain", "Whisperwillow"];
+const MagicMaterial = ["Air", "Water", "Earth", "Fire", "Crystal", "Unholy", "Mystic", "Pure_Crystal", "Poison", "Infernal", "Despair", "Lightning", "Archaic", "Meteorite", "Calamity", "Abyssal", "Brume", "Gloom", "Wither", "Nether", "Desolation", "Cataclysm"];
+
 export class WeaponMastery extends RealmedObject {
     constructor(namespace, data, game) {
 
@@ -44,6 +48,25 @@ export class WeaponMastery extends RealmedObject {
         this.providedStats = new StatProvider();
         game.combat.registerStatProvider(this.providedStats);
         this._curLvl = 0;
+        if (data.mat)
+            this.mat = data.mat;
+        if (data.uniq)
+            this.uniq = data.uniq;
+        if (data.kind)
+            switch (data.kind) {
+                case 'melee':
+                    this.kind = MeleeMaterial;
+                    break;
+                case 'ranged':
+                    this.kind = RangedMaterial;
+                    break;
+                case 'magic':
+                    this.kind = MagicMaterial;
+                    break;
+                default:
+                    this.kind = data.kind;
+                    break;
+            }
         this.activeWeapon = undefined
         this.game = game;
 
@@ -68,6 +91,14 @@ export class WeaponMastery extends RealmedObject {
             (lvl, i) => new WeaponMasteryLevel(namespace, lvl, game, this, i + 1)
         );
 
+    }
+    applyDataModification(data, game){
+        if(data.kind)
+            this.kind.push(data.kind);
+        if(data.mat)
+            this.mat.push(data.mat);
+        if(data.uniq)
+            this.uniq.push(data.uniq);
     }
     get media() {
         return this.getMediaURL(this._media);
