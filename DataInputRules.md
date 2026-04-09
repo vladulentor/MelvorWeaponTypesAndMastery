@@ -9,6 +9,7 @@ Weapon Masteries (Weapon Types, but their internal name is Weapon Masteries, it'
 
 A mastery consists of:
 - Basic metadata (id, name, media)
+- List of Weapons that it is a type for
 - 5 progression levels
 - Weapon-specific modifiers (`wepModifiers`)
 
@@ -21,6 +22,9 @@ A mastery consists of:
   "id": "example_Mastery",
   "name": "Example Mastery",
   "media": "assets/media/example.png",
+  "mat": ["exampleItemLine"],
+  "kind": "example",
+  "uniq": ["Example_Item1", "Example_Another_Item3"],
   "wepModifiers": {}
   "levels": [
     {
@@ -66,6 +70,19 @@ A mastery consists of:
 ### `name`
 
 * Display name of the mastery (Note, we'll be using lang-strings for this later, but now it's just all English)
+
+---
+### `mat` (optional)
+
+* Name of crafted series of weapons that belong in this category (e.g. "Scimitars"), requires `kind` field to work.
+
+### `kind` (optional)
+
+* Material list from which the crafted series of weapons is made (e.g. "Bronze", "Iron" etc.), requires the `mat` field to work. Has 3 default values of "melee", "ranged", and "magic". But can accept any array of strings.
+
+### `uniq` (optional)
+
+* List of items that belong to the weapon mastery. Written as an array of strings that are composed of the item's local ID and uniqueness.
 
 ---
 
@@ -142,14 +159,37 @@ To make `wepModifiers` apply **only to a specific weapon type**:
 
 2. Define your modifiers inside `wepModifiers`
 
-The system will automatically:
-
-* Wrap these modifiers into a `conditionalModifier`
-* Apply the correct condition for the weapon
-
-Right now this means that you can't make a "conditionalModifier" that applies per weapon (since you'd be wrapping a conditionalMod in a conditionalMod).
-
+The system will automatically add the wepModifiers to the `Player` object when the weapon is equipped.
 ---
+
+# Adding weapons to an existing WeaponMastery object.
+A weapon Mastery Modification can be used to add new individual weapons, crafted weapon series, or crafted weapon series materials. Included in the 'modifications' field of a .json file.
+```json
+{
+"id":"ExampleNamespace:Example",
+"mat": ["Example"],
+"kind": ["ExampleMaterial"],
+"uniq": ["Example_Item2", "Example_Item0"],
+}
+```
+ (All of them are still in Agility's Skill Data in Modifications)
+
+## Fields
+
+### `id`
+* The namespaced id of the weapon modified weapon mastery
+
+### `mat` (optional)
+
+* The added crafted weapon series' names to be added to the modified weapon mastery
+
+### `kind` (optional)
+
+* The added crafted weapon series' materials to be added to the modified weapon mastery
+
+### `uniq` (optional)
+
+* List of items that are to be added to the modified weapon mastery. Written as an array of strings that are composed of the item's local ID and uniqueness.
 
 ## P.S. Using WeaponType and Weapon Conditional Modifiers.
 Most of a type's level modifiers should be conditionalModifiers scoped to their own weaponType, the weapon conditionalModifier is what the system creates if `isPerWepMod` is active. These conditionalModifiers can be used anywhere a StatObject is accepted.
