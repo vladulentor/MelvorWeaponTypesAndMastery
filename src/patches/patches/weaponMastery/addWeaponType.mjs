@@ -36,23 +36,23 @@ export function addWeaponType(ctx) {
 
         Object.defineProperty(WeaponItem.prototype, 'weaponXPCap', {
             get() {
-                return this.uniqueness * 5000;
+                return this.uniqueness * 25000;
             }
         });
 
         Object.defineProperty(WeaponItem.prototype, '_weaponXPSpeedMod', {
             get() {
-                return 0.4626  // Magic number, balanced so you will get 833 xp per hour, so 6 hours for stock, 12 for unusual and 18 for distinct weapons before modifiers
+                return 2.313  // Note, changed to look prettier. The math is the same as before... whatever the math was before.
             }
         });
         Object.defineProperty(WeaponItem.prototype, 'weaponXPperSwing', { // These are UI values
             get() {
-                return this.attackSpeed * this._weaponXPSpeedMod * 10;
+                return (this.attackSpeed * this._weaponXPSpeedMod + this.attackSpeed * this._weaponXPSpeedMod * this._weaponXPBonus / 100);
             }
         });
         Object.defineProperty(WeaponItem.prototype, 'weaponXPperKill', {
             get() {
-                return 9.3 // This is a constant from 20 times our _weaponXPSpeedMod, remember to change when changing _weaponXPSpeedMod
+                return 4.6 + 4.6 * this._weaponXPBonus / 100 // This is a constant from 2 times our _weaponXPSpeedMod, remember to change when changing _weaponXPSpeedMod
             }
         });
         Object.defineProperty(WeaponItem.prototype, '_weaponXP', {
@@ -123,9 +123,7 @@ function addClass(name, type, bonuniq = 1) {
         bonuniq = namespacef === "melvorItA" ? 0 : bonuniq;
         addClassToItem(item, type, bonuniq);
     }
-    else {
-        console.log("Not found:", name);
-    }
+  
 }
 function addClassToItem(item, type, bonuniq = 1) {
     item.weaponType = type;
