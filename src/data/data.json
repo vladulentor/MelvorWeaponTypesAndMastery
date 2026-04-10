@@ -527,6 +527,40 @@
             ]
           }
         ]
+      },
+      {
+        "id": "accuracyRatingPer1000Evasion",
+        "allowNegative": false,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "+${value}% Accuracy Rating per 1000 Evasion",
+                "lang": "MODIFIER_DATA_accuracyRatingPer1000Evasion",
+                "above": 0,
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dodgeChancePer1000EnemyAccuracyRating",
+        "allowNegative": false,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "+${value}% chance to convert a successful hit from the Target into a miss per 1,000 Enemy Accuracy Rating",
+                "lang": "MODIFIER_DATA_accuracyRatingPer1000Evasion",
+                "above": 0,
+                "includeSign": false
+              }
+            ]
+          }
+        ]
       }
     ],
     "skillData": [
@@ -559,7 +593,7 @@
                 "Terran_Godsword3",
                 "Ultima_Godsword4"
               ],
-              "media": "assets/greatswords.webp",
+              "media": "assets/greatswords.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -694,7 +728,7 @@
                 "Sunset_Rapier2",
                 "Witherstab_Rapier3"
               ],
-              "media": "assets/straightswords.webp",
+              "media": "assets/straightswords.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -834,12 +868,13 @@
               "kind": "melee",
               "uniq": [
                 "Ancient_Sword3",
+                "Black_Scimitar3",
                 "Ghost_Scimitar3",
                 "Pirate_Captains_Sword2",
                 "Tidal_Edge3",
                 "Desert_Sabre1"
               ],
-              "media": "assets/curvedswords.webp",
+              "media": "assets/curvedswords.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -936,7 +971,7 @@
               "id": "Daggers",
               "name": "Daggers",
               "fixture": "",
-              "media": "assets/daggers.webp",
+              "media": "assets/daggers.svg",
               "mat": [
                 "Dagger"
               ],
@@ -1101,11 +1136,12 @@
               "kind": "melee",
               "uniq": [
                 "Big_Ron2",
+                "Black_Battleaxe3",
                 "Ethereal_Greataxe2",
                 "Ice_Battleaxe2",
                 "War_Axe1"
               ],
-              "media": "assets/axes.webp",
+              "media": "assets/axes.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1221,7 +1257,7 @@
               "id": "Polearms",
               "name": "Polearms",
               "fixture": "",
-              "media": "assets/polearms.webp",
+              "media": "assets/polearms.svg",
               "mat": [
                 "2H_Spear",
                 "Spear"
@@ -1233,7 +1269,6 @@
                 "Hasty_Trident3",
                 "Hollow_Reaper_Scythe3",
                 "Royal_Toxins_Spear2",
-                "Twin_Exiles3",
                 "Warberd3"
               ],
               "isPerWepMod": true,
@@ -1299,7 +1334,7 @@
                 "Water_Sceptre3"
               ],
               "fixture": "",
-              "media": "assets/blunts.webp",
+              "media": "assets/blunts.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1344,14 +1379,15 @@
               "id": "HandToHand",
               "name": "Hand-to-Hand",
               "fixture": "",
-              "media": "assets/handtohand.webp",
+              "media": "assets/handtohand.svg",
               "uniq": [
                 "Ancient_Claw2",
                 "Blighted_Claw3",
                 "Dragon_Claw2",
                 "Infernal_Claw3",
                 "Rune_Claw2",
-                "Silent_Surge_Crossblade4"
+                "Silent_Surge_Crossblade4",
+                "Twin_Exiles3"
               ],
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1416,7 +1452,7 @@
                 "Witherslinger_Crossbow3"
               ],
               "fixture": "",
-              "media": "assets/crossbows.webp",
+              "media": "assets/crossbows.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1482,7 +1518,7 @@
                 "Stormsnap3",
                 "Thorned_Power_Bow2"
               ],
-              "media": "assets/heavybows.webp",
+              "media": "assets/heavybows.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1538,7 +1574,7 @@
                 "Lacerating_Shortbow2",
                 "Poisoned_Shortbow3"
               ],
-              "media": "assets/lightbows.webp",
+              "media": "assets/lightbows.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1580,18 +1616,20 @@
               ]
             },
             {
-              "id": "ThrownShort",
-              "name": "Thrown (Short)",
+              "id": "Thrown",
+              "name": "Thrown",
               "fixture": "",
               "mat": [
-                "Throwing_Knife"
+                "Throwing_Knife",
+                "Javelin"
               ],
               "kind": "melee",
               "uniq": [
                 "Ancient_Throwing_Knife3",
-                "Shadow_Throwing_Knife3"
+                "Shadow_Throwing_Knife3",
+                "Ancient_Javelin3"
               ],
-              "media": "assets/thrownshort.webp",
+              "media": "assets/thrown.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1601,84 +1639,32 @@
               },
               "levels": [
                 {
-                  "name": "ThrownShort1",
-                  "id": "ThrownShort1",
+                  "name": "Thrown1",
+                  "id": "Thrown1",
                   "level": 1,
                   "modifiers": {}
                 },
                 {
-                  "name": "ThrownShort2",
-                  "id": "ThrownShort2",
+                  "name": "Thrown2",
+                  "id": "Thrown2",
                   "level": 2,
                   "modifiers": {}
                 },
                 {
-                  "name": "ThrownShort3",
-                  "id": "ThrownShort3",
+                  "name": "Thrown3",
+                  "id": "Thrown3",
                   "level": 3,
                   "modifiers": {}
                 },
                 {
-                  "name": "ThrownShort4",
-                  "id": "ThrownShort4",
+                  "name": "Thrown4",
+                  "id": "Thrown4",
                   "level": 4,
                   "modifiers": {}
                 },
                 {
-                  "name": "ThrownShort5",
-                  "id": "ThrownShort5",
-                  "level": 5,
-                  "modifiers": {}
-                }
-              ]
-            },
-            {
-              "id": "ThrownLong",
-              "name": "Thrown (Long)",
-              "fixture": "",
-              "mat": [
-                "Javelin"
-              ],
-              "kind": "melee",
-              "uniq": [
-                "Ancient_Javelin3"
-              ],
-              "media": "assets/thrownlong.webp",
-              "isPerWepMod": true,
-              "wepModifiers": {
-                "modifiers": {
-                  "cantMiss": 1,
-                  "maxHit": -20
-                }
-              },
-              "levels": [
-                {
-                  "name": "ThrownLong1",
-                  "id": "ThrownLong1",
-                  "level": 1,
-                  "modifiers": {}
-                },
-                {
-                  "name": "ThrownLong2",
-                  "id": "ThrownLong2",
-                  "level": 2,
-                  "modifiers": {}
-                },
-                {
-                  "name": "ThrownLong3",
-                  "id": "ThrownLong3",
-                  "level": 3,
-                  "modifiers": {}
-                },
-                {
-                  "name": "ThrownLong4",
-                  "id": "ThrownLong4",
-                  "level": 4,
-                  "modifiers": {}
-                },
-                {
-                  "name": "ThrownLong5",
-                  "id": "ThrownLong5",
+                  "name": "Thrown5",
+                  "id": "Thrown5",
                   "level": 5,
                   "modifiers": {}
                 }
@@ -1688,7 +1674,7 @@
               "id": "Artifacts",
               "name": "Artifacts",
               "fixture": "",
-              "media": "assets/artifacts.webp",
+              "media": "assets/artifacts.svg",
               "uniq": [
                 "Magic_Flute3",
                 "Powered_Red_Crystal3",
@@ -1748,7 +1734,11 @@
               "id": "Staves",
               "name": "Staves",
               "fixture": "",
-              "mat":["Staff", "Battlestaff", "Staff_of"],
+              "mat": [
+                "Staff",
+                "Battlestaff",
+                "Staff_of"
+              ],
               "kind": "magic",
               "uniq": [
                 "Basic_Staff1",
@@ -1769,7 +1759,7 @@
                 "Rotten_Staff3",
                 "Water_Pulse_Staff3"
               ],
-              "media": "assets/staves.webp",
+              "media": "assets/staves.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1779,32 +1769,32 @@
               },
               "levels": [
                 {
-                  "name": "Staffs1",
-                  "id": "Staffs1",
+                  "name": "Staves1",
+                  "id": "Staves1",
                   "level": 1,
                   "modifiers": {}
                 },
                 {
-                  "name": "Staffs2",
-                  "id": "Staffs2",
+                  "name": "Staves2",
+                  "id": "Staves2",
                   "level": 2,
                   "modifiers": {}
                 },
                 {
-                  "name": "Staffs3",
-                  "id": "Staffs3",
+                  "name": "Staves3",
+                  "id": "Staves3",
                   "level": 3,
                   "modifiers": {}
                 },
                 {
-                  "name": "Staffs4",
-                  "id": "Staffs4",
+                  "name": "Staves4",
+                  "id": "Staves4",
                   "level": 4,
                   "modifiers": {}
                 },
                 {
-                  "name": "Staffs5",
-                  "id": "Staffs5",
+                  "name": "Staves5",
+                  "id": "Staves5",
                   "level": 5,
                   "modifiers": {}
                 }
@@ -1814,7 +1804,10 @@
               "id": "Wands",
               "name": "Wands",
               "fixture": "",
-                "mat":["Imbued", "Wand"],
+              "mat": [
+                "Imbued",
+                "Wand"
+              ],
               "kind": "magic",
               "uniq": [
                 "Foresight_Wand3",
@@ -1827,7 +1820,7 @@
                 "Voidfire_Cascade_Wand3",
                 "Witherbind_Wand3"
               ],
-              "media": "assets/wands.webp",
+              "media": "assets/wands.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1872,7 +1865,7 @@
               "id": "Special",
               "name": "Special",
               "fixture": "",
-                            "uniq": [
+              "uniq": [
                 "Abyssal_Hourglass_Inverted4",
                 "Abyssal_Hourglass_Upright4",
                 "Abyssal_Scythe2",
@@ -1896,8 +1889,7 @@
                 "Sturdy_Fancy_Quill4",
                 "Void_Vortex_Whip3"
               ],
-
-              "media": "assets/weird.webp",
+              "media": "assets/special.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
