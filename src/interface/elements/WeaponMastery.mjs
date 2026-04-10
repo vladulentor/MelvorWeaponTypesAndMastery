@@ -148,7 +148,7 @@ export class WeaponMasteryUI {
         hint.innerText = "A weapon's uniqueness is unrelated to its strength.";
         elem.tippyContent.appendChild(hint);
 
-        tippy(elem, {
+        elem.tippy = tippy(elem, {
             content: elem.tippyContent,
             placement: 'top',
             allowHTML: true,

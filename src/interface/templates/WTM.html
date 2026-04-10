@@ -4,7 +4,7 @@
       <img class="weaponMasteryBgIcon " id="weaponMasteryBgIcon">
       <div class="weaponMasteryTop block-header block-header-default bg-dark-bank-block-header px-3 py-1">
         <h5 id="weaponMasteryTitle" class="font-size-sm font-w600 mb-0">
-          Weapon Mastery 
+          Weapon Mastery
         </h5>
         <div class="block-options font-w600 font-size-sm text-right text-combat-smoke mb-0">
           <img class="skill-icon-xxs mr-1 weapontypeicon" id="weaponMasteryIcon">
@@ -18,6 +18,7 @@
             <div class="col-12">
               <h5 id="weaponMasteryText" class="font-w900 font-size-md text-combat-smoke pt-2 text-center"
                 style="margin-bottom:1rem;"></h5>
+
               <div id="weaponMasteryItem"
                 class="weapon-mastery-item d-flex justify-content-center align-items-center mb-3">
                 <div class="bg-dark-bank-block-header d-flex info-icon align-items-center border-item"
@@ -26,7 +27,7 @@
                 </div>
                 <div id="weaponInfo" class="weapon-info d-flex flex-column ml-2">
                   <span id="weaponName" class="weapon-name font-w600 font-size-sm text-combat-smoke"></span>
-                  <span id="weaponRank" class="weapon-rank font-w600 font-size-sm"></span>
+                  <span id="weaponRank" class="weapon-rank font-w500 text-uppercase font-size-xs"></span>
                 </div>
               </div>
 
@@ -40,8 +41,8 @@
                 <div id="weaponModifierValue" class="font-size-sm text-white text-center m-1">
                 </div>
               </div>
-              <div  id="weaponXPNumber" class = "text-center font-size-xs font-w600 mb-3 text-center d-none font-italic">
-                         </div>
+              <div id="weaponXPNumber" class="text-center font-size-xs font-w600 mb-3 text-center d-none font-italic">
+              </div>
 
               <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 pb-4 text-center">
                 Type Proficiency:
@@ -105,4 +106,106 @@
     </div>
   </div>
   </div>
+</template>
+
+
+<template id="weaponMasteryTab-template">
+  <div id="outerCont" class="block block-rounded-double bg-combat-inner-dark text-center p-0 mb-2">
+    <div class="block-header block-header-default bg-dark-bank-block-header px-3 py-1 mb-1">
+      <h5 class="font-size-sm font-w600 mb-0 w-100 text-center">
+        <span>Weapon Mastery</span>
+      </h5>
+    </div>
+    <div id="weaponMasteryItem" class="d-flex mb-3">
+
+      <!-- ICON -->
+      <div class="d-flex align-items-center justify-content-center ml-3 m-2" style="width:64px;">
+        <img id="weaponPic" class="icon-size-48" style="width:48px;height:48px">
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="ms-2 flex-grow-1 text-start mt-1" style="text-align: left !important;">
+
+        <div id="weaponRank" class="font-size-xs font-w400 small text-uppercase"></div>
+        <div id="weaponName" class="fw-bold font-size-md mb-2 font-w600 text-combat-smoke" style="line-height:1"></div>
+
+        <!-- XP BAR -->
+        <div id="weaponXPBar" class="progress mt-2" style="height:6px; width:40%;">
+          <div id="weaponXpFill" class="progress-bar" style="width:40%;"></div>
+        </div>
+        <div id="weaponXPNumber" class="text-center font-size-xs font-w600 mb-3 text-center d-none font-italic">
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<template id="combat-weapon-type-progress-table-template" data-image-init="true">
+  <div class="row gutters-tiny">
+    <div class="col-12">
+      <div class="block block-rounded block-link-pop border-4x">
+        <div id="eye-segment" class="col-12 pointer-enabled">
+          <h5 class="font-w600 font-size-sm p-3 m-0">
+            <i class="far fa-eye mr-2 d-none" id="weapon-type-menu-open"></i>
+            <i class="far fa-eye-slash mr-2" id="weapon-type-menu-closed"></i>
+            <wtm-lang-string lang-id="MENU_TOGGLE_TYPES"></wtm-lang-string>
+          </h5>
+        </div>
+        <div class="col-12 pb-2">
+          <table id="table-id" class="table table-sm table-vcenter d-none"
+            style="padding-right:14px;padding-left:14px">
+            <thead>
+              <tr>
+                <th class="text-center" style="width: 50px"><small>#</small></th>
+                <th style="width: 75px">
+                  <small>
+                    <lang-string lang-id="MENU_TEXT_LEVEL_HEADER"></lang-string>
+                  </small>
+                </th>
+                <th style="width: 50px"><small>%</small></th>
+                <th class="d-none d-md-table-cell" style="width: 20%">
+                  <small>
+                    <lang-string lang-id="MENU_TEXT_XP_HEADER"></lang-string>
+                  </small>
+                </th>
+                <th>
+                  <small>
+                    <lang-string lang-id="TUTORIAL_MISC_0"></lang-string>
+                  </small>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="combat-weapon-type-progress-table-row-template" data-image-init="true">
+  <tr id="row">
+    <th class="text-center" scope="row">
+      <img class="skill-icon-xs table-type-image" id="weapon-type-image">
+    </th>
+    <td class="font-w600 font-size-sm">
+      <div id="weapon-type-level-container-0"><small id="weapon-type-level"></small></div>
+    </td>
+    <td class="font-w600 font-size-sm">
+      <div id="weapon-type-level-container-1"><small id="weapon-type-level-progress"></small></div>
+    </td>
+    <td class="font-w600 font-size-sm d-none d-md-table-cell">
+      <div id="weapon-type-level-container-2"><small id="weapon-type-xp"></small></div>
+    </td>
+
+    <td>
+      <div class="progress active my-1" style="height: 8px" id="weapon-type-progress-bar-container">
+        <div class="progress-bar bg-info" id="weapon-type-progress-bar" role="progressbar" style="width: 69%"
+          aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </td>
+  </tr>
+
 </template>

@@ -92,12 +92,12 @@ export class WeaponMastery extends RealmedObject {
         );
 
     }
-    applyDataModification(data, game){
-        if(data.kind)
+    applyDataModification(data, game) {
+        if (data.kind)
             this.kind.push(data.kind);
-        if(data.mat)
+        if (data.mat)
             this.mat.push(data.mat);
-        if(data.uniq)
+        if (data.uniq)
             this.uniq.push(data.uniq);
     }
     get media() {
@@ -143,6 +143,9 @@ export class WeaponMastery extends RealmedObject {
     get active() {
         return this.levelCap > 0
     }
+    xpAtLevel(i) {
+        return Math.floor(this.maxXP * (xpthresholds[i] / 100))
+    }
     get level() {
         const cap = this.levelCap;
         for (let i = cap; i >= 0; i--) {
@@ -163,7 +166,13 @@ export class WeaponMastery extends RealmedObject {
         const cond = new StatObject(this.wepModifiers, this.game, null);
         weapon.uniqMasteryMod = cond;
     }
-
+    get progressToNextLevel() {
+        const lv = this.level;
+        if (xpthresholds.length < lv + 1) return 100;
+        const nlv = lv + 1;
+        const thrxp = this.xp / this.maxXP * 100;
+        return Math.min(100, 100 * (thrxp - xpthresholds[lv]) / (xpthresholds[nlv] - xpthresholds[lv]))
+    }
     makeMasteredWeaponsMap() {
         for (const weapon of this.allWeapons) {
             if (weapon.masteryMaxed || weapon.isMaxMastery) {
@@ -190,6 +199,9 @@ export class WeaponMastery extends RealmedObject {
         this.maxXP = this.allWeapons.reduce((tot, w) => tot + w.weaponXPCap, 0);
         this._curLvl = this.level;
         this.computeProvidedStats(false);
+        combatSkillProgressTable.weaponTypesTable.updateXP(this.game, this);
+        combatSkillProgressTable.weaponTypesTable.updateLevel(this.game, this);
+
     }
     computeProvidedStats(updatePlayer = true) {
         this.providedStats.reset();
