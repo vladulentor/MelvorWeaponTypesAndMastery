@@ -4,6 +4,30 @@
   "data": {
     "attacks": [
       {
+        "id": "WhirlingManoeuvre",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 35
+          }
+        ],
+        "prehitEffects": [
+          {
+            "effectID": "WTM:WhirlingManoeuvre0"
+          }
+        ],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackCount": 5,
+        "attackInterval": 400,
+        "lifesteal": 0,
+        "name": "Whirling Manoeuvre",
+        "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each. While attacking, gain +${preHitEffect0modifierValue1}% Evasion and reflect Enemy attacks for ${preHitEffect0modifierValue0}% of their damage.",
+        "descriptionGenerator": "Gain <preHitEffect>, and attack <hitCount> times for <damage>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "Warcry",
         "defaultChance": 10,
         "damage": [],
@@ -170,6 +194,95 @@
       }
     ],
     "combatEffects": [
+      {
+        "id": "Polearm0",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "name": "Polearm - Weakened Defences",
+        "media": "assets/combat/status/evasion_decrease.svg",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 100
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "evasion": -1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
+      },
+      {
+        "id": "Polearm1",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "name": "Polearm - Strengthened Defences",
+        "media": "assets/combat/status/evasion_increase.svg",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 100
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "evasion": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "WhirlingManoeuvre0",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Whirling Manoeuvre",
+        "media": "assets/combat/status/evasion_increase.svg",
+        "target": "Self",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "reflectDamage": 20,
+              "evasion": 25
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 1
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
       {
         "id": "WarcryPlayer",
         "templateID": "melvorD:StackingNonCountingModifier",
@@ -554,7 +667,7 @@
             "descriptions": [
               {
                 "text": "+${value}% chance to convert a successful hit from the Target into a miss per 1,000 Enemy Accuracy Rating",
-                "lang": "MODIFIER_DATA_accuracyRatingPer1000Evasion",
+                "lang": "MODIFIER_DATA_dodgeChancePer1000EnemyAccuracyRating",
                 "above": 0,
                 "includeSign": false
               }
@@ -814,7 +927,7 @@
                   ],
                   "combatEffects": [
                     {
-                      "customDescription": "No description given",
+                      "customDescription": "+20% Chance on Hit to apply a Bleed that deals 100% of the damage dealt over 10s",
                       "appliesWhen": "HitWithAttack",
                       "chance": 20,
                       "effectID": "melvorD:Bleed100",
@@ -824,7 +937,7 @@
                       }
                     },
                     {
-                      "customDescription": "No description given",
+                      "customDescription": "+100% Chance on Hit to inflict a 3% Slow",
                       "effectID": "melvorF:ModifierSlow",
                       "condition": {
                         "type": "Every",
@@ -987,11 +1100,11 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "meleeCritChance": 25,
+                  "meleeCritChance": 10,
                   "ignoreResistanceWhenAttackingChance": [
                     {
                       "damageTypeID": "melvorD:Normal",
-                      "value": 15
+                      "value": 10
                     }
                   ]
                 }
@@ -1274,13 +1387,8 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "evasionBasedOnResistance": [
-                    {
-                      "damageTypeID": "melvorD:Normal",
-                      "value": 3
-                    }
-                  ],
-                  "attackInterval": -15
+                  "WTM:accuracyRatingPer1000Evasion": 1,
+                  "WTM:dodgeChancePer1000EnemyAccuracyRating": 0.25
                 }
               },
               "levels": [
@@ -1288,31 +1396,99 @@
                   "name": "Polearms1",
                   "id": "Polearms1",
                   "level": 1,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "Gain +1% Global Accuracy Rating per 1000 Global Evasion",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "modifiers": {
+                        "WTM:accuracyRatingPer1000Evasion": 1
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Polearms2",
                   "id": "Polearms2",
                   "level": 2,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "Gain +0.25% Dodge Chance per 1000 Enemy Global Accuracy Rating",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "modifiers": {
+                        "WTM:dodgeChancePer1000EnemyAccuracyRating": 0.25
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Polearms3",
                   "id": "Polearms3",
                   "level": 3,
-                  "modifiers": {}
+                  "conditionalModifiers": [
+                    {
+                      "description": "Adds the Whirling Manoeuvre special attack: (15%) Whirl your polearm around, attacking multiple times for a small portion of your normal damage each. While attacking, you have highly increased Global Evasion and reflect a moderate portion of the Enemy's damage.",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "modifiers": {
+                        "changeFunc": "addSpecialAttack"
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Polearms4",
                   "id": "Polearms4",
                   "level": 4,
-                  "modifiers": {}
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Polearm0"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Polearm1"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "EvadedAttack",
+                      "effectID": "WTM:Polearm0"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "EvadedAttack",
+                      "effectID": "WTM:Polearm1"
+                    }
+                  ]
                 },
                 {
                   "name": "Polearms5",
                   "id": "Polearms5",
                   "level": 5,
-                  "modifiers": {}
+                  "modifiers": {
+                    "reflectDamage": 5
+                  }
                 }
               ]
             },
