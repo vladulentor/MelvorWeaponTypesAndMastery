@@ -9,7 +9,7 @@ export class WeaponTypeCondition extends BooleanCondition {
   _checkIfMet(manager) {
  
     const weapon = game.combat.player.equipment.getItemInSlot("melvorD:Weapon");
-    return weapon.weaponType?._localID === this.weaponType;
+    return weapon.weaponType?.id === this.weaponType;
   }
 
   _assignWrappedHandler(manager, handler) {

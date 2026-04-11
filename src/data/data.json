@@ -692,7 +692,7 @@
               "uniq": [
                 "Aeris_Godsword3",
                 "Aranite_2H_Blade1",
-                "Basic_2H_Sword",
+                "Basic_2H_Sword1",
                 "Black_2H_Sword3",
                 "Blighted_2H_Hook_Sword3",
                 "Cursed_2H_Sword2",
@@ -1430,6 +1430,7 @@
                   "name": "Polearms3",
                   "id": "Polearms3",
                   "level": 3,
+                  "changeFunc": "addSpecialAttack",
                   "conditionalModifiers": [
                     {
                       "description": "Adds the Whirling Manoeuvre special attack: (15%) Whirl your polearm around, attacking multiple times for a small portion of your normal damage each. While attacking, you have highly increased Global Evasion and reflect a moderate portion of the Enemy's damage.",
@@ -1437,9 +1438,7 @@
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
-                      "modifiers": {
-                        "changeFunc": "addSpecialAttack"
-                      }
+                      "modifiers": {}
                     }
                   ]
                 },
@@ -2060,8 +2059,8 @@
                 "Old_Spyglass5",
                 "Old_Wooden_Ladle5",
                 "Potion_Stirrer4",
-                "Silentsnap_Crab_Claw2",
-                "Slingshot2",
+                "Silentsnap_Crab_Claw3",
+                "Slingshot4",
                 "Sturdy_Fancy_Quill4",
                 "Void_Vortex_Whip3"
               ],

@@ -21,6 +21,8 @@ function giveWeaponMasteryXP(weap, amount) {
 
     if (type.perWepMod && weap.masteryMaxed != weap.isMaxMastery) {
         type.addweaponmastery(weap);
+        combatSkillProgressTable.weaponTypesTable.updateLevel(game, weap.weaponType);
+
     }
 }
 let leftover = 0;
@@ -33,7 +35,7 @@ export function patchWeaponTypeLogic({ patch }) {
     });
     patch(CombatManager, "rewardForEnemyDeath").after(function () {
         let toadd = this.player.equippedWeapon.weaponXPperKill
-        leftover += 0.6; // we know enemies give 4.6 on death that is consistent... 
+        leftover += toadd - Math.trunc(toadd); //even though enemies all give 4.6 xp on death the xp increase mods can change that so we can't use a consistent value here  
         while (leftover >= 1) { toadd += 1; leftover -= 1; }
         giveWeaponMasteryXP(this.player.equippedWeapon, toadd);
     });

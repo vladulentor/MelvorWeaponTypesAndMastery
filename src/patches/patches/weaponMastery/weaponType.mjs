@@ -99,6 +99,8 @@ export class WeaponMastery extends RealmedObject {
             this.mat.push(data.mat);
         if (data.uniq)
             this.uniq.push(data.uniq);
+        if(data.killMe)
+            this.shouldDie = 1;
     }
     get media() {
         return this.getMediaURL(this._media);

@@ -1,5 +1,5 @@
 {
   "namespace": "WTM",
-  "icon": "assets/icon.png",
+  "icon": "assets/banner.png",
   "setup": "src/setup.mjs"
 }

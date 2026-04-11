@@ -157,17 +157,17 @@ body.darkMode .border-item {
   height: auto;
   opacity: 0.08;
   pointer-events: none;
-  filter: invert(100%);
+  filter: invert(0%);
   z-index: 0;
 }
 
 .weapontypeicon {
-  filter: invert(100%);
+  filter: invert(0%);
 
 }
 
 body.darkMode .weaponMasteryBgIcon {
-  filter: invert(0%);
+  filter: invert(100%);
 }
 
 body.darkMode.superDark .weaponMasteryBgIcon {
@@ -175,11 +175,14 @@ body.darkMode.superDark .weaponMasteryBgIcon {
 }
 
 .table-type-image {
-  filter: invert(100%);
+  filter: invert(0%);
+  stroke-width: 2;
+
 }
 
 body.darkMode .table-type-image {
-  filter: invert(0%);
+  filter: invert(100%);
+
 }
 
 
