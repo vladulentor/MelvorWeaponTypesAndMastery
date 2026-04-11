@@ -96,7 +96,7 @@ export function addWeaponType(ctx) {
         });
 
         Object.defineProperty(WeaponItem.prototype, "_weaponXPBonus", {
-            get: function () { return game.modifiers.getValue(`rielkConstruction:increaseWeaponXP${this.attackType}`, ModifierQuery.EMPTY); }
+            get: function () { return game.modifiers.getValue(`WTM:increaseWeaponXP${this.attackType}`, ModifierQuery.EMPTY); }
         });
 
 

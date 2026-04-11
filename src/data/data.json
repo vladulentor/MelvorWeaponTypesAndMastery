@@ -649,10 +649,8 @@
             "scopes": {},
             "descriptions": [
               {
-                "text": "+${value}% Accuracy Rating per 1000 Evasion",
-                "lang": "MODIFIER_DATA_accuracyRatingPer1000Evasion",
-                "above": 0,
-                "includeSign": false
+                "text": "${value}% Accuracy Rating per 1000 Evasion",
+                "lang": "MODIFIER_DATA_accuracyRatingPer1000Evasion"
               }
             ]
           }
@@ -2089,7 +2087,8 @@
                   "name": "Special3",
                   "id": "Special3",
                   "level": 3,
-                  "modifiers": {}
+                  "modifiers": {},
+                  "changeFunc":"increaseSpecialAttackChance"
                 },
                 {
                   "name": "Special4",

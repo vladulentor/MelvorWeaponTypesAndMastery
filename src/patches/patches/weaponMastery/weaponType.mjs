@@ -236,10 +236,15 @@ export class WeaponMastery extends RealmedObject {
             this.levelUp();
         }
     }
+    // Debug functions
     showWeaponswithXP() {
         for (const weapon of this.allWeapons)
             if (weapon._weaponXP > 0)
                 console.log("Weapon:", weapon.name, " XP:", weapon._weaponXP, "\n");
+    }
+    maxMeOut(){
+        this._curLvl = 5;
+        this.computeProvidedStats(true);
     }
 }
 
