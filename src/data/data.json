@@ -4,6 +4,43 @@
   "data": {
     "attacks": [
       {
+        "id": "DevastatingSlice",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 90,
+            "attackCount": 0
+          },
+          {
+            "damageType": "Normal",
+            "amplitude": 90,
+            "attackCount": 1
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "chance": 20,
+            "effectID": "WTM:Terrify",
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 2,
+        "attackInterval": 200,
+        "lifesteal": 0,
+        "name": "Devastating Slice",
+        "description": "Deliver your massive blade unto the Enemy with a wide, arcing slash that strikes ${hitCount} times for up to ${attackDamageMaxValue0}% of your normal damage per hit. On hit, has a ${onHitEffect0chance}% Chance to inflict Terrify (+15% Attack Interval) on the Enemy for 3 turns.",
+        "descriptionGenerator": "Attack <hitCount> for <damage>. On hit, <hitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "WhirlingManoeuvre",
         "defaultChance": 15,
         "damage": [
@@ -23,7 +60,7 @@
         "attackInterval": 400,
         "lifesteal": 0,
         "name": "Whirling Manoeuvre",
-        "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each. While attacking, gain +${preHitEffect0modifierValue1}% Evasion and reflect Enemy attacks for ${preHitEffect0modifierValue0}% of their damage.",
+        "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each. While attacking, gain +${preHitEffect0modifierValue1}% Dodge Chance and reflect Enemy attacks for ${preHitEffect0modifierValue0}% of their damage.",
         "descriptionGenerator": "Gain <preHitEffect>, and attack <hitCount> times for <damage>.",
         "usesRunesPerProc": false
       },
@@ -193,69 +230,101 @@
         "usesRunesPerProc": false
       }
     ],
+    "combatEffectGroups": [
+      {
+        "id": "Intimidation",
+        "name": "Intimidation",
+        "adjective": "Intimidated"
+      },
+      {
+        "id": "Terrify",
+        "name": "Terrify",
+        "adjective": "Terrified"
+      }
+    ],
     "combatEffects": [
       {
-        "id": "Polearm0",
-        "templateID": "melvorD:StackingNonCountingModifier",
-        "name": "Polearm - Weakened Defences",
-        "media": "assets/combat/status/evasion_decrease.svg",
+        "id": "Intimidation",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Intimidation",
+        "media": "assets/combat/status/intimidated.svg",
         "target": "Target",
         "parameters": [
           {
-            "name": "initialStacks",
-            "initialValue": 1
-          },
-          {
-            "name": "stacksToAdd",
-            "initialValue": 1
-          },
-          {
-            "name": "maxStacks",
-            "initialValue": 100
+            "name": "turns",
+            "initialValue": 3
           }
         ],
         "statGroups": [
           {
             "name": "stacks",
             "modifiers": {
-              "evasion": -1
+              "accuracyRating": -15,
+              "maxHit": -15
             }
           }
         ],
         "effectGroups": [
-          "melvorD:Debuff"
+          "melvorD:Debuff",
+          "melvorD:Fear",
+          "WTM:Intimidation"
         ]
       },
       {
-        "id": "Polearm1",
-        "templateID": "melvorD:StackingNonCountingModifier",
-        "name": "Polearm - Strengthened Defences",
-        "media": "assets/combat/status/evasion_increase.svg",
-        "target": "Self",
+        "id": "Shaken",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Shaken",
+        "media": "assets/combat/status/shaken.svg",
+        "target": "Target",
         "parameters": [
           {
-            "name": "initialStacks",
-            "initialValue": 1
-          },
-          {
-            "name": "stacksToAdd",
-            "initialValue": 1
-          },
-          {
-            "name": "maxStacks",
-            "initialValue": 100
+            "name": "turns",
+            "initialValue": 3
           }
         ],
         "statGroups": [
           {
             "name": "stacks",
             "modifiers": {
-              "evasion": 1
+              "evasion": -15,
+              "resistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": -15
+                }
+              ]
             }
           }
         ],
         "effectGroups": [
-          "melvorD:Buff"
+          "melvorD:Debuff",
+          "melvorD:Fear"
+        ]
+      },
+      {
+        "id": "Terrify",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Terrify",
+        "media": "assets/combat/status/terrified.svg",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "attackInterval": 50
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff",
+          "melvorD:Fear",
+          "WTM:Terrify"
         ]
       },
       {
@@ -269,7 +338,7 @@
             "name": "stacks",
             "modifiers": {
               "reflectDamage": 20,
-              "evasion": 25
+              "dodgeChance": 20
             }
           }
         ],
@@ -391,9 +460,73 @@
         ]
       },
       {
+        "id": "Power",
+        "name": "Power",
+        "media": "assets/combat/status/strength_increase.png",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 25
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "damageDealt": 4
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "Swiftness",
+        "name": "Swiftness",
+        "media": "assets/combat/status/speedup.svg",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 25
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "attackInterval": -2
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
         "id": "Vulnerability",
         "name": "Vulnerability",
-        "media": "assets/combat/status/vulnerability.png",
+        "media": "assets/combat/status/resistance_decrease.png",
         "templateID": "melvorD:StackingNonCountingModifier",
         "target": "Target",
         "parameters": [
@@ -407,7 +540,7 @@
           },
           {
             "name": "maxStacks",
-            "initialValue": 25
+            "initialValue": 50
           }
         ],
         "statGroups": [
@@ -509,13 +642,6 @@
         "effectGroups": [
           "melvorD:Buff"
         ]
-      }
-    ],
-    "combatEffectGroups": [
-      {
-        "id": "Vulnerability",
-        "name": "Vulnerability",
-        "adjective": "Vulnerable"
       }
     ],
     "combatEffectTemplates": [
@@ -642,30 +768,30 @@
         ]
       },
       {
-        "id": "accuracyRatingPer1000Evasion",
+        "id": "accuracyRatingPer10000Evasion",
         "allowNegative": false,
         "allowedScopes": [
           {
             "scopes": {},
             "descriptions": [
               {
-                "text": "${value}% Accuracy Rating per 1000 Evasion",
-                "lang": "MODIFIER_DATA_accuracyRatingPer1000Evasion"
+                "text": "${value}% Accuracy Rating per 10,000 Evasion",
+                "lang": "MODIFIER_DATA_accuracyRatingPer10000Evasion"
               }
             ]
           }
         ]
       },
       {
-        "id": "dodgeChancePer1000EnemyAccuracyRating",
+        "id": "dodgeChancePer10000EnemyAccuracyRating",
         "allowNegative": false,
         "allowedScopes": [
           {
             "scopes": {},
             "descriptions": [
               {
-                "text": "+${value}% chance to convert a successful hit from the Target into a miss per 1,000 Enemy Accuracy Rating",
-                "lang": "MODIFIER_DATA_dodgeChancePer1000EnemyAccuracyRating",
+                "text": "+${value}% chance to convert a successful hit from the Target into a miss per 10,000 Enemy Accuracy Rating",
+                "lang": "MODIFIER_DATA_dodgeChancePer10000EnemyAccuracyRating",
                 "above": 0,
                 "includeSign": false
               }
@@ -679,6 +805,156 @@
         "skillID": "melvorD:Agility",
         "data": {
           "weaponMasteries": [
+            {
+              "id": "ThrustingSwords",
+              "name": "Thrusting Swords",
+              "fixture": "",
+              "mat": [
+                "Sword"
+              ],
+              "kind": "melee",
+              "uniq": [
+                "Ice_Sword2",
+                "Black_Sword3",
+                "Strange_Sword4",
+                "FrostSpark_1H_Sword3",
+                "Lightning_Strike_1H_Sword2",
+                "Spectral_Ice_Sword2",
+                "Agile_Wings_Rapier2",
+                "Crystal_Twin_Blades1",
+                "Sunset_Rapier2",
+                "Witherstab_Rapier3"
+              ],
+              "media": "assets/ThrustingSwords.svg",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "meleeAccuracyRating": 20,
+                  "evasion": 20
+                },
+                "enemyModifiers": {
+                  "bleedDOTDamageTaken": 50
+                }
+              },
+              "levels": [
+                {
+                  "name": "ThrustingSwords1",
+                  "id": "ThrustingSwords1",
+                  "level": 1,
+                  "conditionalModifiers": [
+                    {
+                      "description": "-0.2s Attack Interval, +10% Accuracy Rating, and +10% Lifesteal while using Thrusting Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:ThrustingSwords"
+                      },
+                      "modifiers": {
+                        "flatAttackInterval": -200,
+                        "accuracyRating": 10,
+                        "lifesteal": 10
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "ThrustingSwords2",
+                  "id": "ThrustingSwords2",
+                  "level": 2,
+                  "conditionalModifiers": [
+                    {
+                      "description": "+5% chance to convert a Miss into a Hit and +5% Dodge chance while using Thrusting Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:ThrustingSwords"
+                      },
+                      "modifiers": {
+                        "convertMissIntoHit": 5,
+                        "dodgeChance": 5
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "ThrustingSwords3",
+                  "id": "ThrustingSwords3",
+                  "level": 3,
+                  "conditionalModifiers": [
+                    {
+                      "description": "Adds the Slash, Gash, and Maim special attack:<br>(10%) Attack 3 times quickly, 60% normal damage on the 1st, 80% on the 2nd, and 100% on the 3rd. Each has 10% chance on hit to inflict 100% Bleed and 20% Slow (2 turns).",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:ThrustingSwords"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
+                },
+                {
+                  "name": "ThrustingSwords4",
+                  "id": "ThrustingSwords4",
+                  "level": 4,
+                  "conditionalModifiers": [
+                    {
+                      "description": "+30% Bleed Lifesteal, inflict a 3% Slow on hit, and +20% chance to inflict a 100% Bleed on hit while using Thrusting Swords",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:ThrustingSwords"
+                      },
+                      "modifiers": {
+                        "bleedLifesteal": 30,
+                        "onHitSlowMagnitude": 3
+                      }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "customDescription": "+20% Chance on Hit to apply a Bleed that deals 100% of the damage dealt over 10s",
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 20,
+                      "effectID": "melvorD:Bleed100",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:ThrustingSwords"
+                      }
+                    },
+                    {
+                      "customDescription": "+100% Chance on Hit to inflict a 3% Slow",
+                      "effectID": "melvorF:ModifierSlow",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "CharacterValue",
+                            "lhValue": "self.modifier.onHitSlowMagnitude",
+                            "operator": ">",
+                            "rhValue": 0
+                          },
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          }
+                        ],
+                        "appliesWhen": "HitWithAttack"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "ThrustingSwords5",
+                  "id": "ThrustingSwords5",
+                  "level": 5,
+                  "modifiers": {
+                    "accuracyRating": 5,
+                    "evasion": 5,
+                    "lifesteal": 5,
+                    "flatAttackInterval": -50
+                  }
+                }
+              ]
+            },
             {
               "id": "Greatswords",
               "name": "Greatswords",
@@ -708,18 +984,14 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "flatHiddenSkillLevelBasedOnLevels": [
-                    {
-                      "skillID": "melvorD:Strength",
-                      "value": 30
-                    },
+                  "skillXP": [
                     {
                       "skillID": "melvorD:Attack",
-                      "value": 30
+                      "value": 3
                     },
                     {
-                      "skillID": "melvorD:Defence",
-                      "value": 30
+                      "skillID": "melvorD:Strength",
+                      "value": 3
                     }
                   ]
                 }
@@ -730,14 +1002,43 @@
                   "id": "Greatswords1",
                   "shiny": true,
                   "level": 1,
+                  "combatEffects": [
+                    {
+                      "customDescription": "20% Chance on Hit to inflict Intimidation (-15% Accuracy and Max Hit)",
+                      "chance": 20,
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Intimidation"
+                    }
+                  ],
                   "conditionalModifiers": [
                     {
+                      "description": "+10% Max Hit with Greatswords",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Greatswords"
                       },
                       "modifiers": {
-                        "meleeMinHitBasedOnMaxHit": 5
+                        "maxHit": 10
+                      }
+                    },
+                    {
+                      "description": "+5% Max Hit with Greatswords if the Enemy is Intimidated",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Greatswords"
+                          },
+                          {
+                            "character": "Enemy",
+                            "effectID": "WTM:Intimidation",
+                            "type": "CombatEffect"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "maxHit": 5
                       }
                     }
                   ]
@@ -747,14 +1048,53 @@
                   "id": "Greatswords2",
                   "shiny": true,
                   "level": 2,
+                  "combatEffects": [
+                    {
+                      "customDescription": "20% Chance on Hit to inflict Shaken (-15% Evasion and Total Resistance",
+                      "chance": 20,
+                      "appliesWhen": "EvadedAttack",
+                      "effectID": "WTM:Shaken"
+                    }
+                  ],
                   "conditionalModifiers": [
                     {
+                      "description": "+10% Total Resistance while wielding Greatswords",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Greatswords"
                       },
-                      "enemyModifiers": {
-                        "evasionAgainstMelee": -15
+                      "modifiers": {
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 10
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "description": "+5% Total Resistance while wielding Greatswords if the Enemy is Shaken",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Greatswords"
+                          },
+                          {
+                            "character": "Enemy",
+                            "effectID": "WTM:Shaken",
+                            "type": "CombatEffect"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ]
                       }
                     }
                   ]
@@ -766,13 +1106,31 @@
                   "level": 3,
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Counterattack special attack:<br>(15%) You focus on defensive manoeuvres, negating all attacks for 5s. For each attack blocked, gain Max Hit, then make an unavoidable attack.",
+                      "description": "Adds the Devastating Slice special attack:<br>(15%) Attack twice for 90% of your normal damage each. On hit, inflict Terrify (+15% Attack Interval) for 3 turns.<br>While the Enemy is Terrified, they suffer -5% to Accuracy, Max Hit, Evasion, and Total Resistance.",
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Greatswords"
+                          },
+                          {
+                            "character": "Enemy",
+                            "effectID": "WTM:Terrify",
+                            "type": "CombatEffect"
+                          }
+                        ]
                       },
-                      "modifiers": {
-                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      "enemyModifiers": {
+                        "accuracyRating": -5,
+                        "maxHit": -5,
+                        "evasion": -5,
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": -5
+                          }
+                        ]
                       }
                     }
                   ],
@@ -783,25 +1141,155 @@
                   "id": "Greatswords4",
                   "shiny": true,
                   "level": 4,
+                  "combatEffects": [
+                    {
+                      "chance": 1,
+                      "appliesWhen": "HitByAttack",
+                      "effectID": "WTM:Intimidation",
+                      "customDescription": "1% Chance on Hit, Being Hit, and Evading to inflict Intimidation, Shaken, or Terrify for 3 turns"
+                    },
+                    {
+                      "chance": 1,
+                      "appliesWhen": "EvadedAttack",
+                      "effectID": "WTM:Intimidation",
+                      "customDescription": ""
+                    },
+                    {
+                      "chance": 1,
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Intimidation",
+                      "customDescription": ""
+                    },
+                    {
+                      "chance": 1,
+                      "appliesWhen": "HitByAttack",
+                      "effectID": "WTM:Shaken",
+                      "customDescription": ""
+                    },
+                    {
+                      "chance": 1,
+                      "appliesWhen": "EvadedAttack",
+                      "effectID": "WTM:Shaken",
+                      "customDescription": ""
+                    },
+                    {
+                      "chance": 1,
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Shaken",
+                      "customDescription": ""
+                    },
+                    {
+                      "chance": 1,
+                      "appliesWhen": "HitByAttack",
+                      "effectID": "WTM:Terrify",
+                      "customDescription": "",
+                      "initialParams": [
+                        {
+                          "name": "turns",
+                          "value": 3
+                        }
+                      ]
+                    },
+                    {
+                      "chance": 1,
+                      "appliesWhen": "EvadedAttack",
+                      "effectID": "WTM:Terrify",
+                      "customDescription": "",
+                      "initialParams": [
+                        {
+                          "name": "turns",
+                          "value": 3
+                        }
+                      ]
+                    },
+                    {
+                      "chance": 1,
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Terrify",
+                      "customDescription": "",
+                      "initialParams": [
+                        {
+                          "name": "turns",
+                          "value": 3
+                        }
+                      ]
+                    }
+                  ],
                   "conditionalModifiers": [
                     {
+                      "description": "+5% Max Hit and Total Resistance while wielding Greatswords and the Enemy is Intimidated",
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Greatswords"
+                          },
+                          {
+                            "character": "Enemy",
+                            "effectID": "WTM:Intimidation",
+                            "type": "CombatEffect"
+                          }
+                        ]
                       },
                       "modifiers": {
-                        "flatHiddenSkillLevelBasedOnLevels": [
+                        "maxHit": 5,
+                        "resistance": [
                           {
-                            "skillID": "melvorD:Strength",
-                            "value": 20
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "description": "+5% Max Hit and Total Resistance while wielding Greatswords and the Enemy is Shaken",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Greatswords"
                           },
                           {
-                            "skillID": "melvorD:Attack",
-                            "value": 20
+                            "character": "Enemy",
+                            "effectID": "WTM:Shaken",
+                            "type": "CombatEffect"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "maxHit": 5,
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "description": "+5% Max Hit and Total Resistance while wielding Greatswords and the Enemy is Terrified",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Greatswords"
                           },
                           {
-                            "skillID": "melvorD:Defence",
-                            "value": 20
+                            "character": "Enemy",
+                            "effectID": "WTM:Terrify",
+                            "type": "CombatEffect"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "maxHit": 5,
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
                           }
                         ]
                       }
@@ -813,158 +1301,140 @@
                   "id": "Greatswords5",
                   "shiny": true,
                   "level": 5,
-                  "modifiers": {
-                    "critChance": 5
-                  }
-                }
-              ]
-            },
-            {
-              "id": "StraightSwords",
-              "name": "Straight Swords",
-              "fixture": "",
-              "mat": [
-                "Sword"
-              ],
-              "kind": "melee",
-              "uniq": [
-                "Ice_Sword2",
-                "Black_Sword3",
-                "Strange_Sword4",
-                "FrostSpark_1H_Sword3",
-                "Lightning_Strike_1H_Sword2",
-                "Spectral_Ice_Sword2",
-                "Agile_Wings_Rapier2",
-                "Crystal_Twin_Blades1",
-                "Sunset_Rapier2",
-                "Witherstab_Rapier3"
-              ],
-              "media": "assets/straightswords.svg",
-              "isPerWepMod": true,
-              "wepModifiers": {
-                "modifiers": {
-                  "meleeAccuracyRating": 20,
-                  "evasion": 20
-                },
-                "enemyModifiers": {
-                  "bleedDOTDamageTaken": 50
-                }
-              },
-              "levels": [
-                {
-                  "name": "StraightSwords1",
-                  "id": "StraightSwords1",
-                  "level": 1,
-                  "conditionalModifiers": [
-                    {
-                      "description": "-0.2s Attack Interval, +10% Accuracy Rating, and +10% Lifesteal while using Straight Swords",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:StraightSwords"
-                      },
-                      "modifiers": {
-                        "flatAttackInterval": -200,
-                        "accuracyRating": 10,
-                        "lifesteal": 10
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "StraightSwords2",
-                  "id": "StraightSwords2",
-                  "level": 2,
-                  "conditionalModifiers": [
-                    {
-                      "description": "+5% chance to convert a Miss into a Hit and +5% Dodge chance while using Straight Swords",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:StraightSwords"
-                      },
-                      "modifiers": {
-                        "convertMissIntoHit": 5,
-                        "dodgeChance": 5
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "StraightSwords3",
-                  "id": "StraightSwords3",
-                  "level": 3,
-                  "conditionalModifiers": [
-                    {
-                      "description": "Adds the Slash, Gash, and Maim special attack:<br>(10%) Attack 3 times quickly, 60% normal damage on the 1st, 80% on the 2nd, and 100% on the 3rd. Each has 10% chance on hit to inflict 100% Bleed and 20% Slow (2 turns).",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:StraightSwords"
-                      },
-                      "modifiers": {
-                        "WTM:fakeModifierAddTextDescToWepType": 1
-                      }
-                    }
-                  ],
-                  "changeFunc": "addSpecialAttack"
-                },
-                {
-                  "name": "StraightSwords4",
-                  "id": "StraightSwords4",
-                  "level": 4,
-                  "conditionalModifiers": [
-                    {
-                      "description": "+30% Bleed Lifesteal, inflict a 3% Slow on hit, and +20% chance to inflict a 100% Bleed on hit while using Straight Swords",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:StraightSwords"
-                      },
-                      "modifiers": {
-                        "bleedLifesteal": 30,
-                        "onHitSlowMagnitude": 3
-                      }
-                    }
-                  ],
                   "combatEffects": [
                     {
-                      "customDescription": "+20% Chance on Hit to apply a Bleed that deals 100% of the damage dealt over 10s",
-                      "appliesWhen": "HitWithAttack",
-                      "chance": 20,
-                      "effectID": "melvorD:Bleed100",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:StraightSwords"
-                      }
+                      "customDescription": "At the Start of the Fight, inflict the Enemy with Intimidation, Shaken, and Terrify for 3 turns.",
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Terrify",
+                      "initialParams": [
+                        {
+                          "name": "turns",
+                          "value": 3
+                        }
+                      ]
                     },
                     {
-                      "customDescription": "+100% Chance on Hit to inflict a 3% Slow",
-                      "effectID": "melvorF:ModifierSlow",
+                      "customDescription": "",
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Intimidation",
+                      "initialParams": [
+                        {
+                          "name": "turns",
+                          "value": 3
+                        }
+                      ]
+                    },
+                    {
+                      "customDescription": "",
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Shaken",
+                      "initialParams": [
+                        {
+                          "name": "turns",
+                          "value": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "conditionalModifiers": [
+                    {
+                      "description": "+20% Max Hit and +10% Total Resistance while the Enemy is afflicted by at least one of these effects: Intimidation, Shaken, or Terrify",
                       "condition": {
                         "type": "Every",
                         "conditions": [
                           {
-                            "type": "CharacterValue",
-                            "lhValue": "self.modifier.onHitSlowMagnitude",
-                            "operator": ">",
-                            "rhValue": 0
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Greatswords"
                           },
                           {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:StraightSwords"
+                            "type": "Some",
+                            "conditions": [
+                              {
+                                "character": "Enemy",
+                                "effectID": "WTM:Terrify",
+                                "type": "CombatEffect"
+                              },
+                              {
+                                "character": "Enemy",
+                                "effectID": "WTM:Shaken",
+                                "type": "CombatEffect"
+                              },
+                              {
+                                "character": "Enemy",
+                                "effectID": "WTM:Intimidation",
+                                "type": "CombatEffect"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "maxHit": 20,
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 10
+                          }
+                        ]
+                      },
+                      "enemyModifiers": {
+                        "effectIgnoreChance": [
+                          {
+                            "effectGroupID": "melvorD:Fear",
+                            "value": -100
+                          },
+                          {
+                            "effectGroupID": "melvorD:FearImmune",
+                            "value": 100
                           }
                         ],
-                        "appliesWhen": "HitWithAttack"
+                        "effectImmunity": [
+                          {
+                            "effectGroupID": "melvorD:Fear",
+                            "value": 0
+                          }
+                        ]
                       }
                     }
-                  ]
-                },
-                {
-                  "name": "StraightSwords5",
-                  "id": "StraightSwords5",
-                  "level": 5,
+                  ],
                   "modifiers": {
-                    "accuracyRating": 5,
-                    "evasion": 5,
-                    "lifesteal": 5,
-                    "flatAttackInterval": -50
+                    "WTM:increaseWeaponXPmagic": 3,
+                    "WTM:increaseWeaponXPmelee": 3,
+                    "WTM:increaseWeaponXPranged": 3,
+                    "skillXP": [
+                      {
+                        "skillID": "melvorD:Attack",
+                        "value": 2
+                      },
+                      {
+                        "skillID": "melvorD:Strength",
+                        "value": 2
+                      },
+                      {
+                        "skillID": "melvorD:Defence",
+                        "value": 2
+                      },
+                      {
+                        "skillID": "melvorD:Ranged",
+                        "value": 2
+                      },
+                      {
+                        "skillID": "melvorD:Magic",
+                        "value": 2
+                      },
+                      {
+                        "skillID": "melvorD:Hitpoints",
+                        "value": 2
+                      },
+                      {
+                        "skillID": "melvorD:Slayer",
+                        "value": 2
+                      },
+                      {
+                        "skillID": "melvorD:Prayer",
+                        "value": 2
+                      }
+                    ]
                   }
                 }
               ]
@@ -1385,8 +1855,8 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "WTM:accuracyRatingPer1000Evasion": 1,
-                  "WTM:dodgeChancePer1000EnemyAccuracyRating": 0.25
+                  "WTM:accuracyRatingPer10000Evasion": 5,
+                  "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
                 }
               },
               "levels": [
@@ -1396,13 +1866,13 @@
                   "level": 1,
                   "conditionalModifiers": [
                     {
-                      "description": "Gain +1% Global Accuracy Rating per 1000 Global Evasion",
+                      "description": "Gain 5% Global Accuracy Rating per 10,000 Global Evasion",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
                       "modifiers": {
-                        "WTM:accuracyRatingPer1000Evasion": 1
+                        "WTM:accuracyRatingPer10000Evasion": 5
                       }
                     }
                   ]
@@ -1413,13 +1883,13 @@
                   "level": 2,
                   "conditionalModifiers": [
                     {
-                      "description": "Gain +0.25% Dodge Chance per 1000 Enemy Global Accuracy Rating",
+                      "description": "Gain 0.5% Dodge Chance per 10,000 Enemy Global Accuracy Rating",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
                       "modifiers": {
-                        "WTM:dodgeChancePer1000EnemyAccuracyRating": 0.25
+                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
                       }
                     }
                   ]
@@ -1431,7 +1901,7 @@
                   "changeFunc": "addSpecialAttack",
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Whirling Manoeuvre special attack: (15%) Whirl your polearm around, attacking multiple times for a small portion of your normal damage each. While attacking, you have highly increased Global Evasion and reflect a moderate portion of the Enemy's damage.",
+                      "description": "Adds the Whirling Manoeuvre special attack: (15%) Whirl your polearm around, attacking multiple times for a small portion of your normal damage each. While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
@@ -1450,32 +1920,16 @@
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Polearm0"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Polearms"
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Polearm1"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Polearms"
-                      },
                       "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Polearm0"
+                      "effectID": "WTM:Power"
                     },
                     {
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
-                      "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Polearm1"
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Swiftness"
                     }
                   ]
                 },
@@ -1484,7 +1938,7 @@
                   "id": "Polearms5",
                   "level": 5,
                   "modifiers": {
-                    "reflectDamage": 5
+                    "dodgeChance": 5
                   }
                 }
               ]
@@ -2088,7 +2542,7 @@
                   "id": "Special3",
                   "level": 3,
                   "modifiers": {},
-                  "changeFunc":"increaseSpecialAttackChance"
+                  "changeFunc": "increaseSpecialAttackChance"
                 },
                 {
                   "name": "Special4",

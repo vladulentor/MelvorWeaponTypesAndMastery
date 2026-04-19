@@ -42,12 +42,12 @@ export function addSpecialAttack() {
 
 
     if (this._localID == "Greatswords3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:Counterattack');
+        const attack = game.specialAttacks.getObjectSafe('WTM:DevastatingSlice');
         const weapMap = { weapons: this.type.allWeapons, attack: attack };
         addEffecttoWeaponList(weapMap);
     }
 
-    if (this._localID == "StraightSwords3") {
+    if (this._localID == "ThrustingSwords3") {
         const attack = game.specialAttacks.getObjectSafe('WTM:SlashGashMaim');
         const weapMap = { weapons: this.type.allWeapons, attack: attack };
         addEffecttoWeaponList(weapMap);
