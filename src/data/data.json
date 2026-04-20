@@ -825,7 +825,7 @@
                 "Sunset_Rapier2",
                 "Witherstab_Rapier3"
               ],
-              "media": "assets/ThrustingSwords.svg",
+              "media": "assets/thrustingswords.svg",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
