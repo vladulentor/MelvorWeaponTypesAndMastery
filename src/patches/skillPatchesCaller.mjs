@@ -13,6 +13,7 @@ const { patchWeaponTypeLogic } = await loadModule('src/patches/patches/weaponMas
 const {patchAccuracyRating} = await loadModule('src/patches/patches/patchAccuracyRating.mjs');
 
 const {patchDodgeChance} = await loadModule('src/patches/patches/patchDodgeChance.mjs');
+const {addPlayerBarrier} = await loadModule('src/patches/patches/addPlayerBarrier.mjs');
 
 
 const { patchSkillNotif } = await loadModule('src/patches/patches/patchSkillNotif.mjs');
@@ -28,6 +29,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
         patchDodgeChance(ctx);
+        addPlayerBarrier(ctx);
 }
 export function patchSkillsAfterDataReg(ctx) {
         addWeaponType(ctx);

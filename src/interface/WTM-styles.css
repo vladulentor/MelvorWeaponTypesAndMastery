@@ -186,7 +186,6 @@ body.darkMode .table-type-image {
 }
 
 
-
 .weaponMasteryTop {
   position: relative;
   z-index: 3;
@@ -292,5 +291,4 @@ body.darkMode .xp-label {
 
 .weapon-text-block {
   display: inline-block;
-  /* shrink to name width */
 }

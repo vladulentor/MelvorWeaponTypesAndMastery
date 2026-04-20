@@ -712,6 +712,20 @@
     ],
     "modifiers": [
       {
+        "id": "increaseWeaponXP",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_increaseWeaponXP"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "increaseWeaponXPmelee",
         "allowedScopes": [
           {
@@ -762,6 +776,20 @@
               {
                 "text": "",
                 "lang": "MODIFIER_DATA_fakeModifierAddTextDescToWepType"
+              }
+            ]
+          }
+        ]
+      },
+       {
+        "id": "combatSkillXP",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_combatSkillXP"
               }
             ]
           }
