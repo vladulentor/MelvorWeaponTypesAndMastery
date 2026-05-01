@@ -1,4 +1,4 @@
-export function addWeaponSkillXP({patch}){
+export function addCombatSkillXP({patch}){
       patch(Skill, "getXPModifier").after(function (mod, action) {
         if (this.isCombat)
            return mod + this.game.modifiers.getValue("WTM:combatSkillXP", ModifierQuery.EMPTY);

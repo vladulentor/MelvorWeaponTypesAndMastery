@@ -171,8 +171,6 @@ export class WeaponMasteryUI {
         this.modifierListContainer.style.maxHeight = contentHeight + "px";
         this.stepContainer.classList.add('expanded');
         this.stepsButton.classList.add('open');
-        const rect = this.spacer.getBoundingClientRect();
-        const parentRect = this.stepContainer.getBoundingClientRect();
         requestAnimationFrame(() => {
             this.cap.style.top = this.spacer.offsetTop + "px";
         });
@@ -268,7 +266,7 @@ export class WeaponMasteryUI {
         }
     }
     generateModifierElements(level) {
-        const descs = StatObject.getDescriptions(level.wepModifiers);
+        const descs = StatObject.getDescriptions(level.uiMods);
 
         const isShiny = !!level.shiny;
 

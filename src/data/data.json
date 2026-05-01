@@ -711,6 +711,7 @@
       }
     ],
     "modifiers": [
+
       {
         "id": "increaseWeaponXP",
         "allowedScopes": [
@@ -781,7 +782,7 @@
           }
         ]
       },
-       {
+      {
         "id": "combatSkillXP",
         "allowedScopes": [
           {
@@ -1329,6 +1330,21 @@
                   "id": "Greatswords5",
                   "shiny": true,
                   "level": 5,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "Do some cool shit",
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:Terrify",
+                        "initialParams": [
+                          {
+                            "name": "turns",
+                            "value": 3
+                          }
+                        ]
+                      }
+                    ]
+                  },
                   "combatEffects": [
                     {
                       "customDescription": "At the Start of the Fight, inflict the Enemy with Intimidation, Shaken, and Terrify for 3 turns.",

@@ -3,6 +3,7 @@ const { loadModule } = mod.getContext(import.meta);
 
 const { patchConditionalMod } = await loadModule('src/patches/patches/patchConditionalMod.mjs');
 const { patchDataRegistration } = await loadModule('src/patches/patches/patchDataRegistration.mjs');
+const { addCombatSkillXP } = await loadModule('src/patches/patches/addCombatSkillXP.mjs');
 
 
 const { addWeaponType } = await loadModule('src/patches/patches/weaponMastery/addWeaponType.mjs');
