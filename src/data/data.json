@@ -711,7 +711,6 @@
       }
     ],
     "modifiers": [
-
       {
         "id": "increaseWeaponXP",
         "allowedScopes": [
@@ -837,7 +836,6 @@
             {
               "id": "ThrustingSwords",
               "name": "Thrusting Swords",
-              "fixture": "",
               "mat": [
                 "Sword"
               ],
@@ -855,6 +853,7 @@
                 "Witherstab_Rapier3"
               ],
               "media": "assets/thrustingswords.svg",
+              "type":"melee",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -987,7 +986,6 @@
             {
               "id": "Greatswords",
               "name": "Greatswords",
-              "fixture": "",
               "mat": [
                 "2H_Sword"
               ],
@@ -1010,6 +1008,8 @@
                 "Ultima_Godsword4"
               ],
               "media": "assets/greatswords.svg",
+                            "type":"melee",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1486,7 +1486,6 @@
             {
               "id": "CurvedSwords",
               "name": "Curved Swords",
-              "fixture": "",
               "mat": [
                 "Scimitar"
               ],
@@ -1500,6 +1499,8 @@
                 "Desert_Sabre1"
               ],
               "media": "assets/curvedswords.svg",
+                            "type":"melee",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1595,8 +1596,9 @@
             {
               "id": "Daggers",
               "name": "Daggers",
-              "fixture": "",
               "media": "assets/daggers.svg",
+                            "type":"melee",
+
               "mat": [
                 "Dagger"
               ],
@@ -1753,7 +1755,6 @@
             {
               "id": "Axes",
               "name": "Axes",
-              "fixture": "",
               "mat": [
                 "2H_Axe",
                 "Battleaxe"
@@ -1767,6 +1768,8 @@
                 "War_Axe1"
               ],
               "media": "assets/axes.svg",
+                            "type":"melee",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1881,8 +1884,9 @@
             {
               "id": "Polearms",
               "name": "Polearms",
-              "fixture": "",
               "media": "assets/polearms.svg",
+                            "type":"melee",
+
               "mat": [
                 "2H_Spear",
                 "Spear"
@@ -2004,8 +2008,9 @@
                 "Stone_Hammer2",
                 "Water_Sceptre3"
               ],
-              "fixture": "",
               "media": "assets/blunts.svg",
+                            "type":"melee",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2049,8 +2054,9 @@
             {
               "id": "HandToHand",
               "name": "Hand-to-Hand",
-              "fixture": "",
               "media": "assets/handtohand.svg",
+                            "type":"melee",
+
               "uniq": [
                 "Ancient_Claw2",
                 "Blighted_Claw3",
@@ -2122,8 +2128,9 @@
                 "Voidburst_Barrage_Crossbow3",
                 "Witherslinger_Crossbow3"
               ],
-              "fixture": "",
               "media": "assets/crossbows.svg",
+                            "type":"ranged",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2167,7 +2174,6 @@
             {
               "id": "HeavyBows",
               "name": "Heavy Bows",
-              "fixture": "",
               "mat": [
                 "Longbow"
               ],
@@ -2190,6 +2196,8 @@
                 "Thorned_Power_Bow2"
               ],
               "media": "assets/heavybows.svg",
+                                          "type":"ranged",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2233,7 +2241,6 @@
             {
               "id": "LightBows",
               "name": "Light Bows",
-              "fixture": "",
               "mat": [
                 "Shortbow"
               ],
@@ -2246,6 +2253,8 @@
                 "Poisoned_Shortbow3"
               ],
               "media": "assets/lightbows.svg",
+                                          "type":"ranged",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2289,7 +2298,6 @@
             {
               "id": "Thrown",
               "name": "Thrown",
-              "fixture": "",
               "mat": [
                 "Throwing_Knife",
                 "Javelin"
@@ -2298,9 +2306,12 @@
               "uniq": [
                 "Ancient_Throwing_Knife3",
                 "Shadow_Throwing_Knife3",
-                "Ancient_Javelin3"
+                "Ancient_Javelin3",
+                "Slingshot2"
               ],
               "media": "assets/thrown.svg",
+                                          "type":"ranged",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2344,8 +2355,9 @@
             {
               "id": "Artifacts",
               "name": "Artifacts",
-              "fixture": "",
               "media": "assets/artifacts.svg",
+                                          "type":"magic",
+
               "uniq": [
                 "Magic_Flute3",
                 "Powered_Red_Crystal3",
@@ -2404,7 +2416,6 @@
             {
               "id": "Staves",
               "name": "Staves",
-              "fixture": "",
               "mat": [
                 "Staff",
                 "Battlestaff",
@@ -2413,6 +2424,10 @@
               "kind": "magic",
               "uniq": [
                 "Basic_Staff1",
+                "Fire_Imbued_Wand1",
+                "Water_Imbued_Wand1",
+                "Earth_Imbued_Wand1",
+                "Air_Imbued_Wand1",
                 "Blazing_Shadow_Staff3",
                 "Blight_Burst_Staff2",
                 "Blighted_Staff3",
@@ -2431,6 +2446,8 @@
                 "Water_Pulse_Staff3"
               ],
               "media": "assets/staves.svg",
+                                                        "type":"magic",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2474,7 +2491,6 @@
             {
               "id": "Wands",
               "name": "Wands",
-              "fixture": "",
               "mat": [
                 "Imbued",
                 "Wand"
@@ -2492,6 +2508,8 @@
                 "Witherbind_Wand3"
               ],
               "media": "assets/wands.svg",
+                                                        "type":"magic",
+
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2535,7 +2553,6 @@
             {
               "id": "Special",
               "name": "Special",
-              "fixture": "",
               "uniq": [
                 "Abyssal_Hourglass_Inverted4",
                 "Abyssal_Hourglass_Upright4",
@@ -2556,11 +2573,11 @@
                 "Old_Wooden_Ladle5",
                 "Potion_Stirrer4",
                 "Silentsnap_Crab_Claw3",
-                "Slingshot4",
                 "Sturdy_Fancy_Quill4",
                 "Void_Vortex_Whip3"
               ],
               "media": "assets/special.svg",
+                                                        "type":["melee", "ranged", "magic"],
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {

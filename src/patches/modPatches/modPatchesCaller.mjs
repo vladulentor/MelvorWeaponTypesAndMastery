@@ -5,7 +5,7 @@ const { tinyIconsCompatibility } = await loadModule('src/patches/modPatches/tiny
 
 
 export function patchMods(ctx, modList) {
-    if (modList.includes('Skill Boosts')) {
+  /*  if (modList.includes('Skill Boosts')) {
         skillBoostsCompatibility(ctx);
     }
 
@@ -21,7 +21,7 @@ export function patchMods(ctx, modList) {
     }
 
     if (modList.includes('Ancient Relic Mode 1.3')) {
-    }
+    }*/
 
 }
 

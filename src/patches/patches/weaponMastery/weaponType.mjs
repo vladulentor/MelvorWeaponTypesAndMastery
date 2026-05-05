@@ -17,7 +17,7 @@ class WeaponMasteryLevel extends RealmedObject {
         this.name = templateRielkLangString("WEAPON_TYPE_LEVEL", { weaponType: parentType._localID, level: levelIndex });
         if (data.shiny) this.shiny = data.shiny;
         this.wepModifiers = new StatObject(data, game, this._localID);
-        if(data.uiMods) this.uiMods = new StatObject(data.uiMods, game, this._localID);
+        if (data.uiMods) this.uiMods = new StatObject(data.uiMods, game, this._localID);
         else this.uiMods = this.wepModifiers; //hopefully js makes a shallow copy
 
     }
@@ -69,6 +69,7 @@ export class WeaponMastery extends RealmedObject {
                     this.kind = data.kind;
                     break;
             }
+        this.type = data.type;
         this.activeWeapon = undefined
         this.game = game;
 
@@ -82,9 +83,6 @@ export class WeaponMastery extends RealmedObject {
         this._uiWepMod = this.wepModifiers;
 
 
-        this.fixture = Array.isArray(data.fixture)
-            ? data.fixture
-            : [data.fixture];
         // for (let i = 0; i < this.fixture.length; i++)
         //   this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);
         this.allWeapons = [];
@@ -101,7 +99,7 @@ export class WeaponMastery extends RealmedObject {
             this.mat.push(data.mat);
         if (data.uniq)
             this.uniq.push(data.uniq);
-        if(data.killMe)
+        if (data.killMe)
             this.shouldDie = 1;
     }
     get media() {
@@ -244,7 +242,7 @@ export class WeaponMastery extends RealmedObject {
             if (weapon._weaponXP > 0)
                 console.log("Weapon:", weapon.name, " XP:", weapon._weaponXP, "\n");
     }
-    maxMeOut(){
+    maxMeOut() {
         this._curLvl = 5;
         this.computeProvidedStats(true);
     }
