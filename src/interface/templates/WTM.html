@@ -191,80 +191,88 @@
         <img class="weaponMasteryBgIcon" id="weaponMasteryBgIcon">
         <h4 id="weaponMasteryTitle"
           class="position-absolute d-flex align-items-center pointer-cursor text-left font-w600 mb-0"
-          style="top: 15px; left: 15px; z-index: 10; width:150px">
-          <i class="fa fa-chevron-left mr-2"></i>             <wtm-lang-string lang-id="MENU_BACK"></wtm-lang-string>
+          style="top: 10px; left: 12px; z-index: 10; width:150px">
+          <i class="fa fa-chevron-left mr-2"></i> <wtm-lang-string lang-id="MENU_BACK"></wtm-lang-string>
         </h4>
       </div>
-
-      <div class="weaponMasteryBgContainer" id="weaponMasteryBgContainer">
-        <div class="weaponMasteryMenu">
-          <div class="row no-gutters p-2">
-            <div class="col-12">
-              <h5 id="weaponMasteryText" class="font-w900 font-size-md text-combat-smoke pt-2 text-center"
-                style="margin-bottom: 0.76rem;"></h5>
-
-              <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 pb-2 text-center">
-                Type Proficiency:
-              </h5>
-
-              <div class="mastery-weapon-xp-container pb-3">
-                <div class="mastery-weapon-xp-bar progress" id="weaponMasteryBar">
-                  <div class="mastery-weapon-xp-fill" id="weaponMasteryProgress" style="width: 0%;"></div>
-                  <div class="mastery-weapon-xp-overfill" id="weaponMasteryOverfill" style="width: 0%;"></div>
-
-                  <!-- Milestone Markers (1 to 5) -->
-                  <div id="marker-1" class="xp-marker" style="left: 7%;">
-                    <span id="label-1" class="xp-label font-w600 font-size-sm text-combat-smoke">1</span>
+      <div>
+        <div class="weaponMasteryBgContainer" id="weaponMasteryBgContainer">
+          <div class="weaponMasteryMenu">
+            <div class="row no-gutters p-2">
+              <div class="col-12">
+                <h5 id="weaponMasteryText" class="font-w900 font-size-lg text-combat-smoke mt-2 pt-2 text-center"
+                  style="margin-bottom: 0.76rem;"></h5>
+                <div class="col-12">
+                  <div id="weaponFlavorText" class="font-size-sm font-italic text-muted mb-2 m-1 font-w300"></div>
+                  <div class="font-w600 font-size-md text-combat-smoke">
+                    <wtm-lang-string lang-id="MENU_WEAPON_BONUS"></wtm-lang-string>
                   </div>
-                  <div id="marker-2" class="xp-marker" style="left: 20%;">
-                    <span id="label-2" class="xp-label font-w600 font-size-sm text-combat-smoke">2</span>
-                  </div>
-                  <div id="marker-3" class="xp-marker" style="left: 40%;">
-                    <span id="label-3" class="xp-label font-w600 font-size-sm text-combat-smoke">3</span>
-                  </div>
-                  <div id="marker-4" class="xp-marker" style="left: 65%;">
-                    <span id="label-4" class="xp-label font-w600 font-size-sm text-combat-smoke">4</span>
-                  </div>
-                  <div id="marker-5" class="xp-marker" style="left: 95%;">
-                    <span id="label-5" class="xp-label font-w600 font-size-sm text-combat-smoke">5</span>
+                  <div id="weaponModifierValue" class="font-size-sm text-white text-center mt-1"></div>
+                  <div id="weaponModifierTypeText" class="font-size-xs text-center m-1 mb-3 font-w400" style="opacity: 0.5;"></div>
+                </div>
+
+                <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 pb-2 text-center">
+                  Type Proficiency:
+                </h5>
+
+                <div class="mastery-weapon-xp-container pb-3">
+                  <div class="mastery-weapon-xp-bar progress" id="weaponMasteryBar">
+                    <div class="mastery-weapon-xp-fill" id="weaponMasteryProgress" style="width: 0%;"></div>
+                    <div class="mastery-weapon-xp-overfill" id="weaponMasteryOverfill" style="width: 0%;"></div>
+
+                    <!-- Milestone Markers (1 to 5) -->
+                    <div id="marker-1" class="xp-marker" style="left: 7%;">
+                      <span id="label-1" class="xp-label font-w600 font-size-sm text-combat-smoke">1</span>
+                    </div>
+                    <div id="marker-2" class="xp-marker" style="left: 20%;">
+                      <span id="label-2" class="xp-label font-w600 font-size-sm text-combat-smoke">2</span>
+                    </div>
+                    <div id="marker-3" class="xp-marker" style="left: 40%;">
+                      <span id="label-3" class="xp-label font-w600 font-size-sm text-combat-smoke">3</span>
+                    </div>
+                    <div id="marker-4" class="xp-marker" style="left: 65%;">
+                      <span id="label-4" class="xp-label font-w600 font-size-sm text-combat-smoke">4</span>
+                    </div>
+                    <div id="marker-5" class="xp-marker" style="left: 95%;">
+                      <span id="label-5" class="xp-label font-w600 font-size-sm text-combat-smoke">5</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="row no-gutters d-flex justify-content-center" id="weaponMasteryStepsContainer">
+          <div class="row no-gutters d-flex justify-content-center" id="weaponMasteryStepsContainer">
 
-          <!-- Modifier checklist items -->
-          <div class="weaponMasteryModifiers2 open font-w700 font-size-xs" id="weaponMasteryModifiers"
-            style="max-width: 95%; max-height: none;">
-            <div class="col-12 mb-1 dropdown-divider"></div>
-            <div id="lock1" class="mx-auto align-items-center lockIcon"></div>
-            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep1"></div>
+            <!-- Modifier checklist items -->
+            <div class="weaponMasteryModifiers2 open font-w700 font-size-xs" id="weaponMasteryModifiers"
+              style="max-width: 95%; max-height: none;">
+              <div class="col-12 mb-1 dropdown-divider"></div>
+              <div id="lock1" class="mx-auto align-items-center lockIcon"></div>
+              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep1"></div>
 
-            <div class="col-12 mb-1 dropdown-divider"></div>
-            <div id="lock2" class="mx-auto align-items-center lockIcon"></div>
-            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep2"></div>
+              <div class="col-12 mb-1 dropdown-divider"></div>
+              <div id="lock2" class="mx-auto align-items-center lockIcon"></div>
+              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep2"></div>
 
-            <div class="col-12 mb-1 dropdown-divider"></div>
-            <div id="lock3" class="mx-auto align-items-center lockIcon"></div>
-            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep3"></div>
+              <div class="col-12 mb-1 dropdown-divider"></div>
+              <div id="lock3" class="mx-auto align-items-center lockIcon"></div>
+              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep3"></div>
 
-            <div class="col-12 mb-1 dropdown-divider"></div>
-            <div id="lock4" class="mx-auto align-items-center lockIcon"></div>
-            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep4"></div>
+              <div class="col-12 mb-1 dropdown-divider"></div>
+              <div id="lock4" class="mx-auto align-items-center lockIcon"></div>
+              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep4"></div>
 
-            <div class="col-12 mb-1 dropdown-divider"></div>
-            <div id="lock5" class="mx-auto align-items-center lockIcon"></div>
-            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep5"></div>
-            <div id="modifierSpacer" style="height:0;"></div>
+              <div class="col-12 mb-1 dropdown-divider"></div>
+              <div id="lock5" class="mx-auto align-items-center lockIcon"></div>
+              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep5"></div>
+              <div id="modifierSpacer" style="height:0;"></div>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
-
-
     <div id="menuViewerCont">
       <div id="weaponMasteryItem" class="d-flex pb-2">
 

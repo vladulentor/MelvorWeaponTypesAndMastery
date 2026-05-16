@@ -189,6 +189,13 @@ export class WeaponTypesCombatMenu {
             bgIcon: getElementFromFragment(this._content, 'weaponMasteryBgIcon', 'img'),
             text: getElementFromFragment(this._content, 'weaponMasteryText', 'h5'),
             title: getElementFromFragment(this._content, 'weaponMasteryTitle', 'h4'),
+            typeFlvText: getElementFromFragment(this._content, 'weaponFlavorText', 'div'),
+            wepModText: getElementFromFragment(this._content, 'weaponModifierValue', 'div'),
+            wepModType: getElementFromFragment(this._content, 'weaponModifierTypeText', 'div'),
+            wepModPermanent: getRielkLangString('MENU_PERMANENT'),
+            wepModEquipped: getRielkLangString('MENU_EQUIPPED'),
+            wepModPermanentTool: getRielkLangString('MENU_PERMANENT_TOOLTIP'),
+            wepModEquippedTool: getRielkLangString('MENU_EQUIPPED_TOOLTIP'),
 
             stepContainer: getElementFromFragment(this._content, 'weaponMasteryStepsContainer', 'div'),
             spacer: getElementFromFragment(this._content, 'modifierSpacer', 'div'),
@@ -227,10 +234,27 @@ export class WeaponTypesCombatMenu {
                 getElementFromFragment(this._content, 'lock5', 'div'),
             ]
         };
+        this.settypeBonusTooltip(this.typeMenu.wepModType);
 
     }
     // ----------TYPE MENU FUNCTIONS ------------
-
+    settypeBonusTooltip(elem) {
+        tippy(elem, {
+            content: elem.tooltipContent,
+            placement: 'top',
+            allowHTML: true,
+            interactive: true,
+            animation: false,
+            appendTo: document.body,
+            popperOptions: {
+                strategy: 'fixed',
+                modifiers: [
+                    { name: 'flip', options: { fallbackPlacements: ['top'] } },
+                    { name: 'preventOverflow', options: { altAxis: true, tether: false } },
+                ],
+            },
+        });
+    };
     setWeaponMasteryTooltip(elem) {
         elem.tippyContent = createElement("div");
 
@@ -252,7 +276,7 @@ export class WeaponTypesCombatMenu {
         const hint2 = createElement("div", {
             className: 'text-center text-size-sm font-w400 text-muted'
         });
-        hint2.innerText = "Hover over different elements to learn more about weapon masteries";
+        hint2.innerText = "Hover over different elements to learn more about them!";
         elem.tippyContent.appendChild(hint2);
 
         tippy(elem, {
@@ -270,13 +294,23 @@ export class WeaponTypesCombatMenu {
                 ],
             },
         });
+
     }
 
     setType(type) {
         if (this.typeMenu.type == type) return;
         this.typeMenu.text.innerHTML = type.name;
+        this.typeMenu.text.classList.toggle("text-success", type.activeWeapon);
         this.typeMenu.bgIcon.src = type.media;
         this.typeMenu.type = type;
+        const [typeLabel, toolTipText] = type.isPerWepMod // yay for needlessly optimal code
+            ? [this.typeMenu.wepModEquipped, this.typeMenu.wepModEquippedTool]
+            : [this.typeMenu.wepModPermanent, this.typeMenu.wepModPermanentTool];
+        this.typeMenu.wepModType.innerText = typeLabel;
+        this.typeMenu.wepModType.classList.toggle("text-success", game.combat.player.equippedWeapon.masteryMaxed);
+
+        this.typeMenu.wepModType._tippy.setContent(`<div class="text-center">${toolTipText}</div>`);
+        this.typeMenu.typeFlvText.innerText = type.flavorText || " ";
         this.setMods();
     }
 
@@ -314,6 +348,7 @@ export class WeaponTypesCombatMenu {
     }
 
     setMods() {
+        this.typeMenu.wepModText.innerHTML = this.typeMenu.type._uiWepMod.describeLineBreak(1, this.typeMenu.type.doubledIndBonuses);
         for (let i = 0; i < this.typeMenu.steps.length; i++) {
             let lockText = !this.typeMenu.type.fixture ? "" : this.typeMenu.type.fixture.length > 1 ? templateRielkLangStringWithNodes(
                 "MENU_UPGRADE_TYPE3",
@@ -456,8 +491,6 @@ export class WeaponTypesCombatMenu {
 
         this.container.addEventListener('wtm-type-selected', (event) => {
             const selectedType = event.detail.type;
-            console.log("i got it:", selectedType);
-
             this.drillDown(selectedType);
         });
     };

@@ -1,6 +1,7 @@
 const { loadModule } = mod.getContext(import.meta);
 
 const { WeaponTypeCondition } = await loadModule ('src/patches/patches/weaponMastery/weaponTypeCondition.mjs');
+const { EmptySlotCondition } = await loadModule ('src/patches/patches/EmptySlotCondition.mjs');
 const { WeaponCondition } = await loadModule ('src/patches/patches/weaponMastery/weaponCondition.mjs');
 
 
@@ -14,7 +15,9 @@ export function patchConditionalMod(ctx) {
     if(data.type === 'WeaponType')
       return new WeaponTypeCondition(data, game);
     if(data.type === 'Weapon')
-      return new WeaponCondition(data,game);
+      return new WeaponCondition(data, game);
+    if(data.type === 'EmptySlot')
+      return new EmptySlotCondition(data, game);
     return original.call(this, data, game);
   };
 

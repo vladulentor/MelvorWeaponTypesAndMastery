@@ -981,12 +981,14 @@
                       }
                     ]
                   },
-                 "modifiers":{
-                  "WTM:unlockParry":[{
-                    "value":1,
-                    "damageTypeID":"melvorD:Normal"
-                  }]
-                 },
+                  "modifiers": {
+                    "WTM:unlockParry": [
+                      {
+                        "value": 1,
+                        "damageTypeID": "melvorD:Normal"
+                      }
+                    ]
+                  },
                   "combatEffects": [
                     {
                       "appliesWhen": "StartOfFight",
@@ -1770,6 +1772,7 @@
               "mat": [
                 "Dagger"
               ],
+              "flavorText": "Famous for its high kill-per-square-inch value",
               "kind": "melee",
               "uniq": [
                 "Ice_Dagger2",
@@ -1928,6 +1931,7 @@
                 "Battleaxe"
               ],
               "kind": "melee",
+              "flavorText": "Good for turning one full-width asshole into two half-width assholes",
               "uniq": [
                 "Big_Ron2",
                 "Black_Battleaxe3",

@@ -47,7 +47,30 @@ export function patchWeaponTypeLogic({ patch }) {
             m.onLoad()
         if (combatMenus.weaponMastery && this.combat.player.equippedWeaponType) {
             combatMenus.weaponMastery.highlightButton(this.combat.player.equippedWeaponType);
+            
 
+        }
+        for (const m of game.weaponMasteries.allObjects)
+            m.onLoad()
+        if (combatMenus.weaponMastery && this.combat.player.equippedWeaponType) {
+            combatMenus.weaponMastery.highlightButton(this.combat.player.equippedWeaponType);
+
+        }
+    })
+    patch(Player, "updateForEquipmentChange").before(function (_) {
+        const newWeapon = this.equipment.getItemInSlot("melvorD:Weapon");
+        const newType = newWeapon.weaponType;
+        if (this.equippedWeaponType && this.equippedWeaponType !== newType) {
+            if(combatMenus.weaponMastery) {combatMenus.weaponMastery.drillUp();
+                combatMenus.weaponMastery.highlightButton(newType);}
+            leftover = 0;
+            this.equippedWeaponType.unsetActiveWeapon();
+            if (this.equippedWeaponType.isPerWepMod)
+                this.equippedWeaponType.toggleMasteredWeaponStats(0);
+
+        }
+        if (this.equippedWeapon !== newWeapon) {
+            this.equippedWeapon = newWeapon;
         }
     })
     patch(Player, "updateForEquipmentChange").before(function (_) {
