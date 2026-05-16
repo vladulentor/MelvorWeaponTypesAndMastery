@@ -409,14 +409,15 @@ export class WeaponTypesCombatMenu {
             }
         };
         this.typeMenu.title.onclick = () => (this.drillUp());
-        this.typeMenu.title.style.setProperty('color', '#f5f5f5', 'important');
         this.typeMenu.title.style.cursor = 'pointer';
         this.typeMenu.title.style.setProperty('transition', 'color 0.2s ease', 'important');
-         this.typeMenu.title.onmouseenter = () => {
-this.typeMenu.title.style.setProperty('color', '#acacac', 'important');        };
+        this.typeMenu.title.onmouseenter = () => {
+            this.typeMenu.title.style.setProperty('color', '#acacac', 'important');
+        };
 
         this.typeMenu.title.onmouseleave = () => {
-this.typeMenu.title.style.setProperty('color', '#f5f5f5', 'important');        };
+            this.typeMenu.title.style.removeProperty('color');
+        };
 
         this.container.addEventListener('wtm-type-selected', (event) => {
             const selectedType = event.detail.type;
