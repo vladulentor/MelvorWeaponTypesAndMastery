@@ -1058,12 +1058,6 @@
                       }
                     ]
                   },
-                 "modifiers":{
-                  "WTM:unlockParry":[{
-                    "value":1,
-                    "damageTypeID":"melvorD:Normal"
-                  }]
-                 },
                   "combatEffects": [
                     {
                       "appliesWhen": "StartOfFight",
