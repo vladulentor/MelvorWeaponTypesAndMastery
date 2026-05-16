@@ -7,6 +7,9 @@ const { addCombatSkillXP } = await loadModule('src/patches/patches/addCombatSkil
 
 
 const { addWeaponType } = await loadModule('src/patches/patches/weaponMastery/addWeaponType.mjs');
+const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
+
+
 const { addWeaponMasteryUI } = await loadModule('src/patches/patches/weaponMastery/weaponMasteryUI.mjs');
 
 const { patchWeaponTypeLogic } = await loadModule('src/patches/patches/weaponMastery/patchWeaponTypeLogic.mjs');
@@ -27,10 +30,13 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchConditionalMod(ctx)
         addWeaponMasteryUI(ctx);
         patchWeaponTypeLogic(ctx);
+
+        addCombatSkillXP(ctx);
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
         patchDodgeChance(ctx);
         addPlayerBarrier(ctx);
+        addParry(ctx);
 }
 export function patchSkillsAfterDataReg(ctx) {
         addWeaponType(ctx);

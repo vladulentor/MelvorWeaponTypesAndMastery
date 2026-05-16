@@ -9,6 +9,7 @@ export const language = {
     'MODIFIER_DATA_fakeModifierAddTextDescToWepType': "Adds a new Special Attack to all weapons of this type",
     'MENU_TEXT_TYPE': "Type",
     'MENU_BACK':'Back',
+        'MODIFIER_DATA_unlockParry':'Grants Parry: Counter-attack on Enemy Misses. Scales with Armor Defence and Enemy Level',
     'MENU_TOGGLE_TYPES':"Toggle Weapon Type Progress",
     'MENU_WEAPON_TYPES':'Weapon Types'
 }    

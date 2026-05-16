@@ -45,11 +45,16 @@ export function patchWeaponTypeLogic({ patch }) {
         this.combat.player.equippedWeaponType = this.combat.player.equippedWeapon.weaponType ?? 0;
         for (const m of game.weaponMasteries.allObjects)
             m.onLoad()
+        if (combatMenus.weaponMastery && this.combat.player.equippedWeaponType) {
+            combatMenus.weaponMastery.highlightButton(this.combat.player.equippedWeaponType);
+
+        }
     })
     patch(Player, "updateForEquipmentChange").before(function (_) {
         const newWeapon = this.equipment.getItemInSlot("melvorD:Weapon");
         const newType = newWeapon.weaponType;
         if (this.equippedWeaponType && this.equippedWeaponType !== newType) {
+            if(combatMenus.weaponMastery) combatMenus.weaponMastery.highlightButton(newType);
             leftover = 0;
             this.equippedWeaponType.unsetActiveWeapon();
             if (this.equippedWeaponType.isPerWepMod)

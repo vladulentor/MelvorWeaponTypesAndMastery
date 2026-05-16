@@ -783,6 +783,22 @@
     ],
     "modifiers": [
       {
+        "id": "unlockParry",
+        "allowedScopes": [
+          {
+            "scopes": {
+              "damageType": true
+            },
+            "descriptions": [
+              {
+                "text": "there we are",
+                "lang": "MODIFIER_DATA_unlockParry"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "spoofIncreaseSkillXP",
         "allowedScopes": [
           {
@@ -965,6 +981,12 @@
                       }
                     ]
                   },
+                 "modifiers":{
+                  "WTM:unlockParry":[{
+                    "value":1,
+                    "damageTypeID":"melvorD:Normal"
+                  }]
+                 },
                   "combatEffects": [
                     {
                       "appliesWhen": "StartOfFight",

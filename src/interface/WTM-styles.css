@@ -177,6 +177,27 @@ body.darkMode .border-item {
   filter: invert(0%);
 
 }
+.deflectSplash{
+  color: #91A3B0 !important
+}
+
+/* I HATE HTML I HATE HTML I HATE HTML */
+ul.nav.nav-pills.nav-justified.push .nav-item .nav-link.border-gold.fuck-you.fuck-you-extra {
+    border-color: #d6841e !important
+}
+
+.gold-selected.fuck-you {
+  background-color: #fad8ac;
+}
+
+body.darkMode .gold-selected.fuck-you,
+body.darkMode.superDark .gold-selected.fuck-you {
+  background-color: #383433 !important;
+}
+body.darkMode .gold-selected.fuck-you:hover,
+body.darkMode.superDark .gold-selected.fuck-you:hover {
+  background-color: #2d3542 !important; 
+}
 
 body.darkMode .weaponMasteryBgIcon {
   filter: invert(100%);

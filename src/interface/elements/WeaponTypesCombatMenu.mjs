@@ -14,12 +14,15 @@ const weaponOverTypes = [
 
 export class typeButtonElement extends HTMLElement {
     static borderClasses = ['border-success', 'border-2x', 'spell-selected'];
+    static goldenClasses = ['border-2x', 'border-gold', 'gold-selected'];
+    static goldFilter = 'invert(79%) sepia(74%) saturate(2255%) hue-rotate(3deg) brightness(105%) contrast(105%)';
     constructor() {
         super();
         this._content = new DocumentFragment();
         this._content.append(getTemplateNode('weaponTypeButton'));
         this.link = getElementFromFragment(this._content, 'link', 'a');
         this.typeImage = getElementFromFragment(this._content, 'type-image', 'img');
+        this.isGold = 0;
     }
     connectedCallback() {
         this.appendChild(this._content);
@@ -43,10 +46,31 @@ export class typeButtonElement extends HTMLElement {
         };
     }
     highlight() {
-        this.link.classList.add(...typeButtonElement.borderClasses);
+        this.link.classList.add(...(this.isGold ? typeButtonElement.goldenClasses : typeButtonElement.borderClasses));
+        this.highlighted = 1;
     }
     unhighlight() {
-        this.link.classList.remove(...typeButtonElement.borderClasses);
+        this.link.classList.remove(...(this.isGold ? typeButtonElement.goldenClasses : typeButtonElement.borderClasses));
+        this.highlighted = 0;
+    } // slight chance of fucking up if they are highlighting an element when it lvels up, I don't care
+    setGoldButton() {
+        if (this.isGold) return;
+        let togh = 0;
+        if (this.highlighted) { togh = 1; this.unhighlight(); }
+        this.isGold = 1;
+        this.typeImage.style.setProperty('filter', typeButtonElement.goldFilter);
+        if (togh)
+            this.highlight();
+    }
+    unsetGoldButton() {
+        if (!this.isGold) return;
+        let togh = 0;
+        if (this.highlighted) { togh = 1; this.unhighlight(); }
+        this.isGold = 0;
+        this.typeImage.style.removeProperty('filter');
+        if (togh)
+            this.highlight();
+
     }
 }
 window.customElements.define('type-button', typeButtonElement);
@@ -96,12 +120,23 @@ class WeaponTypeMenuElement extends HTMLElement {
 
 
     }
-    makeTypeButton() {
-
+    unhighlightTypeButton() {
+        if (this.highlightedButton) {
+            this.highlightedButton.unhighlight();
+        }
     }
     highlightTypeButton(type) {
-        if (this.typeMap.has(type))
-            this.typeMap.get(type).highlight();
+        this.unhighlightTypeButton();
+        if (this.typeMap.has(type)) {
+            this.highlightedButton = this.typeMap.get(type)
+            this.highlightedButton.highlight();
+        }
+    }
+    upgradeType(type) {
+        this.typeMap.get(type).setGoldButton();
+    }
+    unUpgradeTypes() {
+        this.buttons.forEach(button => button.unsetGoldButton());
     }
 }
 
@@ -155,17 +190,14 @@ export class WeaponTypesCombatMenu {
             text: getElementFromFragment(this._content, 'weaponMasteryText', 'h5'),
             title: getElementFromFragment(this._content, 'weaponMasteryTitle', 'h4'),
 
-            // Layout & Buffers
             stepContainer: getElementFromFragment(this._content, 'weaponMasteryStepsContainer', 'div'),
             spacer: getElementFromFragment(this._content, 'modifierSpacer', 'div'),
             modifierListContainer: getElementFromFragment(this._content, 'weaponMasteryModifiers', 'div'),
 
-            // Progress Bar elements
             profBar: getElementFromFragment(this._content, 'weaponMasteryBar', 'div'),
             profFill: getElementFromFragment(this._content, 'weaponMasteryProgress', 'div'),
             profOvFill: getElementFromFragment(this._content, 'weaponMasteryOverfill', 'div'),
 
-            // Milestones & Arrays
             labels: [
                 getElementFromFragment(this._content, 'label-1', 'span'),
                 getElementFromFragment(this._content, 'label-2', 'span'),
@@ -383,6 +415,7 @@ export class WeaponTypesCombatMenu {
     }
     init(game) {
         let firstWep = true;
+        this.buttonList = [];
         for (const overT of weaponOverTypes) {
             const button = createElement('button', {
                 parent: this.weaponButtonGroup,
@@ -390,6 +423,7 @@ export class WeaponTypesCombatMenu {
             });
             createElement('img', { parent: button, className: 'skill-icon-xs table-type-image', attributes: [['src', overT.media]] });
             button.onclick = () => this.selectOType(game, overT, button);
+            button.oType = overT.id;
             button.menu = createElement('weapon-types-menu', {
                 parent: this.weaponMenuPlace,
                 className: 'd-none'
@@ -407,6 +441,7 @@ export class WeaponTypesCombatMenu {
                 //this.selectedAttackBook = book;
                 firstWep = false;
             }
+            this.buttonList.push(button);
         };
         this.typeMenu.title.onclick = () => (this.drillUp());
         this.typeMenu.title.style.cursor = 'pointer';
@@ -440,12 +475,29 @@ export class WeaponTypesCombatMenu {
         this.lookingAtType = 0;
 
     }
+    upgradeButton(type) {
+        for (const button of this.buttonList) {
+            if (button.oType == type.Wtype) { button.menu.upgradeType(type) }
+        }
+    }
+    raiseCaps(oType) {
+        for (const button of this.buttonList) {
+            if (button.oType == oType) { button.menu.unUpgradeTypes() }
+        }
+    }
+    highlightButton(type) {
+        const OType = type.Wtype;
+        for (const button of this.buttonList) {
+            if (button.oType == OType)
+                button.menu.highlightTypeButton(type);
+            else button.menu.unhighlightTypeButton();
+        }
+    }
     selectOType(game, Otype, button) {
         if (this.selectedOType === Otype.name)
             return;
 
         this.changeSelectedMenu(button.menu);
-        this.selectedMenu.highlightTypeButton(game.combat.player.equippedWeaponType);
         this.changeSelectedButton(button);
         this.selectedOType = Otype.name
     }
