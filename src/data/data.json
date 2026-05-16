@@ -301,7 +301,7 @@
         "id": "DuelingStance",
         "templateID": "WTM:ReflexivePosNeg",
         "name": "Dueling Stance",
-        "media": "assets/combat/status/dueling_stance.png",
+        "media": "assets/combat/status/dueling_stance.svg",
         "target": "Self",
         "parameters": [
           {
@@ -1032,7 +1032,7 @@
               ],
               "media": "assets/thrustingswords.svg",
               "type": "melee",
-              "isPerWepMod": false,
+              "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
                   "meleeAccuracyRating": 20,
@@ -1169,10 +1169,10 @@
                         "weaponType": "WTM:ThrustingSwords"
                       },
                       "modifiers": {
-                        "unlockParry": [
+                        "WTM:unlockParry": [
                           {
-                            "damageType": "melvorD:Normal",
-                            "value": 1
+                            "value": 1,
+                            "damageTypeID": "melvorD:Normal"
                           }
                         ]
                       }
@@ -1215,7 +1215,7 @@
               ],
               "media": "assets/greatswords.svg",
               "type": "melee",
-              "isPerWepMod": false,
+              "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
                   "meleeStrengthBonusWith2HWeapon": 5
