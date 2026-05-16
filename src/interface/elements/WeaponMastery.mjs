@@ -256,7 +256,7 @@ export class WeaponMasteryUI {
 
 
         }
-        else { showElement(this.weaponXPNumber);hideElement(this.weaponModDisc); }
+        else { showElement(this.weaponXPNumber); hideElement(this.weaponModDisc); }
         if (this.modifierListContainer.classList.contains('collapsed')) {
             this.cap.classList.add('no-transition');
             this.cap.style.top = this.stepsButton.offsetTop + "px";
@@ -281,9 +281,8 @@ export class WeaponMasteryUI {
         });
     }
     setMods() {
-
         for (let i = 0; i < this.steps.length; i++) {
-            let lockText = this.type.fixture.length > 1 ? templateRielkLangStringWithNodes(
+            let lockText = !this.type.fixture? "" : this.type.fixture.length > 1 ? templateRielkLangStringWithNodes(
                 "MENU_UPGRADE_TYPE3",
                 {
                     fixImg0: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[0].media]] }),
@@ -319,6 +318,7 @@ export class WeaponMasteryUI {
 
             }
         }
+
     }
     show() {
         showElement(this.container);

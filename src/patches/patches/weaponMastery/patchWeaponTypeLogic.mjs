@@ -18,6 +18,7 @@ function giveWeaponMasteryXP(weap, amount) {
     combatSkillProgressTable.weaponTypesTable.updateXP(game, weap.weaponType);
 
     game.bank.renderQueue.mastery = true;
+    game.combat.renderQueue.mastery = true;
 
     if (type.perWepMod && weap.masteryMaxed != weap.isMaxMastery) {
         type.addweaponmastery(weap);

@@ -712,6 +712,20 @@
     ],
     "modifiers": [
       {
+        "id": "spoofIncreaseSkillXP",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_spoofIncreaseSkillXP"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "increaseWeaponXP",
         "allowedScopes": [
           {
@@ -853,7 +867,7 @@
                 "Witherstab_Rapier3"
               ],
               "media": "assets/thrustingswords.svg",
-              "type":"melee",
+              "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1008,8 +1022,7 @@
                 "Ultima_Godsword4"
               ],
               "media": "assets/greatswords.svg",
-                            "type":"melee",
-
+              "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1499,8 +1512,7 @@
                 "Desert_Sabre1"
               ],
               "media": "assets/curvedswords.svg",
-                            "type":"melee",
-
+              "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1597,8 +1609,7 @@
               "id": "Daggers",
               "name": "Daggers",
               "media": "assets/daggers.svg",
-                            "type":"melee",
-
+              "type": "melee",
               "mat": [
                 "Dagger"
               ],
@@ -1768,8 +1779,7 @@
                 "War_Axe1"
               ],
               "media": "assets/axes.svg",
-                            "type":"melee",
-
+              "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -1885,8 +1895,7 @@
               "id": "Polearms",
               "name": "Polearms",
               "media": "assets/polearms.svg",
-                            "type":"melee",
-
+              "type": "melee",
               "mat": [
                 "2H_Spear",
                 "Spear"
@@ -2009,8 +2018,7 @@
                 "Water_Sceptre3"
               ],
               "media": "assets/blunts.svg",
-                            "type":"melee",
-
+              "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2055,8 +2063,7 @@
               "id": "HandToHand",
               "name": "Hand-to-Hand",
               "media": "assets/handtohand.svg",
-                            "type":"melee",
-
+              "type": "melee",
               "uniq": [
                 "Ancient_Claw2",
                 "Blighted_Claw3",
@@ -2129,8 +2136,7 @@
                 "Witherslinger_Crossbow3"
               ],
               "media": "assets/crossbows.svg",
-                            "type":"ranged",
-
+              "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2196,8 +2202,7 @@
                 "Thorned_Power_Bow2"
               ],
               "media": "assets/heavybows.svg",
-                                          "type":"ranged",
-
+              "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2253,8 +2258,7 @@
                 "Poisoned_Shortbow3"
               ],
               "media": "assets/lightbows.svg",
-                                          "type":"ranged",
-
+              "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2310,8 +2314,7 @@
                 "Slingshot2"
               ],
               "media": "assets/thrown.svg",
-                                          "type":"ranged",
-
+              "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2356,8 +2359,7 @@
               "id": "Artifacts",
               "name": "Artifacts",
               "media": "assets/artifacts.svg",
-                                          "type":"magic",
-
+              "type": "magic",
               "uniq": [
                 "Magic_Flute3",
                 "Powered_Red_Crystal3",
@@ -2446,8 +2448,7 @@
                 "Water_Pulse_Staff3"
               ],
               "media": "assets/staves.svg",
-                                                        "type":"magic",
-
+              "type": "magic",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2508,8 +2509,7 @@
                 "Witherbind_Wand3"
               ],
               "media": "assets/wands.svg",
-                                                        "type":"magic",
-
+              "type": "magic",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
@@ -2577,12 +2577,15 @@
                 "Void_Vortex_Whip3"
               ],
               "media": "assets/special.svg",
-                                                        "type":["melee", "ranged", "magic"],
-              "isPerWepMod": true,
+              "type": [
+                "melee",
+                "ranged",
+                "magic"
+              ],
               "wepModifiers": {
                 "modifiers": {
-                  "masteryXP": 10,
-                  "skillXP": 5
+                  "masteryXP": 0.25,
+                  "skillXP": 0.5
                 }
               },
               "levels": [
@@ -2590,32 +2593,44 @@
                   "name": "Special1",
                   "id": "Special1",
                   "level": 1,
-                  "modifiers": {}
+                  "modifiers": {
+                    "nonCombatSkillXP": 5
+                  }
                 },
                 {
                   "name": "Special2",
                   "id": "Special2",
                   "level": 2,
-                  "modifiers": {}
+                  "modifiers": {
+                    "skillPreservationChance": 10
+                  }
                 },
                 {
                   "name": "Special3",
                   "id": "Special3",
                   "level": 3,
-                  "modifiers": {},
+                  "shiny": true,
+                  "modifiers": {
+                    "WTM:spoofIncreaseSkillXP": 5
+                  },
                   "changeFunc": "increaseSpecialAttackChance"
                 },
                 {
                   "name": "Special4",
                   "id": "Special4",
                   "level": 4,
-                  "modifiers": {}
+                  "modifiers": {
+                    "masteryPoolProgress": 5
+                  }
                 },
                 {
                   "name": "Special5",
                   "id": "Special5",
                   "level": 5,
-                  "modifiers": {}
+                  "shiny": true,
+                  "modifiers": {
+                    "skillPreservationCap": 5
+                  }
                 }
               ]
             }

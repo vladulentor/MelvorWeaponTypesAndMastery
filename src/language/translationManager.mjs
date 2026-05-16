@@ -73,8 +73,8 @@ export function patchTranslations(ctx) {
     const superUpdateUIForLanguageChange = updateUIForLanguageChange;
     updateUIForLanguageChange = (...args) => {
         superUpdateUIForLanguageChange(...args);
-        if (window.customElements.get('rielk-lang-string')) {
-            const langStrings = document.getElementsByTagName('rielk-lang-string');
+        if (window.customElements.get('wtm-lang-string')) {
+            const langStrings = document.getElementsByTagName('wtm-lang-string');
             for (let i = 0; i < langStrings.length; i++) {
                 langStrings[i].updateTranslation();
             }

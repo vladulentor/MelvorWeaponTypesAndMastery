@@ -8,8 +8,7 @@
         </h5>
         <div class="block-options font-w600 font-size-sm text-right text-combat-smoke mb-0">
           <img class="skill-icon-xxs mr-1 weapontypeicon" id="weaponMasteryIcon">
-          <rielk-lang-string lang-id="MENU_TEXT_TYPE"></rielk-lang-string>
-
+          <wtm-lang-string lang-id="MENU_TEXT_TYPE"></wtm-lang-string>
         </div>
       </div>
       <div class="weaponMasteryBgContainer" id="weaponMasteryBgContainer">
@@ -109,38 +108,6 @@
 </template>
 
 
-<template id="weaponMasteryTab-template">
-  <div id="outerCont" class="block block-rounded-double bg-combat-inner-dark text-center p-0 mb-2">
-    <div class="block-header block-header-default bg-dark-bank-block-header px-3 py-1 mb-1">
-      <h5 class="font-size-sm font-w600 mb-0 w-100 text-center">
-        <span>Weapon Mastery</span>
-      </h5>
-    </div>
-    <div id="weaponMasteryItem" class="d-flex mb-3">
-
-      <!-- ICON -->
-      <div class="d-flex align-items-center justify-content-center ml-3 m-2" style="width:64px;">
-        <img id="weaponPic" class="icon-size-48" style="width:48px;height:48px">
-      </div>
-
-      <!-- RIGHT SIDE -->
-      <div class="ms-2 flex-grow-1 text-start mt-1" style="text-align: left !important;">
-
-        <div id="weaponRank" class="font-size-xs font-w400 small text-uppercase"></div>
-        <div id="weaponName" class="fw-bold font-size-md mb-2 font-w600 text-combat-smoke" style="line-height:1"></div>
-
-        <!-- XP BAR -->
-        <div id="weaponXPBar" class="progress mt-2" style="height:6px; width:40%;">
-          <div id="weaponXpFill" class="progress-bar" style="width:40%;"></div>
-        </div>
-        <div id="weaponXPNumber" class="text-center font-size-xs font-w600 mb-3 text-center d-none font-italic">
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</template>
 
 <template id="combat-weapon-type-progress-table-template" data-image-init="true">
   <div class="row gutters-tiny">
@@ -209,20 +176,186 @@
 </template>
 
 <template id="weapon-type-combat-menu">
-  <div id="weaponTypeCombatMenuContainer" class="d-none">
-    <div class="block block-rounded-double bg-combat-inner-dark text-center p-0 mb-2">
+  <div id="weaponTypeCombatMenuContainer"
+    class="d-none block block-rounded-double bg-combat-inner-dark text-center p-0 mb-2">
 
-      <div class="block-header block-header-default bg-dark-bank-block-header px-3 py-1 mb-1">
-        <h5 class="font-size-sm font-w600 mb-0 w-100 text-center">
-          <wtm-lang-string lang-id="MENU_WEAPON_TYPES"></wtm-lang-string>
-        </h5>
+    <div class="block-header block-header-default bg-dark-bank-block-header px-3 py-1 mb-1">
+      <h5 class="font-size-sm font-w600 mb-0 w-100 text-center">
+        <span>Weapon Types × Mastery</span>
+      </h5>
+    </div>
+
+
+    <div id="typeViewerCont" class="d-none weaponMasteryContainer">
+      <div class=" col-12">
+        <img class="weaponMasteryBgIcon" id="weaponMasteryBgIcon">
+        <h4 id="weaponMasteryTitle"
+          class="position-absolute d-flex align-items-center pointer-cursor text-left font-w600 mb-0"
+          style="top: 15px; left: 15px; z-index: 10; width:150px">
+          <i class="fa fa-chevron-left mr-2"></i>             <wtm-lang-string lang-id="MENU_BACK"></wtm-lang-string>
+        </h4>
       </div>
 
-      <div id="weaponIDContent" class="block-content">
-        <!-- content -->
+      <div class="weaponMasteryBgContainer" id="weaponMasteryBgContainer">
+        <div class="weaponMasteryMenu">
+          <div class="row no-gutters p-2">
+            <div class="col-12">
+              <h5 id="weaponMasteryText" class="font-w900 font-size-md text-combat-smoke pt-2 text-center"
+                style="margin-bottom: 0.76rem;"></h5>
+
+              <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 pb-2 text-center">
+                Type Proficiency:
+              </h5>
+
+              <div class="mastery-weapon-xp-container pb-3">
+                <div class="mastery-weapon-xp-bar progress" id="weaponMasteryBar">
+                  <div class="mastery-weapon-xp-fill" id="weaponMasteryProgress" style="width: 0%;"></div>
+                  <div class="mastery-weapon-xp-overfill" id="weaponMasteryOverfill" style="width: 0%;"></div>
+
+                  <!-- Milestone Markers (1 to 5) -->
+                  <div id="marker-1" class="xp-marker" style="left: 7%;">
+                    <span id="label-1" class="xp-label font-w600 font-size-sm text-combat-smoke">1</span>
+                  </div>
+                  <div id="marker-2" class="xp-marker" style="left: 20%;">
+                    <span id="label-2" class="xp-label font-w600 font-size-sm text-combat-smoke">2</span>
+                  </div>
+                  <div id="marker-3" class="xp-marker" style="left: 40%;">
+                    <span id="label-3" class="xp-label font-w600 font-size-sm text-combat-smoke">3</span>
+                  </div>
+                  <div id="marker-4" class="xp-marker" style="left: 65%;">
+                    <span id="label-4" class="xp-label font-w600 font-size-sm text-combat-smoke">4</span>
+                  </div>
+                  <div id="marker-5" class="xp-marker" style="left: 95%;">
+                    <span id="label-5" class="xp-label font-w600 font-size-sm text-combat-smoke">5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row no-gutters d-flex justify-content-center" id="weaponMasteryStepsContainer">
+
+          <!-- Modifier checklist items -->
+          <div class="weaponMasteryModifiers2 open font-w700 font-size-sm" id="weaponMasteryModifiers"
+            style="max-width: 95%; max-height: none;">
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock1" class="mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep1"></div>
+
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock2" class="mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep2"></div>
+
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock3" class="mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep3"></div>
+
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock4" class="mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep4"></div>
+
+            <div class="col-12 mb-1 dropdown-divider"></div>
+            <div id="lock5" class="mx-auto align-items-center lockIcon"></div>
+            <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep5"></div>
+            <div id="modifierSpacer" style="height:0;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="menuViewerCont">
+      <div id="weaponMasteryItem" class="d-flex pb-2">
+
+        <div class="d-flex align-items-center justify-content-center ml-3  m-2" style="width:64px;">
+          <img id="weaponPic" class="icon-size-64" style="width:64px;height:64px">
+        </div>
+
+        <div class="ms-2 flex-grow-1 text-start mt-2" style="text-align: left !important;">
+
+          <div id="weaponRank" class="font-size-s font-w400 small text-uppercase mt-2 ml-3"></div>
+          <div id="weaponName" class="fw-bold font-size-md ml-3 font-w600 text-combat-smoke"
+            style="line-height:1;margin-bottom: 0.75rem !important;">
+          </div>
+
+          <!-- I HATE THIS PART -->
+          <div id="weaponXPBar" class="progress ml-3" style="height:6px; width:40%;">
+            <div id="weaponXpFill" class="progress-bar" style="width:40%;"></div>
+          </div>
+          <div id="weaponXPNumber" class="text-center font-size-xs font-w600 mb-3 text-center d-none font-italic">
+          </div>
+
+        </div>
       </div>
 
+      <div role="separator" class="dropdown-divider w-100 mx-auto mb-2" style="max-width: 97%;"></div>
+
+      <div class="row no-gutters">
+        <div class="col-12">
+          <h5 id="wtm-header-text" class="font-w700 text-combat-smoke text-left ml-2 mt-2 mr-1 mb-2">
+            <wtm-lang-string lang-id="MENU_WEAPON_TYPES"></wtm-lang-string>
+          </h5>
+        </div>
+
+        <div id="weaponIDButtonGroup" class="p-1 col-12 mb-2 w-100 btn-group">
+        </div>
+        <div id="weaponMenuPlace" class="col-12 p-1">
+        </div>
+        <div id="wtm-info-box" class="col-12 p-1">
+          <div class="row">
+            <div class="col-12 font-w400 font-size-sm text-center">
+              <div class="bg-light rounded p-2 text-center font-size-sm">
+                <div id="wtm-info-text" class="text-warning">
+                  Did you know?
+                </div>
+                <div id="wtm-info-text">
+                  You can hover over text to learn more!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</template>
 
+<template id="WeaponTypesMenuElement">
+  <div class="row">
+
+    <div class="col-12 text-center">
+      <small class="text-muted text-uppercase font-w600"></small>
+    </div>
+
+    <div class="col-12">
+      <div class="row p-1 justify-content-center" id="weaponButtonsContainer">
+      </div>
+      <hr class="border-secondary opacity-25">
+
+    </div>
+
+
+    <div id="wtm-notice-container" class="col-12 mt-2 d-none">
+      <div class="block block-rounded bg-dark p-2">
+        <small class="text-danger">
+          <i class="fa fa-fw fa-info-circle mr-1"></i>
+          <span id="wtm-notice-message"></span>
+        </small>
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<template id="weaponTypeButton">
+  <ul class="nav nav-pills nav-justified push">
+    <li class="nav-item mr-1">
+      <small class="text-warning">
+        <a class="pointer-enabled nav-link border border-dark p-0" id="link">
+          <img class="skill-icon-xs table-type-image" id="type-image">
+        </a>
+      </small>
+    </li>
+  </ul>
 </template>

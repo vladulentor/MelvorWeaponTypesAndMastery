@@ -69,7 +69,7 @@ export class WeaponMastery extends RealmedObject {
                     this.kind = data.kind;
                     break;
             }
-        this.type = data.type;
+        this.Wtype = data.type;
         this.activeWeapon = undefined
         this.game = game;
 

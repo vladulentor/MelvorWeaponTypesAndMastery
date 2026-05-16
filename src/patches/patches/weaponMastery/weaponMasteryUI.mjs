@@ -4,7 +4,6 @@ const { getRielkLangString, templateRielkLangString } = await loadModule('src/la
 
 
 const { WeaponMasteryUI } = await loadModule('src/interface/elements/WeaponMastery.mjs');
-const { weaponMasteryTab } = await loadModule('src/interface/elements/WeaponMasteryTab.mjs');
 const { CombatWeaponTypeProgressTableElement } = await loadModule('src/interface/elements/MasteriesXPTab.mjs');
 const { WeaponTypesCombatMenu } = await loadModule('src/interface/elements/WeaponTypesCombatMenu.mjs');
 
@@ -36,9 +35,6 @@ export function addWeaponMasteryUI(ctx) {
         if (!game.weaponMasteries.allObjects?.length || game.weaponMasteries.allObjects[0].levelCap == 0) return;
         if (!combatMenus.weaponMastery) {
             // Top stuff
-            combatMenus.weaponMastery = new weaponMasteryTab();
-            combatMenus.equipment[1].parentElement.parentElement.parentElement.after(combatMenus.weaponMastery.container);
-
 
             combatSkillProgressTable.weaponTypesTable = new CombatWeaponTypeProgressTableElement();
             combatSkillProgressTable.weaponTypesTable.initialize(game);
@@ -48,8 +44,8 @@ export function addWeaponMasteryUI(ctx) {
             // Menu
             const coolbanner = document.createElement("img");
             coolbanner.className = "combat-menu-img border-rounded-equip p-1 m-1 pointer-enabled";
-            coolbanner.style.marginLeft = "-1px"; // look man idk why but i need to scoot it over like less than one pixel to the right to make it look right i don't fuckign know why don't ask me I do not know
-            coolbanner.id = "combat-menu-item-8"; //let's hope they don't add any
+            coolbanner.style.marginLeft = "-1px"; // look man idk why but i need to scoot it over like one pixel to the right to make it look right
+            coolbanner.id = "combat-menu-item-8";
             coolbanner.src = ctx.getResourceUrl('assets/banner.png');
             coolbanner.onclick = () => changeCombatMenu(8);
             combatMenus.menuTabs.push(coolbanner)
@@ -70,13 +66,25 @@ export function addWeaponMasteryUI(ctx) {
                 },
             });
             const combatTab = new WeaponTypesCombatMenu();
+
             combatMenus.menuPanels[8] = combatTab.container;
             combatMenus.menuPanels[0].parentElement.after(combatTab.container);
-            
-         
+            combatMenus.weaponMastery = combatTab;
+
+            combatTab.init(game);
+            // We want our menu to be drilled up when the player sees it
+            const originalChangeCombatMenu = changeCombatMenu;
+
+            changeCombatMenu = function (id) {
+                if (selectedCombatMenu === 8) {
+                    if (combatTab.lookingAtType) {
+                        combatTab.drillUp();
+                    }
+                }
+                originalChangeCombatMenu(id);
+            };
         }
-        let weapon = this.equippedWeapon;
-        if (!weapon) weapon = this.equipment.getItemInSlot("melvorD:Weapon");
+        let weapon = this.equippedWeapon ?? this.equipment.getItemInSlot("melvorD:Weapon");
         if (weapon) { combatMenus.weaponMastery.setWeapon(weapon) }
         else waitForWeapon(this);
     }); // Lazy poll because FUCK this game man I'm not digging through the initialization render pipeline to find the right place to put this FUCK you!!!
@@ -88,7 +96,7 @@ export function addWeaponMasteryUI(ctx) {
             return;
         }
 
-        setTimeout(waitForWeapon(player), 100);
+        setTimeout(() => waitForWeapon(player), 100);
     };
 
     ctx.patch(Bank, 'render').after(function (_) {
@@ -99,6 +107,12 @@ export function addWeaponMasteryUI(ctx) {
             this.renderQueue.mastery = false;
         }
     })
-
-
+    ctx.patch(CombatManager, 'render').after(function (_) {
+        if (this.renderQueue.mastery) {
+            const weaponTab = combatMenus.weaponMastery;
+            if (weaponTab && !weaponTab.container.classList.contains("d-none") && weaponTab.lookingAtType && weaponTab.typeMenu.type === game.combat.player.equippedWeaponType)
+                weaponTab.renderTypeXP();
+            this.renderQueue.mastery = false;
+        }
+    })
 }

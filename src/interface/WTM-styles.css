@@ -57,7 +57,7 @@ body.darkMode .text-danger.fuck-you {
   font-weight: 900;
   display: inline-block;
   font-size: 24px;
-  color: white;
+  color: whitesmoke;
   transition: transform 0.35s ease;
   margin-left: 0.5rem;
 }
@@ -81,6 +81,18 @@ body.darkMode .text-danger.fuck-you {
   padding-bottom: 32px;
   box-sizing: border-box;
 }
+
+.weaponMasteryModifiers2 {
+  width: 95%;
+  align-items: stretch;
+  z-index: 1;
+}
+
+.weaponMasteryModifiers2.open {
+  opacity: 1;
+  box-sizing: border-box;
+}
+
 
 
 .weaponMasteryStepsContainer {
@@ -174,6 +186,9 @@ body.darkMode.superDark .weaponMasteryBgIcon {
   opacity: 0.2;
 }
 
+.wtm-type-button {
+display: block !important;
+}
 .table-type-image {
   filter: invert(0%);
   stroke-width: 2;

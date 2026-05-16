@@ -1,22 +1,452 @@
-class WeaponTypeCombatMenuType{
-    constructor(){
-        
+// I was planning to do a OOP approach with making weapon overtype categories and weapon button classes, but the game doesn't, so I won't.
+// Tell that guy above me he's a fucking moron right now to his face please ^ 
+
+const ctx = mod.getContext(import.meta);
+
+const { templateRielkLangStringWithNodes, templateRielkLangString, getRielkLangString } = await ctx.loadModule('src/language/translationManager.mjs');
+
+// we should put these in a data type so that it's all connected by data and nice but... nobody is adding more weapon types, I'd like to see them try.
+const weaponOverTypes = [
+    { id: "melee", name: getLangString("ATTACK_TYPE_melee"), media: ctx.getResourceUrl('assets/melee.svg') },
+    { id: "ranged", name: getLangString("ATTACK_TYPE_ranged"), media: ctx.getResourceUrl('assets/ranged.svg') },
+    { id: "magic", name: getLangString("ATTACK_TYPE_magic"), media: ctx.getResourceUrl('assets/magic.svg') }
+];
+
+export class typeButtonElement extends HTMLElement {
+    static borderClasses = ['border-success', 'border-2x', 'spell-selected'];
+    constructor() {
+        super();
+        this._content = new DocumentFragment();
+        this._content.append(getTemplateNode('weaponTypeButton'));
+        this.link = getElementFromFragment(this._content, 'link', 'a');
+        this.typeImage = getElementFromFragment(this._content, 'type-image', 'img');
+    }
+    connectedCallback() {
+        this.appendChild(this._content);
+        this.tooltip = tippy(this.link, {
+            content: '',
+            placement: 'bottom',
+            allowHTML: true,
+            interactive: false,
+            animation: false,
+        });
+    }
+    setTypeButton(type) {
+        this.typeImage.src = type.media;
+        this.tooltip.setContent(type.name);
+        this.link.onclick = () => {
+            const weaponSelectEvent = new CustomEvent('wtm-type-selected', { // we use an event because I'm not fucking drilling down the arrowfunc from the big menu
+                bubbles: true,
+                composed: true,
+                detail: { type }
+            }); this.dispatchEvent(weaponSelectEvent);
+        };
+    }
+    highlight() {
+        this.link.classList.add(...typeButtonElement.borderClasses);
+    }
+    unhighlight() {
+        this.link.classList.remove(...typeButtonElement.borderClasses);
+    }
+}
+window.customElements.define('type-button', typeButtonElement);
+
+
+class WeaponTypeMenuElement extends HTMLElement {
+    constructor(container, oType) {
+        super();
+        this._content = getTemplateNode('WeaponTypesMenuElement');
+        this.types = [];
+        this.buttons = []
+        this.typeMap = new Map();
+        this.weaponContainer = getElementFromFragment(this._content, "weaponButtonsContainer", 'div');
+        this.noticeContainer = getElementFromFragment(this._content, 'wtm-notice-container', 'div');
+        this.noticeMessage = getElementFromFragment(this._content, 'wtm-notice-message', 'span');
+    }
+    appendWepMenu(wepElem) {
+        this.weaponContainer.append(wepElem);
+    }
+    init(oType) {
+        this.append(this._content);
+        this.oType = oType
+        this.types = game.weaponMasteries.allObjects.filter(mast => mast.Wtype == this.oType.id); // nice capitalization jackass
+        this.setWeaponTypes();
+
+    }
+
+    setWeaponTypes() {
+        while (this.buttons.length < this.types.length) {
+            const button = createElement('type-button', {
+                className: 'col-4 col-md-3 wtm-type-button'
+            });
+
+            this.appendWepMenu(button);
+
+            this.buttons.push(button);
+        }
+        this.typeMap.clear();
+
+        this.types.forEach((typeData, i) => {
+            const button = this.buttons[i];
+            button.setTypeButton(typeData);
+            this.typeMap.set(typeData, button);
+            showElement(button);
+
+        });
+
+
+    }
+    makeTypeButton() {
+
+    }
+    highlightTypeButton(type) {
+        if (this.typeMap.has(type))
+            this.typeMap.get(type).highlight();
     }
 }
 
-class WeaponTypeCombatMenuCategory{
-    constructor(){
 
-    }
-}
+const noXP = { name: "No XP", color: "#af0000", width: '0%' };
+const stock = { name: "Stock", color: "#2dd432", width: '40%' };
+const unusual = { name: "Unusual", color: "#3a9adf", width: '60%' };
+const distinct = { name: "Distinct", color: "#d33290", width: '80%' };
+const exotic = { name: "Exotic", color: "#ffaf02", width: '90%' };
+
+const uniqtoclass = [noXP, stock, unusual, distinct, exotic, exotic, exotic, exotic, exotic];
+
+window.customElements.define('weapon-types-menu', WeaponTypeMenuElement);
 
 export class WeaponTypesCombatMenu {
+    // This element grew like a tumor
     constructor() {
         this._content = new DocumentFragment();
         this._content.append(getTemplateNode('weapon-type-combat-menu'));
-        this.container = getElementFromFragment(this._content,'weaponTypeCombatMenuContainer','div');
-        this.content = getElementFromFragment(this._content,'weaponIDContent','div');
-        this.selectedType = null;
-        this.categories;
+        this.container = getElementFromFragment(this._content, 'weaponTypeCombatMenuContainer', 'div');
+        this.typeViewerCont = getElementFromFragment(this._content, 'typeViewerCont', 'div');
+        this.menuViewerCont = getElementFromFragment(this._content, 'menuViewerCont', 'div');
+        this.lookingAtType = 0;
+        // WEAPON PARTS
+        this.weaponItem = getElementFromFragment(this._content, 'weaponMasteryItem', 'div');
+        this.weaponPic = getElementFromFragment(this._content, 'weaponPic', 'img');
+        this.weaponName = getElementFromFragment(this._content, 'weaponName', 'div');
+        this.weaponRank = getElementFromFragment(this._content, 'weaponRank', 'div');
+        this.weaponXPBar = getElementFromFragment(this._content, 'weaponXPBar', 'div');
+        this.weaponXPNumber = getElementFromFragment(this._content, 'weaponXPNumber', 'div');
+        this.weaponXPFill = getElementFromFragment(this._content, 'weaponXpFill', 'div');
+        this.emptyAsset = 'assets/media/bank/weapon_sword.png'
+        this.noWeaponText = "No weapon Equipped"; //getRielkLangString()
+
+        // MENU SELECT PARTS
+        this.weaponButtonGroup = getElementFromFragment(this._content, 'weaponIDButtonGroup', 'div');
+        this.weaponMenuPlace = getElementFromFragment(this._content, 'weaponMenuPlace', 'div');
+        this.headerText = getElementFromFragment(this._content, 'wtm-header-text', 'h5');
+        this.infoBox = getElementFromFragment(this._content, 'wtm-info-box', 'div');
+        this.infoText = getElementFromFragment(this._content, 'wtm-info-text', 'div');
+        this.selectedButton = null;
+        this.selectedMenu = null;
+        this.selectedOType = null;
+        this.tooltips = [];
+
+
+        // TYPE MENU PARTS
+        this.typeMenu = {
+            type: { id: "" }, //init that doesn't break
+            bgIcon: getElementFromFragment(this._content, 'weaponMasteryBgIcon', 'img'),
+            text: getElementFromFragment(this._content, 'weaponMasteryText', 'h5'),
+            title: getElementFromFragment(this._content, 'weaponMasteryTitle', 'h4'),
+
+            // Layout & Buffers
+            stepContainer: getElementFromFragment(this._content, 'weaponMasteryStepsContainer', 'div'),
+            spacer: getElementFromFragment(this._content, 'modifierSpacer', 'div'),
+            modifierListContainer: getElementFromFragment(this._content, 'weaponMasteryModifiers', 'div'),
+
+            // Progress Bar elements
+            profBar: getElementFromFragment(this._content, 'weaponMasteryBar', 'div'),
+            profFill: getElementFromFragment(this._content, 'weaponMasteryProgress', 'div'),
+            profOvFill: getElementFromFragment(this._content, 'weaponMasteryOverfill', 'div'),
+
+            // Milestones & Arrays
+            labels: [
+                getElementFromFragment(this._content, 'label-1', 'span'),
+                getElementFromFragment(this._content, 'label-2', 'span'),
+                getElementFromFragment(this._content, 'label-3', 'span'),
+                getElementFromFragment(this._content, 'label-4', 'span'),
+                getElementFromFragment(this._content, 'label-5', 'span'),
+            ],
+            markers: [
+                getElementFromFragment(this._content, 'marker-1', 'div'),
+                getElementFromFragment(this._content, 'marker-2', 'div'),
+                getElementFromFragment(this._content, 'marker-3', 'div'),
+                getElementFromFragment(this._content, 'marker-4', 'div'),
+                getElementFromFragment(this._content, 'marker-5', 'div'),
+            ],
+            steps: [
+                getElementFromFragment(this._content, 'modifierStep1', 'div'),
+                getElementFromFragment(this._content, 'modifierStep2', 'div'),
+                getElementFromFragment(this._content, 'modifierStep3', 'div'),
+                getElementFromFragment(this._content, 'modifierStep4', 'div'),
+                getElementFromFragment(this._content, 'modifierStep5', 'div'),
+            ],
+            locks: [
+                getElementFromFragment(this._content, 'lock1', 'div'),
+                getElementFromFragment(this._content, 'lock2', 'div'),
+                getElementFromFragment(this._content, 'lock3', 'div'),
+                getElementFromFragment(this._content, 'lock4', 'div'),
+                getElementFromFragment(this._content, 'lock5', 'div'),
+            ]
+        };
+
     }
+    // ----------TYPE MENU FUNCTIONS ------------
+
+    setWeaponMasteryTooltip(elem) {
+        elem.tippyContent = createElement("div");
+
+        const expl = createElement("div", {
+            className: 'text-center text-size-sm mb-1 font-w400'
+        });
+        expl.innerText = "Weapon Masteries represent your use with a weapon and weapons of that type.";
+        elem.tippyContent.appendChild(expl);
+
+        elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
+
+        const hint = createElement("div", {
+            className: 'text-center text-size-sm font-w400 text-muted'
+        });
+        hint.innerText = "Mastery with a weapon is increased primarily by attacking with it, and secondarily by killing enemies.";
+        elem.tippyContent.appendChild(hint);
+        elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
+
+        const hint2 = createElement("div", {
+            className: 'text-center text-size-sm font-w400 text-muted'
+        });
+        hint2.innerText = "Hover over different elements to learn more about weapon masteries";
+        elem.tippyContent.appendChild(hint2);
+
+        tippy(elem, {
+            content: elem.tippyContent,
+            placement: 'top',
+            allowHTML: true,
+            interactive: true,
+            animation: false,
+            appendTo: document.body,
+            popperOptions: {
+                strategy: 'fixed',
+                modifiers: [
+                    { name: 'flip', options: { fallbackPlacements: ['top'] } },
+                    { name: 'preventOverflow', options: { altAxis: true, tether: false } },
+                ],
+            },
+        });
+    }
+
+    setType(type) {
+        if (this.typeMenu.type == type) return;
+        this.typeMenu.text.innerHTML = type.name;
+        this.typeMenu.bgIcon.src = type.media;
+        this.typeMenu.type = type;
+        this.setMods();
+    }
+
+    renderTypeXP() {
+        this.setXP();
+    }
+
+    setXP(performant = 1) {
+        this.typeMenu.profOvFill.style.width = this.typeMenu.type.uncappedxpPercent + "%";
+        const percentCapped = this.typeMenu.type.xpPercent;
+        this.typeMenu.profFill.style.width = percentCapped + "%";
+        if (performant && this.typeMenu.type.level !== this.typeMenu.levelCache) return;
+        for (let i = 0; i < 5; i++) {
+            const fancy = this.typeMenu.type.level > i;
+            this.typeMenu.labels[i].classList.toggle("text-combat-smoke", !fancy);
+            this.typeMenu.markers[i].classList.toggle("construction-bar", fancy);
+            this.typeMenu.labels[i].classList.toggle("construction-victory", fancy);
+            this.typeMenu.steps[i].classList.toggle("locked", !fancy);
+        }
+        this.typeMenu.levelCache = this.typeMenu.type.level;
+    }
+    generateModifierElements(level) {
+        const descs = StatObject.getDescriptions(level.uiMods);
+        const isShiny = !!level.shiny;
+
+        return descs.map((desc) => {
+            const cls = 'modifierHolder fuck-you text-center ' + (isShiny ? 'special' : '');
+            const span = createElement('span', {
+                className: `m-1 font-size-sm ${cls}`,
+                innerHTML: desc.text
+            });
+            span.style.display = 'block';
+            return span;
+        });
+    }
+
+    setMods() {
+        for (let i = 0; i < this.typeMenu.steps.length; i++) {
+            let lockText = !this.typeMenu.type.fixture ? "" : this.typeMenu.type.fixture.length > 1 ? templateRielkLangStringWithNodes(
+                "MENU_UPGRADE_TYPE3",
+                {
+                    fixImg0: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[0].media]] }),
+                    fixImg1: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[1].media]] }),
+                    fixImg2: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[2].media]] })
+                },
+                {
+                    fixName0: this.typeMenu.type.fixture[0].name,
+                    fixName1: this.typeMenu.type.fixture[1].name,
+                    fixName2: this.typeMenu.type.fixture[2].name
+                }
+            )
+                : templateRielkLangStringWithNodes("MENU_UPGRADE_TYPE",
+                    { fixImg: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[0].media]] }) }, { fixName: this.typeMenu.type.fixture[0].name });
+
+            const shiny = !!this.typeMenu.type.levels[i].shiny;
+            if (this.typeMenu.type.levelCap <= i) {
+                this.typeMenu.locks[i].innerHTML = '';
+                this.typeMenu.locks[i].append(...lockText);
+                this.typeMenu.locks[i].classList.toggle('text-danger', !shiny);
+                this.typeMenu.locks[i].classList.toggle('text-warning', shiny);
+
+                showElement(this.typeMenu.locks[i]);
+                this.typeMenu.steps[i].classList.add("hidden");
+            }
+            else {
+                const spans = this.generateModifierElements(this.typeMenu.type.levels[i]);
+                this.typeMenu.steps[i].innerHTML = '';
+                this.typeMenu.steps[i].append(...spans);
+
+                hideElement(this.typeMenu.locks[i]);
+                this.typeMenu.steps[i].classList.remove("hidden");
+            }
+        }
+    }
+    // ----------WEAPON TAB FUNCTIONS ------------
+
+    setWeapon(weapon) {
+        if (weapon._localID == "Empty_Equipment") {
+            this.weaponPic.src = this.emptyAsset;
+            this.weaponName.innerHTML = this.noWeaponText
+        }
+        else {
+            this.weaponPic.src = weapon.media;
+            this.weaponName.innerHTML = weapon.name;
+        }
+        if (weapon.weaponType) {
+            this.uniqclass = uniqtoclass[weapon.uniqueness];
+            this.weaponRank.innerHTML = this.uniqclass.name;
+            this.weaponRank.style.color = this.uniqclass.color;
+            this.weaponXPBar.style.width = this.uniqclass.width;
+            this.weaponXPFill.style.backgroundColor = this.uniqclass.color;
+
+            showElement(this.weaponXPBar);
+            showElement(this.weaponXPNumber);
+            showElement(this.weaponXPFill);
+
+        }
+        else {
+            this.weaponRank.innerHTML = "None";
+            this.weaponRank.style.color = "#FFFFFF";
+            hideElement(this.weaponXPBar);
+            hideElement(this.weaponXPNumber);
+            hideElement(this.weaponXPFill);
+
+
+        }
+        this.setwepXP(weapon);
+    };
+
+    setwepXP(weapon) {
+        //if (!weapon.masteryMaxed) this.weaponXPNumber.innerText = `${weapon._weaponXP}/${weapon.weaponXPCap}`
+
+        this.weaponXPFill.style.width = weapon.weaponXPPercentCapped + "%"
+    }
+    // ---------- TYPES SELECT MENU FUNCTIONS ------------
+    changeSelectedButton(button) {
+        this.selectedButton.classList.replace('btn-outline-success', 'btn-outline-secondary');
+        this.selectedButton.menu.classList.add('d-none');
+        button.classList.replace('btn-outline-secondary', 'btn-outline-success');
+        button.menu.classList.remove('d-none');
+        this.selectedButton = button;
+    }
+    changeSelectedMenu(menu) {
+        hideElement(this.selectedMenu);
+        showElement(menu);
+        this.selectedMenu = menu;
+    }
+
+    addTooltip(button, bookName) {
+        this.tooltips.push(tippy(button, {
+            content: bookName,
+            placement: 'bottom',
+            interactive: false,
+            animation: false,
+        }));
+    }
+    init(game) {
+        let firstWep = true;
+        for (const overT of weaponOverTypes) {
+            const button = createElement('button', {
+                parent: this.weaponButtonGroup,
+                className: 'btn btn-sm btn-outline-secondary flex-fill',
+            });
+            createElement('img', { parent: button, className: 'skill-icon-xs table-type-image', attributes: [['src', overT.media]] });
+            button.onclick = () => this.selectOType(game, overT, button);
+            button.menu = createElement('weapon-types-menu', {
+                parent: this.weaponMenuPlace,
+                className: 'd-none'
+            });
+            button.menu.init(overT);
+            this.addTooltip(button, overT.name);
+            if (firstWep) {
+                this.selectedButton = button;
+                this.selectedMenu = button.menu;
+                this.selectedOType = overT.name;
+                this.changeSelectedButton(button);
+                this.changeSelectedMenu(button.menu);
+                // this is stupid I just want it to work
+                //this.attackSpellMenu.setBook(book);
+                //this.selectedAttackBook = book;
+                firstWep = false;
+            }
+        };
+        this.typeMenu.title.onclick = () => (this.drillUp());
+        this.typeMenu.title.style.setProperty('color', '#f5f5f5', 'important');
+        this.typeMenu.title.style.cursor = 'pointer';
+        this.typeMenu.title.style.setProperty('transition', 'color 0.2s ease', 'important');
+         this.typeMenu.title.onmouseenter = () => {
+this.typeMenu.title.style.setProperty('color', '#acacac', 'important');        };
+
+        this.typeMenu.title.onmouseleave = () => {
+this.typeMenu.title.style.setProperty('color', '#f5f5f5', 'important');        };
+
+        this.container.addEventListener('wtm-type-selected', (event) => {
+            const selectedType = event.detail.type;
+            console.log("i got it:", selectedType);
+
+            this.drillDown(selectedType);
+        });
+    };
+    drillDown(type) {
+        this.setType(type);
+        this.setXP(0);
+        hideElement(this.menuViewerCont);
+        showElement(this.typeViewerCont);
+        this.lookingAtType = 1;
+
+    }
+    drillUp() {
+        hideElement(this.typeViewerCont);
+        showElement(this.menuViewerCont);
+        this.lookingAtType = 0;
+
+    }
+    selectOType(game, Otype, button) {
+        if (this.selectedOType === Otype.name)
+            return;
+
+        this.changeSelectedMenu(button.menu);
+        this.selectedMenu.highlightTypeButton(game.combat.player.equippedWeaponType);
+        this.changeSelectedButton(button);
+        this.selectedOType = Otype.name
+    }
+
 }

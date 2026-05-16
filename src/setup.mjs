@@ -27,8 +27,9 @@ class Setup {
 
     async loadInterfaceElements() {
         await loadStylesheet('src/interface/WTM-styles.css');
+                await loadModule('src/interface/elements/WTMLangStringElement.mjs');
+
         await loadTemplates('src/interface/templates/WTM.html');
-        await loadModule('src/interface/elements/WTMLangStringElement.mjs');
         await loadModule('src/interface/elements/WeaponMastery.mjs');
 
     }
