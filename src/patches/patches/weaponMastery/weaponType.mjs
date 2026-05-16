@@ -72,7 +72,9 @@ export class WeaponMastery extends RealmedObject {
         this.Wtype = data.type;
         this.activeWeapon = undefined
         this.game = game;
-
+        if(data.flavorText)
+        this.flavorText = data.flavorText;
+        else this.flavorText = "This text is flavorless hoss";
         this.isPerWepMod = data.isPerWepMod ?? false;
         if (this.isPerWepMod) {
             this.wepProvidedStats = new StatProvider();
