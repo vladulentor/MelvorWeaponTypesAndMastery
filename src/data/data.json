@@ -244,6 +244,77 @@
     ],
     "combatEffects": [
       {
+        "id": "AggressiveStance",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Aggressive Stance",
+        "media": "assets/combat/status/aggressive_stance.png",
+        "target": "Self",
+        "parameters": [
+          {
+            "initialValue": 1,
+            "name": "turns"
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "flatAttackInterval": -100,
+              "convertMissIntoHit": 10,
+              "ignoreResistanceWhenAttackingChance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": 10
+                }
+              ],
+              "flatResistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": -10
+                }
+              ],
+              "evasion": -20
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "DefensiveStance",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Defensive Stance",
+        "media": "assets/combat/status/defensive_stance.png",
+        "target": "Self",
+        "parameters": [
+          {
+            "initialValue": 1,
+            "name": "turns"
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "dodgeChance": 10,
+              "flatResistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": 10
+                }
+              ],
+              "evasion": 20,
+              "flatAttackInterval": 200,
+              "accuracyRating": -20
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
         "id": "Intimidation",
         "templateID": "melvorD:StaticSelfCountingModifier",
         "name": "Intimidation",
@@ -868,7 +939,7 @@
               ],
               "media": "assets/thrustingswords.svg",
               "type": "melee",
-              "isPerWepMod": true,
+              "isPerWepMod": false,
               "wepModifiers": {
                 "modifiers": {
                   "meleeAccuracyRating": 20,
@@ -883,17 +954,96 @@
                   "name": "ThrustingSwords1",
                   "id": "ThrustingSwords1",
                   "level": 1,
-                  "conditionalModifiers": [
+                  "shiny": false,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "Gain two modal fighting stances that you enter based on circumstance: Aggressive Stance and Defensive Stance. Aggressive Stance: -0.1s Attack Interval, +10% Chance to Convert Miss into Hit, +10% Chance to ignore Enemy DR, -10% Flat DR, -20% Evasion. | Defensive Stance: +10% Dodge Chance, +10% Flat DR, +20% Evasion, +0.2s Attack Interval, -20% Accuracy Rating.<br>At the Start of the Fight, randomly enter one of these stances, and 50% Chance to re-enter Aggressive Stance when Hitting with an Attack, and 50% Chance to re-enter Defensive Stance when being Hit by an Attack.",
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:AggressiveStance",
+                        "chance": 50
+                      }
+                    ]
+                  },
+                  "combatEffects": [
                     {
-                      "description": "-0.2s Attack Interval, +10% Accuracy Rating, and +10% Lifesteal while using Thrusting Swords",
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:AggressiveStance",
+                      "chance": 50,
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:ThrustingSwords"
-                      },
-                      "modifiers": {
-                        "flatAttackInterval": -200,
-                        "accuracyRating": 10,
-                        "lifesteal": 10
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          },
+                          {
+                            "character": "Player",
+                            "effectID": "WTM:DefensiveStance",
+                            "type": "CombatEffect",
+                            "inverted": true
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:DefensiveStance",
+                      "chance": 50,
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          },
+                          {
+                            "character": "Player",
+                            "effectID": "WTM:AggressiveStance",
+                            "type": "CombatEffect",
+                            "inverted": true
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:AggressiveStance",
+                      "chance": 50,
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          },
+                          {
+                            "character": "Player",
+                            "effectID": "WTM:DefensiveStance",
+                            "type": "CombatEffect",
+                            "inverted": true
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "appliesWhen": "HitByAttack",
+                      "effectID": "WTM:DefensiveStance",
+                      "chance": 50,
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          },
+                          {
+                            "character": "Player",
+                            "effectID": "WTM:AggressiveStance",
+                            "type": "CombatEffect",
+                            "inverted": true
+                          }
+                        ]
                       }
                     }
                   ]
@@ -902,16 +1052,69 @@
                   "name": "ThrustingSwords2",
                   "id": "ThrustingSwords2",
                   "level": 2,
+                  "shiny": false,
                   "conditionalModifiers": [
                     {
-                      "description": "+5% chance to convert a Miss into a Hit and +5% Dodge chance while using Thrusting Swords",
+                      "description": "Bonuses given by your stances are increased by 50% and penalties are reduced by 25%.",
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:ThrustingSwords"
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          },
+                          {
+                            "effectID": "WTM:AggressiveStance",
+                            "character": "Player",
+                            "type": "CombatEffect"
+                          }
+                        ]
                       },
                       "modifiers": {
+                        "flatAttackInterval": -50,
                         "convertMissIntoHit": 5,
-                        "dodgeChance": 5
+                        "ignoreResistanceWhenAttackingChance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ],
+                        "flatResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 2.5
+                          }
+                        ],
+                        "evasion": 5
+                      }
+                    },
+                    {
+                      "description": "Bonuses given by your stances are increased by 50% and penalties are reduced by 25%.",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          },
+                          {
+                            "effectID": "WTM:DefensiveStance",
+                            "character": "Player",
+                            "type": "CombatEffect"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "dodgeChance": 5,
+                        "flatResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ],
+                        "evasion": 10,
+                        "accuracyRating": 5,
+                        "flatAttackInterval": -50
                       }
                     }
                   ]
@@ -920,6 +1123,7 @@
                   "name": "ThrustingSwords3",
                   "id": "ThrustingSwords3",
                   "level": 3,
+                  "shiny": true,
                   "conditionalModifiers": [
                     {
                       "description": "Adds the Slash, Gash, and Maim special attack:<br>(10%) Attack 3 times quickly, 60% normal damage on the 1st, 80% on the 2nd, and 100% on the 3rd. Each has 10% chance on hit to inflict 100% Bleed and 20% Slow (2 turns).",
@@ -1023,26 +1227,17 @@
               ],
               "media": "assets/greatswords.svg",
               "type": "melee",
-              "isPerWepMod": true,
+              "isPerWepMod": false,
               "wepModifiers": {
                 "modifiers": {
-                  "skillXP": [
-                    {
-                      "skillID": "melvorD:Attack",
-                      "value": 3
-                    },
-                    {
-                      "skillID": "melvorD:Strength",
-                      "value": 3
-                    }
-                  ]
+                  "meleeStrengthBonusWith2HWeapon": 5
                 }
               },
               "levels": [
                 {
                   "name": "Greatswords1",
                   "id": "Greatswords1",
-                  "shiny": true,
+                  "shiny": false,
                   "level": 1,
                   "combatEffects": [
                     {
@@ -1088,7 +1283,7 @@
                 {
                   "name": "Greatswords2",
                   "id": "Greatswords2",
-                  "shiny": true,
+                  "shiny": false,
                   "level": 2,
                   "combatEffects": [
                     {
@@ -1181,50 +1376,53 @@
                 {
                   "name": "Greatswords4",
                   "id": "Greatswords4",
-                  "shiny": true,
+                  "shiny": false,
                   "level": 4,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "chance": 1,
+                        "appliesWhen": "HitByAttack",
+                        "effectID": "WTM:Intimidation",
+                        "customDescription": "1% Chance on Hit, Being Hit, and Evading to inflict Intimidation, Shaken, or Terrify for 3 turns"
+                      }
+                    ]
+                  },
                   "combatEffects": [
                     {
                       "chance": 1,
                       "appliesWhen": "HitByAttack",
-                      "effectID": "WTM:Intimidation",
-                      "customDescription": "1% Chance on Hit, Being Hit, and Evading to inflict Intimidation, Shaken, or Terrify for 3 turns"
+                      "effectID": "WTM:Intimidation"
                     },
                     {
                       "chance": 1,
                       "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Intimidation",
-                      "customDescription": ""
+                      "effectID": "WTM:Intimidation"
                     },
                     {
                       "chance": 1,
                       "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Intimidation",
-                      "customDescription": ""
+                      "effectID": "WTM:Intimidation"
                     },
                     {
                       "chance": 1,
                       "appliesWhen": "HitByAttack",
-                      "effectID": "WTM:Shaken",
-                      "customDescription": ""
+                      "effectID": "WTM:Shaken"
                     },
                     {
                       "chance": 1,
                       "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Shaken",
-                      "customDescription": ""
+                      "effectID": "WTM:Shaken"
                     },
                     {
                       "chance": 1,
                       "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Shaken",
-                      "customDescription": ""
+                      "effectID": "WTM:Shaken"
                     },
                     {
                       "chance": 1,
                       "appliesWhen": "HitByAttack",
                       "effectID": "WTM:Terrify",
-                      "customDescription": "",
                       "initialParams": [
                         {
                           "name": "turns",
@@ -1236,7 +1434,6 @@
                       "chance": 1,
                       "appliesWhen": "EvadedAttack",
                       "effectID": "WTM:Terrify",
-                      "customDescription": "",
                       "initialParams": [
                         {
                           "name": "turns",
@@ -1248,7 +1445,6 @@
                       "chance": 1,
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Terrify",
-                      "customDescription": "",
                       "initialParams": [
                         {
                           "name": "turns",
@@ -1346,7 +1542,7 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "Do some cool shit",
+                        "customDescription": "While the Enemy is simultaneously afflicted by Intimidation, Shaken, and Terrify, you gain +30% Max Hit and +15% Total Resistance.<br>At the Start of the Fight, inflict the Enemy with Intimidation, Shaken, and Terrify for 3 turns.",
                         "appliesWhen": "StartOfFight",
                         "effectID": "WTM:Terrify",
                         "initialParams": [
@@ -1360,7 +1556,6 @@
                   },
                   "combatEffects": [
                     {
-                      "customDescription": "At the Start of the Fight, inflict the Enemy with Intimidation, Shaken, and Terrify for 3 turns.",
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:Terrify",
                       "initialParams": [
@@ -1371,7 +1566,6 @@
                       ]
                     },
                     {
-                      "customDescription": "",
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:Intimidation",
                       "initialParams": [
@@ -1382,7 +1576,6 @@
                       ]
                     },
                     {
-                      "customDescription": "",
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:Shaken",
                       "initialParams": [
@@ -1395,7 +1588,6 @@
                   ],
                   "conditionalModifiers": [
                     {
-                      "description": "+20% Max Hit and +10% Total Resistance while the Enemy is afflicted by at least one of these effects: Intimidation, Shaken, or Terrify",
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -1404,7 +1596,7 @@
                             "weaponType": "WTM:Greatswords"
                           },
                           {
-                            "type": "Some",
+                            "type": "Every",
                             "conditions": [
                               {
                                 "character": "Enemy",
@@ -1426,73 +1618,16 @@
                         ]
                       },
                       "modifiers": {
-                        "maxHit": 20,
+                        "maxHit": 30,
                         "resistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 10
-                          }
-                        ]
-                      },
-                      "enemyModifiers": {
-                        "effectIgnoreChance": [
-                          {
-                            "effectGroupID": "melvorD:Fear",
-                            "value": -100
-                          },
-                          {
-                            "effectGroupID": "melvorD:FearImmune",
-                            "value": 100
-                          }
-                        ],
-                        "effectImmunity": [
-                          {
-                            "effectGroupID": "melvorD:Fear",
-                            "value": 0
+                            "value": 15
                           }
                         ]
                       }
                     }
-                  ],
-                  "modifiers": {
-                    "WTM:increaseWeaponXPmagic": 3,
-                    "WTM:increaseWeaponXPmelee": 3,
-                    "WTM:increaseWeaponXPranged": 3,
-                    "skillXP": [
-                      {
-                        "skillID": "melvorD:Attack",
-                        "value": 2
-                      },
-                      {
-                        "skillID": "melvorD:Strength",
-                        "value": 2
-                      },
-                      {
-                        "skillID": "melvorD:Defence",
-                        "value": 2
-                      },
-                      {
-                        "skillID": "melvorD:Ranged",
-                        "value": 2
-                      },
-                      {
-                        "skillID": "melvorD:Magic",
-                        "value": 2
-                      },
-                      {
-                        "skillID": "melvorD:Hitpoints",
-                        "value": 2
-                      },
-                      {
-                        "skillID": "melvorD:Slayer",
-                        "value": 2
-                      },
-                      {
-                        "skillID": "melvorD:Prayer",
-                        "value": 2
-                      }
-                    ]
-                  }
+                  ]
                 }
               ]
             },
@@ -2582,6 +2717,7 @@
                 "ranged",
                 "magic"
               ],
+              "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
                   "masteryXP": 0.25,
