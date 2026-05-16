@@ -50,12 +50,7 @@ export function patchWeaponTypeLogic({ patch }) {
             
 
         }
-        for (const m of game.weaponMasteries.allObjects)
-            m.onLoad()
-        if (combatMenus.weaponMastery && this.combat.player.equippedWeaponType) {
-            combatMenus.weaponMastery.highlightButton(this.combat.player.equippedWeaponType);
-
-        }
+        
     })
     patch(Player, "updateForEquipmentChange").before(function (_) {
         const newWeapon = this.equipment.getItemInSlot("melvorD:Weapon");
