@@ -519,6 +519,7 @@ export class WeaponTypesCombatMenu {
         }
     }
     highlightButton(type) {
+        if(!type)return;
         const OType = type.Wtype;
         for (const button of this.buttonList) {
             if (button.oType == OType)
