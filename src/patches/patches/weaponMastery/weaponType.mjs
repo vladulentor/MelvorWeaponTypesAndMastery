@@ -14,6 +14,11 @@ class WeaponMasteryLevel extends RealmedObject {
             this.canCallChangeFunc = true;
         }
         this.type = parentType
+        this.tooltips = [];
+        if (data.tooltip) for (const [ind, key] of Object.entries(data.tooltip))
+            this.tooltips[ind] = getRielkLangString(key)
+        if (data.overwriteTypeIcons) this.overwriteTypeIcons = data.overwriteTypeIcons;
+        // I absolutely hate doing it like this
         this.name = templateRielkLangString("WEAPON_TYPE_LEVEL", { weaponType: parentType._localID, level: levelIndex });
         if (data.shiny) this.shiny = data.shiny;
         this.wepModifiers = new StatObject(data, game, this._localID);
@@ -47,6 +52,8 @@ export class WeaponMastery extends RealmedObject {
         super(namespace, data, game);
         this.name = data.name; //getRielkLangString(`WEAPON_MASTERIES_${this._localID}`);
         this._media = data.media;
+        this._mediaAlt = data.mediaAlt;
+        this._mediaCol = data.mediaCol;
         this.providedStats = new StatProvider();
         game.combat.registerStatProvider(this.providedStats);
         this._curLvl = 0;
@@ -72,8 +79,8 @@ export class WeaponMastery extends RealmedObject {
         this.Wtype = data.type;
         this.activeWeapon = undefined
         this.game = game;
-        if(data.flavorText)
-        this.flavorText = data.flavorText;
+        if (data.flavorText)
+            this.flavorText = data.flavorText;
         else this.flavorText = "This text is flavorless hoss";
         this.isPerWepMod = data.isPerWepMod ?? false;
         if (this.isPerWepMod) {
@@ -107,6 +114,13 @@ export class WeaponMastery extends RealmedObject {
     get media() {
         return this.getMediaURL(this._media);
     }
+    get mediaAlt() {
+        return this.getMediaURL(this._mediaAlt);
+    }
+    get mediaCol() {
+        return this.getMediaURL(this._mediaCol);
+    }
+
     ToggleActiveWeapon(weap) {
         if (weap.weaponType?.name === this.name) {
             this.setActiveWeapon(weap);
@@ -159,6 +173,9 @@ export class WeaponMastery extends RealmedObject {
     }
     get levelCap() {
         return 5 //Math.min(...this.fixture.map(f => f.currentTier));
+    }
+    get maxed() {
+        return this._curLvl >= this.levelCap;
     }
     get IndMods() {
         return this.levelCap >= 2;

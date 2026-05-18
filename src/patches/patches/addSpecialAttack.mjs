@@ -55,6 +55,7 @@ export function addSpecialAttack() {
 
     if (this._localID == "CurvedSwords3") {
         const attack = game.specialAttacks.getObjectSafe('WTM:ForcefulSweep');
+        attack.summonFollowAttacks = 2;
         const weapMap = { weapons: this.type.allWeapons, attack: attack };
         addEffecttoWeaponList(weapMap);
     }

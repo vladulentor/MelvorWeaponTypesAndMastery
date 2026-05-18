@@ -145,26 +145,22 @@
       },
       {
         "id": "ForcefulSweep",
-        "defaultChance": 10,
+        "defaultChance": 15,
         "damage": [
           {
             "damageType": "Normal",
-            "amplitude": 200
+            "amplitude": 100
           }
         ],
         "prehitEffects": [],
-        "onhitEffects": [
-          {
-            "effectID": "WTM:ForcefulSweep0"
-          }
-        ],
+        "onhitEffects": [],
         "cantMiss": false,
         "attackCount": 1,
         "attackInterval": 50,
         "lifesteal": 0,
-        "name": "Forceful Sweep",
-        "description": "Make a momentous, sweeping slash at the Enemy, dealing ${attackDamageMaxValue0}% of your normal damage. On hit, your and your Familiar's next attack deals 2x damage.",
-        "descriptionGenerator": "Make a momentous, sweeping slash, dealing <damage> damage. On hit, your and your familiar's next attack deals 2x damage.",
+        "name": "Mounted Strike",
+        "description": "Attack normally, then instruct your Summon Companions to Attack the enemy Twice in quick succession",
+        "descriptionGenerator": "Attack normally, then instruct your Summon Companions to Attack the enemy Twice in quick succession.",
         "usesRunesPerProc": false
       },
       {
@@ -628,6 +624,109 @@
         ]
       },
       {
+        "id": "Syncronized",
+        "name": "Syncronized",
+        "media": "assets/combat/status/sync.png",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "isSuper",
+            "initialValue": 0
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 5
+          }
+        ],
+        "tooltipSpans": [
+          {
+            "type": "Stats",
+            "statGroupName": "normalModeStats"
+          },
+          {
+            "type": "Stats",
+            "statGroupName": "superModeStats"
+          },
+          {
+            "type": "StacksWithMax",
+            "stacks": "statGroup.normalModeStats",
+            "maxStacks": "p.maxStacks"
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "normalModeStats",
+            "modifiers": {
+              "summoningMaxHit": 5,
+              "summoningAttackInterval": -5
+            }
+          },
+          {
+            "name": "superModeStats",
+            "modifiers": {
+              "lifesteal": 50,
+              "meleeEvasion": 10
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ],
+        "behaviours": [
+          {
+            "type": "ModifyStats",
+            "statGroupName": "normalModeStats",
+            "newValue": "p.isSuper == 0 ? (roll(50) ? min(statGroup.normalModeStats + 1, p.maxStacks) : statGroup.normalModeStats) : max(statGroup.normalModeStats - 1, 0)",
+            "triggersOn": [
+              {
+                "type": "HitWithAttack",
+                "target": "Self"
+              }
+            ]
+          },
+          {
+            "type": "ModifyStats",
+            "statGroupName": "superModeStats",
+            "newValue": "statGroup.normalModeStats >= 5 ? 1 : (statGroup.normalModeStats <= 0 ? 0 : statGroup.superModeStats)",
+            "triggersOn": [
+              {
+                "type": "HitWithAttack",
+                "target": "Self"
+              }
+            ]
+          },
+          {
+            "type": "ModifyParameter",
+            "paramName": "isSuper",
+            "newValue": "statGroup.normalModeStats >= 5 ? 1 : (statGroup.normalModeStats <= 0 ? 0 : param.isSuper)",
+            "triggersOn": [
+              {
+                "type": "HitWithAttack",
+                "target": "Self"
+              }
+            ]
+          },
+          {
+            "type": "ModifyStats",
+            "statGroupName": "normalModeStats",
+            "newValue": "statGroup.normalModeStats == 0 ? 1 : statGroup.normalModeStats",
+            "triggersOn": [
+              {
+                "type": "EffectApplied"
+              }
+            ]
+          },
+          {
+            "type": "RemoveEffect",
+            "triggersOn": [
+              {
+                "type": "EndOfFight"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "Vulnerability",
         "name": "Vulnerability",
         "media": "assets/combat/status/resistance_decrease.png",
@@ -860,6 +959,36 @@
     ],
     "modifiers": [
       {
+        "id": "ExtraSummonHits",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "+X summon attacks after yours",
+                "lang": "MODIFIER_DATA_SummonQuickenAct"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SummonQuickenAct",
+        "modifyValue": "value/1000",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "there we are",
+                "lang": "MODIFIER_DATA_SummonQuickenAct",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "unlockParry",
         "allowedScopes": [
           {
@@ -996,10 +1125,8 @@
             "scopes": {},
             "descriptions": [
               {
-                "text": "+${value}% chance to convert a successful hit from the Target into a miss per 10,000 Enemy Accuracy Rating",
-                "lang": "MODIFIER_DATA_dodgeChancePer10000EnemyAccuracyRating",
-                "above": 0,
-                "includeSign": false
+                "text": "${value}% chance to convert a successful hit from the Target into a miss per 10,000 Enemy Accuracy Rating",
+                "lang": "MODIFIER_DATA_dodgeChancePer10000EnemyAccuracyRating"
               }
             ]
           }
@@ -1031,6 +1158,8 @@
                 "Witherstab_Rapier3"
               ],
               "media": "assets/thrustingswords.svg",
+              "mediaAlt": "assets/black_filled_svgs/thrustingswords.svg",
+              "mediaCol": "assets/filled_svgs/thrustingswords.svg",
               "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1048,6 +1177,12 @@
                   "id": "ThrustingSwords1",
                   "level": 1,
                   "shiny": false,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
                   "uiMods": {
                     "combatEffects": [
                       {
@@ -1214,6 +1349,8 @@
                 "Ultima_Godsword4"
               ],
               "media": "assets/greatswords.svg",
+              "mediaAlt": "assets/black_filled_svgs/greatswords.svg",
+              "mediaCol": "assets/filled_svgs/greatswords.svg",
               "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1635,6 +1772,8 @@
                 "Desert_Sabre1"
               ],
               "media": "assets/curvedswords.svg",
+              "mediaAlt": "assets/black_filled_svgs/curvedswords.svg",
+              "mediaCol": "assets/filled_svgs/curvedswords.svg",
               "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -1647,14 +1786,27 @@
                   "name": "CurvedSwords1",
                   "id": "CurvedSwords1",
                   "level": 1,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "WTM:SummonQuickenAct": 200,
+                      "slashAttackBonus": 15
+                    }
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "+15% Slash Attack Bonus from Equipment while using Curved Swords",
+                      "description": "+15% Slash Attack Bonus from Equipment",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
                       },
                       "modifiers": {
+                        "WTM:SummonQuickenAct": 200,
                         "slashAttackBonus": 15
                       }
                     }
@@ -1664,9 +1816,21 @@
                   "name": "CurvedSwords2",
                   "id": "CurvedSwords2",
                   "level": 2,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "summoningMaxHit": 10,
+                      "maxHit": 5
+                    }
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "+10% Summoning Max Hit and +5% Max Hit while using Curved Swords",
+                      "description": "+10% Summoning Max Hit and +5% Max Hit",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
@@ -1682,9 +1846,13 @@
                   "name": "CurvedSwords3",
                   "id": "CurvedSwords3",
                   "level": 3,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_CURVED3"
+                  },
+                  "shiny": true,
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Forceful Sweep special attack:<br>(10%) Make a momentous, sweeping slash, dealing 2x your normal damage. On hit, your and your familiar's next attack deals 2x damage.",
+                      "description": "Adds the Mounted Strike Special Attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
@@ -1700,14 +1868,41 @@
                   "name": "CurvedSwords4",
                   "id": "CurvedSwords4",
                   "level": 4,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "summoningAttackInterval": -10,
+                      "summoningMaxHit": 10,
+                      "meleeMinHitBasedOnMaxHit": 10
+                    }
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:CurvedSwords"
+                      },
+                      
+                      "chance": 100,
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Syncronized"
+                    }
+                  ],
                   "conditionalModifiers": [
                     {
-                      "description": "-10% Summoning Attack Interval, +10% Summoning Max Hit, and +10% Min Hit Based on Max Hit while using Curved Swords",
+                      "description": "-10% Summoning Attack Interval, +10% Summoning Max Hit, and +10% Min Hit Based on Max Hit",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
                       },
                       "modifiers": {
+                        "lifesteal":50,
                         "summoningAttackInterval": -10,
                         "summoningMaxHit": 10,
                         "meleeMinHitBasedOnMaxHit": 10
@@ -1719,6 +1914,7 @@
                   "name": "CurvedSwords5",
                   "id": "CurvedSwords5",
                   "level": 5,
+                  "shiny": true,
                   "modifiers": {
                     "summoningAttackInterval": -5,
                     "maxHit": 2.5,
@@ -1732,6 +1928,8 @@
               "id": "Daggers",
               "name": "Daggers",
               "media": "assets/daggers.svg",
+              "mediaAlt": "assets/black_filled_svgs/daggers.svg",
+              "mediaCol": "assets/filled_svgs/daggers.svg",
               "type": "melee",
               "mat": [
                 "Dagger"
@@ -1739,6 +1937,7 @@
               "flavorText": "Famous for its high kill-per-square-inch value",
               "kind": "melee",
               "uniq": [
+                "Black_Dagger3",
                 "Ice_Dagger2",
                 "Darksteel_Dagger1",
                 "Lacerating_Dagger2",
@@ -1904,6 +2103,8 @@
                 "War_Axe1"
               ],
               "media": "assets/axes.svg",
+              "mediaAlt": "assets/black_filled_svgs/axes.svg",
+              "mediaCol": "assets/filled_svgs/axes.svg",
               "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -2020,6 +2221,8 @@
               "id": "Polearms",
               "name": "Polearms",
               "media": "assets/polearms.svg",
+              "mediaAlt": "assets/black_filled_svgs/polearms.svg",
+              "mediaCol": "assets/filled_svgs/polearms.svg",
               "type": "melee",
               "mat": [
                 "2H_Spear",
@@ -2143,6 +2346,8 @@
                 "Water_Sceptre3"
               ],
               "media": "assets/blunts.svg",
+              "mediaAlt": "assets/black_filled_svgs/blunts.svg",
+              "mediaCol": "assets/filled_svgs/blunts.svg",
               "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -2188,6 +2393,8 @@
               "id": "HandToHand",
               "name": "Hand-to-Hand",
               "media": "assets/handtohand.svg",
+              "mediaAlt": "assets/black_filled_svgs/handtohand.svg",
+              "mediaCol": "assets/filled_svgs/handtohand.svg",
               "type": "melee",
               "uniq": [
                 "Ancient_Claw2",
@@ -2261,6 +2468,8 @@
                 "Witherslinger_Crossbow3"
               ],
               "media": "assets/crossbows.svg",
+              "mediaAlt": "assets/black_filled_svgs/crossbows.svg",
+              "mediaCol": "assets/filled_svgs/crossbows.svg",
               "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -2327,6 +2536,8 @@
                 "Thorned_Power_Bow2"
               ],
               "media": "assets/heavybows.svg",
+              "mediaAlt": "assets/black_filled_svgs/heavybows.svg",
+              "mediaCol": "assets/filled_svgs/heavybows.svg",
               "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -2382,7 +2593,9 @@
                 "Lacerating_Shortbow2",
                 "Poisoned_Shortbow3"
               ],
-              "media": "assets/lightbows.svg",
+              "media": "assets/lightbows.webp",
+              "mediaAlt": "assets/black_filled_svgs/lightbows.svg",
+              "mediaCol": "assets/filled_svgs/lightbows.webp",
               "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -2439,6 +2652,8 @@
                 "Slingshot2"
               ],
               "media": "assets/thrown.svg",
+              "mediaAlt": "assets/black_filled_svgs/thrown.svg",
+              "mediaCol": "assets/filled_svgs/thrown.svg",
               "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -2484,6 +2699,8 @@
               "id": "Artifacts",
               "name": "Artifacts",
               "media": "assets/artifacts.svg",
+              "mediaAlt": "assets/black_filled_svgs/artifacts.svg",
+              "mediaCol": "assets/filled_svgs/artifacts.svg",
               "type": "magic",
               "uniq": [
                 "Magic_Flute3",
@@ -2573,6 +2790,8 @@
                 "Water_Pulse_Staff3"
               ],
               "media": "assets/staves.svg",
+              "mediaAlt": "assets/black_filled_svgs/staves.svg",
+              "mediaCol": "assets/filled_svgs/staves.svg",
               "type": "magic",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -2634,6 +2853,8 @@
                 "Witherbind_Wand3"
               ],
               "media": "assets/wands.svg",
+              "mediaAlt": "assets/black_filled_svgs/wands.svg",
+              "mediaCol": "assets/filled_svgs/wands.svg",
               "type": "magic",
               "isPerWepMod": true,
               "wepModifiers": {
@@ -2702,11 +2923,9 @@
                 "Void_Vortex_Whip3"
               ],
               "media": "assets/special.svg",
-              "type": [
-                "melee",
-                "ranged",
-                "magic"
-              ],
+              "mediaAlt": "assets/black_filled_svgs/special.svg",
+              "mediaCol": "assets/filled_svgs/special.svg",
+              "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {

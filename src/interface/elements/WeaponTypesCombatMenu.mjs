@@ -35,7 +35,7 @@ export class typeButtonElement extends HTMLElement {
         });
     }
     setTypeButton(type) {
-        this.typeImage.src = type.media;
+        this.typeImage.src = type.mediaCol;
         this.tooltip.setContent(type.name);
         this.link.onclick = () => {
             const weaponSelectEvent = new CustomEvent('wtm-type-selected', { // we use an event because I'm not fucking drilling down the arrowfunc from the big menu
@@ -93,7 +93,7 @@ class WeaponTypeMenuElement extends HTMLElement {
     init(oType) {
         this.append(this._content);
         this.oType = oType
-        this.types = game.weaponMasteries.allObjects.filter(mast => mast.Wtype == this.oType.id); // nice capitalization jackass
+        this.types = game.weaponMasteries.allObjects.filter(mast => mast.Wtype === this.oType.id); // nice capitalization jackass
         this.setWeaponTypes();
 
     }
@@ -196,7 +196,8 @@ export class WeaponTypesCombatMenu {
             wepModEquipped: getRielkLangString('MENU_EQUIPPED'),
             wepModPermanentTool: getRielkLangString('MENU_PERMANENT_TOOLTIP'),
             wepModEquippedTool: getRielkLangString('MENU_EQUIPPED_TOOLTIP'),
-
+            wepModTypeApplic: getRielkLangString('MENU_GLOBAL_APPLIC'),
+            wepModGlobApplic: getRielkLangString('MENU_TYPE_APPLIC'),
             stepContainer: getElementFromFragment(this._content, 'weaponMasteryStepsContainer', 'div'),
             spacer: getElementFromFragment(this._content, 'modifierSpacer', 'div'),
             modifierListContainer: getElementFromFragment(this._content, 'weaponMasteryModifiers', 'div'),
@@ -235,7 +236,6 @@ export class WeaponTypesCombatMenu {
             ]
         };
         this.settypeBonusTooltip(this.typeMenu.wepModType);
-
     }
     // ----------TYPE MENU FUNCTIONS ------------
     settypeBonusTooltip(elem) {
@@ -297,23 +297,37 @@ export class WeaponTypesCombatMenu {
 
     }
 
+
     setType(type) {
         if (this.typeMenu.type == type) return;
         this.typeMenu.text.innerHTML = type.name;
-        this.typeMenu.text.classList.toggle("text-success", type.activeWeapon);
+        this.typeMenu.text.classList.remove('construction-victory', 'text-success');
+        this.typeMenu.text.classList.toggle(`${type.maxed ? 'construction-victory' :'text-success'}`, type.activeWeapon);
         this.typeMenu.bgIcon.src = type.media;
         this.typeMenu.type = type;
         const [typeLabel, toolTipText] = type.isPerWepMod // yay for needlessly optimal code
             ? [this.typeMenu.wepModEquipped, this.typeMenu.wepModEquippedTool]
             : [this.typeMenu.wepModPermanent, this.typeMenu.wepModPermanentTool];
         this.typeMenu.wepModType.innerText = typeLabel;
-        this.typeMenu.wepModType.classList.toggle("text-success", game.combat.player.equippedWeapon.masteryMaxed);
+        const typeWM = type.activeWeapon && game.combat.player.equippedWeapon.masteryMaxed
+
+        this.typeMenu.wepModType.classList.toggle("text-success", typeWM);
 
         this.typeMenu.wepModType._tippy.setContent(`<div class="text-center">${toolTipText}</div>`);
         this.typeMenu.typeFlvText.innerText = type.flavorText || " ";
         this.setMods();
-    }
+        this.typeMenu.wepModText.querySelectorAll('span').forEach(span => { // Annoying retarded bullshit that I hate
+            span.classList.toggle("text-success", typeWM);
+            span.classList.toggle("text-danger", !typeWM);
+        });
 
+    }
+    setWeaponMastery() {
+        this.typeMenu.wepModText.querySelectorAll('span').forEach(span => { // Annoying retarded bullshit that I hate
+            span.classList.toggle("text-success", typeWM);
+            span.classList.toggle("text-danger", !typeWM);
+        });
+    }
     renderTypeXP() {
         this.setXP();
     }
@@ -322,6 +336,7 @@ export class WeaponTypesCombatMenu {
         this.typeMenu.profOvFill.style.width = this.typeMenu.type.uncappedxpPercent + "%";
         const percentCapped = this.typeMenu.type.xpPercent;
         this.typeMenu.profFill.style.width = percentCapped + "%";
+
         if (performant && this.typeMenu.type.level !== this.typeMenu.levelCache) return;
         for (let i = 0; i < 5; i++) {
             const fancy = this.typeMenu.type.level > i;
@@ -329,24 +344,126 @@ export class WeaponTypesCombatMenu {
             this.typeMenu.markers[i].classList.toggle("construction-bar", fancy);
             this.typeMenu.labels[i].classList.toggle("construction-victory", fancy);
             this.typeMenu.steps[i].classList.toggle("locked", !fancy);
+
         }
         this.typeMenu.levelCache = this.typeMenu.type.level;
     }
-    generateModifierElements(level) {
-        const descs = StatObject.getDescriptions(level.uiMods);
-        const isShiny = !!level.shiny;
 
-        return descs.map((desc) => {
+    generateModifierElements(level) {
+        const statObject = level.uiMods;
+        const isShiny = !!level.shiny;
+        const elements = [];
+        const globToltip = this.typeMenu.wepModGlobApplic;
+        const typeToltip = this.typeMenu.wepModTypeApplic
+        let i = 1;
+        // Behold the most overdesign piece of garbage ever to just make some tooltips my god
+        // We make a div, and then two wrappers to the right and left, just to put some tooltips on them
+        function createModifierRow(desc, isWeaponCondition) {
+            let infoTooltipKey = null;
+            if (level.tooltips && level.tooltips[i]) {
+                infoTooltipKey = level.tooltips[i];
+            }
+            if (level.overwriteTypeIcons)
+                isWeaponCondition = level.overwriteTypeIcons[i];
             const cls = 'modifierHolder fuck-you text-center ' + (isShiny ? 'special' : '');
-            const span = createElement('span', {
-                className: `m-1 font-size-sm ${cls}`,
+            const rowWrapper = createElement('div', {
+                className: 'w-100 position-relative d-flex justify-content-center align-items-center modifier-row-hover'
+            });
+            const textSpan = createElement('span', {
+                className: `my-1 font-size-sm ${cls}`,
                 innerHTML: desc.text
             });
-            span.style.display = 'block';
-            return span;
-        });
-    }
+            textSpan.style.display = 'block';
+            textSpan.style.paddingLeft = '0';
+            textSpan.style.paddingRight = '0';
 
+            rowWrapper.append(textSpan);
+
+            const leftContainer = createElement('div', {
+                className: 'position-absolute p-1 pointer-link'
+            });
+            leftContainer.style.left = '-1.75rem';
+            leftContainer.style.top = '50%';
+            leftContainer.style.transform = 'translateY(-50%)';
+
+            const iconClass = `modifier-flank fas fuck-you fa-lg ` + (isWeaponCondition ? 'fa-star ' : 'fa-globe ') + (isShiny ? 'special' : '');
+            const conditionTooltipText = isWeaponCondition ? globToltip :typeToltip ;
+            const conditionIcon = createElement('i', { className: iconClass });
+
+            tippy(conditionIcon, { content: conditionTooltipText, placement: 'top', animation: false }); // this tippy is fine as it is (let's hope)
+            leftContainer.append(conditionIcon);
+            rowWrapper.append(leftContainer);
+
+            if (infoTooltipKey) {
+                const rightContainer = createElement('div', {
+                    className: 'position-absolute pointer-link modifierHolder'
+                });
+                rightContainer.style.right = '-1.5rem';
+                rightContainer.style.top = '50%';
+                rightContainer.style.transform = 'translateY(-50%)';
+                const iconClass = `modifier-flank fas fuck-you fa-question-circle fa-lg ` + (isShiny ? 'special' : '');
+                const infoIcon = createElement('i', { className: iconClass });
+                tippy(infoIcon, {
+                    content: infoTooltipKey,
+                    placement: 'top',
+                    allowHTML: true,
+                    interactive: true,
+                    animation: false,
+                    appendTo: document.body,
+                    popperOptions: {
+                        strategy: 'fixed',
+                        modifiers: [
+                            { name: 'flip', options: { fallbackPlacements: ['top'] } },
+                            { name: 'preventOverflow', options: { altAxis: true, tether: false } },
+                        ],
+                    },
+                });
+                rightContainer.append(infoIcon);
+                rowWrapper.append(rightContainer);
+            }
+            return rowWrapper;
+        }
+        // we had to unroll the StatObject.describe functions or whatever into ours just so we can pinpoint...
+        if (statObject.modifiers !== undefined) {
+            statObject.modifiers.forEach((modValue) => {
+                if (StatObject.showDescription(modValue.isNegative, 1, 1, true)) {
+                    elements.push(createModifierRow(modValue.print(1, 1), false));
+                }
+            });
+        }
+
+        if (statObject.combatEffects !== undefined) {
+            statObject.combatEffects.forEach((applicator) => {
+                const desc = applicator.getDescription(1, 1);
+                if (desc !== undefined && StatObject.showDescription(applicator.isNegative, 1, 1, true)) {
+                    const isWeaponCondition = (applicator.condition?.type === 'WeaponType' || applicator.condition?.conditions?.some(cond => cond.type === 'WeaponType')); // <-- This! But we don't even use it that much... so fuck.
+
+                    elements.push(createModifierRow(desc, isWeaponCondition));
+                }
+            });
+        }
+        if (statObject.conditionalModifiers !== undefined) {
+            statObject.conditionalModifiers.forEach((conditional) => {
+                const desc = conditional.getDescription(1, 1);
+                if (desc !== undefined && StatObject.showDescription(conditional.isNegative, 1, 1, true)) {
+                    const isWeaponCondition = (conditional.condition.type === 'WeaponType' || conditional.condition.conditions?.some(cond => cond.type === 'WeaponType')); // <-- This! But we don't even use it that much... so fuck.
+
+                    elements.push(createModifierRow(desc, isWeaponCondition));
+                }
+            });
+        }
+
+        if (statObject.enemyModifiers !== undefined) {
+            statObject.enemyModifiers.forEach((modValue, id) => {
+                if (StatObject.showDescription(!modValue.isNegative, 1, 1, true)) {
+
+                    elements.push(createModifierRow(modValue.printEnemy(1, 1, 2, id === 0), false));
+                }
+            });
+        }
+
+        return elements;
+    }
     setMods() {
         this.typeMenu.wepModText.innerHTML = this.typeMenu.type._uiWepMod.describeLineBreak(1, this.typeMenu.type.doubledIndBonuses);
         for (let i = 0; i < this.typeMenu.steps.length; i++) {
@@ -367,14 +484,15 @@ export class WeaponTypesCombatMenu {
                     { fixImg: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[0].media]] }) }, { fixName: this.typeMenu.type.fixture[0].name });
 
             const shiny = !!this.typeMenu.type.levels[i].shiny;
+
             if (this.typeMenu.type.levelCap <= i) {
                 this.typeMenu.locks[i].innerHTML = '';
                 this.typeMenu.locks[i].append(...lockText);
                 this.typeMenu.locks[i].classList.toggle('text-danger', !shiny);
                 this.typeMenu.locks[i].classList.toggle('text-warning', shiny);
-
                 showElement(this.typeMenu.locks[i]);
                 this.typeMenu.steps[i].classList.add("hidden");
+
             }
             else {
                 const spans = this.generateModifierElements(this.typeMenu.type.levels[i]);
@@ -383,6 +501,7 @@ export class WeaponTypesCombatMenu {
 
                 hideElement(this.typeMenu.locks[i]);
                 this.typeMenu.steps[i].classList.remove("hidden");
+
             }
         }
     }
@@ -519,7 +638,7 @@ export class WeaponTypesCombatMenu {
         }
     }
     highlightButton(type) {
-        if(!type)return;
+        if (!type) return;
         const OType = type.Wtype;
         for (const button of this.buttonList) {
             if (button.oType == OType)

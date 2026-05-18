@@ -37,7 +37,7 @@ class CombatWeaponTypeProgressTableRow {
     }
 
     setWeaponType(weaponType) {
-        this.weaponTypeImage.src = weaponType.media;
+        this.weaponTypeImage.src = weaponType.mediaCol;
     }
 
     updateXP(game, weaponType) {

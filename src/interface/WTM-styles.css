@@ -110,14 +110,23 @@ body.darkMode .text-danger.fuck-you {
   color: #e56767 !important
 }
 
-.modifierHolder .fuck-you.special {
+.modifierHolder .fuck-you.special,
+.modifierHolder.special .fuck-you {
   color: #fca32f !important
 }
 
-.modifierHolder.locked .fuck-you.special {
+.modifierHolder.locked .fuck-you.special,
+.modifierHolder.special.locked .fuck-you {
   color: #e5ae67 !important
 }
+.modifier-row-hover .modifier-flank {
+    opacity: 0.4;
+    transition: opacity 0.25s ease-in-out;
+}
 
+.modifier-row-hover:hover .modifier-flank {
+    opacity: 1;
+}
 .modifierHolder.hidden {
   display: none !important;
 }
@@ -177,13 +186,14 @@ body.darkMode .border-item {
   filter: invert(0%);
 
 }
-.deflectSplash{
+
+.deflectSplash {
   color: #91A3B0 !important
 }
 
 /* I HATE HTML I HATE HTML I HATE HTML */
 ul.nav.nav-pills.nav-justified.push .nav-item .nav-link.border-gold.fuck-you.fuck-you-extra {
-    border-color: #d6841e !important
+  border-color: #d6841e !important
 }
 
 .gold-selected.fuck-you {
@@ -194,9 +204,10 @@ body.darkMode .gold-selected.fuck-you,
 body.darkMode.superDark .gold-selected.fuck-you {
   background-color: #383433 !important;
 }
+
 body.darkMode .gold-selected.fuck-you:hover,
 body.darkMode.superDark .gold-selected.fuck-you:hover {
-  background-color: #2d3542 !important; 
+  background-color: #2d3542 !important;
 }
 
 body.darkMode .weaponMasteryBgIcon {
@@ -208,8 +219,9 @@ body.darkMode.superDark .weaponMasteryBgIcon {
 }
 
 .wtm-type-button {
-display: block !important;
+  display: block !important;
 }
+
 .table-type-image {
   filter: invert(0%);
   stroke-width: 2;

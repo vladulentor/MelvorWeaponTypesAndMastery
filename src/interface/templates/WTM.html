@@ -154,7 +154,7 @@
 <template id="combat-weapon-type-progress-table-row-template" data-image-init="true">
   <tr id="row">
     <th class="text-center" scope="row">
-      <img class="skill-icon-xs table-type-image" id="weapon-type-image">
+      <img class="skill-icon-xs" id="weapon-type-image">
     </th>
     <td class="font-w600 font-size-sm">
       <div id="weapon-type-level-container-0"><small id="weapon-type-level"></small></div>
@@ -181,7 +181,7 @@
 
     <div class="block-header block-header-default bg-dark-bank-block-header px-3 py-1 mb-1">
       <h5 class="font-size-sm font-w600 mb-0 w-100 text-center">
-        <span>Weapon Types × Mastery</span>
+        <wtm-lang-string lang-id="MENU_OVERTITLE"></wtm-lang-string>
       </h5>
     </div>
 
@@ -208,11 +208,12 @@
                     <wtm-lang-string lang-id="MENU_WEAPON_BONUS"></wtm-lang-string>
                   </div>
                   <div id="weaponModifierValue" class="font-size-sm text-white text-center mt-1"></div>
-                  <div id="weaponModifierTypeText" class="font-size-xs text-center m-1 mb-3 font-w400" style="opacity: 0.5;"></div>
+                  <div id="weaponModifierTypeText" class="font-size-xs text-center m-1 mb-3 font-w400"
+                    style="opacity: 0.5;"></div>
                 </div>
 
-                <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 pb-2 text-center">
-                  Type Proficiency:
+                <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 mb-4 pb-2 text-center">
+                  <wtm-lang-string lang-id="MENU_TYPE_PROF"></wtm-lang-string>
                 </h5>
 
                 <div class="mastery-weapon-xp-container pb-3">
@@ -220,7 +221,6 @@
                     <div class="mastery-weapon-xp-fill" id="weaponMasteryProgress" style="width: 0%;"></div>
                     <div class="mastery-weapon-xp-overfill" id="weaponMasteryOverfill" style="width: 0%;"></div>
 
-                    <!-- Milestone Markers (1 to 5) -->
                     <div id="marker-1" class="xp-marker" style="left: 7%;">
                       <span id="label-1" class="xp-label font-w600 font-size-sm text-combat-smoke">1</span>
                     </div>
@@ -246,26 +246,50 @@
 
             <!-- Modifier checklist items -->
             <div class="weaponMasteryModifiers2 open font-w700 font-size-xs" id="weaponMasteryModifiers"
-              style="max-width: 95%; max-height: none;">
+              style="max-width: 97%; max-height: none;">
               <div class="col-12 mb-1 dropdown-divider"></div>
+
               <div id="lock1" class="mx-auto align-items-center lockIcon"></div>
-              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep1"></div>
+              <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
+                <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep1" style="width:93%">
+                </div>
+              </div>
 
               <div class="col-12 mb-1 dropdown-divider"></div>
+
               <div id="lock2" class="mx-auto align-items-center lockIcon"></div>
-              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep2"></div>
+              <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
+                <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep2" style="width:93%">
+                </div>
+               
+              </div>
 
               <div class="col-12 mb-1 dropdown-divider"></div>
+
               <div id="lock3" class="mx-auto align-items-center lockIcon"></div>
-              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep3"></div>
+              <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
+                <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep3" style="width:93%">
+                </div>
+             
+              </div>
 
               <div class="col-12 mb-1 dropdown-divider"></div>
+
               <div id="lock4" class="mx-auto align-items-center lockIcon"></div>
-              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep4"></div>
+              <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
+                <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep4" style="width:93%">
+                </div>
+              
+              </div>
 
               <div class="col-12 mb-1 dropdown-divider"></div>
+
               <div id="lock5" class="mx-auto align-items-center lockIcon"></div>
-              <div class="col-12 mb-1 d-flex flex-column align-items-center modifierHolder" id="modifierStep5"></div>
+              <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
+                <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep5" style="width:93%">
+                </div>
+                
+              </div>
               <div id="modifierSpacer" style="height:0;"></div>
             </div>
           </div>
@@ -274,7 +298,7 @@
 
     </div>
     <div id="menuViewerCont">
-      <div id="weaponMasteryItem" class="d-flex pb-2">
+      <div id="weaponMasteryItem" class="d-flex">
 
         <div class="d-flex align-items-center justify-content-center ml-3  m-2" style="width:64px;">
           <img id="weaponPic" class="icon-size-64" style="width:64px;height:64px">
@@ -339,7 +363,7 @@
     <div class="col-12">
       <div class="row p-1 justify-content-center" id="weaponButtonsContainer">
       </div>
-      <hr class="border-secondary opacity-25">
+      <hr class="border-secondary mt-0 opacity-25">
 
     </div>
 
@@ -361,7 +385,7 @@
     <li class="nav-item mr-1">
       <small class="text-warning">
         <a class="pointer-enabled nav-link border border-dark p-0 fuck-you fuck-you-extra" id="link">
-          <img class="skill-icon-xs table-type-image" id="type-image">
+          <img class="skill-icon-xs" id="type-image">
         </a>
       </small>
     </li>

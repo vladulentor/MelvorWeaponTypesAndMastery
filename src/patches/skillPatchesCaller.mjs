@@ -9,6 +9,9 @@ const { addCombatSkillXP } = await loadModule('src/patches/patches/addCombatSkil
 const { addWeaponType } = await loadModule('src/patches/patches/weaponMastery/addWeaponType.mjs');
 const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
 
+const { addFollowupSummonAttacks } = await loadModule('src/patches/patches/addFollowupSummonAttacks.mjs');
+
+
 
 const { addWeaponMasteryUI } = await loadModule('src/patches/patches/weaponMastery/weaponMasteryUI.mjs');
 
@@ -19,6 +22,8 @@ const {patchAccuracyRating} = await loadModule('src/patches/patches/patchAccurac
 const {patchDodgeChance} = await loadModule('src/patches/patches/patchDodgeChance.mjs');
 const {addPlayerBarrier} = await loadModule('src/patches/patches/addPlayerBarrier.mjs');
 const {birthOfMonk} = await loadModule('src/patches/patches/birthOfMonk.mjs');
+
+const {addSummonQuickenAttack} = await loadModule('src/patches/patches/addSummonQuickenAttack.mjs');
 
 
 const { patchSkillNotif } = await loadModule('src/patches/patches/patchSkillNotif.mjs');
@@ -32,13 +37,16 @@ export function patchSkillsBeforeDataReg(ctx) {
         addWeaponMasteryUI(ctx);
         patchWeaponTypeLogic(ctx);
 
+        
         addCombatSkillXP(ctx);
+        addSummonQuickenAttack(ctx);
+        addFollowupSummonAttacks(ctx);
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
         patchDodgeChance(ctx);
         addPlayerBarrier(ctx);
         addParry(ctx);
-        birthOfMonk(ctx);
+        //birthOfMonk(ctx);
 }
 export function patchSkillsAfterDataReg(ctx) {
         addWeaponType(ctx);

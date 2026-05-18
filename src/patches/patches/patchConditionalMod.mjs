@@ -26,4 +26,9 @@ export function patchConditionalMod(ctx) {
      { this._description = getRielkLangString(this._descriptionLang);  
     delete this._descriptionLang;}
   });
+
+  ctx.patch(Character, "checkEffectApplicatorCondition").after(function(ret, condition, source){
+    if(condition instanceof WeaponTypeCondition)
+      return condition.checkIfMetForChar(this);
+  })
 }

@@ -11,7 +11,9 @@ export class WeaponTypeCondition extends BooleanCondition {
     const weapon = game.combat.player.equipment.getItemInSlot("melvorD:Weapon");
     return weapon.weaponType?.id === this.weaponType;
   }
-
+  checkIfMetForChar(char){
+      return char instanceof Player && char.equipment.getItemInSlot("melvorD:Weapon").weaponType?.id === this.weaponType;
+  }
   _assignWrappedHandler(manager, handler) {
         manager.player.on('equipmentChanged', handler);
   }
