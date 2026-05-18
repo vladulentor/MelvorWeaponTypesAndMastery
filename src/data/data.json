@@ -153,7 +153,7 @@
         "attackInterval": 50,
         "lifesteal": 0,
         "name": "Mounted Strike",
-        "description": "Attack normally, then instruct your Summon Companions to Attack the enemy Twice in quick succession",
+        "description": "Attack normally, then instruct your Summon Companions to perform two Unavoidable Attacks",
         "descriptionGenerator": "Attack normally, then instruct your Summon Companions to Attack the enemy Twice in quick succession.",
         "usesRunesPerProc": false
       },
@@ -618,11 +618,11 @@
         ]
       },
       {
-        "id": "Syncronized",
-        "name": "Syncronized",
-        "media": "assets/combat/status/sync.png",
+        "id": "Advantage",
+        "name": "Advantage",
+        "media": "assets/combat/status/advantage.webp",
         "target": "Self",
-            "turnText": "statGroup.normalModeStats",
+        "turnText": "statGroup.normalModeStats",
         "parameters": [
           {
             "name": "isSuper",
@@ -637,6 +637,10 @@
           {
             "type": "Stats",
             "statGroupName": "normalModeStats"
+          },
+          {
+            "type": "LangString",
+            "langID": "WTM_EFFECT_TOOLTIP_SYNCRONIZE"
           },
           {
             "type": "Stats",
@@ -682,7 +686,7 @@
           {
             "type": "ModifyStats",
             "statGroupName": "superModeStats",
-            "newValue": "statGroup.normalModeStats >= 5 ? 1 : (statGroup.normalModeStats <= 0 ? 0 : statGroup.superModeStats)",
+            "newValue": "param.isSuper ? 1 : 0",
             "triggersOn": [
               {
                 "type": "HitWithAttack",
@@ -716,6 +720,15 @@
             "triggersOn": [
               {
                 "type": "EndOfFight"
+              },
+              {
+                "type": "StatsChange",
+                "statGroupName": "normalModeStats",
+                "condition": {
+                  "operator": "==",
+                  "lhValue": "statGroup.normalModeStats",
+                  "rhValue": 0
+                }
               }
             ]
           }
@@ -958,6 +971,20 @@
     ],
     "modifiers": [
       {
+        "id": "slashingOnSummon",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "+X summon attacks after yours",
+                "lang": "MODIFIER_DATA_slashingOnSummon"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "ExtraSummonHits",
         "allowedScopes": [
           {
@@ -965,7 +992,7 @@
             "descriptions": [
               {
                 "text": "+X summon attacks after yours",
-                "lang": "MODIFIER_DATA_SummonQuickenAct"
+                "lang": "MODIFIER_DATA_ExtraSummonHits"
               }
             ]
           }
@@ -1776,7 +1803,8 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "lifesteal": 50
+                  "WTM:slashingOnSummon": 10,
+                  "flatSlashAttackBonus": 15
                 }
               },
               "levels": [
@@ -1784,6 +1812,7 @@
                   "name": "CurvedSwords1",
                   "id": "CurvedSwords1",
                   "level": 1,
+                  "shiny": 1,
                   "overwriteTypeIcons": [
                     1,
                     1,
@@ -1792,8 +1821,8 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "WTM:SummonQuickenAct": 200,
-                      "slashAttackBonus": 15
+                                            "WTM:slashingOnSummon": 25,
+                      "WTM:SummonQuickenAct": 200
                     }
                   },
                   "conditionalModifiers": [
@@ -1805,7 +1834,7 @@
                       },
                       "modifiers": {
                         "WTM:SummonQuickenAct": 200,
-                        "slashAttackBonus": 15
+                        "WTM:slashingOnSummon": 25
                       }
                     }
                   ]
@@ -1815,15 +1844,13 @@
                   "id": "CurvedSwords2",
                   "level": 2,
                   "overwriteTypeIcons": [
-                    1,
-                    1,
-                    1,
+                    0,
                     1
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "summoningMaxHit": 10,
-                      "maxHit": 5
+                      "meleeMinHitBasedOnMaxHit": 3,
+                      "flatSlashAttackBonus": 25
                     }
                   },
                   "conditionalModifiers": [
@@ -1834,11 +1861,13 @@
                         "weaponType": "WTM:CurvedSwords"
                       },
                       "modifiers": {
-                        "summoningMaxHit": 10,
-                        "maxHit": 5
+                        "flatSlashAttackBonus": 25
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "meleeMinHitBasedOnMaxHit": 3
+                  }
                 },
                 {
                   "name": "CurvedSwords3",
@@ -1875,23 +1904,10 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "summoningAttackInterval": -10,
-                      "summoningMaxHit": 10,
-                      "meleeMinHitBasedOnMaxHit": 10
+                      "summoningMaxHit": 15,
+                      "meleeMinHitBasedOnMaxHit": 15
                     }
                   },
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:CurvedSwords"
-                      },
-                      
-                      "chance": 50,
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Syncronized"
-                    }
-                  ],
                   "conditionalModifiers": [
                     {
                       "description": "-10% Summoning Attack Interval, +10% Summoning Max Hit, and +10% Min Hit Based on Max Hit",
@@ -1900,10 +1916,8 @@
                         "weaponType": "WTM:CurvedSwords"
                       },
                       "modifiers": {
-                        "lifesteal":50,
-                        "summoningAttackInterval": -10,
-                        "summoningMaxHit": 10,
-                        "meleeMinHitBasedOnMaxHit": 10
+                        "summoningMaxHit": 15,
+                        "meleeMinHitBasedOnMaxHit": 15
                       }
                     }
                   ]
@@ -1913,11 +1927,51 @@
                   "id": "CurvedSwords5",
                   "level": 5,
                   "shiny": true,
+                  "overwriteTypeIcons": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "order": [
+                    "c",
+                    "m",
+                    "m"
+                  ],
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_CURVED5"
+                  },
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Unlock Advantage",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:CurvedSwords"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ],
+                    "modifiers": {
+                      "summoningAttackInterval": -10,
+                      "flatSlashAttackBonus": 50
+                    }
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:CurvedSwords"
+                      },
+                      "chance": 50,
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Advantage"
+                    }
+                  ],
                   "modifiers": {
-                    "summoningAttackInterval": -5,
-                    "maxHit": 2.5,
-                    "minHitBasedOnMaxHit": 2.5,
-                    "accuracyRating": 5
+                    "summoningAttackInterval": -10,
+                    "flatSlashAttackBonus": 50
                   }
                 }
               ]

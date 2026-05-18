@@ -4,11 +4,8 @@ const typeMap = { "ranged": "rangedDefenceBonus", "melee": "meleeDefenceBonus", 
 
 function extractChances(player, target) {
     return [player.modifiers.getValue("WTM:unlockParry", target.damageType.modQuery) ? 
-        // THIS IS THE PART THAT DETERMINES THE PLAYER'S SIDE OF THE EQUATION
         player.equipmentStats[typeMap[target.attackType]] : 
-        0, 
-        // THIS IS THE PART THAT DETERMINES THE ENEMY'S 
-        target.monster.combatLevel]
+        0, target.monster ?target.monster.combatLevel : 0 ]
 }
 function determineParry(player, target) {
     const [pDef, tL] = extractChances(player, target);

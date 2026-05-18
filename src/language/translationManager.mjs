@@ -129,7 +129,7 @@ export function patchTranslations(ctx) {
 
         return ret;
     });
-      ctx.patch(SpecialAttack, 'name').get(function (patch) {
+    ctx.patch(SpecialAttack, 'name').get(function (patch) {
         if (this.namespace === 'rielkConstruction')
             return getRielkLangString(`SPECIAL_ATTACK_NAME_${this.localID}`);
 
@@ -206,4 +206,14 @@ export function patchTranslations(ctx) {
             return getRielkLangString(`AGI_OBSTACLE_${this._localID}`)
         return patch()
     })
+    ctx.patch(CombatEffectLangTTSpan, "getSpans").replace(function (patch, activeEffect) {
+        if (this.langID.startsWith("WTM")) {
+            let text = getRielkLangString(this.langID);
+            if (this.templateData !== undefined)
+                text = templateString(text, this.evalExpressionRecord(this.templateData, activeEffect));
+            return [this.createSpan(text)];
+        }
+        return patch(activeEffect);
+    });
+
 }

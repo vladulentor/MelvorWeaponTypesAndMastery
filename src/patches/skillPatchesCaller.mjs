@@ -25,6 +25,9 @@ const {birthOfMonk} = await loadModule('src/patches/patches/birthOfMonk.mjs');
 
 const {addSummonQuickenAttack} = await loadModule('src/patches/patches/addSummonQuickenAttack.mjs');
 
+const {addSlashingToCompanion} = await loadModule('src/patches/patches/addSlashingToCompanion.mjs');
+
+
 
 const { patchSkillNotif } = await loadModule('src/patches/patches/patchSkillNotif.mjs');
 
@@ -37,7 +40,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         addWeaponMasteryUI(ctx);
         patchWeaponTypeLogic(ctx);
 
-        
+        addSlashingToCompanion(ctx);        
         addCombatSkillXP(ctx);
         addSummonQuickenAttack(ctx);
         addFollowupSummonAttacks(ctx);

@@ -11,8 +11,13 @@ export const language = {
     'MODIFIER_DATA_dodgeChancePer10000EnemyAccuracyRating': '${value}% chance to convert a successful hit from the Target into a miss per 10,000 Enemy Accuracy Rating',
     'MODIFIER_DATA_accuracyRatingPer10000Evasion': '${value}% Accuracy Rating per 10,000 Evasion',
     'MODIFIER_DATA_SummonQuickenAct':'Summoning Familiar Attacks quicken attack by ${value}s',
-    'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, then instruct your Summon Companions to Attack the enemy Twice in quick succession.</div>',
+    'MODIFIER_DATA_ExtraSummonHits':'${value} additional Summon attacks after every attack',
+    'MODIFIER_DATA_slashingOnSummon':'${value}% of Slash Attack bonus added as Familiar damage',
 
+    'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, then instruct your Familiars to perform two Unavoidable Attacks.</div>',
+    'MODIFIER_TOOLTIP_CURVED5':'<div class="text-center"><span class="text-success font-weight-bold">Advantage</span><br>50% to gain Advantage on hit, to a max of 5. <br>Advantage gives stacking Max Hit and Attack Interval to your Familiars <br> When at max stacks, spend stacks on hit by instructing your Companions to perform two Unavoidable Attacks.</div>',
+
+    'WTM_EFFECT_TOOLTIP_SYNCRONIZE':'At max stacks, below effects activate',
     'MENU_TEXT_TYPE': "Type",
     'MENU_BACK': 'Back',
     'MENU_TOGGLE_TYPES': "Toggle Weapon Type Progress",

@@ -21,6 +21,7 @@ class WeaponMasteryLevel extends RealmedObject {
         // I absolutely hate doing it like this
         this.name = templateRielkLangString("WEAPON_TYPE_LEVEL", { weaponType: parentType._localID, level: levelIndex });
         if (data.shiny) this.shiny = data.shiny;
+        if(data.order) this.order = data.order;
         this.wepModifiers = new StatObject(data, game, this._localID);
         if (data.uiMods) this.uiMods = new StatObject(data.uiMods, game, this._localID);
         else this.uiMods = this.wepModifiers; //hopefully js makes a shallow copy
