@@ -115,31 +115,25 @@
         "usesRunesPerProc": false
       },
       {
-        "id": "Heartseeker",
-        "defaultChance": 10,
+        "id": "DeathApproaches",
+        "defaultChance": 1,
         "damage": [
-          {
-            "damageType": "Normal",
-            "amplitude": 80
-          },
           {
             "damageType": "Custom",
             "character": "Target",
-            "maxRoll": "CurrentHP",
-            "minRoll": "CurrentHP",
-            "minPercent": 5,
-            "maxPercent": 10,
-            "roll": true
+            "maxRoll": "MaxHP",
+            "maxPercent": 99.99,
+            "roll": false
           }
         ],
         "prehitEffects": [],
         "onhitEffects": [],
         "cantMiss": false,
         "attackCount": 1,
-        "attackInterval": 100,
+        "attackInterval": 50,
         "lifesteal": 0,
-        "name": "Heartseeker",
-        "description": "Avoidable attack for ${attackDamageMaxValue0}% of your normal damage + ${attackDamageMinValue1}%-${attackDamageMaxValue1}% of the Enemy's current HP.",
+        "name": "Death Approaches",
+        "description": "You find the most vulnerable spot to strike your opponent, dealing ${attackDamageMaxValue0}% of their max HP on hit.",
         "descriptionGenerator": "<Avoidable> attack for <damage>.",
         "usesRunesPerProc": false
       },
@@ -730,9 +724,13 @@
         "id": "Vulnerability",
         "name": "Vulnerability",
         "media": "assets/combat/status/resistance_decrease.png",
-        "templateID": "melvorD:StackingNonCountingModifier",
+        "templateID": "melvorD:StackingSelfCountingModifier",
         "target": "Target",
         "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          },
           {
             "name": "initialStacks",
             "initialValue": 1
@@ -1141,6 +1139,7 @@
             {
               "id": "ThrustingSwords",
               "name": "Thrusting Swords",
+              "flavorText": "“Stick 'em with the pointy end.”",
               "mat": [
                 "Sword"
               ],
@@ -1164,11 +1163,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "meleeAccuracyRating": 20,
-                  "evasion": 20
-                },
-                "enemyModifiers": {
-                  "bleedDOTDamageTaken": 50
+                  "dodgeChance": 10
                 }
               },
               "levels": [
@@ -1327,6 +1322,7 @@
             {
               "id": "Greatswords",
               "name": "Greatswords",
+              "flavorText": "Ist big, ja?",
               "mat": [
                 "2H_Sword"
               ],
@@ -1759,6 +1755,7 @@
             {
               "id": "CurvedSwords",
               "name": "Curved Swords",
+              "flavorText": "Curved swords. Curved! Swords!",
               "mat": [
                 "Scimitar"
               ],
@@ -1948,13 +1945,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "meleeCritChance": 10,
-                  "ignoreResistanceWhenAttackingChance": [
-                    {
-                      "damageTypeID": "melvorD:Normal",
-                      "value": 10
-                    }
-                  ]
+                  "meleeCritChance": 5
                 }
               },
               "levels": [
@@ -1962,16 +1953,52 @@
                   "name": "Daggers1",
                   "id": "Daggers1",
                   "level": 1,
+                  "shiny": false,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "Inflict 1 stack of Vulnerability on Hit and  2 stacks on Crit (max 50 stacks, 1 stack lasts 3 turns).",
+                        "appliesWhen": "CritWithAttack",
+                        "effectID": "WTM:Vulnerability"
+                      }
+                    ]
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "+5% Crit Chance while using Daggers",
+                      "description": "Daggers gain +10% Crit Chance.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Daggers"
                       },
                       "modifiers": {
-                        "critChance": 5
+                        "meleeCritChance": 10
                       }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Vulnerability"
                     }
                   ]
                 },
@@ -1979,20 +2006,52 @@
                   "name": "Daggers2",
                   "id": "Daggers2",
                   "level": 2,
+                  "shiny": false,
                   "conditionalModifiers": [
                     {
-                      "description": "+5% Chance to ignore Enemy Resistance while using Daggers",
+                      "description": "+25% Bleed and Poison damage. +5% Crit Chance and +50% Crit Multiplier. Double those if Enemy is Bleeding or Poisoned.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Daggers"
                       },
                       "modifiers": {
-                        "ignoreResistanceWhenAttackingChance": [
+                        "critMultiplier": 50,
+                        "meleeCritChance": 5
+                      },
+                      "enemyModifiers": {
+                        "bleedDOTDamageTaken": 25,
+                        "poisonDOTDamageTaken": 25,
+                        "deadlyPoisonDOTDamageTaken": 25
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
                           {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 5
+                            "type": "Some",
+                            "conditions": [
+                              {
+                                "groupID": "melvorD:PoisonDOT",
+                                "character": "Enemy",
+                                "type": "CombatEffectGroup"
+                              },
+                              {
+                                "groupID": "melvorD:BleedDOT",
+                                "character": "Enemy",
+                                "type": "CombatEffectGroup"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
                           }
                         ]
+                      },
+                      "modifiers": {
+                        "meleeCritChance": 5,
+                        "critMultiplier": 50
                       }
                     }
                   ]
@@ -2001,9 +2060,10 @@
                   "name": "Daggers3",
                   "id": "Daggers3",
                   "level": 3,
+                  "shiny": true,
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Heartseeker special attack:<br>(10%) Avoidable attack for 80% of your normal damage + 5-10% of the Enemy's current HP.",
+                      "description": "Daggers gain the special attack, Death Approaches, which deals 99.99% of Enemy's Max HP on hit.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Daggers"
@@ -2019,60 +2079,17 @@
                   "name": "Daggers4",
                   "id": "Daggers4",
                   "level": 4,
-                  "combatEffects": [
+                  "shiny": false,
+                  "conditionalModifiers": [
                     {
+                      "description": "Daggers gain +150% Crit Multiplier.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Daggers"
                       },
-                      "appliesWhen": "HitWithAttack",
-                      "chance": 16.67,
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "chance": 100,
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "chance": 100,
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "chance": 100,
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "chance": 100,
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "chance": 100,
-                      "effectID": "WTM:Vulnerability"
+                      "modifiers": {
+                        "critMultiplier": 150
+                      }
                     }
                   ]
                 },
@@ -2080,9 +2097,237 @@
                   "name": "Daggers5",
                   "id": "Daggers5",
                   "level": 5,
-                  "modifiers": {
-                    "meleeCritChance": 10
-                  }
+                  "shiny": true,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "While the Enemy has at least 1 stack of Vulnerability, its Resistance is halved. Apply 2 extra stacks on Hit if Enemy is Bleeding, 3 on Crit. Repeat if Enemy is Poisoned.",
+                        "condition": {
+                          "type": "Every",
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:Daggers"
+                            },
+                            {
+                              "character": "Enemy",
+                              "groupID": "melvorD:BleedDOT",
+                              "type": "CombatEffectGroup"
+                            }
+                          ]
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "effectID": "WTM:Vulnerability"
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "effectID": "WTM:Vulnerability",
+                            "type": "CombatEffect"
+                          }
+                        ]
+                      },
+                      "enemyModifiers": {
+                        "halveResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 1
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:PoisonDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:PoisonDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:PoisonDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:PoisonDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Daggers"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:PoisonDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Vulnerability"
+                    }
+                  ]
                 }
               ]
             },
