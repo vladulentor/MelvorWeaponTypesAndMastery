@@ -622,6 +622,7 @@
         "name": "Syncronized",
         "media": "assets/combat/status/sync.png",
         "target": "Self",
+            "turnText": "statGroup.normalModeStats",
         "parameters": [
           {
             "name": "isSuper",
@@ -658,8 +659,8 @@
           {
             "name": "superModeStats",
             "modifiers": {
-              "lifesteal": 50,
-              "meleeEvasion": 10
+              "WTM:ExtraSummonHits": 2,
+              "damageDealt": 15
             }
           }
         ],
@@ -1886,7 +1887,7 @@
                         "weaponType": "WTM:CurvedSwords"
                       },
                       
-                      "chance": 100,
+                      "chance": 50,
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Syncronized"
                     }
