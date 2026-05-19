@@ -2493,12 +2493,7 @@
                         "weaponType": "WTM:Axes"
                       },
                       "modifiers": {
-                        "maxHitBasedOnTargetResistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 0.25
-                          }
-                        ]
+                        
                       }
                     }
                   ]
