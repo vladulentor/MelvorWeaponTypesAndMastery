@@ -200,7 +200,8 @@
           <div class="weaponMasteryMenu">
             <div class="row no-gutters p-2">
               <div class="col-12">
-                <h5 id="weaponMasteryText" class="font-w900 font-size-lg text-combat-smoke mt-3 pt-2 text-center" style="margin-bottom: 0rem !important"></h5>
+                <h5 id="weaponMasteryText" class="font-w900 font-size-lg text-combat-smoke mt-3 pt-2 text-center"
+                  style="margin-bottom: 0rem !important"></h5>
                 <div class="col-12">
                   <div id="weaponFlavorText" class="font-size-sm font-italic text-muted mb-4 m-1 font-w300"></div>
                   <div class="font-w600 font-size-md text-combat-smoke">
@@ -208,10 +209,12 @@
                   </div>
                   <div id="weaponModifierValue" class="font-size-sm text-white text-center mt-1"></div>
                   <div id="weaponModifierTypeText" class="font-size-xs text-center m-1 font-w400"
-                    style="opacity: 0.5;margin-bottom: 1.75rem !important;"></div> <!--Because fuckass bootstrap decided to make m5 double the size of m4, fuck you-->
+                    style="opacity: 0.5;margin-bottom: 1.75rem !important;"></div>
+                  <!--Because fuckass bootstrap decided to make m5 double the size of m4, fuck you-->
                 </div>
 
-                <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 mb-4 pb-2 text-center" style="margin-bottom: 2rem !important">
+                <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 mb-4 pb-2 text-center"
+                  style="margin-bottom: 2rem !important">
                   <wtm-lang-string lang-id="MENU_TYPE_PROF"></wtm-lang-string>
                 </h5>
 
@@ -299,10 +302,10 @@
     <div id="menuViewerCont">
       <div id="weaponMasteryItem" class="d-flex position-relative">
 
-        <div class="position-absolute top-0 right-0 d-flex align-items-center font-w300"
-          style="position: absolute !important; top: 10px !important; right: 15px !important; z-index: 10;">
+        <div id="weaponTypeMiniTHing" class="position-absolute top-0 right-0 d-flex align-items-center font-w400"
+          style="position: absolute !important; top: 12px !important; right: 15px !important; z-index: 10;">
           <img id="weaponTypeMiniPic" class="skill-icon-xs" style="width: 16px; height: 16px; margin-right: 4px;">
-          <span id="WeaponTypeMiniText" class="font-size-xs fw-bold text-white"></span>
+          <span id="WeaponTypeMiniText" class="font-size-sm fw-bold text-white"></span>
         </div>
 
         <div class="d-flex align-items-center justify-content-center ml-3 m-2" style="width:64px;">
@@ -315,9 +318,13 @@
             style="line-height:1;margin-bottom: 0.75rem !important;">
           </div>
           <!--I HATE THIS PART-->
-          <div id="weaponXPBar" class="progress ml-3" style="height:6px; width:40%;">
-            <div id="weaponXpFill" class="progress-bar" style="width:40%;"></div>
+          <div id="weaponXPBar" class="progress ml-3"
+            style="height: 6px; width: 40%; display: inline-flex !important; vertical-align: middle;">
+            <div id="weaponXpFill" class="progress-bar" style="width: 40%;"></div>
           </div>
+
+          <span id="weaponMaxedCheck" class="fw-bold d-none font-size-lg"
+           class="fw-bold font-size-lg" style="display: inline-block; margin-left: 3px; vertical-align: middle; line-height: 1; transform: translateY(-1px);">★</span>
           <div id="weaponXPNumber" class="text-center font-size-xs font-w600 mb-3 text-center d-none font-italic">
           </div>
         </div>
@@ -340,10 +347,10 @@
             <div class="col-12 font-w400 font-size-sm text-center">
               <div class="bg-light rounded p-2 text-center font-size-sm">
                 <div id="wtm-info-text" class="text-warning">
-                  Did you know?
+          <wtm-lang-string lang-id="MENU_HELP1"></wtm-lang-string>
                 </div>
                 <div id="wtm-info-text">
-                  You can hover over text to learn more!
+          <wtm-lang-string lang-id="MENU_HELP2"></wtm-lang-string>
                 </div>
               </div>
             </div>

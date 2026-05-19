@@ -20,17 +20,19 @@ body.darkMode .text-danger.fuck-you {
 
 .construction-bar {
   background-color: #fca32f !important;
-  /* text color */
 }
 
-.construction-success {
+.construction-success,
+.construction-success.fuck-you,
+body.darkMode .construction-success,
+body .construction-success {
   color: #fca32f !important;
-  /* text color */
 }
 
 .construction-victory,
 .construction-victory.fuck-you,
-body.darkMode .construction-victory {
+body.darkMode .construction-victory,
+body .construction-victory {
   color: #fca32f !important;
   font-weight: bold;
 }
@@ -68,7 +70,6 @@ body.darkMode .construction-victory {
   transform: rotateX(180deg);
 }
 
-/* Modifiers panel */
 .weaponMasteryModifiers {
   max-height: 0;
   overflow: hidden;
@@ -121,14 +122,16 @@ body.darkMode .construction-victory {
 .modifierHolder.special.locked .fuck-you {
   color: #e5ae67 !important
 }
+
 .modifier-row-hover .modifier-flank {
-    opacity: 0.4;
-    transition: opacity 0.25s ease-in-out;
+  opacity: 0.4;
+  transition: opacity 0.25s ease-in-out;
 }
 
 .modifier-row-hover:hover .modifier-flank {
-    opacity: 1;
+  opacity: 1;
 }
+
 .modifierHolder.hidden {
   display: none !important;
 }
@@ -195,7 +198,8 @@ body.darkMode .border-item {
 
 /* I HATE HTML I HATE HTML I HATE HTML */
 ul.nav.nav-pills.nav-justified.push .nav-item .nav-link.border-gold.fuck-you.fuck-you-extra {
-  border-color: #d4b506 !important /*border-color: #d6841e !important*/
+  border-color: #d4b506 !important
+    /*border-color: #d6841e !important*/
 }
 
 .gold-selected.fuck-you {
@@ -330,7 +334,6 @@ body.darkMode .table-type-image {
   gap: 0.25rem;
 }
 
-/* Dark mode */
 body.darkMode .xp-marker {
   background-color: #fff;
 }

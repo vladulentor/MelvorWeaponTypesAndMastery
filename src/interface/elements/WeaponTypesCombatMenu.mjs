@@ -144,10 +144,10 @@ class WeaponTypeMenuElement extends HTMLElement {
 
 
 const noXP = { name: "No XP", color: "#af0000", width: '0%' };
-const stock = { name: "Stock", color: "#2dd432", width: '40%' };
-const unusual = { name: "Unusual", color: "#3a9adf", width: '60%' };
-const distinct = { name: "Distinct", color: "#d33290", width: '80%' };
-const exotic = { name: "Exotic", color: "#ffaf02", width: '90%' };
+const stock = { name: "Stock", color: "#2dd432", width: '35%' };
+const unusual = { name: "Unusual", color: "#3a9adf", width: '55%' };
+const distinct = { name: "Distinct", color: "#d33290", width: '75%' };
+const exotic = { name: "Exotic", color: "#ffaf02", width: '85%' };
 
 const uniqtoclass = [noXP, stock, unusual, distinct, exotic, exotic, exotic, exotic, exotic];
 
@@ -165,6 +165,9 @@ export class WeaponTypesCombatMenu {
         // WEAPON PARTS
         this.weaponItem = getElementFromFragment(this._content, 'weaponMasteryItem', 'div');
         this.weaponTypeMPic = getElementFromFragment(this._content, 'weaponTypeMiniPic', 'img');
+        this.weaponTypeMiniTHing = getElementFromFragment(this._content, 'weaponTypeMiniTHing', 'div');
+        this.weaponMaxedCheck = getElementFromFragment(this._content, 'weaponMaxedCheck', 'span');
+
         this.weaponTypeMTex = getElementFromFragment(this._content, 'WeaponTypeMiniText', 'span');
         this.weaponPic = getElementFromFragment(this._content, 'weaponPic', 'img');
         this.weaponName = getElementFromFragment(this._content, 'weaponName', 'div');
@@ -180,7 +183,7 @@ export class WeaponTypesCombatMenu {
         this.weaponMenuPlace = getElementFromFragment(this._content, 'weaponMenuPlace', 'div');
         this.headerText = getElementFromFragment(this._content, 'wtm-header-text', 'h5');
         this.infoBox = getElementFromFragment(this._content, 'wtm-info-box', 'div');
-        this.infoText = getElementFromFragment(this._content, 'wtm-info-text', 'div');
+        //this.infoText = getElementFromFragment(this._content, 'wtm-info-text', 'div');
         this.selectedButton = null;
         this.selectedMenu = null;
         this.selectedOType = null;
@@ -240,6 +243,10 @@ export class WeaponTypesCombatMenu {
             ]
         };
         this.settypeBonusTooltip(this.typeMenu.wepModType);
+        this.settypeBonusTooltip(this.weaponMaxedCheck);
+        this.weaponMaxedCheck._tippy.setContent(`<div class="text-center">${getRielkLangString('MENU_WEP_MAXED')}</div>`);
+
+
     }
     // ----------TYPE MENU FUNCTIONS ------------
     settypeBonusTooltip(elem) {
@@ -340,6 +347,8 @@ export class WeaponTypesCombatMenu {
         this.typeMenu.profOvFill.style.width = this.typeMenu.type.uncappedxpPercent + "%";
         const percentCapped = this.typeMenu.type.xpPercent;
         this.typeMenu.profFill.style.width = percentCapped + "%";
+
+        this.weaponTypeMiniTHing.style.top = (this.weaponItem.clientWidth < 350) ? "0px" : "12px";
 
         if (performant && this.typeMenu.type.level !== this.typeMenu.levelCache) return;
         for (let i = 0; i < 5; i++) {
@@ -556,6 +565,10 @@ export class WeaponTypesCombatMenu {
     // ----------WEAPON TAB FUNCTIONS ------------
 
     setWeapon(weapon) {
+        if (this.checkmarkSet) {
+            hideElement(this.weaponMaxedCheck);
+            this.checkmarkSet = 0;
+        }
         if (weapon._localID == "Empty_Equipment") {
             this.weaponPic.src = this.emptyAsset;
             this.weaponName.innerHTML = this.noWeaponText
@@ -568,11 +581,11 @@ export class WeaponTypesCombatMenu {
             this.uniqclass = uniqtoclass[weapon.uniqueness];
             this.weaponTypeMPic.src = weapon.weaponType.mediaCol;
             this.weaponTypeMTex.innerText = weapon.weaponType.name;
-            this.weaponRank.innerHTML = this.uniqclass.name;
+            this.weaponMaxedCheck.style.color = this.uniqclass.color;
             this.weaponRank.style.color = this.uniqclass.color;
             this.weaponXPBar.style.width = this.uniqclass.width;
             this.weaponXPFill.style.backgroundColor = this.uniqclass.color;
-
+            this.weaponRank.innerHTML = this.uniqclass.name;
             showElement(this.weaponTypeMPic);
             showElement(this.weaponTypeMTex);
             showElement(this.weaponXPBar);
@@ -597,8 +610,13 @@ export class WeaponTypesCombatMenu {
 
     setwepXP(weapon) {
         //if (!weapon.masteryMaxed) this.weaponXPNumber.innerText = `${weapon._weaponXP}/${weapon.weaponXPCap}`
-
-        this.weaponXPFill.style.width = weapon.weaponXPPercentCapped + "%"
+        this.weaponTypeMiniTHing.style.top = (this.weaponItem.clientWidth < 350) ? "2px" : "12px";
+        const wepxp = weapon.weaponXPPercentCapped
+        this.weaponXPFill.style.width = wepxp + "%";
+        if (!this.checkmarkSet && wepxp == 100) {
+            showElement(this.weaponMaxedCheck);
+            this.checkmarkSet = 1;
+        }
     }
     // ---------- TYPES SELECT MENU FUNCTIONS ------------
     changeSelectedButton(button) {
