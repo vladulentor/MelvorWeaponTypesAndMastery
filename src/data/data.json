@@ -85,7 +85,7 @@
         "attackInterval": 400,
         "lifesteal": 0,
         "name": "Whirling Manoeuvre",
-        "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each. While attacking, gain +${preHitEffect0modifierValue1}% Dodge Chance and reflect Enemy attacks for ${preHitEffect0modifierValue0}% of their damage.",
+        "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each. While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect Enemy attacks for ${preHitEffect0modValue0}% of their damage.",
         "descriptionGenerator": "Gain <preHitEffect>, and attack <hitCount> times for <damage>.",
         "usesRunesPerProc": false
       },
@@ -107,7 +107,7 @@
         "attackInterval": 50,
         "lifesteal": 0,
         "name": "Bloodlust",
-        "description": "You let out a bloodcurdling warcry, becoming filled with a lust for blood. Gain 1 stack (max 10, lasts 5 turns) of Bloodlust which gives you: +${preHitEffect0modValue0}% Lifesteal, +${preHitEffect0modValue1}% Max Hit, +${preHitEffect0modValue2} Flat Damage to Bleeding targets, -${preHitEffect0modifierValue3}% Attack Interval, and +${preHitEffect0modifierValue4}% Self Damage on Hit (stacking, max 10 stacks). Each stack of Bloodlust also gives the Enemy +${preHitEffect1modValue0}% Bleed Damage Taken, -${preHitEffect1modValue1}% Max Hit, -${preHitEffect1modValue2}% Resistance, and +${preHitEffect0modifierValue3}% Attack Interval.",
+        "description": "You let out a bloodcurdling warcry, becoming filled with a lust for blood. Gain 1 stack (max 10, lasts 5 turns) of Bloodlust which gives you: +${preHitEffect0modValue0}% Lifesteal, +${preHitEffect0modValue1}% Max Hit, +${preHitEffect0modValue2} Flat Damage to Bleeding targets, -${preHitEffect0modValue3}% Attack Interval, and +${preHitEffect0modValue4}% Self Damage on Hit (stacking, max 10 stacks). Each stack of Bloodlust also gives the Enemy +${preHitEffect1modValue0}% Bleed Damage Taken, -${preHitEffect1modValue1}% Max Hit, -${preHitEffect1modValue2}% Resistance, and +${preHitEffect0modValue3}% Attack Interval.",
         "descriptionGenerator": "You become filled with a lust for blood. On use, <preHitEffect>.",
         "usesRunesPerProc": false
       },
