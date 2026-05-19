@@ -340,7 +340,7 @@
         "id": "BloodlustPlayer",
         "templateID": "melvorD:StackingSelfCountingModifier",
         "name": "Bloodlust",
-        "media": "assets/combat/status/warcry.png",
+        "media": "assets/combat/status/warcry.svg",
         "target": "Self",
         "statGroups": [
           {
@@ -422,36 +422,32 @@
       },
       {
         "id": "Hemorrhage",
-        "templateID": "melvorD:StackingNonCountingModifier",
-        "name": "Hemorrhage",
-        "media": "assets/combat/status/hemorrhage.png",
-        "target": "Target",
-        "statGroups": [
-          {
-            "name": "stacks",
-            "modifiers": {
-              "damageTaken": 5,
-              "bleedDOTDamageTaken": 50
-            }
-          }
-        ],
+        "templateID": "melvorD:DOT",
         "parameters": [
           {
-            "name": "initialStacks",
-            "initialValue": 1
+            "name": "procs",
+            "initialValue": 20
           },
           {
-            "name": "stacksToAdd",
-            "initialValue": 1
-          },
-          {
-            "name": "maxStacks",
-            "initialValue": 10
+            "name": "interval",
+            "initialValue": 1000
           }
         ],
-        "effectGroups": [
-          "melvorD:Debuff",
-          "melvorD:BleedDOT"
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Attacker",
+                "maxRoll": "DamageDealt",
+                "maxPercent": 500,
+                "roll": false
+              }
+            ],
+            "applyDamageModifiers": true,
+            "applyTypeModifiers": "Bleed",
+            "applyResistance": true
+          }
         ]
       },
       {
@@ -2459,7 +2455,7 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "Automatically inflict a 100% Bleed on your first Hit. 50% Chance to apply 1 stack of Hemorrhage on Hit if Enemy is Bleeding (max 50 stacks).",
+                        "customDescription": "Automatically inflict a 100% Bleed on your first Hit. 25% Chance to apply Hemorrhage (a 500% Bleed over 20s) on Hit if Enemy is Bleeding.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Axes"
@@ -2483,7 +2479,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 50,
+                      "chance": 25,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -2511,7 +2507,7 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "+10% Chance to inflict a 100% Bleed and/or apply 1 Hemorrhage stack on Hit. If enemy is Bleeding, +50% Chance to apply 1 Hemorrhage stack.",
+                        "customDescription": "+10% Chance to inflict a 100% Bleed and/or apply Hemorrhage on Hit. If enemy is Bleeding, +25% Chance to apply Hemorrhage on Hit.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Axes"
@@ -2543,7 +2539,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 50,
+                      "chance": 25,
                       "condition": {
                         "type": "Every",
                         "conditions": [
