@@ -90,28 +90,25 @@
         "usesRunesPerProc": false
       },
       {
-        "id": "Warcry",
+        "id": "Bloodlust",
         "defaultChance": 10,
         "damage": [],
         "prehitEffects": [
           {
-            "effectID": "WTM:WarcryPlayer"
+            "effectID": "WTM:BloodlustPlayer"
           },
           {
-            "effectID": "WTM:WarcryEnemy1"
-          },
-          {
-            "effectID": "WTM:WarcryEnemy0"
+            "effectID": "WTM:BloodlustEnemy"
           }
         ],
         "onhitEffects": [],
         "cantMiss": true,
-        "attackCount": 3,
+        "attackCount": 2,
         "attackInterval": 50,
         "lifesteal": 0,
-        "name": "Warcry",
-        "description": "You let out a bloodcurdling warcry, interrupting the Enemy and preventing them from using Special Attacks for 2 of its turns.<br>For the rest of the fight: Gives you +${preHitEffect0modValue0}% Max Hit, +${preHitEffect0modValue1}% Crit Chance, and ${preHitEffect0modValue2}% Attack Interval (stacking, max 10 stacks); and gives the Enemy -${preHitEffect1modValue0}% Max Hit, -${preHitEffect1modValue1}% Resistance, and +${preHitEffect1modValue2}% Attack Interval (stacking, max 10 stacks).",
-        "descriptionGenerator": "You let out a warcry. On use, <preHitEffect>.",
+        "name": "Bloodlust",
+        "description": "You let out a bloodcurdling warcry, becoming filled with a lust for blood. Gain 1 stack (max 10, lasts 5 turns) of Bloodlust which gives you: +${preHitEffect0modValue0}% Lifesteal, +${preHitEffect0modValue1}% Max Hit, +${preHitEffect0modValue2} Flat Damage to Bleeding targets, -${preHitEffect0modifierValue3}% Attack Interval, and +${preHitEffect0modifierValue4}% Self Damage on Hit (stacking, max 10 stacks). Each stack of Bloodlust also gives the Enemy +${preHitEffect1modValue0}% Bleed Damage Taken, -${preHitEffect1modValue1}% Max Hit, -${preHitEffect1modValue2}% Resistance, and +${preHitEffect0modifierValue3}% Attack Interval.",
+        "descriptionGenerator": "You become filled with a lust for blood. On use, <preHitEffect>.",
         "usesRunesPerProc": false
       },
       {
@@ -135,113 +132,6 @@
         "name": "Death Approaches",
         "description": "You find the most vulnerable spot to strike your opponent, dealing ${attackDamageMaxValue0}% of their max HP on hit.",
         "descriptionGenerator": "<Avoidable> attack for <damage>.",
-        "usesRunesPerProc": false
-      },
-      {
-        "id": "ForcefulSweep",
-        "defaultChance": 15,
-        "damage": [
-          {
-            "damageType": "Normal",
-            "amplitude": 100
-          }
-        ],
-        "prehitEffects": [],
-        "onhitEffects": [],
-        "cantMiss": false,
-        "attackCount": 1,
-        "attackInterval": 50,
-        "lifesteal": 0,
-        "name": "Mounted Strike",
-        "description": "Attack normally, then instruct your Summon Companions to perform two Unavoidable Attacks",
-        "descriptionGenerator": "Attack normally, then instruct your Summon Companions to Attack the enemy Twice in quick succession.",
-        "usesRunesPerProc": false
-      },
-      {
-        "id": "SlashGashMaim",
-        "name": "Slash, Gash, and Maim",
-        "description": "Perform ${attackCount} swift attacks that deal your normal damage on hit: ${attackDamageMaxValue0}% on the 1st, ${attackDamageMaxValue1}% on the 2nd, and ${attackDamageMaxValue2}% (+ ${attackDamageMaxValue3} if the Enemy is bleeding) on the 3rd.On hit, each attack has a ${onHitEffect0chance}% chance to inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s and a ${onHitEffect1modValue0}% Slow for ${onHitEffect1turns} turn(s). ",
-        "descriptionGenerator": "Perform <count> attacks, dealing <damage> damage. On hit, <hitEffect>.",
-        "defaultChance": 10,
-        "damage": [
-          {
-            "damageType": "Normal",
-            "amplitude": 60,
-            "attackCount": 0
-          },
-          {
-            "damageType": "Normal",
-            "amplitude": 80,
-            "attackCount": 1
-          },
-          {
-            "damageType": "Normal",
-            "amplitude": 100,
-            "attackCount": 2
-          },
-          {
-            "damageType": "Custom",
-            "character": "Target",
-            "roll": false,
-            "maxRoll": "Bleeding",
-            "maxPercent": 20,
-            "attackCount": 2
-          }
-        ],
-        "prehitEffects": [],
-        "onhitEffects": [
-          {
-            "effectID": "melvorD:Bleed100",
-            "chance": 10
-          },
-          {
-            "effectID": "melvorD:Slow",
-            "chance": 10,
-            "initialParams": [
-              {
-                "name": "magnitude",
-                "value": 20
-              },
-              {
-                "name": "turns",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "cantMiss": false,
-        "canNormalAttack": false,
-        "attackCount": 3,
-        "attackInterval": 100,
-        "lifesteal": 0,
-        "usesRunesPerProc": false
-      },
-      {
-        "id": "Counterattack",
-        "defaultChance": 15,
-        "damage": [
-          {
-            "damageType": "Normal",
-            "amplitude": 100,
-            "attackCount": 1
-          }
-        ],
-        "prehitEffects": [
-          {
-            "effectID": "WTM:Counterattack0"
-          },
-          {
-            "effectID": "WTM:Counterattack1"
-          }
-        ],
-        "onhitEffects": [],
-        "cantMiss": true,
-        "attackCount": 2,
-        "attackInterval": 5000,
-        "lifesteal": 0,
-        "name": "Counterattack",
-        "description": "Focus on defensive manoeuvres. Gives you +${preHitEffect0modValue0}% Melee Maximum Hit for each attack blocked for the duration of this attack (Stacks up to ${preHitEffect0maxStacks} times). Follow up with an unavoidable counterattack that deals ${attackDamageMaxValue0}% of your normal damage.",
-        "descriptionGenerator": "<Attacker> focuses on defensive manoeuvres. On use, <prehitEffect>, followed up by a <avoidable> counterattack that deals <damage>.",
         "usesRunesPerProc": false
       }
     ],
@@ -447,22 +337,28 @@
         ]
       },
       {
-        "id": "WarcryPlayer",
-        "templateID": "melvorD:StackingNonCountingModifier",
-        "name": "Warcry",
+        "id": "BloodlustPlayer",
+        "templateID": "melvorD:StackingSelfCountingModifier",
+        "name": "Bloodlust",
         "media": "assets/combat/status/warcry.png",
         "target": "Self",
         "statGroups": [
           {
             "name": "stacks",
             "modifiers": {
+              "lifesteal": 5,
               "maxHit": 4,
-              "critChance": 3,
-              "attackInterval": -2
+              "flatTotalBleedDamage": 3,
+              "attackInterval": -2,
+              "selfDamageOnHitBasedOnCurrentHitpoints": 1
             }
           }
         ],
         "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 5
+          },
           {
             "name": "initialStacks",
             "initialValue": 1
@@ -481,15 +377,16 @@
         ]
       },
       {
-        "id": "WarcryEnemy0",
-        "templateID": "melvorD:StackingNonCountingModifier",
-        "name": "Warcry",
+        "id": "BloodlustEnemy",
+        "templateID": "melvorD:StackingSelfCountingModifier",
+        "name": "Bloodlust",
         "media": "assets/combat/status/warcry.png",
         "target": "Target",
         "statGroups": [
           {
             "name": "stacks",
             "modifiers": {
+              "bleedDOTDamageTaken": 5,
               "maxHit": -4,
               "resistance": [
                 {
@@ -502,6 +399,10 @@
           }
         ],
         "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 5
+          },
           {
             "name": "initialStacks",
             "initialValue": 1
@@ -520,37 +421,36 @@
         ]
       },
       {
-        "id": "WarcryEnemy1",
-        "templateID": "melvorD:StaticTargetCountingModifier",
-        "name": "Warcry",
-        "media": "assets/combat/status/null.svg",
+        "id": "Hemorrhage",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "name": "Hemorrhage",
+        "media": "assets/combat/status/hemorrhage.png",
         "target": "Target",
         "statGroups": [
           {
             "name": "stacks",
             "modifiers": {
-              "cantSpecialAttack": 1
+              "bleedDOTDamageTaken": 10
             }
           }
         ],
         "parameters": [
           {
-            "name": "turns",
-            "initialValue": 2
-          }
-        ],
-        "behaviours": [
+            "name": "initialStacks",
+            "initialValue": 1
+          },
           {
-            "type": "InterruptTurn",
-            "triggersOn": [
-              {
-                "type": "EffectApplied"
-              }
-            ]
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 50
           }
         ],
         "effectGroups": [
-          "melvorD:Debuff"
+          "melvorD:Debuff",
+          "melvorD:BleedDOT"
         ]
       },
       {
@@ -2472,12 +2372,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "maxHitBasedOnTargetResistance": [
-                    {
-                      "damageTypeID": "melvorD:Normal",
-                      "value": 0.25
-                    }
-                  ]
+                  "lifestealDamageBasedOnCurrentHitpoints": 5
                 }
               },
               "levels": [
@@ -2487,13 +2382,14 @@
                   "level": 1,
                   "conditionalModifiers": [
                     {
-                      "description": "While using Axes, +0.25% Max Hit per 1% Enemy Resistance",
+                      "description": "+10% Lifesteal and +1% Max Hit for every 10% of Enemy HP missing",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
                       },
                       "modifiers": {
-                        
+                        "lifesteal": 10,
+                        "maxHitBasedOnTargetCurrentHitpoints": 0.1
                       }
                     }
                   ]
@@ -2504,19 +2400,27 @@
                   "level": 2,
                   "conditionalModifiers": [
                     {
-                      "description": "While using Axes, Enemy has -0.1% Max Hit per 1% Enemy Resistance",
+                      "description": "+20% Bleed Lifesteal and +50 total damage to Bleed-inflicted",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
                       },
-                      "enemyModifiers": {
-                        "maxHitBasedOnResistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": -0.1
-                          }
-                        ]
+                      "modifiers": {
+                        "bleedLifesteal": 20,
+                        "flatTotalBleedDamage": 5
                       }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "customDescription": "10% chance to inflict a 100% Bleed on Hit",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "melvorD:Bleed100",
+                      "chance": 10
                     }
                   ]
                 },
@@ -2524,9 +2428,10 @@
                   "name": "Axes3",
                   "id": "Axes3",
                   "level": 3,
+                  "shiny": true,
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Warcry special attack:<br>(10%) Interrupts the Enemy and prevents them from using special attacks for 2 turns.<br>For the rest of the fight: Gives you +4% Max Hit, +3% Crit Chance, and -2% Attack Interval (stacking, max 10 stacks); gives the Enemy -4% Max Hit, -3% Resistance, and +2% Attack Interval (stacking, max 10 stacks).",
+                      "description": "Adds the Bloodlust special attack.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
@@ -2542,21 +2447,50 @@
                   "name": "Axes4",
                   "id": "Axes4",
                   "level": 4,
-                  "conditionalModifiers": [
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "Automatically inflict a 100% Bleed on your first Hit. 50% Chance to apply 1 stack of Hemorrhage on Hit if Enemy is Bleeding (max 50 stacks).",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 10,
+                        "effectID": "melvorD:Bleed100"
+                      }
+                    ]
+                  },
+                  "combatEffects": [
                     {
-                      "description": "Gain +5% Melee Strength Bonus from Equipment per 10% Enemy Resistance while using Axes",
+                      "customDescription": "",
+                      "appliesWhen": "HitWithFirstAttack",
+                      "chance": 100,
+                      "effectID": "melvorD:Bleed100",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
-                      },
-                      "modifiers": {
-                        "meleeStrengthBonusPer10EnemyResistance": [
+                      }
+                    },
+                    {
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 50,
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
                           {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 5
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Axes"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
                           }
                         ]
-                      }
+                      },
+                      "effectID": "WTM:Hemorrhage",
+                      "customDescription": ""
                     }
                   ]
                 },
@@ -2564,14 +2498,61 @@
                   "name": "Axes5",
                   "id": "Axes5",
                   "level": 5,
-                  "enemyModifiers": {
-                    "flatResistance": [
+                  "shiny": true,
+                  "uiMods": {
+                    "combatEffects": [
                       {
-                        "damageTypeID": "melvorD:Normal",
-                        "value": -5
+                        "customDescription": "+10% Chance to inflict a 100% Bleed and/or apply 1 Hemorrhage stack on Hit. If enemy is Bleeding, +50% Chance to apply 1 Hemorrhage stack.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 10,
+                        "effectID": "melvorD:Bleed100"
                       }
                     ]
-                  }
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 10,
+                      "effectID": "melvorD:Bleed100"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 10,
+                      "effectID": "WTM:Hemorrhage"
+                    },
+                    {
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 50,
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Axes"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "effectID": "WTM:Hemorrhage",
+                      "customDescription": "50% Chance to apply 1 stack of Hemorrhage on Hit if Enemy is Bleeding (max 50 stacks)"
+                    }
+                  ]
                 }
               ]
             },
