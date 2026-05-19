@@ -21,7 +21,7 @@ class WeaponMasteryLevel extends RealmedObject {
         // I absolutely hate doing it like this
         this.name = templateRielkLangString("WEAPON_TYPE_LEVEL", { weaponType: parentType._localID, level: levelIndex });
         if (data.shiny) this.shiny = data.shiny;
-        if(data.order) this.order = data.order;
+        if (data.order) this.order = data.order;
         this.wepModifiers = new StatObject(data, game, this._localID);
         if (data.uiMods) this.uiMods = new StatObject(data.uiMods, game, this._localID);
         else this.uiMods = this.wepModifiers; //hopefully js makes a shallow copy
@@ -91,7 +91,7 @@ export class WeaponMastery extends RealmedObject {
         } // This is very stupid and inefficient but FUCK IT
         this.wepModifiers = new StatObject(data.wepModifiers, game, this._localID);
         this._uiWepMod = this.wepModifiers;
-
+        if(data.wepModShiny) this.wepModShiny = data.wepModShiny;
 
         // for (let i = 0; i < this.fixture.length; i++)
         //   this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);

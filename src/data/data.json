@@ -1037,7 +1037,7 @@
             "scopes": {},
             "descriptions": [
               {
-                "text": "",
+                "text": "Text",
                 "lang": "MODIFIER_DATA_spoofIncreaseSkillXP"
               }
             ]
@@ -1287,7 +1287,7 @@
                     },
                     {
                       "condition": {
-                                      "type": "Every",
+                        "type": "Every",
                         "conditions": [
                           {
                             "type": "WeaponType",
@@ -1822,7 +1822,7 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                                            "WTM:slashingOnSummon": 25,
+                      "WTM:slashingOnSummon": 25,
                       "WTM:SummonQuickenAct": 200
                     }
                   },
@@ -1880,7 +1880,7 @@
                   "shiny": true,
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Mounted Strike Special Attack",
+                      "description": "Unlock the Mounted Strike Special Attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
@@ -2550,6 +2550,15 @@
                   "name": "Polearms1",
                   "id": "Polearms1",
                   "level": 1,
+                  "overwriteTypeIcons": [
+                    1
+                  ],
+                  "uiMods": {
+                    "modifiers":{
+                    "WTM:accuracyRatingPer10000Evasion": 5
+
+                    }
+                  },
                   "conditionalModifiers": [
                     {
                       "description": "Gain 5% Global Accuracy Rating per 10,000 Global Evasion",
@@ -2567,6 +2576,14 @@
                   "name": "Polearms2",
                   "id": "Polearms2",
                   "level": 2,
+                  "overwriteTypeIcons": [
+                    1
+                  ],
+                  "uiMods": {
+                                        "modifiers":{
+
+                    "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5}
+                  },
                   "conditionalModifiers": [
                     {
                       "description": "Gain 0.5% Dodge Chance per 10,000 Enemy Global Accuracy Rating",
@@ -2585,9 +2602,12 @@
                   "id": "Polearms3",
                   "level": 3,
                   "changeFunc": "addSpecialAttack",
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_POLEARMS3"
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Whirling Manoeuvre special attack: (15%) Whirl your polearm around, attacking multiple times for a small portion of your normal damage each. While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.",
+                      "description": "Unlock the Whirling Manoeuvre Special Attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
@@ -3227,7 +3247,7 @@
               "mediaAlt": "assets/black_filled_svgs/special.svg",
               "mediaCol": "assets/filled_svgs/special.svg",
               "type": "melee",
-              "isPerWepMod": true,
+              "wepModShiny": true,
               "wepModifiers": {
                 "modifiers": {
                   "masteryXP": 0.25,
@@ -3240,7 +3260,8 @@
                   "id": "Special1",
                   "level": 1,
                   "modifiers": {
-                    "nonCombatSkillXP": 5
+                    "skillPreservationChance": 3,
+                    "skillItemDoublingChance": 3
                   }
                 },
                 {
@@ -3248,7 +3269,8 @@
                   "id": "Special2",
                   "level": 2,
                   "modifiers": {
-                    "skillPreservationChance": 10
+                    "WTM:increaseWeaponXP": 10,
+                    "WTM:combatSkillXP": 10
                   }
                 },
                 {
@@ -3257,16 +3279,18 @@
                   "level": 3,
                   "shiny": true,
                   "modifiers": {
-                    "WTM:spoofIncreaseSkillXP": 5
-                  },
-                  "changeFunc": "increaseSpecialAttackChance"
+                    "xpFromMasteryTokens": 0.15,
+                    "masteryPoolCap": 25
+                  }
                 },
                 {
                   "name": "Special4",
                   "id": "Special4",
                   "level": 4,
+                  "shiny": true,
+                  "changeFunc": "increaseSpecialAttackChance",
                   "modifiers": {
-                    "masteryPoolProgress": 5
+                    "WTM:spoofIncreaseSkillXP": 5
                   }
                 },
                 {
@@ -3274,8 +3298,33 @@
                   "id": "Special5",
                   "level": 5,
                   "shiny": true,
+                  "changeFunc": "makeWeaponsOffhand",
+                  "order": [
+                    "c",
+                    "m",
+                    "m"
+                  ],
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Can equip Special Weapons in the Shield Slot",
+                        "condition": {
+                          "type": "EmptySlot",
+                          "slotIDs": [
+                            "melvorD:Shield"
+                          ]
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ],
+                    "modifiers": {
+                      "masteryPoolProgress": 15
+                    }
+                  },
                   "modifiers": {
-                    "skillPreservationCap": 5
+                    "masteryPoolProgress": 15
                   }
                 }
               ]

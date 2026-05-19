@@ -1,0 +1,22 @@
+{
+  "$schema": "https://melvoridle.com/assets/schema/gameData.json",
+  "namespace": "rielkConstruction",
+  "modifications": {
+    "modifiers": [
+      {
+        "id": "melvorD:skillItemDoublingChance",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "${value}% ${skillName} Interval for ${subcategoryName}",
+                "lang": "MODIFIER_DATA_skillItemDoublingChanceGlobal"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -91,7 +91,7 @@ export function increaseSpecialAttackChance() {
 
     const ourAttacks = game.specialAttacks.namespaceMaps.get("WTM"); // Yes right now it only works with WTM's special attacks, I'll get a better way of finding them later.
 
-    if (this._localID == "Special3") {
+    if (this._localID == "Special4") {
         toadd += SPECIAL_MOD3_VALUE;
     }
 
