@@ -91,7 +91,7 @@
       },
       {
         "id": "Bloodlust",
-        "defaultChance": 10,
+        "defaultChance": 15,
         "damage": [],
         "prehitEffects": [
           {
@@ -430,7 +430,8 @@
           {
             "name": "stacks",
             "modifiers": {
-              "bleedDOTDamageTaken": 10
+              "damageTaken": 5,
+              "bleedDOTDamageTaken": 50
             }
           }
         ],
@@ -445,7 +446,7 @@
           },
           {
             "name": "maxStacks",
-            "initialValue": 50
+            "initialValue": 10
           }
         ],
         "effectGroups": [
