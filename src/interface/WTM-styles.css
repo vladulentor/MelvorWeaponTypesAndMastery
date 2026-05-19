@@ -28,7 +28,9 @@ body.darkMode .text-danger.fuck-you {
   /* text color */
 }
 
-.construction-victory {
+.construction-victory,
+.construction-victory.fuck-you,
+body.darkMode .construction-victory {
   color: #fca32f !important;
   font-weight: bold;
 }
@@ -193,7 +195,7 @@ body.darkMode .border-item {
 
 /* I HATE HTML I HATE HTML I HATE HTML */
 ul.nav.nav-pills.nav-justified.push .nav-item .nav-link.border-gold.fuck-you.fuck-you-extra {
-  border-color: #d6841e !important
+  border-color: #d4b506 !important /*border-color: #d6841e !important*/
 }
 
 .gold-selected.fuck-you {

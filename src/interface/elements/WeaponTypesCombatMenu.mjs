@@ -14,7 +14,7 @@ const weaponOverTypes = [
 
 export class typeButtonElement extends HTMLElement {
     static borderClasses = ['border-success', 'border-2x', 'spell-selected'];
-    static goldenClasses = ['border-2x', 'border-gold', 'gold-selected'];
+    static goldenClasses = ['border-2x', 'gold-selected'];
     static goldFilter = 'invert(79%) sepia(74%) saturate(2255%) hue-rotate(3deg) brightness(105%) contrast(105%)';
     constructor() {
         super();
@@ -58,7 +58,8 @@ export class typeButtonElement extends HTMLElement {
         let togh = 0;
         if (this.highlighted) { togh = 1; this.unhighlight(); }
         this.isGold = 1;
-        this.typeImage.style.setProperty('filter', typeButtonElement.goldFilter);
+        this.link.classList.add('border-gold');
+        // this.typeImage.style.setProperty('filter', typeButtonElement.goldFilter);
         if (togh)
             this.highlight();
     }
@@ -67,7 +68,8 @@ export class typeButtonElement extends HTMLElement {
         let togh = 0;
         if (this.highlighted) { togh = 1; this.unhighlight(); }
         this.isGold = 0;
-        this.typeImage.style.removeProperty('filter');
+        this.link.classList.remove('border-gold');
+        // this.typeImage.style.removeProperty('filter');
         if (togh)
             this.highlight();
 
@@ -162,6 +164,8 @@ export class WeaponTypesCombatMenu {
         this.lookingAtType = 0;
         // WEAPON PARTS
         this.weaponItem = getElementFromFragment(this._content, 'weaponMasteryItem', 'div');
+        this.weaponTypeMPic = getElementFromFragment(this._content, 'weaponTypeMiniPic', 'img');
+        this.weaponTypeMTex = getElementFromFragment(this._content, 'WeaponTypeMiniText', 'span');
         this.weaponPic = getElementFromFragment(this._content, 'weaponPic', 'img');
         this.weaponName = getElementFromFragment(this._content, 'weaponName', 'div');
         this.weaponRank = getElementFromFragment(this._content, 'weaponRank', 'div');
@@ -366,7 +370,7 @@ export class WeaponTypesCombatMenu {
                 infoTooltipKey = level.tooltips[i];
             }
             if (level.overwriteTypeIcons)
-                isWeaponCondition = level.overwriteTypeIcons[i-1];
+                isWeaponCondition = level.overwriteTypeIcons[i - 1];
             const cls = 'modifierHolder fuck-you text-center ' + (isShiny ? 'special' : '');
             const rowWrapper = createElement('div', {
                 className: 'w-100 position-relative d-flex justify-content-center align-items-center modifier-row-hover'
@@ -562,11 +566,15 @@ export class WeaponTypesCombatMenu {
         }
         if (weapon.weaponType) {
             this.uniqclass = uniqtoclass[weapon.uniqueness];
+            this.weaponTypeMPic.src = weapon.weaponType.mediaCol;
+            this.weaponTypeMTex.innerText = weapon.weaponType.name;
             this.weaponRank.innerHTML = this.uniqclass.name;
             this.weaponRank.style.color = this.uniqclass.color;
             this.weaponXPBar.style.width = this.uniqclass.width;
             this.weaponXPFill.style.backgroundColor = this.uniqclass.color;
 
+            showElement(this.weaponTypeMPic);
+            showElement(this.weaponTypeMTex);
             showElement(this.weaponXPBar);
             showElement(this.weaponXPNumber);
             showElement(this.weaponXPFill);
@@ -575,6 +583,9 @@ export class WeaponTypesCombatMenu {
         else {
             this.weaponRank.innerHTML = "None";
             this.weaponRank.style.color = "#FFFFFF";
+
+            hideElement(this.weaponTypeMPic);
+            hideElement(this.weaponTypeMTex);
             hideElement(this.weaponXPBar);
             hideElement(this.weaponXPNumber);
             hideElement(this.weaponXPFill);

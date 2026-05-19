@@ -200,19 +200,18 @@
           <div class="weaponMasteryMenu">
             <div class="row no-gutters p-2">
               <div class="col-12">
-                <h5 id="weaponMasteryText" class="font-w900 font-size-lg text-combat-smoke mt-2 pt-2 text-center"
-                  style="margin-bottom: 0.76rem;"></h5>
+                <h5 id="weaponMasteryText" class="font-w900 font-size-lg text-combat-smoke mt-3 pt-2 text-center" style="margin-bottom: 0rem !important"></h5>
                 <div class="col-12">
-                  <div id="weaponFlavorText" class="font-size-sm font-italic text-muted mb-2 m-1 font-w300"></div>
+                  <div id="weaponFlavorText" class="font-size-sm font-italic text-muted mb-4 m-1 font-w300"></div>
                   <div class="font-w600 font-size-md text-combat-smoke">
                     <wtm-lang-string lang-id="MENU_WEAPON_BONUS"></wtm-lang-string>
                   </div>
                   <div id="weaponModifierValue" class="font-size-sm text-white text-center mt-1"></div>
-                  <div id="weaponModifierTypeText" class="font-size-xs text-center m-1 mb-3 font-w400"
-                    style="opacity: 0.5;"></div>
+                  <div id="weaponModifierTypeText" class="font-size-xs text-center m-1 font-w400"
+                    style="opacity: 0.5;margin-bottom: 1.75rem !important;"></div> <!--Because fuckass bootstrap decided to make m5 double the size of m4, fuck you-->
                 </div>
 
-                <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 mb-4 pb-2 text-center">
+                <h5 class="font-w600 font-size-sm text-combat-smoke pt-1 mb-4 pb-2 text-center" style="margin-bottom: 2rem !important">
                   <wtm-lang-string lang-id="MENU_TYPE_PROF"></wtm-lang-string>
                 </h5>
 
@@ -261,7 +260,7 @@
               <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
                 <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep2" style="width:93%">
                 </div>
-               
+
               </div>
 
               <div class="col-12 mb-1 dropdown-divider"></div>
@@ -270,7 +269,7 @@
               <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
                 <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep3" style="width:93%">
                 </div>
-             
+
               </div>
 
               <div class="col-12 mb-1 dropdown-divider"></div>
@@ -279,7 +278,7 @@
               <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
                 <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep4" style="width:93%">
                 </div>
-              
+
               </div>
 
               <div class="col-12 mb-1 dropdown-divider"></div>
@@ -288,7 +287,7 @@
               <div class="col-12 mb-1 d-flex justify-content-center align-items-center position-relative">
                 <div class="d-flex flex-column align-items-center modifierHolder" id="modifierStep5" style="width:93%">
                 </div>
-                
+
               </div>
               <div id="modifierSpacer" style="height:0;"></div>
             </div>
@@ -298,29 +297,31 @@
 
     </div>
     <div id="menuViewerCont">
-      <div id="weaponMasteryItem" class="d-flex">
+      <div id="weaponMasteryItem" class="d-flex position-relative">
 
-        <div class="d-flex align-items-center justify-content-center ml-3  m-2" style="width:64px;">
+        <div class="position-absolute top-0 right-0 d-flex align-items-center font-w300"
+          style="position: absolute !important; top: 10px !important; right: 15px !important; z-index: 10;">
+          <img id="weaponTypeMiniPic" class="skill-icon-xs" style="width: 16px; height: 16px; margin-right: 4px;">
+          <span id="WeaponTypeMiniText" class="font-size-xs fw-bold text-white"></span>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-center ml-3 m-2" style="width:64px;">
           <img id="weaponPic" class="icon-size-64" style="width:64px;height:64px">
         </div>
 
         <div class="ms-2 flex-grow-1 text-start mt-2" style="text-align: left !important;">
-
           <div id="weaponRank" class="font-size-s font-w400 small text-uppercase mt-2 ml-3"></div>
           <div id="weaponName" class="fw-bold font-size-md ml-3 font-w600 text-combat-smoke"
             style="line-height:1;margin-bottom: 0.75rem !important;">
           </div>
-
-          <!-- I HATE THIS PART -->
+          <!--I HATE THIS PART-->
           <div id="weaponXPBar" class="progress ml-3" style="height:6px; width:40%;">
             <div id="weaponXpFill" class="progress-bar" style="width:40%;"></div>
           </div>
           <div id="weaponXPNumber" class="text-center font-size-xs font-w600 mb-3 text-center d-none font-italic">
           </div>
-
         </div>
       </div>
-
       <div role="separator" class="dropdown-divider w-100 mx-auto mb-2" style="max-width: 97%;"></div>
 
       <div class="row no-gutters">
