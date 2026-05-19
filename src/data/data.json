@@ -1554,36 +1554,64 @@
                   },
                   "combatEffects": [
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "HitByAttack",
                       "effectID": "WTM:Intimidation"
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "EvadedAttack",
                       "effectID": "WTM:Intimidation"
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Intimidation"
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "HitByAttack",
                       "effectID": "WTM:Shaken"
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "EvadedAttack",
                       "effectID": "WTM:Shaken"
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Shaken"
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "HitByAttack",
                       "effectID": "WTM:Terrify",
@@ -1595,6 +1623,10 @@
                       ]
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "EvadedAttack",
                       "effectID": "WTM:Terrify",
@@ -1606,6 +1638,10 @@
                       ]
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "chance": 1,
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Terrify",
@@ -1720,6 +1756,10 @@
                   },
                   "combatEffects": [
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:Terrify",
                       "initialParams": [
@@ -1730,6 +1770,10 @@
                       ]
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:Intimidation",
                       "initialParams": [
@@ -1740,6 +1784,10 @@
                       ]
                     },
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:Shaken",
                       "initialParams": [
