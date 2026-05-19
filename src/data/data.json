@@ -964,6 +964,20 @@
                   "type": "HitByAttack"
                 }
               ]
+            },
+            {
+              "type": "RemoveEffect",
+              "triggersOn": [
+                {
+                  "type": "StatsChange",
+                  "statGroupName": "stacks",
+                  "condition": {
+                    "operator": "==",
+                    "lhValue": "statGroup.stacks",
+                    "rhValue": 0
+                  }
+                }
+              ]
             }
           ]
         }
@@ -2554,9 +2568,8 @@
                     1
                   ],
                   "uiMods": {
-                    "modifiers":{
-                    "WTM:accuracyRatingPer10000Evasion": 5
-
+                    "modifiers": {
+                      "WTM:accuracyRatingPer10000Evasion": 5
                     }
                   },
                   "conditionalModifiers": [
@@ -2580,9 +2593,9 @@
                     1
                   ],
                   "uiMods": {
-                                        "modifiers":{
-
-                    "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5}
+                    "modifiers": {
+                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
+                    }
                   },
                   "conditionalModifiers": [
                     {
