@@ -1305,6 +1305,10 @@
                   "level": 1,
                   "combatEffects": [
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "customDescription": "20% Chance on Hit to inflict Intimidation (-15% Accuracy and Max Hit)",
                       "chance": 20,
                       "appliesWhen": "HitWithAttack",
@@ -1351,6 +1355,10 @@
                   "level": 2,
                   "combatEffects": [
                     {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
                       "customDescription": "20% Chance on Hit to inflict Shaken (-15% Evasion and Total Resistance",
                       "chance": 20,
                       "appliesWhen": "EvadedAttack",
