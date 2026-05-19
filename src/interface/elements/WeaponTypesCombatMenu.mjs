@@ -588,7 +588,7 @@ export class WeaponTypesCombatMenu {
             this.weaponRank.innerHTML = this.uniqclass.name;
             showElement(this.weaponTypeMPic);
             showElement(this.weaponTypeMTex);
-            showElement(this.weaponXPBar);
+            this.weaponXPBar.style.setProperty('display', 'inline-flex', 'important'); //Truly how much I hate this shit
             showElement(this.weaponXPNumber);
             showElement(this.weaponXPFill);
 
@@ -599,7 +599,7 @@ export class WeaponTypesCombatMenu {
 
             hideElement(this.weaponTypeMPic);
             hideElement(this.weaponTypeMTex);
-            hideElement(this.weaponXPBar);
+            this.weaponXPBar.style.setProperty('display', 'none', 'important');
             hideElement(this.weaponXPNumber);
             hideElement(this.weaponXPFill);
 
