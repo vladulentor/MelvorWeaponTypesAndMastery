@@ -91,7 +91,7 @@
       },
       {
         "id": "Bloodlust",
-        "defaultChance": 15,
+        "defaultChance": 25,
         "damage": [],
         "prehitEffects": [
           {
@@ -103,17 +103,17 @@
         ],
         "onhitEffects": [],
         "cantMiss": true,
-        "attackCount": 2,
-        "attackInterval": 50,
+        "attackCount": 1,
+        "attackInterval": 500,
         "lifesteal": 0,
         "name": "Bloodlust",
-        "description": "You let out a bloodcurdling warcry, becoming filled with a lust for blood. Gain 1 stack (max 10, lasts 5 turns) of Bloodlust which gives you: +${preHitEffect0modValue0}% Lifesteal, +${preHitEffect0modValue1}% Max Hit, +${preHitEffect0modValue2} Flat Damage to Bleeding targets, -${preHitEffect0modValue3}% Attack Interval, and +${preHitEffect0modValue4}% Self Damage on Hit (stacking, max 10 stacks). Each stack of Bloodlust also gives the Enemy +${preHitEffect1modValue0}% Bleed Damage Taken, -${preHitEffect1modValue1}% Max Hit, -${preHitEffect1modValue2}% Resistance, and +${preHitEffect0modValue3}% Attack Interval.",
+        "description": "You let out a bloodcurdling warcry, becoming filled with a lust for blood. Gain 1 stack (max 10) of Bloodlust which gives you: +${preHitEffect0modValue0}% Lifesteal, +${preHitEffect0modValue1}% Max Hit, +${preHitEffect0modValue2} Flat Damage to Bleeding targets, -${preHitEffect0modValue3}% Attack Interval, and +${preHitEffect0modValue4}% Self Damage on Hit. Each stack of Bloodlust also gives the Enemy +${preHitEffect1modValue0}% Bleed Damage Taken, -${preHitEffect1modValue1}% Max Hit, -${preHitEffect1modValue2}% Resistance, and +${preHitEffect0modValue3}% Attack Interval.",
         "descriptionGenerator": "You become filled with a lust for blood. On use, <preHitEffect>.",
         "usesRunesPerProc": false
       },
       {
         "id": "DeathApproaches",
-        "defaultChance": 1,
+        "defaultChance": 5,
         "damage": [
           {
             "damageType": "Custom",
@@ -183,6 +183,16 @@
         "name": "Dueling Stance",
         "media": "assets/combat/status/dueling_stance.svg",
         "target": "Self",
+        "tooltipSpans": [
+          {
+            "type": "Stats",
+            "statGroupName": "stacks"
+          },
+          {
+            "type": "String",
+            "value": "+1 stack on Hit and Evade, -1 stack on Miss and Being Hit (min 1 stack, max 20)"
+          }
+        ],
         "parameters": [
           {
             "name": "maxStacks",
@@ -338,7 +348,7 @@
       },
       {
         "id": "BloodlustPlayer",
-        "templateID": "melvorD:StackingSelfCountingModifier",
+        "templateID": "melvorD:StackingNonCountingModifier",
         "name": "Bloodlust",
         "media": "assets/combat/status/warcry.svg",
         "target": "Self",
@@ -378,9 +388,9 @@
       },
       {
         "id": "BloodlustEnemy",
-        "templateID": "melvorD:StackingSelfCountingModifier",
+        "templateID": "melvorD:StackingNonCountingModifier",
         "name": "Bloodlust",
-        "media": "assets/combat/status/warcry.png",
+        "media": "assets/combat/status/warcry.svg",
         "target": "Target",
         "statGroups": [
           {
@@ -422,15 +432,17 @@
       },
       {
         "id": "Hemorrhage",
+        "name": "Hemorrhage",
+        "media": "assets/combat/status/hemorrhage.svg",
         "templateID": "melvorD:DOT",
         "parameters": [
           {
             "name": "procs",
-            "initialValue": 20
+            "initialValue": 40
           },
           {
             "name": "interval",
-            "initialValue": 1000
+            "initialValue": 500
           }
         ],
         "damageGroups": [
@@ -444,9 +456,8 @@
                 "roll": false
               }
             ],
-            "applyDamageModifiers": true,
-            "applyTypeModifiers": "Bleed",
-            "applyResistance": true
+            "applyDamageModifiers": false,
+            "applyResistance": false
           }
         ]
       },
@@ -852,7 +863,7 @@
             {
               "type": "ModifyStats",
               "statGroupName": "stacks",
-              "newValue": "statGroup.stacks - 1",
+              "newValue": "max(statGroup.stacks - 1, 0)",
               "triggersOn": [
                 {
                   "type": "MissedWithAttack"
@@ -869,10 +880,18 @@
                   "type": "StatsChange",
                   "statGroupName": "stacks",
                   "condition": {
-                    "operator": "==",
+                    "operator": "<",
                     "lhValue": "statGroup.stacks",
                     "rhValue": 0
                   }
+                }
+              ]
+            },
+            {
+              "type": "RemoveEffect",
+              "triggersOn": [
+                {
+                  "type": "EndOfFight"
                 }
               ]
             }
@@ -1146,15 +1165,15 @@
                   "shiny": false,
                   "conditionalModifiers": [
                     {
-                      "description": "When wielding Thrusting Swords, gain a 5% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval.",
+                      "description": "When wielding Thrusting Swords, gain a 10% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
                       },
                       "modifiers": {
-                        "dodgeChance": 5,
-                        "convertMissIntoHit": 5,
-                        "attackInterval": -5
+                        "dodgeChance": 10,
+                        "convertMissIntoHit": 10,
+                        "attackInterval": -10
                       }
                     }
                   ]
@@ -1185,7 +1204,7 @@
                   "shiny": false,
                   "conditionalModifiers": [
                     {
-                      "description": "When wielding Thrusting Swords, gain a 5% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval. If you also have nothing equipped in your Shield slot, double that bonus and gain +10% Chance to ignore Enemy Resistance.",
+                      "description": "When wielding Thrusting Swords, gain a 5% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval. If you also have nothing equipped in your Shield slot, triple that bonus and gain +10% Chance to ignore Enemy Resistance.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
@@ -1212,9 +1231,9 @@
                           }
                         ],
                         "modifiers": {
-                          "dodgeChance": 5,
-                          "convertMissIntoHit": 5,
-                          "attackInterval": -5,
+                          "dodgeChance": 10,
+                          "convertMissIntoHit": 10,
+                          "attackInterval": -10,
                           "ignoreResistanceWhenAttackingChance": [
                             {
                               "damageTypeID": "melvorD:Normal",
@@ -1231,9 +1250,43 @@
                   "id": "ThrustingSwords5",
                   "level": 5,
                   "shiny": true,
+                  "uiMods": {
+                    "modifiers": {
+                      "dodgeChance": 10,
+                      "convertMissIntoHit": 10
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "description": "Unlocks the ability to Parry with Thrusting Swords. When an Enemy misses you with an attack, you have a chance to perform a counterattack that deals damage equal to your minimum hit on hit.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:ThrustingSwords"
+                        },
+                        "modifiers": {
+                          "WTM:unlockParry": [
+                            {
+                              "value": 1,
+                              "damageTypeID": "melvorD:Normal"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "combatEffects": [
+                      {
+                        "customDescription": "Unlocks the ability to Disarm. When you hit with an attack, you have a 10% chance to Disarm the Enemy, preventing them from attacking for 1 turn. Chance is increased to 20% if nothing equipped in Shield Slot.",
+                        "appliesWhen": "HitWithAttack",
+                        "effectID": "WTM:Disarm",
+                        "chance": 10
+                      }
+                    ]
+                  },
+                  "modifiers": {
+                    "dodgeChance": 10,
+                    "convertMissIntoHit": 10
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "Unlocks the ability to Parry with Thrusting Swords. When an Enemy misses you with an attack, you have a chance to perform a counterattack that deals damage equal to your minimum hit on hit.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
@@ -1250,7 +1303,27 @@
                   ],
                   "combatEffects": [
                     {
-                      "customDescription": "Unlocks the ability to Disarm with Thrusting Swords if you have nothing equipped in your Shield slot. When you hit with an attack, you have a 10% chance to Disarm the Enemy, preventing them from attacking for 1 turn.",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:ThrustingSwords"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Disarm",
+                      "chance": 10
+                    },
+                    {
+                      "conditions": [
+                        {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:ThrustingSwords"
+                        },
+                        {
+                          "type": "EmptySlot",
+                          "slotIDs": [
+                            "melvorD:Shield"
+                          ]
+                        }
+                      ],
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Disarm",
                       "chance": 10
@@ -2455,7 +2528,7 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "Automatically inflict a 100% Bleed on your first Hit. 25% Chance to apply Hemorrhage (a 500% Bleed over 20s) on Hit if Enemy is Bleeding.",
+                        "customDescription": "Automatically inflict a 100% Bleed and 1 stack of Bloodlust on your first Hit. 25% Chance to apply Hemorrhage (a 500% Bleed over 20s) on Hit if Enemy is Bleeding.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Axes"
@@ -2472,6 +2545,26 @@
                       "appliesWhen": "HitWithFirstAttack",
                       "chance": 100,
                       "effectID": "melvorD:Bleed100",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      }
+                    },
+                    {
+                      "customDescription": "",
+                      "appliesWhen": "HitWithFirstAttack",
+                      "chance": 100,
+                      "effectID": "WTM:BloodlustPlayer",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      }
+                    },
+                    {
+                      "customDescription": "",
+                      "appliesWhen": "HitWithFirstAttack",
+                      "chance": 100,
+                      "effectID": "WTM:BloodlustEnemy",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
@@ -2507,14 +2600,14 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "+10% Chance to inflict a 100% Bleed and/or apply Hemorrhage on Hit. If enemy is Bleeding, +25% Chance to apply Hemorrhage on Hit.",
+                        "customDescription": "+10% Chance on Hit to apply 1 Bloodlust stack and/or inflict Hemorrhage on the Enemy. If enemy is Bleeding, chance for both is increased to 20%.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Axes"
                         },
                         "appliesWhen": "HitWithAttack",
                         "chance": 10,
-                        "effectID": "melvorD:Bleed100"
+                        "effectID": "melvorD:Bleed200"
                       }
                     ]
                   },
@@ -2526,7 +2619,16 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "chance": 10,
-                      "effectID": "melvorD:Bleed100"
+                      "effectID": "WTM:BloodlustPlayer"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Axes"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 10,
+                      "effectID": "WTM:BloodlustEnemy"
                     },
                     {
                       "condition": {
@@ -2539,7 +2641,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 25,
+                      "chance": 10,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -2554,8 +2656,45 @@
                           }
                         ]
                       },
-                      "effectID": "WTM:Hemorrhage",
-                      "customDescription": "50% Chance to apply 1 stack of Hemorrhage on Hit if Enemy is Bleeding (max 50 stacks)"
+                      "effectID": "WTM:Hemorrhage"
+                    },
+                    {
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 10,
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Axes"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "effectID": "WTM:BloodlustPlayer"
+                    },
+                    {
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 10,
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Axes"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "effectID": "WTM:BloodlustEnemy"
                     }
                   ]
                 }
