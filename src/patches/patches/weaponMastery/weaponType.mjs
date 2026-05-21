@@ -156,7 +156,7 @@ export class WeaponMastery extends RealmedObject {
         return Math.min(this.uncappedxpPercent, this.xpPercentCap);
     }
     get xpPercentCap() {
-        if (this.levelCap == 5) return 100;
+        if (this.levelCap == 5) return 100;statProviders
         return xpthresholds[this.levelCap];
     }
     get active() {
@@ -256,6 +256,7 @@ export class WeaponMastery extends RealmedObject {
             this.levelUp();
         }
     }
+
     // Debug functions
     showWeaponswithXP() {
         for (const weapon of this.allWeapons)

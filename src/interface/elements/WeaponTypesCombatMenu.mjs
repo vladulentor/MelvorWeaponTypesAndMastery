@@ -455,7 +455,7 @@ export class WeaponTypesCombatMenu {
             statObject.combatEffects.forEach((applicator) => {
                 const desc = applicator.getDescription(1, 1);
                 if (desc !== undefined && StatObject.showDescription(applicator.isNegative, 1, 1, true)) {
-                    const isWeaponCondition = (applicator.conditionChances?.some(cond =>cond.condition.type === 'WeaponType' )|| applicator.condition?.conditions?.some(cond => cond.type === 'WeaponType')); // <-- This! But we don't even use it that much... so fuck.
+                    const isWeaponCondition = (applicator.conditionChances?.some(cond => cond.condition.type === 'WeaponType') || applicator.condition?.conditions?.some(cond => cond.type === 'WeaponType')); // <-- This! But we don't even use it that much... so fuck.
 
                     elements.push(createModifierRow(desc, isWeaponCondition));
                 }
@@ -562,6 +562,8 @@ export class WeaponTypesCombatMenu {
             }
         }
     }
+
+
     // ----------WEAPON TAB FUNCTIONS ------------
 
     setWeapon(weapon) {
@@ -711,7 +713,11 @@ export class WeaponTypesCombatMenu {
         }
     }
     highlightButton(type) {
-        if (!type) return;
+        if (!type) {
+            for (const button of this.buttonList)
+                button.menu.unhighlightTypeButton();
+            return;
+        };
         const OType = type.Wtype;
         for (const button of this.buttonList) {
             if (button.oType == OType)

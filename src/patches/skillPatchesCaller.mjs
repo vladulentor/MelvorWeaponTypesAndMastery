@@ -6,7 +6,6 @@ const { patchDataRegistration } = await loadModule('src/patches/patches/patchDat
 const { addCombatSkillXP } = await loadModule('src/patches/patches/addCombatSkillXP.mjs');
 
 
-const { addWeaponType } = await loadModule('src/patches/patches/weaponMastery/addWeaponType.mjs');
 const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
 
 const { addFollowupSummonAttacks } = await loadModule('src/patches/patches/addFollowupSummonAttacks.mjs');
@@ -52,7 +51,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         //birthOfMonk(ctx);
 }
 export function patchSkillsAfterDataReg(ctx) {
-        addWeaponType(ctx);
+        
 
 
 }

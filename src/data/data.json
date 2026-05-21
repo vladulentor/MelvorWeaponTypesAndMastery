@@ -1804,7 +1804,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "WTM:slashingOnSummon": 10,
+                  "WTM:slashingOnSummon": 15,
                   "flatSlashAttackBonus": 15
                 }
               },
@@ -1822,7 +1822,7 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "WTM:slashingOnSummon": 25,
+                      "WTM:slashingOnSummon": 50,
                       "WTM:SummonQuickenAct": 200
                     }
                   },
@@ -1850,13 +1850,13 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "meleeMinHitBasedOnMaxHit": 3,
+                      "summoningChargePreservationChance": 5,
                       "flatSlashAttackBonus": 25
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "+10% Summoning Max Hit and +5% Max Hit",
+                      "description": "",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
@@ -1867,7 +1867,7 @@
                     }
                   ],
                   "modifiers": {
-                    "meleeMinHitBasedOnMaxHit": 3
+                    "summoningChargePreservationChance": 5
                   }
                 },
                 {
@@ -1906,7 +1906,7 @@
                   "uiMods": {
                     "modifiers": {
                       "summoningMaxHit": 15,
-                      "meleeMinHitBasedOnMaxHit": 15
+                      "summoningAttackLifesteal": 50
                     }
                   },
                   "conditionalModifiers": [
@@ -1918,7 +1918,7 @@
                       },
                       "modifiers": {
                         "summoningMaxHit": 15,
-                        "meleeMinHitBasedOnMaxHit": 15
+                        "summoningAttackLifesteal": 50
                       }
                     }
                   ]
@@ -2180,7 +2180,9 @@
                   "conditionalModifiers": [
                     {
                       "condition": {
+                        "type":"Every",
                         "conditions": [
+                          
                           {
                             "type": "WeaponType",
                             "weaponType": "WTM:Daggers"
@@ -2554,9 +2556,8 @@
                     1
                   ],
                   "uiMods": {
-                    "modifiers":{
-                    "WTM:accuracyRatingPer10000Evasion": 5
-
+                    "modifiers": {
+                      "WTM:accuracyRatingPer10000Evasion": 5
                     }
                   },
                   "conditionalModifiers": [
@@ -2580,9 +2581,9 @@
                     1
                   ],
                   "uiMods": {
-                                        "modifiers":{
-
-                    "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5}
+                    "modifiers": {
+                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
+                    }
                   },
                   "conditionalModifiers": [
                     {
@@ -3017,16 +3018,16 @@
               ]
             },
             {
-              "id": "Artifacts",
-              "name": "Artifacts",
+              "id": "Artefacts",
+              "name": "Artefacts",
               "media": "assets/artifacts.svg",
               "mediaAlt": "assets/black_filled_svgs/artifacts.svg",
               "mediaCol": "assets/filled_svgs/artifacts.svg",
               "type": "magic",
               "uniq": [
-                "Magic_Flute3",
-                "Powered_Red_Crystal3",
-                "Trickery_Mirror3"
+                "Magic_Flute8",
+                "Powered_Red_Crystal8",
+                "Trickery_Mirror8"
               ],
               "isPerWepMod": true,
               "wepModifiers": {

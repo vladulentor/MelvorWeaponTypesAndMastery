@@ -3,12 +3,13 @@ const stock = { name: "Stock", color: "#2dd432", width: '40%' };
 const unusual = { name: "Unusual", color: "#3a9adf", width: '60%' };
 const distinct = { name: "Distinct", color: "#d33290", width: '80%' };
 const exotic = { name: "Exotic", color: "#ffaf02", width: '90%' };
+const exoticpl = { name: "Exotic+", color: "#ffaf02", width: '90%' };
 
 const { loadModule } = mod.getContext(import.meta);
 
 const { templateRielkLangStringWithNodes, templateRielkLangString, getRielkLangString } = await loadModule('src/language/translationManager.mjs');
 
-const uniqtoclass = [noXP, stock, unusual, distinct, exotic, exotic, exotic, exotic, exotic];
+const uniqtoclass = [noXP, stock, unusual, distinct, exotic, exoticpl, exoticpl, exoticpl, exoticpl];
 
 
 const ctx = mod.getContext(import.meta);

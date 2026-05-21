@@ -13,15 +13,19 @@ export const language = {
     'MODIFIER_DATA_SummonQuickenAct': 'Summoning Familiar Attacks quicken attack by ${value}s',
     'MODIFIER_DATA_ExtraSummonHits': '${value} additional Summon attacks after every attack',
     'MODIFIER_DATA_slashingOnSummon': '${value}% of Slash Attack bonus added as Familiar damage',
-        'MODIFIER_DATA_skillItemDoublingChanceGlobal': '${value}% Chance to Double Items in Skills',
+    'MODIFIER_DATA_skillItemDoublingChanceGlobal': '${value}% Chance to Double Items in Skills',
 
     'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, then instruct your Familiars to perform two Unavoidable Attacks.</div>',
     'MODIFIER_TOOLTIP_CURVED5': '<div class="text-center"><span class="text-success font-weight-bold">Advantage</span><br>50% to gain Advantage on hit, to a max of 5. <br>Advantage gives stacking Max Hit and Attack Interval to your Familiars <br> When at max stacks, spend stacks on hit by instructing your Companions to perform two Unavoidable Attacks.</div>',
-    'MODIFIER_TOOLTIP_POLEARMS3':'<div class="text-center"><span class="text-warning font-weight-bold">Whirling Manoeuvre (15%)</span><br>Whirl your polearm around, attacking multiple times for a small portion of your normal damage each.<br> While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.</div>',
+    'MODIFIER_TOOLTIP_POLEARMS3': '<div class="text-center"><span class="text-warning font-weight-bold">Whirling Manoeuvre (15%)</span><br>Whirl your polearm around, attacking multiple times for a small portion of your normal damage each.<br> While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.</div>',
 
     'WTM_EFFECT_TOOLTIP_SYNCRONIZE': 'At max stacks, below effects activate',
+
+
+    'MENU_SETTINGS_WEAPONS_SECTION': 'Weapon Type & XP Settings',
     'MENU_TEXT_TYPE': "Type",
     'MENU_WEP_MAXED': 'This Weapon\'s Mastery is Maxed <br> It will not gain or contribute further Mastery XP',
+    'MENU_NO_WEAPON': 'No weapon Equipped',
     'MENU_BACK': 'Back',
     'MENU_TOGGLE_TYPES': "Toggle Weapon Type Progress",
     'MENU_WEAPON_TYPES': 'Weapon Types',
@@ -30,13 +34,35 @@ export const language = {
     'MENU_EQUIPPED_TOOLTIP': 'This Weapon Mastery Bonus only applies while the Mastered Weapon is equipped',
     'MENU_PERMANENT_TOOLTIP': 'This Weapon Mastery Bonus always applies and stacks with each Mastered Weapon',
     'MENU_OVERTITLE': 'Weapon Types × Mastery',
+    'MENU_TOOLTIP_INTRO0':'Welcome to WTM!',
+    'MENU_TOOLTIP_INTRO1': 'WTM uses Weapon Stats to calculate Weapon Mastery XP',
+    'MENU_TOOLTIP_INTRO2': 'You can use your Weapon Stats to determine starting Weapon Mastery XP, or delete them to start with a clean slate',
+    'MENU_TOOLTIP_INTRO3': 'You can delete stats at any point in the Mod Settings',
+    'MENU_WARNING':'Are you sure?',
+    
+    'MENU_WARNING1':'This will delete your existing Weapon Stats',
+    'MENU_WARNING15':'(E.g. Total Attacks and Enemies Killed stats)',
+    'MENU_WARNING2':'This action cannot be undone!',
+    'MENU_WARNING3':'This will restart the game',
     'MENU_TYPE_PROF': 'Type Proficiency:',
     'MENU_WEAPON_BONUS': 'Weapon Mastery Bonus',
     'MENU_GLOBAL_APPLIC': 'Always Active',
     'MENU_TYPE_APPLIC': 'Only Active when using Weapons of this Type',
-    'MENU_HELP1':'Did you know?',
-    'MENU_HELP2':'You can hover over elements to learn more!'
+    'MENU_HELP1': 'Did you know?',
+    'MENU_HELP2': 'You can hover over elements to learn more!',
+    'MENU_SETTINGS_TYPE': 'Types & XP',
+    'MENU_POPUP_AGREE':'Determine my Stats',
+    'MENU_POPUP_GODELETE':'Reset my Stats',
+    'MENU_POPUP_DELETEFINAL':'Reset all Weapon stats',
+    'MENU_POPUP_BACK':'Back',
+    'MENU_SETTINGS_NOXP': 'Types & No XP',
+    'MENU_SETTINGS_NONE': 'No Types & No XP',
+    'MENU_SETTINGS_HOVER_TYPE': "Weapons have Types and can train and can be trained to receive and contribute Mastery XP",
+    'MENU_SETTINGS_HOVER_NOXP': "Weapons have Types but cannot be trained to receive and contribute Mastery XP",
+    'MENU_SETTINGS_HOVER_NONE': "Weapons do not have Types",
 
+
+    'MENU_SETTINGS_TOOLTIP': 'Whether this Namespace\'s weapons should have Types or gain and contribute XP'
 
 
 }    

@@ -12,7 +12,9 @@ body.darkMode .bg-success.fuck-you {
   background-color: #fca32f !important;
 }
 
-
+.swal-fuck-you .swal2-actions{
+flex-direction: row-reverse!important;
+}
 
 body.darkMode .text-danger.fuck-you {
   color: #fca32f !important;

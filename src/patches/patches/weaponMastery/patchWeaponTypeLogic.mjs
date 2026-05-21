@@ -36,54 +36,35 @@ export function patchWeaponTypeLogic({ patch }) {
     });
     patch(CombatManager, "rewardForEnemyDeath").after(function () {
         let toadd = this.player.equippedWeapon.weaponXPperKill
-        leftover += toadd - Math.trunc(toadd); //even though enemies all give 4.6 xp on death the xp increase mods can change that so we can't use a consistent value here  
+        leftover += toadd - Math.trunc(toadd); //even though enemies all give 4.6 xp on death the xp increase mods can changed so we can't use a consistent value here  
         while (leftover >= 1) { toadd += 1; leftover -= 1; }
         giveWeaponMasteryXP(this.player.equippedWeapon, toadd);
     });
     patch(Game, "onLoad").after(function (_) {
-        this.combat.player.equippedWeapon = this.combat.player.equipment.getItemInSlot("melvorD:Weapon")
-        this.combat.player.equippedWeaponType = this.combat.player.equippedWeapon.weaponType ?? 0;
-        for (const m of game.weaponMasteries.allObjects)
-            m.onLoad()
-        if (combatMenus.weaponMastery && this.combat.player.equippedWeaponType) {
-            combatMenus.weaponMastery.highlightButton(this.combat.player.equippedWeaponType);
-            
 
-        }
-        
+
     })
-    patch(Player, "updateForEquipmentChange").before(function (_) {
-        const newWeapon = this.equipment.getItemInSlot("melvorD:Weapon");
+
+    patch(BaseManager, "computeAllStats").before(function (_) { // Again not the best place to put it, but it should work, I forgot why this isn't going through our weaponMod like things, it is what it is I guess.
+        const pl = game.combat.player;
+        const newWeapon = pl.equipment.getItemInSlot("melvorD:Weapon");
         const newType = newWeapon.weaponType;
-        if (this.equippedWeaponType && this.equippedWeaponType !== newType) {
-            if(combatMenus.weaponMastery) {combatMenus.weaponMastery.drillUp();
-                combatMenus.weaponMastery.highlightButton(newType);}
+        // we should probably have used an event here
+        // well it's written down at works already so
+        if (combatMenus.weaponMastery) combatMenus.weaponMastery.highlightButton(newType);
+        if (pl.equippedWeaponType && pl.equippedWeaponType !== newType) {
+
             leftover = 0;
-            this.equippedWeaponType.unsetActiveWeapon();
-            if (this.equippedWeaponType.isPerWepMod)
-                this.equippedWeaponType.toggleMasteredWeaponStats(0);
+            pl.equippedWeaponType.unsetActiveWeapon();
+            if (pl.equippedWeaponType.isPerWepMod)
+                pl.equippedWeaponType.toggleMasteredWeaponStats(0);
 
         }
-        if (this.equippedWeapon !== newWeapon) {
-            this.equippedWeapon = newWeapon;
-        }
-    })
-    patch(Player, "updateForEquipmentChange").before(function (_) {
-        const newWeapon = this.equipment.getItemInSlot("melvorD:Weapon");
-        const newType = newWeapon.weaponType;
-        if (this.equippedWeaponType && this.equippedWeaponType !== newType) {
-            if(combatMenus.weaponMastery) combatMenus.weaponMastery.highlightButton(newType);
-            leftover = 0;
-            this.equippedWeaponType.unsetActiveWeapon();
-            if (this.equippedWeaponType.isPerWepMod)
-                this.equippedWeaponType.toggleMasteredWeaponStats(0);
-
-        }
-        if (this.equippedWeapon !== newWeapon) {
-            this.equippedWeapon = newWeapon;
+        if (pl.equippedWeapon !== newWeapon) {
+            pl.equippedWeapon = newWeapon;
         }
 
-        this.equippedWeaponType = newType;
+        pl.equippedWeaponType = newType;
         if (newType) {
             newType.ToggleActiveWeapon(newWeapon);
             if (newType.isPerWepMod) {
@@ -91,6 +72,9 @@ export function patchWeaponTypeLogic({ patch }) {
             }
         }
     });
+    patch(Player, "computeEquipmentStats").before(function () {
+
+    })
     patch(Player, "updateForEquipmentChange").after(function (_) {
 
     });
