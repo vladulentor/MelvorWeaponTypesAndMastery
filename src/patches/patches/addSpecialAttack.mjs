@@ -54,7 +54,7 @@ export function addSpecialAttack() {
     }
 
     if (this._localID == "CurvedSwords3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:ForcefulSweep');
+        const attack = game.specialAttacks.getObjectSafe('WTM:MountedStrike');
         attack.summonFollowAttacks = 2;
         const weapMap = { weapons: this.type.allWeapons, attack: attack };
         addEffecttoWeaponList(weapMap);
@@ -67,7 +67,7 @@ export function addSpecialAttack() {
     }
 
     if (this._localID == "Axes3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:Warcry');
+        const attack = game.specialAttacks.getObjectSafe('WTM:Bloodlust');
         const weapMap = { weapons: this.type.allWeapons, attack: attack };
         addEffecttoWeaponList(weapMap);
     }

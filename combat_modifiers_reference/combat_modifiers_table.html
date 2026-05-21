@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="combat_modifiers.table.css">
+  <title>Melvor Combat Modifiers</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <h2 class="sr-only">Melvor Idle Combat Modifiers</h2>
+    <div class="fsec">
+      <div class="frow">
+        <span class="rl">Style</span>
+        <button class="btn on sa" data-g="s" data-v="all">All</button>
+        <button class="btn sa" data-g="s" data-v="Any">Any</button>
+        <button class="btn sm" data-g="s" data-v="Magic">Magic</button>
+        <button class="btn sml" data-g="s" data-v="Melee">Melee</button>
+        <button class="btn sr" data-g="s" data-v="Ranged">Ranged</button>
+        <button class="btn ss" data-g="s" data-v="Summoning">Summoning</button>
+      </div>
+      <div class="frow">
+        <span class="rl">Tags</span>
+        <button class="btn to" data-g="t" data-v="Offense">Offense</button>
+        <button class="btn td" data-g="t" data-v="Defense">Defense</button>
+        <button class="btn th" data-g="t" data-v="Healing">Healing</button>
+        <button class="btn tu" data-g="t" data-v="Utility">Utility</button>
+        <button class="btn tp" data-g="t" data-v="Prayer">Prayer</button>
+        <button class="btn tsl" data-g="t" data-v="Slayer">Slayer</button>
+        <div class="vsep"></div>
+        <button class="btn tac" data-g="t" data-v="Accuracy">Accuracy</button>
+        <button class="btn tdm" data-g="t" data-v="Damage">Damage</button>
+        <button class="btn tev" data-g="t" data-v="Evasion">Evasion</button>
+        <button class="btn tr" data-g="t" data-v="Resistance">Resistance</button>
+        <button class="btn tef" data-g="t" data-v="Effect">Effect</button>
+        <button class="btn tl" data-g="t" data-v="Loot">Loot</button>
+        <label class="mode-wrap"><input type="checkbox" id="andm"> AND mode</label>
+      </div>
+      <div class="frow"><input type="text" id="srch" placeholder="Search modifiers…"></div>
+    </div>
+    <div class="count" id="cnt"></div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th>Modifier</th>
+            <th>Style</th>
+            <th>Tags</th>
+          </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+  </div>
+  <script>const D = [
+      { n: "accuracyRating", s: "Any", t: ["Offense", "Accuracy"] },
+      { n: "accuracyRatingAgainstDamageType", s: "Any", t: ["Offense", "Accuracy"] },
+      { n: "accuracyRatingHPScaling", s: "Any", t: ["Offense", "Accuracy"] },
+      { n: "allowAttackAugmentingMagic", s: "Magic", t: ["Utility"] },
+      { n: "allowNonMagicCurses", s: "Any", t: ["Utility", "Effect"] },
+      { n: "allowLootContainerStacking", s: "Any", t: ["Utility", "Loot"] },
+      { n: "ammoPreservationChance", s: "Ranged", t: ["Utility"] },
+      { n: "attackInterval", s: "Any", t: ["Offense"] },
+      { n: "attackRolls", s: "Any", t: ["Offense"] },
+      { n: "autoBurying", s: "Any", t: ["Utility", "Loot"] },
+      { n: "autoEatEfficiency", s: "Any", t: ["Healing"] },
+      { n: "autoEatHPLimit", s: "Any", t: ["Healing"] },
+      { n: "autoEatThreshold", s: "Any", t: ["Healing"] },
+      { n: "autoLooting", s: "Any", t: ["Utility", "Loot"] },
+      { n: "barrierSummonDamage", s: "Summoning", t: ["Offense", "Damage"] },
+      { n: "barrierSummonDamageIfSlayerTask", s: "Summoning", t: ["Offense", "Damage", "Slayer"] },
+      { n: "bleedDOTDamageTaken", s: "Any", t: ["Defense", "Damage", "Effect"] },
+      { n: "bleedLifesteal", s: "Any", t: ["Healing", "Effect"] },
+      { n: "bonusCoalOnDungeonCompletion", s: "Any", t: ["Utility", "Loot"] },
+      { n: "burnDOTDamageTaken", s: "Any", t: ["Defense", "Damage", "Effect"] },
+      { n: "burnLifesteal", s: "Any", t: ["Healing", "Effect"] },
+      { n: "bypassAllSlayerItems", s: "Any", t: ["Utility", "Slayer"] },
+      { n: "bypassAmmoPreservationChance", s: "Ranged", t: ["Utility"] },
+      { n: "bypassSlayerItems", s: "Any", t: ["Utility", "Slayer"] },
+      { n: "cantAttack", s: "Any", t: ["Utility", "Effect"] },
+      { n: "cantEvade", s: "Any", t: ["Utility", "Effect", "Evasion"] },
+      { n: "cantMiss", s: "Any", t: ["Offense", "Accuracy"] },
+      { n: "cantRegenBarrier", s: "Any", t: ["Utility", "Effect"] },
+      { n: "cantSpecialAttack", s: "Any", t: ["Utility", "Effect"] },
+      { n: "cleansed", s: "Any", t: ["Utility", "Effect"] },
+      { n: "combatLootDoublingChance", s: "Any", t: ["Utility", "Loot"] },
+      { n: "convertBoneDropsIntoCake", s: "Any", t: ["Utility", "Loot"] },
+      { n: "convertMissIntoHit", s: "Any", t: ["Offense", "Accuracy"] },
+      { n: "critChance", s: "Any", t: ["Offense", "Damage"] },
+      { n: "critMultiplier", s: "Any", t: ["Offense", "Damage"] },
+      { n: "currencyGainBasedOnBarrierDamage", s: "Any", t: ["Utility", "Loot"] },
+      { n: "currencyGainBasedOnSummonDamage", s: "Summoning", t: ["Utility", "Loot"] },
+      { n: "currencyGainFromCombat", s: "Any", t: ["Utility", "Loot"] },
+      { n: "currencyGainFromLifesteal", s: "Any", t: ["Utility", "Loot"] },
+      { n: "currencyGainFromMonsterDrops", s: "Any", t: ["Utility", "Loot"] },
+      { n: "currencyGainFromMonsterDropsBasedOnDebuffs", s: "Any", t: ["Utility", "Loot", "Effect"] },
+      { n: "currencyGainFromSlayerTaskMonsterDrops", s: "Any", t: ["Utility", "Loot", "Slayer"] },
+      { n: "currencyGainFromSlayerTasks", s: "Any", t: ["Utility", "Loot", "Slayer"] },
+      { n: "currencyGainOnMonsterKillBasedOnEvasion", s: "Any", t: ["Utility", "Loot", "Evasion"] },
+      { n: "currencyGainOnRegenBasedOnHPGained", s: "Any", t: ["Utility", "Loot"] },
+      { n: "currencyGainPerDamageDealt", s: "Any", t: ["Utility", "Loot"] },
+      { n: "currencyGainPerDamageDealtBasedOnCurrencyAmount", s: "Any", t: ["Utility", "Loot"] },
+      { n: "currencyGainPerMagicDamageDealt", s: "Magic", t: ["Utility", "Loot"] },
+      { n: "currencyGainPerMagicDamageDealtOnSlayerTask", s: "Magic", t: ["Utility", "Loot", "Slayer"] },
+      { n: "currencyGainPerMeleeDamageDealt", s: "Melee", t: ["Utility", "Loot"] },
+      { n: "currencyGainPerPoisonDamage", s: "Any", t: ["Utility", "Loot", "Effect"] },
+      { n: "currencyGainPerRangedDamageDealt", s: "Ranged", t: ["Utility", "Loot"] },
+      { n: "currentHPDamageTakenOnAttack", s: "Any", t: ["Defense", "Damage"] },
+      { n: "curseLifesteal", s: "Any", t: ["Healing", "Effect"] },
+      { n: "damageBasedOnCurrentHitpoints", s: "Any", t: ["Offense", "Damage"] },
+      { n: "damageBasedOnMaxHitpoints", s: "Any", t: ["Offense", "Damage"] },
+      { n: "damageBasedOnMaxHitpointsSelf", s: "Any", t: ["Offense", "Damage"] },
+      { n: "damageDealt", s: "Any", t: ["Offense", "Damage"] },
+      { n: "damageDealtPerEffect", s: "Any", t: ["Offense", "Damage", "Effect"] },
+      { n: "damageDealtToAllMonsters", s: "Any", t: ["Offense", "Damage"] },
+      { n: "damageDealtToBosses", s: "Any", t: ["Offense", "Damage"] },
+      { n: "damageDealtToDamageTypeSlayerTasks", s: "Any", t: ["Offense", "Damage", "Slayer"] },
+      { n: "damageDealtToMonstersInArea", s: "Any", t: ["Offense", "Damage"] },
+      { n: "damageDealtToSlayerTasks", s: "Any", t: ["Offense", "Damage", "Slayer"] },
+      { n: "damageDealtWith2Effects", s: "Any", t: ["Offense", "Damage", "Effect"] },
+      { n: "damageTaken", s: "Any", t: ["Defense", "Damage"] },
+      { n: "damageTakenAddedAsPrayerPoints", s: "Any", t: ["Utility", "Prayer", "Damage"] },
+      { n: "damageTakenBasedOnHP", s: "Any", t: ["Defense", "Damage"] },
+      { n: "damageTakenPerAttack", s: "Any", t: ["Defense", "Damage"] },
+      { n: "damageTakenPerMissedAttack", s: "Any", t: ["Defense", "Damage"] },
+      { n: "deadlyPoisonDOTDamageTaken", s: "Any", t: ["Defense", "Damage", "Effect"] },
+      { n: "decreaseEnemyEvasionOnSleep", s: "Any", t: ["Offense", "Evasion", "Effect"] },
+      { n: "decreaseEnemyEvasionOnStun", s: "Any", t: ["Offense", "Evasion", "Effect"] },
+      { n: "disableAttackDamage", s: "Any", t: ["Utility", "Effect"] },
+      { n: "disableHPRegeneration", s: "Any", t: ["Utility", "Effect"] },
+      { n: "disableLifesteal", s: "Any", t: ["Utility", "Effect"] },
+      { n: "disabledSpecialAttacks", s: "Any", t: ["Utility", "Effect"] },
+      { n: "dodgeChance", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "dotDamageTaken", s: "Any", t: ["Defense", "Damage", "Effect"] },
+      { n: "doubleBoneDrops", s: "Any", t: ["Utility", "Loot"] },
+      { n: "doubleLifesteal", s: "Any", t: ["Healing"] },
+      { n: "doubleRuneProvision", s: "Magic", t: ["Utility"] },
+      { n: "doubleSlayerTaskKillChance", s: "Any", t: ["Utility", "Slayer"] },
+      { n: "dragonBreathDamage", s: "Any", t: ["Offense", "Damage", "Effect"] },
+      { n: "effectIgnoreChance", s: "Any", t: ["Defense", "Effect"] },
+      { n: "effectImmunity", s: "Any", t: ["Defense", "Effect"] },
+      { n: "endOfTurnEvasion2", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "evasion", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "evasionAgainstDamageType", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "evasionAgainstMagic", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "evasionAgainstMelee", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "evasionAgainstRanged", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "evasionBasedOnResistance", s: "Any", t: ["Defense", "Evasion", "Resistance"] },
+      { n: "evasionWith2HWeapon", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "flatAttackInterval", s: "Any", t: ["Offense"] },
+      { n: "flatAttackSpellRuneCost", s: "Magic", t: ["Utility"] },
+      { n: "flatBarrierDamage", s: "Any", t: ["Offense", "Damage"] },
+      { n: "flatBarrierSummonDamage", s: "Summoning", t: ["Offense", "Damage"] },
+      { n: "flatBarrierSummonDamageMagic", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "flatBarrierSummonDamageMelee", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "flatBarrierSummonDamageRanged", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "flatBlockAttackBonus", s: "Any", t: ["Defense", "Accuracy"] },
+      { n: "flatCurrencyGainFromMagicSlayerTasksBasedOnCombatLevel", s: "Magic", t: ["Utility", "Loot", "Slayer"] },
+      { n: "flatCurrencyGainFromMeleeSlayerTasksBasedOnCombatLevel", s: "Melee", t: ["Utility", "Loot", "Slayer"] },
+      { n: "flatCurrencyGainFromMonsterDrops", s: "Any", t: ["Utility", "Loot"] },
+      { n: "flatCurrencyGainFromRangedSlayerTasksBasedOnCombatLevel", s: "Ranged", t: ["Utility", "Loot", "Slayer"] },
+      { n: "flatCurrencyGainOnEnemyHit", s: "Any", t: ["Utility", "Loot"] },
+      { n: "flatCurrencyGainOnEnemyHitBasedOnCombatLevel", s: "Any", t: ["Utility", "Loot"] },
+      { n: "flatCurrencyGainOnHitOnSlayerTask", s: "Any", t: ["Utility", "Loot", "Slayer"] },
+      { n: "flatCurrencyGainOnMonsterKillBasedOnCombatLevel", s: "Any", t: ["Utility", "Loot"] },
+      { n: "flatCurrencyGainWhenHitBasedOnResistance", s: "Any", t: ["Utility", "Loot", "Resistance"] },
+      { n: "flatHPRegen", s: "Any", t: ["Healing"] },
+      { n: "flatHPRegenBasedOnMagicMaxHit", s: "Magic", t: ["Healing"] },
+      { n: "flatHPRegenBasedOnMeleeMaxHit", s: "Melee", t: ["Healing"] },
+      { n: "flatHPRegenBasedOnRangedMaxHit", s: "Ranged", t: ["Healing"] },
+      { n: "flatMagicAccuracyBonusPerAttackInterval", s: "Magic", t: ["Offense", "Accuracy"] },
+      { n: "flatMagicAttackBonus", s: "Magic", t: ["Offense", "Accuracy"] },
+      { n: "flatMagicDefenceBonus", s: "Any", t: ["Defense"] },
+      { n: "flatMagicDefenceBonusBasedOnResistance", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatMagicMaxHit", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "flatMagicMinHit", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "flatMaxHit", s: "Any", t: ["Offense", "Damage"] },
+      { n: "flatMaxHitpoints", s: "Any", t: ["Defense"] },
+      { n: "flatMeleeAccuracyBonusPerAttackInterval", s: "Melee", t: ["Offense", "Accuracy"] },
+      { n: "flatMeleeDefenceBonus", s: "Any", t: ["Defense"] },
+      { n: "flatMeleeDefenceBonusBasedOnResistance", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatMeleeMaxHit", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "flatMeleeStrengthBonus", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "flatMeleeStrengthBonusBasedOnSkillLevel", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "flatMeleeStrengthBonusPerAttackInterval", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "flatMinHit", s: "Any", t: ["Offense", "Damage"] },
+      { n: "flatMonsterRespawnInterval", s: "Any", t: ["Utility"] },
+      { n: "flatPrayerPointCost", s: "Any", t: ["Utility", "Prayer"] },
+      { n: "flatPrayerPointsPerMonsterKill", s: "Any", t: ["Utility", "Prayer"] },
+      { n: "flatPrayerPointsWhenHit", s: "Any", t: ["Utility", "Prayer"] },
+      { n: "flatRangedAccuracyBonusPerAttackInterval", s: "Ranged", t: ["Offense", "Accuracy"] },
+      { n: "flatRangedAttackBonus", s: "Ranged", t: ["Offense", "Accuracy"] },
+      { n: "flatRangedDefenceBonus", s: "Any", t: ["Defense"] },
+      { n: "flatRangedDefenceBonusBasedOnResistance", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatRangedMaxHit", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "flatRangedStrengthBonus", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "flatRangedStrengthBonusPerAttackInterval", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "flatReflectDamage", s: "Any", t: ["Defense", "Damage"] },
+      { n: "flatRegenerationInterval", s: "Any", t: ["Healing"] },
+      { n: "flatResistance", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatResistanceAgainstBosses", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatResistanceAgainstMagic", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatResistanceAgainstMelee", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatResistanceAgainstRanged", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatResistanceAgainstSlayerTasks", s: "Any", t: ["Defense", "Resistance", "Slayer"] },
+      { n: "flatResistancePer30Defence", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "flatResistanceWithActivePrayer", s: "Any", t: ["Defense", "Resistance", "Prayer"] },
+      { n: "flatResistanceWithMagic2HWeapon", s: "Magic", t: ["Defense", "Resistance"] },
+      { n: "flatSlashAttackBonus", s: "Melee", t: ["Offense", "Accuracy"] },
+      { n: "flatSlayerAreaEffectNegation", s: "Any", t: ["Defense", "Slayer"] },
+      { n: "flatSpellRuneCost", s: "Magic", t: ["Utility"] },
+      { n: "flatStabAttackBonus", s: "Melee", t: ["Offense", "Accuracy"] },
+      { n: "flatSummoningAttackInterval", s: "Summoning", t: ["Offense"] },
+      { n: "flatTotalBleedDamage", s: "Any", t: ["Offense", "Damage", "Effect"] },
+      { n: "foodHealingValue", s: "Any", t: ["Healing"] },
+      { n: "foodPreservationChance", s: "Any", t: ["Utility"] },
+      { n: "freeProtectItem", s: "Any", t: ["Utility", "Prayer"] },
+      { n: "frostburnDamage", s: "Any", t: ["Offense", "Damage", "Effect"] },
+      { n: "globalEvasionHPScaling", s: "Any", t: ["Defense", "Evasion"] },
+      { n: "hPRegenBasedOnMaxHP", s: "Any", t: ["Healing"] },
+      { n: "halveAttackInterval", s: "Any", t: ["Offense"] },
+      { n: "halveResistance", s: "Any", t: ["Offense", "Resistance"] },
+      { n: "healOnHitBasedOnTargetDR", s: "Any", t: ["Healing", "Resistance"] },
+      { n: "healWhenSlept", s: "Any", t: ["Healing", "Effect"] },
+      { n: "healWhenStunned", s: "Any", t: ["Healing", "Effect"] },
+      { n: "healingOnAttackBasedOnResistance", s: "Any", t: ["Healing", "Resistance"] },
+      { n: "healingOnHitBasedOnTargetResistance", s: "Any", t: ["Healing", "Resistance"] },
+      { n: "healingWhenHit", s: "Any", t: ["Healing"] },
+      { n: "hitpointRegeneration", s: "Any", t: ["Healing"] },
+      { n: "hitpointRegenerationAgainstSlayerTasks", s: "Any", t: ["Healing", "Slayer"] },
+      { n: "hpRegenWhenEnemyHasMoreEvasion", s: "Any", t: ["Healing", "Evasion"] },
+      { n: "ignoreResistanceWhenAttackingChance", s: "Any", t: ["Offense", "Resistance"] },
+      { n: "itemProtection", s: "Any", t: ["Utility"] },
+      { n: "lifesteal", s: "Any", t: ["Healing"] },
+      { n: "lifestealBasedOnHPRegenEffectiveness", s: "Any", t: ["Healing"] },
+      { n: "lifestealDamageBasedOnCurrentHitpoints", s: "Any", t: ["Healing", "Damage"] },
+      { n: "magicAccuracyRating", s: "Magic", t: ["Offense", "Accuracy"] },
+      { n: "magicAttackInterval", s: "Magic", t: ["Offense"] },
+      { n: "magicCritChance", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "magicDamageBonus", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "magicDamageBonusWith2HWeapon", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "magicEvasion", s: "Magic", t: ["Defense", "Evasion"] },
+      { n: "magicImmunity", s: "Any", t: ["Defense"] },
+      { n: "magicLifesteal", s: "Magic", t: ["Healing"] },
+      { n: "magicMaxHit", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "magicMaxHitAgainstMelee", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "magicMaxHitWithActivePrayer", s: "Magic", t: ["Offense", "Damage", "Prayer"] },
+      { n: "magicMinHitBasedOnMaxHit", s: "Magic", t: ["Offense", "Damage"] },
+      { n: "magicMinHitBasedOnMaxHitSlayerTask", s: "Magic", t: ["Offense", "Damage", "Slayer"] },
+      { n: "magicProtection", s: "Any", t: ["Defense"] },
+      { n: "maxCurrencyMultiplierPerDamage", s: "Any", t: ["Utility", "Loot"] },
+      { n: "maxHPBurnDamage", s: "Any", t: ["Defense", "Damage", "Effect"] },
+      { n: "maxHPDamageTakenOnAttack", s: "Any", t: ["Defense", "Damage"] },
+      { n: "maxHit", s: "Any", t: ["Offense", "Damage"] },
+      { n: "maxHitAgainstDamageType", s: "Any", t: ["Offense", "Damage"] },
+      { n: "maxHitBasedOnPrayerCost", s: "Any", t: ["Offense", "Damage", "Prayer"] },
+      { n: "maxHitBasedOnResistance", s: "Any", t: ["Offense", "Damage", "Resistance"] },
+      { n: "maxHitBasedOnTargetCurrentHitpoints", s: "Any", t: ["Offense", "Damage"] },
+      { n: "maxHitBasedOnTargetResistance", s: "Any", t: ["Offense", "Damage", "Resistance"] },
+      { n: "maxHitpoints", s: "Any", t: ["Defense"] },
+      { n: "maxHitpointsAgainstDamageType", s: "Any", t: ["Defense"] },
+      { n: "meleeAccuracyMaxHitPer8Strength", s: "Melee", t: ["Offense", "Accuracy", "Damage"] },
+      { n: "meleeAccuracyRating", s: "Melee", t: ["Offense", "Accuracy"] },
+      { n: "meleeAccuracyRatingWith2H", s: "Melee", t: ["Offense", "Accuracy"] },
+      { n: "meleeAttackInterval", s: "Melee", t: ["Offense"] },
+      { n: "meleeCritChance", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "meleeEvasion", s: "Melee", t: ["Defense", "Evasion"] },
+      { n: "meleeImmunity", s: "Any", t: ["Defense"] },
+      { n: "meleeLifesteal", s: "Melee", t: ["Healing"] },
+      { n: "meleeMaxHit", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "meleeMaxHitAgainstRanged", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "meleeMinHitBasedOnMaxHit", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "meleeMinHitBasedOnMaxHitSlayerTask", s: "Melee", t: ["Offense", "Damage", "Slayer"] },
+      { n: "meleeProtection", s: "Any", t: ["Defense"] },
+      { n: "meleeStrengthBonus", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "meleeStrengthBonusPer10EnemyDR", s: "Melee", t: ["Offense", "Damage", "Resistance"] },
+      { n: "meleeStrengthBonusPer10EnemyResistance", s: "Melee", t: ["Offense", "Damage", "Resistance"] },
+      { n: "meleeStrengthBonusWith2HWeapon", s: "Melee", t: ["Offense", "Damage"] },
+      { n: "minCurrencyMultiplierPerDamage", s: "Any", t: ["Utility", "Loot"] },
+      { n: "minHitBasedOnMaxHit", s: "Any", t: ["Offense", "Damage"] },
+      { n: "noCombatDropChance", s: "Any", t: ["Utility", "Loot"] },
+      { n: "onHitSlowMagnitude", s: "Any", t: ["Offense", "Effect"] },
+      { n: "otherStyleImmunity", s: "Any", t: ["Defense"] },
+      { n: "poisonDOTDamageTaken", s: "Any", t: ["Defense", "Damage", "Effect"] },
+      { n: "poisonLifesteal", s: "Any", t: ["Healing", "Effect"] },
+      { n: "prayerPointCost", s: "Any", t: ["Utility", "Prayer"] },
+      { n: "prayerPointPreservationChance", s: "Any", t: ["Utility", "Prayer"] },
+      { n: "prayerPointPreservationChancePerPoint", s: "Any", t: ["Utility", "Prayer"] },
+      { n: "rangedAccuracyRating", s: "Ranged", t: ["Offense", "Accuracy"] },
+      { n: "rangedAttackInterval", s: "Ranged", t: ["Offense"] },
+      { n: "rangedCritChance", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "rangedEvasion", s: "Ranged", t: ["Defense", "Evasion"] },
+      { n: "rangedImmunity", s: "Any", t: ["Defense"] },
+      { n: "rangedLifesteal", s: "Ranged", t: ["Healing"] },
+      { n: "rangedMaxHit", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "rangedMaxHitAgainstMagic", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "rangedMinHitBasedOnMaxHit", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "rangedMinHitBasedOnMaxHitSlayerTask", s: "Ranged", t: ["Offense", "Damage", "Slayer"] },
+      { n: "rangedProtection", s: "Any", t: ["Defense"] },
+      { n: "rangedStrengthBonus", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "rangedStrengthBonusPer8Ranged", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "rangedStrengthBonusWith2HWeapon", s: "Ranged", t: ["Offense", "Damage"] },
+      { n: "rawReflectDamage", s: "Any", t: ["Defense", "Damage"] },
+      { n: "rebirthChance", s: "Any", t: ["Utility"] },
+      { n: "redemptionHealing", s: "Any", t: ["Healing"] },
+      { n: "redemptionThreshold", s: "Any", t: ["Healing"] },
+      { n: "reflectDamage", s: "Any", t: ["Defense", "Damage"] },
+      { n: "regenPerDamageTaken", s: "Any", t: ["Healing", "Damage"] },
+      { n: "resistance", s: "Any", t: ["Defense", "Resistance"] },
+      { n: "rolledReflectDamage", s: "Any", t: ["Defense", "Damage"] },
+      { n: "runePreservationChance", s: "Magic", t: ["Utility"] },
+      { n: "seedDropConversionChance", s: "Any", t: ["Utility", "Loot"] },
+      { n: "selfDamageOnHitBasedOnCurrentHitpoints", s: "Any", t: ["Defense", "Damage"] },
+      { n: "slashAttackBonus", s: "Melee", t: ["Offense", "Accuracy"] },
+      { n: "slayerCoinsPerMagicDamageSlayerTask", s: "Magic", t: ["Utility", "Loot", "Slayer"] },
+      { n: "slayerTaskCost", s: "Any", t: ["Utility", "Slayer"] },
+      { n: "slayerTaskExtensionCost", s: "Any", t: ["Utility", "Slayer"] },
+      { n: "slayerTaskLength", s: "Any", t: ["Utility", "Slayer"] },
+      { n: "sleepDurationIncreaseChance", s: "Any", t: ["Offense", "Effect"] },
+      { n: "stunAvoidChance", s: "Any", t: ["Defense", "Effect"] },
+      { n: "stunDurationIncreaseChance", s: "Any", t: ["Offense", "Effect"] },
+      { n: "summoningAttackInterval", s: "Summoning", t: ["Offense"] },
+      { n: "summoningAttackLifesteal", s: "Summoning", t: ["Healing"] },
+      { n: "summoningChargePreservationChance", s: "Summoning", t: ["Utility"] },
+      { n: "summoningMaxHit", s: "Summoning", t: ["Offense", "Damage"] },
+    ];
+    const SC = { Any: "csa", Magic: "csm", Melee: "csml", Ranged: "csr", Summoning: "css" };
+    const TC = { Offense: "cto", Defense: "ctd", Healing: "cth", Utility: "ctu", Prayer: "ctp", Slayer: "ctsl", Accuracy: "ctac", Damage: "ctdm", Evasion: "ctev", Resistance: "ctr", Effect: "ctef", Loot: "ctl" };
+    let sf = "all", at = new Set(), and = false, sq = "";
+    function render() {
+      const q = sq.toLowerCase();
+      const rows = D.filter(d => {
+        if (sf !== "all" && d.s !== sf) return false;
+        if (at.size) {
+          const arr = [...at];
+          if (and) { if (!arr.every(t => d.t.includes(t))) return false }
+          else { if (!arr.some(t => d.t.includes(t))) return false }
+        }
+        if (q && !d.n.toLowerCase().includes(q)) return false;
+        return true;
+      });
+      document.getElementById("cnt").textContent = rows.length + " modifier" + (rows.length !== 1 ? "s" : "") + " shown";
+      document.getElementById("tb").innerHTML = rows.map(d => `<tr><td class="nm">${d.n}</td><td><span class="chip ${SC[d.s]}">${d.s}</span></td><td>${d.t.map(t => `<span class="chip ${TC[t]}">${t}</span>`).join("")}</td></tr>`).join("");
+    }
+    document.querySelectorAll("[data-g=s]").forEach(b => b.addEventListener("click", () => {
+      document.querySelectorAll("[data-g=s]").forEach(x => x.classList.remove("on"));
+      b.classList.add("on"); sf = b.dataset.v; render();
+    }));
+    document.querySelectorAll("[data-g=t]").forEach(b => b.addEventListener("click", () => {
+      const v = b.dataset.v;
+      at.has(v) ? (at.delete(v), b.classList.remove("on")) : (at.add(v), b.classList.add("on"));
+      render();
+    }));
+    document.getElementById("andm").addEventListener("change", e => { and = e.target.checked; render(); });
+    document.getElementById("srch").addEventListener("input", e => { sq = e.target.value; render(); });
+    render();</script>
+</body>
+
+</html>
