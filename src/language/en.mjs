@@ -15,6 +15,9 @@ export const language = {
     'MODIFIER_DATA_slashingOnSummon': '${value}% of Slash Attack bonus added as Familiar damage',
     'MODIFIER_DATA_skillItemDoublingChanceGlobal': '${value}% Chance to Double Items in Skills',
 
+    'MODIFIER_TOOLTIP_THRUSTING1':'<div class="text-center"><span class="text-warning font-weight-bold">Dueling Stance</span><br>Start Fight with 1 stack and on hit<br> Lose 1 stack on being hit<br> 1% bonus to Dodge Chance, Convert Miss into Hit, and Attack Interval per stack</div>',
+    'MODIFIER_TOOLTIP_THRUSTING3':'<div class="text-center"><span class="text-warning font-weight-bold">Practiced Lunge (15%)</span><br>Perform a careful, practiced lunge which ignores Enemy Resistance and cannot miss</div>',
+    
     'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, then instruct your Familiars to perform two Unavoidable Attacks.</div>',
     'MODIFIER_TOOLTIP_CURVED5': '<div class="text-center"><span class="text-success font-weight-bold">Advantage</span><br>50% to gain Advantage on hit, to a max of 5. <br>Advantage gives stacking 5% Max Hit and Attack Interval to your Familiars <br> When at max stacks, spend stacks on hit by instructing your Companions to perform two Unavoidable Attacks.</div>',
     'MODIFIER_TOOLTIP_POLEARMS3': '<div class="text-center"><span class="text-warning font-weight-bold">Whirling Manoeuvre (15%)</span><br>Whirl your polearm around, attacking multiple times for a small portion of your normal damage each.<br> While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.</div>',

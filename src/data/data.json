@@ -1136,10 +1136,13 @@
                     1,
                     1
                   ],
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_THRUSTING1"
+                  },
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "When wielding Thrusting Swords, you enter a Dueling Stance. While in this stance, gain a stacking 1% bonus to Dodge Chance, Convert Miss into Hit, and Attack Interval each time you hit with or evade an attack (max 20 stacks). Each time you miss with or are hit by an attack, lose 1 stack. Lasts until End of Fight.",
+                        "customDescription": "Unlock Dueling Stance",
                         "appliesWhen": "StartOfFight",
                         "effectID": "WTM:DuelingStance",
                         "chance": 100
@@ -1163,6 +1166,18 @@
                   "id": "ThrustingSwords2",
                   "level": 2,
                   "shiny": false,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "dodgeChance": 10,
+                      "convertMissIntoHit": 10,
+                      "attackInterval": -10
+                    }
+                  },
                   "conditionalModifiers": [
                     {
                       "description": "When wielding Thrusting Swords, gain a 10% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval.",
@@ -1183,9 +1198,12 @@
                   "id": "ThrustingSwords3",
                   "level": 3,
                   "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_THRUSTING3"
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Practiced Lunge Special attack to all Thrusting Swords.",
+                      "description": "Unlock the Practiced Lunge special attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
@@ -1202,6 +1220,39 @@
                   "id": "ThrustingSwords4",
                   "level": 4,
                   "shiny": false,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  "order": [
+                    "m",
+                    "m",
+                    "m",
+                    "c"
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "attackInterval": -5,
+                      "dodgeChance": 5,
+                      "convertMissIntoHit": 5
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "description": "If your Shield slot is empty, triple the above bonuses and gain +10% chance to pierce Enemy Resistance.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:ThrustingSwords"
+                        },
+                        "modifiers": {
+                          "attackInterval": -5,
+                          "dodgeChance": 5,
+                          "convertMissIntoHit": 5
+                        }
+                      }
+                    ]
+                  },
                   "conditionalModifiers": [
                     {
                       "description": "When wielding Thrusting Swords, gain a 5% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval. If you also have nothing equipped in your Shield slot, triple that bonus and gain +10% Chance to ignore Enemy Resistance.",
@@ -2497,13 +2548,14 @@
                     "m",
                     "m"
                   ],
-                  "tooltip":{"1":"MODIFIER_TOOLTIP_AXES2"},
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_AXES2"
+                  },
                   "uiMods": {
                     "modifiers": {
                       "bleedLifesteal": 20,
                       "flatTotalBleedDamage": 5
                     },
-                    
                     "combatEffects": [
                       {
                         "customDescription": "10% chance to inflict Bleed on hit",
@@ -2548,10 +2600,12 @@
                   "id": "Axes3",
                   "level": 3,
                   "shiny": true,
-                  "tooltip":{"1":"MODIFIER_TOOLTIP_AXES3"},
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_AXES3"
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Bloodlust special attack.",
+                      "description": "Unlock the Bloodlust special attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
@@ -2567,8 +2621,8 @@
                   "name": "Axes4",
                   "id": "Axes4",
                   "level": 4,
-                  "tooltip":{
-                    "2":"MODIFIER_TOOLTIP_AXES4"
+                  "tooltip": {
+                    "2": "MODIFIER_TOOLTIP_AXES4"
                   },
                   "uiMods": {
                     "combatEffects": [
@@ -2582,7 +2636,7 @@
                         "chance": 10,
                         "effectID": "melvorD:Bleed100"
                       },
-                            {
+                      {
                         "customDescription": "25% chance to apply Hemorrhage on Hit while Target is Bleeding.",
                         "condition": {
                           "type": "WeaponType",
@@ -2664,7 +2718,7 @@
                         "chance": 10,
                         "effectID": "melvorD:Bleed200"
                       },
-                         {
+                      {
                         "customDescription": "+10% chance to inflict Hemorrhage on hit",
                         "condition": {
                           "type": "WeaponType",
@@ -2674,7 +2728,7 @@
                         "chance": 10,
                         "effectID": "melvorD:Bleed200"
                       },
-                            {
+                      {
                         "customDescription": "While Enemy is Bleeding, chance for both increases to 20%",
                         "condition": {
                           "type": "WeaponType",
