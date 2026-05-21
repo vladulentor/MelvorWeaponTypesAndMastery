@@ -87,6 +87,8 @@ export class WeaponMasteryUI {
             getElementFromFragment(this._content, 'lock4', 'div'),
             getElementFromFragment(this._content, 'lock5', 'div'),
         ];
+                   this.wepModTypeApplic= getRielkLangString('MENU_GLOBAL_APPLIC'),
+            this.wepModGlobApplic=getRielkLangString('MENU_TYPE_APPLIC'),
 
         this.stepsButton.onclick = () => this.toggleModifierList();
     }
@@ -267,19 +269,163 @@ export class WeaponMasteryUI {
         }
     }
     generateModifierElements(level) {
-        const descs = StatObject.getDescriptions(level.uiMods);
-
+        const statObject = level.uiMods;
         const isShiny = !!level.shiny;
+        const elements = [];
+        const globToltip = this.wepModGlobApplic;
+        const typeToltip = this.wepModTypeApplic
+        let i = 1;
 
-        return descs.map((desc) => {
+        // Behold the most overdesign piece of garbage ever to just make some tooltips my god
+        // We make a div, and then two wrappers to the right and left, just to put some tooltips on them
+        function createModifierRow(desc, isWeaponCondition) {
+
+            let infoTooltipKey = null;
+            if (level.tooltips && level.tooltips[i]) {
+                infoTooltipKey = level.tooltips[i];
+            }
+            if (level.overwriteTypeIcons)
+                isWeaponCondition = level.overwriteTypeIcons[i - 1];
             const cls = 'modifierHolder fuck-you text-center ' + (isShiny ? 'special' : '');
-            const span = createElement('span', {
-                className: `m-1 font-size-sm ${cls}`,
+            const rowWrapper = createElement('div', {
+                className: 'w-100 position-relative d-flex justify-content-center align-items-center modifier-row-hover'
+            });
+            const textSpan = createElement('span', {
+                className: `my-1 font-size-sm ${cls}`,
                 innerHTML: desc.text
             });
-            span.style.display = 'block';
-            return span;
+            textSpan.style.display = 'block';
+            textSpan.style.paddingLeft = '0';
+            textSpan.style.paddingRight = '0';
+
+            rowWrapper.append(textSpan);
+
+            const leftContainer = createElement('div', {
+                className: 'position-absolute p-1 pointer-link'
+            });
+            leftContainer.style.left = '-1.15rem';
+            leftContainer.style.top = '50%';
+            leftContainer.style.transform = 'translateY(-50%)';
+
+            const iconClass = `modifier-flank fas fuck-you fa-lg ` + (isWeaponCondition ? 'fa-star ' : 'fa-globe ') + (isShiny ? 'special' : '');
+            const conditionTooltipText = isWeaponCondition ? globToltip : typeToltip;
+            const conditionIcon = createElement('i', { className: iconClass });
+
+            tippy(conditionIcon, { content: conditionTooltipText, placement: 'top', animation: false }); // this tippy is fine as it is (let's hope)
+            leftContainer.append(conditionIcon);
+            rowWrapper.append(leftContainer);
+
+            if (infoTooltipKey) {
+                const rightContainer = createElement('div', {
+                    className: 'position-absolute pointer-link modifierHolder'
+                });
+                rightContainer.style.right = '-3rem';
+                rightContainer.style.top = '50%';
+                rightContainer.style.transform = 'translateY(-50%)';
+                const iconClass = `modifier-flank fas fuck-you fa-question-circle fa-lg ` + (isShiny ? 'special' : '');
+                const infoIcon = createElement('i', { className: iconClass });
+                tippy(infoIcon, {
+                    content: infoTooltipKey,
+                    placement: 'top',
+                    allowHTML: true,
+                    interactive: true,
+                    animation: false,
+                    appendTo: document.body,
+                    popperOptions: {
+                        strategy: 'fixed',
+                        modifiers: [
+                            { name: 'flip', options: { fallbackPlacements: ['top'] } },
+                            { name: 'preventOverflow', options: { altAxis: true, tether: false } },
+                        ],
+                    },
+                });
+                rightContainer.append(infoIcon);
+                rowWrapper.append(rightContainer);
+            }
+            i += 1;
+            return rowWrapper;
+        }
+        if (level.order) {
+            return this.getOrderedShit(statObject, level.order, createModifierRow);
+        }
+        // we had to unroll the StatObject.describe functions or whatever into ours just so we can pinpoint...
+        if (statObject.modifiers !== undefined) {
+            statObject.modifiers.forEach((modValue) => {
+                if (StatObject.showDescription(modValue.isNegative, 1, 1, true)) {
+                    elements.push(createModifierRow(modValue.print(1, 1), false));
+                }
+            });
+        }
+
+        if (statObject.combatEffects !== undefined) {
+            statObject.combatEffects.forEach((applicator) => {
+                const desc = applicator.getDescription(1, 1);
+                if (desc !== undefined && StatObject.showDescription(applicator.isNegative, 1, 1, true)) {
+                    const isWeaponCondition = (applicator.conditionChances?.some(cond => cond.condition.type === 'WeaponType') || applicator.condition?.conditions?.some(cond => cond.type === 'WeaponType')); // <-- This! But we don't even use it that much... so fuck.
+
+                    elements.push(createModifierRow(desc, isWeaponCondition));
+                }
+            });
+        }
+        if (statObject.conditionalModifiers !== undefined) {
+            statObject.conditionalModifiers.forEach((conditional) => {
+                const desc = conditional.getDescription(1, 1);
+                if (desc !== undefined && StatObject.showDescription(conditional.isNegative, 1, 1, true)) {
+                    const isWeaponCondition = (conditional.condition.type === 'WeaponType' || conditional.condition.conditions?.some(cond => cond.type === 'WeaponType')); // <-- Also this apparently
+
+                    elements.push(createModifierRow(desc, isWeaponCondition));
+                }
+            });
+        }
+
+        if (statObject.enemyModifiers !== undefined) {
+            statObject.enemyModifiers.forEach((modValue, id) => {
+                if (StatObject.showDescription(!modValue.isNegative, 1, 1, true)) {
+
+                    elements.push(createModifierRow(modValue.printEnemy(1, 1, 2, id === 0), false));
+                }
+            });
+        }
+
+        return elements;
+    }
+    getOrderedShit(statObject, order, createRow) {
+        const elements = [];
+        let mIdx = 0, eIdx = 0, cIdx = 0, yIdx = 0;
+
+        order.forEach((type) => {
+            if (type === 'm' && statObject.modifiers?.[mIdx]) {
+                const modValue = statObject.modifiers[mIdx++];
+                if (StatObject.showDescription(modValue.isNegative, 1, 1, true)) {
+                    elements.push(createRow(modValue.print(1, 1), false));
+                }
+            }
+            else if (type === 'e' && statObject.combatEffects?.[eIdx]) {
+                const applicator = statObject.combatEffects[eIdx++];
+                const desc = applicator.getDescription(1, 1);
+                if (desc !== undefined && StatObject.showDescription(applicator.isNegative, 1, 1, true)) {
+                    const isWeaponCondition = (applicator.condition?.type === 'WeaponType' || applicator.condition?.conditions?.some(cond => cond.type === 'WeaponType'));
+                    elements.push(createRow(desc, isWeaponCondition));
+                }
+            }
+            else if (type === 'c' && statObject.conditionalModifiers?.[cIdx]) {
+                const conditional = statObject.conditionalModifiers[cIdx++];
+                const desc = conditional.getDescription(1, 1);
+                if (desc !== undefined && StatObject.showDescription(conditional.isNegative, 1, 1, true)) {
+                    const isWeaponCondition = (conditional.condition?.type === 'WeaponType' || conditional.condition?.conditions?.some(cond => cond.type === 'WeaponType'));
+                    elements.push(createRow(desc, isWeaponCondition));
+                }
+            }
+            else if (type === 'y' && statObject.enemyModifiers?.[yIdx]) {
+                const currentId = yIdx;
+                const modValue = statObject.enemyModifiers[yIdx++];
+                if (StatObject.showDescription(!modValue.isNegative, 1, 1, true)) {
+                    elements.push(createRow(modValue.printEnemy(1, 1, 2, currentId === 0), false));
+                }
+            }
         });
+
+        return elements;
     }
     setMods() {
         for (let i = 0; i < this.steps.length; i++) {

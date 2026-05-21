@@ -650,7 +650,7 @@ export class WeaponTypesCombatMenu {
                 parent: this.weaponButtonGroup,
                 className: 'btn btn-sm btn-outline-secondary flex-fill',
             });
-            createElement('img', { parent: button, className: 'skill-icon-xs table-type-image', attributes: [['src', overT.media]] });
+            createElement('img', { parent: button, className: 'skill-icon-xs', attributes: [['src', overT.media]] });
             button.onclick = () => this.selectOType(game, overT, button);
             button.oType = overT.id;
             button.menu = createElement('weapon-types-menu', {

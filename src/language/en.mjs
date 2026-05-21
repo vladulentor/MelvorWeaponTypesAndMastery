@@ -16,9 +16,35 @@ export const language = {
     'MODIFIER_DATA_skillItemDoublingChanceGlobal': '${value}% Chance to Double Items in Skills',
 
     'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, then instruct your Familiars to perform two Unavoidable Attacks.</div>',
-    'MODIFIER_TOOLTIP_CURVED5': '<div class="text-center"><span class="text-success font-weight-bold">Advantage</span><br>50% to gain Advantage on hit, to a max of 5. <br>Advantage gives stacking Max Hit and Attack Interval to your Familiars <br> When at max stacks, spend stacks on hit by instructing your Companions to perform two Unavoidable Attacks.</div>',
+    'MODIFIER_TOOLTIP_CURVED5': '<div class="text-center"><span class="text-success font-weight-bold">Advantage</span><br>50% to gain Advantage on hit, to a max of 5. <br>Advantage gives stacking 5% Max Hit and Attack Interval to your Familiars <br> When at max stacks, spend stacks on hit by instructing your Companions to perform two Unavoidable Attacks.</div>',
     'MODIFIER_TOOLTIP_POLEARMS3': '<div class="text-center"><span class="text-warning font-weight-bold">Whirling Manoeuvre (15%)</span><br>Whirl your polearm around, attacking multiple times for a small portion of your normal damage each.<br> While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.</div>',
-
+    'MODIFIER_TOOLTIP_AXES2':'<div class="text-center"><span class="text-warning font-weight-bold">Bleed</span><br>Deals up to 100% damage dealt over the course of 10 seconds</div>',
+    'MODIFIER_TOOLTIP_AXES3': `
+<div class="text-center px-1" style="max-width: 280px;">
+    <div class="text-warning font-weight-bold mb-1">Bloodlust (25%)</div>
+    <div class="font-size-sm text-muted mb-2">You let out a bloodcurdling warcry, becoming filled with a lust for blood. Inflict Bloodlust.</div>
+    <div class="font-weight-bold text-warning font-size-sm mb-1">Bloodlust (Max 10 stacks):</div>
+    
+    <div class="row no-gutters text-left">
+        <div class="col-6 pr-1 border-right">
+            <span class="text-warning font-weight-bold font-size-xs">On Player:</span>
+            <div class="text-success">+5% Lifesteal</div>
+            <div class="text-success">+4% Max Hit</div>
+            <div class="text-success">+3% Flat Dmg against Bleed</div>
+            <div class="text-success">-2% Atk Interval</div>
+            <div class="text-danger">+1% Self Dmg</div>
+        </div>
+                <div class="col-6 pl-2">
+            <span class="text-warning font-weight-bold font-size-xs">On Enemy:</span>
+            <div class="text-success">+5% Bleed Taken</div>
+            <div class="text-success">-4% Max Hit</div>
+            <div class="text-success">-3% Resistance</div>
+            <div class="text-success">+2% Atk Interval</div>
+        </div>
+    </div>
+</div>
+`,
+'MODIFIER_TOOLTIP_AXES4':'<div class="text-center"><span class="text-warning font-weight-bold">Hemorrhage</span><br>Deals up to 500% damage dealt over the course of 20 seconds</div>',
     'WTM_EFFECT_TOOLTIP_SYNCRONIZE': 'At max stacks, below effects activate',
 
 

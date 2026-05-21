@@ -2220,9 +2220,8 @@
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type":"Every",
+                        "type": "Every",
                         "conditions": [
-                          
                           {
                             "type": "WeaponType",
                             "weaponType": "WTM:Daggers"
@@ -2460,6 +2459,16 @@
                   "name": "Axes1",
                   "id": "Axes1",
                   "level": 1,
+                  "overwriteTypeIcons": [
+                    1,
+                    2
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "lifesteal": 10,
+                      "maxHitBasedOnTargetCurrentHitpoints": 0.1
+                    }
+                  },
                   "conditionalModifiers": [
                     {
                       "description": "+10% Lifesteal and +1% Max Hit for every 10% of Enemy HP missing",
@@ -2478,6 +2487,36 @@
                   "name": "Axes2",
                   "id": "Axes2",
                   "level": 2,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1
+                  ],
+                  "order": [
+                    "e",
+                    "m",
+                    "m"
+                  ],
+                  "tooltip":{"1":"MODIFIER_TOOLTIP_AXES2"},
+                  "uiMods": {
+                    "modifiers": {
+                      "bleedLifesteal": 20,
+                      "flatTotalBleedDamage": 5
+                    },
+                    
+                    "combatEffects": [
+                      {
+                        "customDescription": "10% chance to inflict Bleed on hit",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "effectID": "melvorD:Bleed100",
+                        "chance": 10
+                      }
+                    ]
+                  },
                   "conditionalModifiers": [
                     {
                       "description": "+20% Bleed Lifesteal and +50 total damage to Bleed-inflicted",
@@ -2493,7 +2532,7 @@
                   ],
                   "combatEffects": [
                     {
-                      "customDescription": "10% chance to inflict a 100% Bleed on Hit",
+                      "customDescription": "10% chance to inflict a Bleed on Hit",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
@@ -2509,6 +2548,7 @@
                   "id": "Axes3",
                   "level": 3,
                   "shiny": true,
+                  "tooltip":{"1":"MODIFIER_TOOLTIP_AXES3"},
                   "conditionalModifiers": [
                     {
                       "description": "Adds the Bloodlust special attack.",
@@ -2527,10 +2567,23 @@
                   "name": "Axes4",
                   "id": "Axes4",
                   "level": 4,
+                  "tooltip":{
+                    "2":"MODIFIER_TOOLTIP_AXES4"
+                  },
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "Automatically inflict a 100% Bleed and 1 stack of Bloodlust on your first Hit. 25% Chance to apply Hemorrhage (a 500% Bleed over 20s) on Hit if Enemy is Bleeding.",
+                        "customDescription": "Inflict Bleed and Bloodlust on First Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 10,
+                        "effectID": "melvorD:Bleed100"
+                      },
+                            {
+                        "customDescription": "25% chance to apply Hemorrhage on Hit while Target is Bleeding.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Axes"
@@ -2602,7 +2655,27 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "+10% Chance on Hit to apply 1 Bloodlust stack and/or inflict Hemorrhage on the Enemy. If enemy is Bleeding, chance for both is increased to 20%.",
+                        "customDescription": "+10% chance to apply Bloodlust on hit",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 10,
+                        "effectID": "melvorD:Bleed200"
+                      },
+                         {
+                        "customDescription": "+10% chance to inflict Hemorrhage on hit",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 10,
+                        "effectID": "melvorD:Bleed200"
+                      },
+                            {
+                        "customDescription": "While Enemy is Bleeding, chance for both increases to 20%",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Axes"
