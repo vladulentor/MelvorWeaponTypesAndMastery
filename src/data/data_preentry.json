@@ -16,6 +16,20 @@
             ]
           }
         ]
+      },
+      {
+        "id": "melvorD:EffectIgnoreChance",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "${value}% chance to ignore all effects",
+                "lang": "MODIFIER_DATA_skillItemDoublingChanceGlobal"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

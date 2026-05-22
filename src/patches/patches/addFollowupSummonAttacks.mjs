@@ -40,6 +40,18 @@ export function addFollowupSummonAttacks({ patch }) { //hey you didnt capitalize
                 }
             }, 150);
         }
+        if (attack.id == "WTM:SparkOfMystery") {
+            const funnyNum1 = Math.floor(Math.random() * game.combatEffects.allObjects.length);
+            const funnyNum2 = Math.floor(Math.random() * game.combatEffects.allObjects.length)
+            const ourEffect = game.combatEffects.allObjects[funnyNum1];
+            const theirEffect = game.combatEffects.allObjects[funnyNum2];
 
+            this.applyCombatEffect(ourEffect, this, { type: "Attack" }, undefined)
+            target.applyCombatEffect(theirEffect, this, { type: "Attack" }, undefined)
+        }
     });
+}
+
+function genfunniAttack(remType){
+ourEfe
 }
