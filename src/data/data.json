@@ -3353,7 +3353,9 @@
                           "type": "WeaponType",
                           "weaponType": "WTM:Blunts"
                         },
-                        "modifiers": {}
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
                       }
                     ]
                   },
@@ -3363,7 +3365,9 @@
                         "type": "WeaponType",
                         "weaponType": "WTM:Blunts"
                       },
-                      "modifiers": {}
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
                     }
                   ]
                 },
@@ -3375,7 +3379,7 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "+10% Chance to inflict Daze for 1 turn on Hit. If Enemy is Broken, +10% chance to inflict Stun for 1 turn on Hit.",
+                        "customDescription": "+20% Chance to inflict Daze for 1 turn on Hit. If Enemy is Broken, +10% chance to inflict Stun for 1 turn on Hit.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Blunts"
@@ -3418,7 +3422,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Daze",
-                      "chance": 10
+                      "chance": 20
                     },
                     {
                       "condition": {
@@ -3457,6 +3461,7 @@
                       {
                         "description": "+2% Melee Accuracy and Max Hit per 8 Strength levels (floored) and +10% Melee Strength Bonus from Equipment per 10 Enemy Resistance. +30% extra Damage Dealt to Dazed or Stunned Enemies.",
                         "condition": {
+                          "type": "Every",
                           "conditions": [
                             {
                               "type": "WeaponType",
@@ -3478,6 +3483,7 @@
                   "conditionalModifiers": [
                     {
                       "condition": {
+                        "type": "Every",
                         "conditions": [
                           {
                             "type": "WeaponType",
