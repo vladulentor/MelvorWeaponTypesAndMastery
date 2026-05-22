@@ -46,55 +46,15 @@ function fuckassResetFunc(attack) {
 }
 
 export function addSpecialAttack() {
+    if(this.type.specAttack3)
+        addEffecttoWeaponList({weapons:this.type.allWeapons, attack:this.type.specAttack3})
+ // Edwin if you're reading this cuz you wanna add a special attack to a type just add it to the type (not level)'s "specAttack3" attribute and add the "addSpecialAttack" function to the level you want it to be added at.
+ 
+ // It's been automated so your mod (or others) can add special attacks without custom code, though it's now less flexible
 
-
-    if (this._localID == "Greatswords3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:DevastatingSlice');
-        const weapMap = { weapons: this.type.allWeapons, attack: attack };
-        addEffecttoWeaponList(weapMap);
-    }
-
-    if (this._localID == "ThrustingSwords3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:PracticedLunge');
-        const weapMap = { weapons: this.type.allWeapons, attack: attack };
-        addEffecttoWeaponList(weapMap);
-    }
-
-    if (this._localID == "CurvedSwords3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:MountedStrike');
-        attack.summonFollowAttacks = 2;
-        const weapMap = { weapons: this.type.allWeapons, attack: attack };
-        addEffecttoWeaponList(weapMap);
-    }
-
-    if (this._localID == "Daggers3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:DeathApproaches');
-        const weapMap = { weapons: this.type.allWeapons, attack: attack };
-        addEffecttoWeaponList(weapMap);
-    }
-
-    if (this._localID == "Axes3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:Bloodlust');
-        const weapMap = { weapons: this.type.allWeapons, attack: attack };
-        addEffecttoWeaponList(weapMap);
-    }
-
-    if (this._localID == "Polearms3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:WhirlingManoeuvre');
-        const weapMap = { weapons: this.type.allWeapons, attack: attack };
-        addEffecttoWeaponList(weapMap);
-    }
-
-    if (this._localID == "Blunts3") {
-        const attack = game.specialAttacks.getObjectSafe('WTM:ConcussiveSmash');
-        const weapMap = { weapons: this.type.allWeapons, attack: attack };
-        addEffecttoWeaponList(weapMap);
-    }
 }
 
 
-
-// Note, this looks cleaner than it actually is, I built it to batch increase special attack from different sources, then I remember the function can't get called that way.
 const SPECIAL_MOD3_VALUE = 5;
 
 

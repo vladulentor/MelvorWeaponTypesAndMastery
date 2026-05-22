@@ -4,6 +4,20 @@
   "data": {
     "attacks": [
       {
+        "id": "SparkOfMystery",
+        "damage":[],
+        "defaultChance": 20,
+        "prehitEffects": [],
+        "onhitEffects": [],
+        "cantMiss": true,
+        "attackCount": 1,
+        "attackInterval": 100,
+        "lifesteal": 0,
+        "name": "Spark Of Mystery",
+        "description": "Inflict a completely random effect on the Enemy and yourself",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "MountedStrike",
         "defaultChance": 15,
         "damage": [
@@ -1433,9 +1447,8 @@
               "mat": [
                 "2H_Sword"
               ],
-              "extraLangStrings":{
-                "en":{
-                }
+              "extraLangStrings": {
+                "en": {}
               },
               "specAttack3": "WTM:DevastatingSlice",
               "kind": "melee",
@@ -1472,7 +1485,9 @@
                   "id": "Greatswords1",
                   "shiny": false,
                   "level": 1,
-                  "tooltip":{"1":"TEST"},
+                  "tooltip": {
+                    "1": "TEST"
+                  },
                   "combatEffects": [
                     {
                       "condition": {
@@ -3851,68 +3866,7 @@
                 }
               ]
             },
-            {
-              "id": "Artefacts",
-              "name": "Artefacts",
-              "media": "assets/artifacts.svg",
-              "mediaAlt": "assets/black_filled_svgs/artifacts.svg",
-              "mediaCol": "assets/filled_svgs/artifacts.svg",
-              "type": "magic",
-              "uniq": [
-                "Magic_Flute8",
-                "Powered_Red_Crystal8",
-                "Trickery_Mirror8"
-              ],
-              "isPerWepMod": true,
-              "wepModifiers": {
-                "modifiers": {
-                  "resistance": [
-                    {
-                      "damageTypeID": "melvorD:Normal",
-                      "value": 10
-                    }
-                  ],
-                  "effectIgnoreChance": [
-                    {
-                      "effectGroupID": "melvorD:Debuff",
-                      "value": 20
-                    }
-                  ]
-                }
-              },
-              "levels": [
-                {
-                  "name": "Artifacts1",
-                  "id": "Artifacts1",
-                  "level": 1,
-                  "modifiers": {}
-                },
-                {
-                  "name": "Artifacts2",
-                  "id": "Artifacts2",
-                  "level": 2,
-                  "modifiers": {}
-                },
-                {
-                  "name": "Artifacts3",
-                  "id": "Artifacts3",
-                  "level": 3,
-                  "modifiers": {}
-                },
-                {
-                  "name": "Artifacts4",
-                  "id": "Artifacts4",
-                  "level": 4,
-                  "modifiers": {}
-                },
-                {
-                  "name": "Artifacts5",
-                  "id": "Artifacts5",
-                  "level": 5,
-                  "modifiers": {}
-                }
-              ]
-            },
+           
             {
               "id": "Staves",
               "name": "Staves",
