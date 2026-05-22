@@ -27,6 +27,10 @@
                 "value": 2
               }
             ]
+          },
+          {
+            "effectID": "WTM:Broken",
+            "chance": 20
           }
         ],
         "cantMiss": false,
@@ -34,7 +38,7 @@
         "attackInterval": 300,
         "lifesteal": 0,
         "name": "Concussive Smash",
-        "description": "Smash into your Enemy's armour, dealing up to 100% + (Enemy DR%) Normal Hit damage (Eg. 25% DR = up to 125% normal hit damage). On a hit, inflicts Daze for 2 turns. Avoidable.",
+        "description": "Smash into your Enemy's armour, dealing up to 100% + (Enemy DR%) Normal Hit damage (Eg. 25% DR = up to 125% normal hit damage). On a hit, inflicts Daze for 2 turns and has a ${onHitEffect1chance}% chance to inflict Broken. Avoidable.",
         "descriptionGenerator": "Smash into your Enemy's armour, dealing up to 100% + (Attacker DR%) Normal Hit damage (Eg. 25% DR = up to 125% normal hit damage). On a hit, <hitEffect>. <Avoidable>.",
         "usesRunesPerProc": false
       },
@@ -116,8 +120,8 @@
         ],
         "onhitEffects": [],
         "cantMiss": false,
-        "attackCount": 5,
-        "attackInterval": 400,
+        "attackCount": 10,
+        "attackInterval": 250,
         "lifesteal": 0,
         "name": "Whirling Manoeuvre",
         "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each. While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect Enemy attacks for ${preHitEffect0modValue0}% of their damage.",
@@ -410,15 +414,15 @@
           {
             "name": "stacks",
             "modifiers": {
-              "reflectDamage": 20,
-              "dodgeChance": 20
+              "reflectDamage": 30,
+              "dodgeChance": 30
             }
           }
         ],
         "parameters": [
           {
             "name": "turns",
-            "initialValue": 1
+            "initialValue": 2
           }
         ],
         "effectGroups": [
@@ -544,13 +548,9 @@
         "id": "Certainty",
         "name": "Certainty",
         "media": "assets/combat/status/attack_increase.svg",
-        "templateID": "melvorD:StackingSelfCountingModifier",
+        "templateID": "melvorD:StackingNonCountingModifier",
         "target": "Self",
         "parameters": [
-          {
-            "name": "turns",
-            "initialValue": 5
-          },
           {
             "name": "initialStacks",
             "initialValue": 1
@@ -580,13 +580,9 @@
         "id": "Swiftness",
         "name": "Swiftness",
         "media": "assets/combat/status/evasion_increase.svg",
-        "templateID": "melvorD:StackingSelfCountingModifier",
+        "templateID": "melvorD:StaticNonCountingModifier",
         "target": "Self",
         "parameters": [
-          {
-            "name": "turns",
-            "initialValue": 5
-          },
           {
             "name": "initialStacks",
             "initialValue": 1
@@ -779,7 +775,7 @@
               "resistance": [
                 {
                   "damageTypeID": "melvorD:Normal",
-                  "value": -1
+                  "value": -50
                 }
               ]
             }
@@ -3006,12 +3002,6 @@
                       },
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:Certainty",
-                      "initialParams": [
-                        {
-                          "name": "stacks",
-                          "value": 5
-                        }
-                      ],
                       "chance": 100
                     },
                     {
@@ -3019,12 +3009,78 @@
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
-                      "initialParams": [
-                        {
-                          "name": "stacks",
-                          "value": 5
-                        }
-                      ],
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:Swiftness",
                       "chance": 100
@@ -3202,20 +3258,14 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "On your first hit, 50% chance to inflict Broken on the Enemy, reducing their Resistance by 20%. While the Enemy is Broken, 20% chance on hit to inflict Daze for 1 turn.",
+                        "customDescription": "On your first hit, 50% chance to inflict Broken on the Enemy, reducing their Resistance by half. While the Enemy is Broken, 20% chance on hit to inflict Daze for 1 turn.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Blunts"
                         },
                         "appliesWhen": "HitWithFirstAttack",
                         "chance": 50,
-                        "effectID": "WTM:Broken",
-                        "initialParams": [
-                          {
-                            "name": "stacks",
-                            "value": -20
-                          }
-                        ]
+                        "effectID": "WTM:Broken"
                       }
                     ]
                   },
@@ -3227,13 +3277,7 @@
                       },
                       "appliesWhen": "HitWithFirstAttack",
                       "chance": 50,
-                      "effectID": "WTM:Broken",
-                      "initialParams": [
-                        {
-                          "name": "stacks",
-                          "value": -20
-                        }
-                      ]
+                      "effectID": "WTM:Broken"
                     },
                     {
                       "condition": {
