@@ -1,7 +1,7 @@
 // Hello, and welcome to hell
 const ctx = mod.getContext(import.meta);
 
-const { getRielkLangString, templateRielkLangString } = await ctx.loadModule('src/language/translationManager.mjs');
+const { getRielkLangString, templateRielkLangString, addRielkLangStrings } = await ctx.loadModule('src/language/translationManager.mjs');
 const { EffectRegistry } = await ctx.loadModule('src/patches/patchRegistry.mjs');
 
 class WeaponMasteryLevel extends RealmedObject {
@@ -88,6 +88,11 @@ export class WeaponMastery extends RealmedObject {
         this.Wtype = data.type;
         this.activeWeapon = undefined
         this.game = game;
+        if(data.extraLangStrings){
+            if(data.extraLangStrings[setLang])
+            {addRielkLangStrings(data.extraLangStrings[setLang])}
+        }
+        if(data.specAttack3) this.specAttack3 = game.specialAttacks.getObjectByID(data.specAttack3);
         this.isPerWepMod = data.isPerWepMod ?? false;
         if (this.isPerWepMod) {
             this.wepProvidedStats = new StatProvider();

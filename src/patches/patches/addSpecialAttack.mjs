@@ -14,8 +14,11 @@ function addAttacktoWeapons(weapon, attack) {
         weapon.overrideSpecialChances = makearrayforweaponattacks(weapon, toChop);
         weapon.overrideSpecialChances.push(attack.defaultChance);
     }
-    else if(weapon.overrideSpecialChances){
-        weapon.overrideSpecialChances.push(attack.defaultChance);
+    else if (weapon.overrideSpecialChances) {
+        {
+            weapon.originalOverride = weapon.overrideSpecialChances;
+            weapon.overrideSpecialChances.push(attack.defaultChance);
+        }
     }
     weapon.specialAttacks.push(attack);
 }
@@ -99,7 +102,7 @@ const SPECIAL_MOD3_VALUE = 5;
 export function increaseSpecialAttackChance() {
     let toadd = 0;
 
-    const ourAttacks = game.specialAttacks.namespaceMaps.get("WTM");
+    const ourAttacks = game.weaponMasteries.allObjects.flatMap(w => w.specAttack3);
 
     if (this._localID == "Special4") {
         toadd += SPECIAL_MOD3_VALUE;

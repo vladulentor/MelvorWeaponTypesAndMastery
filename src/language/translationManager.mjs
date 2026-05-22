@@ -34,6 +34,10 @@ class TranslationManager {
 const tm = new TranslationManager();
 await tm.syncLang();
 
+export function addRielkLangStrings(strings){
+    Object.assign(tm.loadedLangJson, strings)
+}
+
 export function getRielkLangString(identifier) {
     const translation = tm.loadedLangJson[identifier];
     if (translation === undefined || translation === '') {
@@ -44,7 +48,6 @@ export function getRielkLangString(identifier) {
     }
     return translation;
 }
-
 export function templateRielkLangString(identifier, templateData) {
     return templateString(getRielkLangString(identifier), templateData);
 }
