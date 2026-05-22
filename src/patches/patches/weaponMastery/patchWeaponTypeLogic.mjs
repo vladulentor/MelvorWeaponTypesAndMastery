@@ -47,6 +47,7 @@ export function patchWeaponTypeLogic({ patch }) {
 
     patch(BaseManager, "computeAllStats").before(function (_) { // Again not the best place to put it, but it should work, I forgot why this isn't going through our weaponMod like things, it is what it is I guess.
         const pl = game.combat.player;
+
         const newWeapon = pl.equipment.getItemInSlot("melvorD:Weapon");
         const newType = newWeapon.weaponType;
         // we should probably have used an event here
@@ -60,6 +61,7 @@ export function patchWeaponTypeLogic({ patch }) {
                 pl.equippedWeaponType.toggleMasteredWeaponStats(0);
 
         }
+                // special code for special stats of gloves because I am such a special boy and make so much special code
         if (pl.equippedWeapon !== newWeapon) {
             pl.equippedWeapon = newWeapon;
         }
@@ -72,11 +74,17 @@ export function patchWeaponTypeLogic({ patch }) {
             }
         }
     });
-    patch(Player, "computeEquipmentStats").before(function () {
+    patch(Equipment, "addEquipmentStats").after(function (ret, stats) { 
+    if(game.combat.player.equippedWeapon?.SpecWeaponStats)
+        stats.addStats(game.combat.player.equippedWeapon.SpecWeaponStats);
+    });
+    
+    /*patch(Player, "computeEquipmentStats").before(function () {
 
     })
+
     patch(Player, "updateForEquipmentChange").after(function (_) {
 
-    });
+    });*/
 }
 

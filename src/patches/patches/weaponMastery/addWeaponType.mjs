@@ -31,59 +31,60 @@ export function addWeaponType(settings, namespaces) {
         }
     }
     // Set properties to weapoin objects.
-    Object.defineProperty(WeaponItem.prototype, 'timesAttacked', {
+    // instead of on weapoin objects we have to set it on eqiupment objects because of the gloves
+    Object.defineProperty(EquipmentItem.prototype, 'timesAttacked', {
         get() {
             return game.stats.Items.get(this, ItemStats.TotalAttacks)
         }
     });
-    Object.defineProperty(WeaponItem.prototype, '_enemiesKilledTime', {
+    Object.defineProperty(EquipmentItem.prototype, '_enemiesKilledTime', {
         get() {
 
             return game.stats.Items.get(this, ItemStats.EnemiesKilled) * 2 // the default respawn is 3 (seconds), we use 2 since fighting tougher enemies should give more xp
         }
     });
 
-    Object.defineProperty(WeaponItem.prototype, 'weaponXPCap', {
+    Object.defineProperty(EquipmentItem.prototype, 'weaponXPCap', {
         get() {
             return this.uniqueness * 25000;
         }
     });
 
-    Object.defineProperty(WeaponItem.prototype, '_weaponXPSpeedMod', {
+    Object.defineProperty(EquipmentItem.prototype, '_weaponXPSpeedMod', {
         get() {
             return 2.313  // Note, changed to look prettier. The math is the same as before... whatever the math was before.
         }
     });
-    Object.defineProperty(WeaponItem.prototype, 'weaponXPperSwing', { // These are UI values
+    Object.defineProperty(EquipmentItem.prototype, 'weaponXPperSwing', { // These are UI values
         get() {
             return (this.attackSpeed * this._weaponXPSpeedMod + this.attackSpeed * this._weaponXPSpeedMod * this._weaponXPBonus / 100);
         }
     });
-    Object.defineProperty(WeaponItem.prototype, 'weaponXPperKill', {
+    Object.defineProperty(EquipmentItem.prototype, 'weaponXPperKill', {
         get() {
             return 4.6 + 4.6 * this._weaponXPBonus / 100 // This is a constant from 2 times our _weaponXPSpeedMod, remember to change when changing _weaponXPSpeedMod
         }
     });
-    Object.defineProperty(WeaponItem.prototype, '_weaponXP', {
+    Object.defineProperty(EquipmentItem.prototype, '_weaponXP', {
         get() {
             const baseXP = (this.timesAttacked * this.attackSpeed + this._enemiesKilledTime) * this._weaponXPSpeedMod
             return Math.floor(baseXP + baseXP * this._weaponXPBonus / 100);
         }
     });
-    Object.defineProperty(WeaponItem.prototype, 'weaponXPCapped', {
+    Object.defineProperty(EquipmentItem.prototype, 'weaponXPCapped', {
         get() {
 
             return Math.min(this._weaponXP, this.weaponXPCap);
         }
     });
 
-    Object.defineProperty(WeaponItem.prototype, 'weaponXPPercentCapped', {
+    Object.defineProperty(EquipmentItem.prototype, 'weaponXPPercentCapped', {
         get() {
 
             return Math.min(100, this._weaponXP / this.weaponXPCap * 100)
         }
     });
-    Object.defineProperty(WeaponItem.prototype, 'returnFakeSkillObj', {
+    Object.defineProperty(EquipmentItem.prototype, 'returnFakeSkillObj', {
         get() {
 
             if (!this._fakeSkillObj) {
@@ -92,19 +93,19 @@ export function addWeaponType(settings, namespaces) {
             return this._fakeSkillObj;
         }
     });
-    Object.defineProperty(WeaponItem.prototype, 'masteryMaxed', {
+    Object.defineProperty(EquipmentItem.prototype, 'masteryMaxed', {
         value: 0,
         writable: true,
         configurable: true,
     });
 
-    Object.defineProperty(WeaponItem.prototype, 'isMaxMastery', {
+    Object.defineProperty(EquipmentItem.prototype, 'isMaxMastery', {
         get() {
             return this.uniqueness > 0 && (this._weaponXP >= this.weaponXPCap)
         }
     });
 
-    Object.defineProperty(WeaponItem.prototype, "_weaponXPBonus", {
+    Object.defineProperty(EquipmentItem.prototype, "_weaponXPBonus", {
         get: function () { return game.modifiers.getValue(`WTM:increaseWeaponXP`, ModifierQuery.EMPTY) + game.modifiers.getValue(`WTM:increaseWeaponXP${this.attackType}`, ModifierQuery.EMPTY); }
     });
 

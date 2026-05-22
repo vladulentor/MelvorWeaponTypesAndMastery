@@ -30,6 +30,7 @@ const {addSlashingToCompanion} = await loadModule('src/patches/patches/addSlashi
 
 const { patchSkillNotif } = await loadModule('src/patches/patches/patchSkillNotif.mjs');
 
+const { birthOfMonk2 } = await loadModule('src/patches/patches/makeGlovesWeapons.mjs');
 
 
 
@@ -48,7 +49,8 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchDodgeChance(ctx);
         addPlayerBarrier(ctx);
         addParry(ctx);
-        //birthOfMonk(ctx);
+        birthOfMonk(ctx);
+        birthOfMonk2(ctx);
 }
 export function patchSkillsAfterDataReg(ctx) {
         

@@ -6,11 +6,14 @@ const { increaseRuneReduction } = await loadModule("src/patches/patches/increase
 const { increaseSpecialAttackChance } = await loadModule("src/patches/patches/addSpecialAttack.mjs");
 
 const { makeWeaponsOffhand } = await loadModule("src/patches/patches/makeWeaponsOffhand.mjs");
+const { makeGlovesWeapons } = await loadModule("src/patches/patches/makeGlovesWeapons.mjs");
+
 
 
 export const EffectRegistry = {
 addSpecialAttack,
 increaseSpecialAttackChance,
 increaseRuneReduction,
-makeWeaponsOffhand
+makeWeaponsOffhand,
+makeGlovesWeapons
 };

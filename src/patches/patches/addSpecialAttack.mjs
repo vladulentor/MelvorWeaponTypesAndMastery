@@ -1,14 +1,4 @@
-function addEffecttoWeapons(AttackMap) {
-    for (const [key, value] of game.items.registeredObjects) {
-        if (value instanceof WeaponItem) {
-            AttackMap.forEach(Attack => {
-                if (Attack.name == value.attackType)
-                    addAttacktoWeapons(value, Attack.attack);
-            })
 
-        }
-    }
-}
 function addEffecttoWeaponList(AttackMap) {
     for (const weapon of AttackMap.weapons) {
         addAttacktoWeapons(weapon, AttackMap.attack)

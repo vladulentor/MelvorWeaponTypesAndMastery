@@ -14,8 +14,7 @@
           }
         ],
         "prehitEffects": [],
-        "onhitEffects": [
-        ],
+        "onhitEffects": [],
         "cantMiss": false,
         "attackCount": 1,
         "attackInterval": 100,
@@ -1138,8 +1137,8 @@
             {
               "id": "ThrustingSwords",
               "name": "Thrusting Swords",
-              "stupidName":"Pointy Bits",
-              "flavorText":"Light and well-balanced for dancing around enemies",
+              "stupidName": "Pointy Bits",
+              "flavorText": "Light and well-balanced for dancing around enemies",
               "stupidFlavorText": "“Stick 'em with the pointy end.”",
               "mat": [
                 "Sword"
@@ -1929,7 +1928,8 @@
                 "Ghost_Scimitar3",
                 "Pirate_Captains_Sword2",
                 "Tidal_Edge3",
-                "Desert_Sabre1"
+                "Desert_Sabre1",
+                "Twin_Exiles3"
               ],
               "media": "assets/curvedswords.svg",
               "mediaAlt": "assets/black_filled_svgs/curvedswords.svg",
@@ -3508,14 +3508,18 @@
               "mediaAlt": "assets/black_filled_svgs/handtohand.svg",
               "mediaCol": "assets/filled_svgs/handtohand.svg",
               "type": "melee",
+              "mat": [
+                "Gloves"
+              ],
+              "kind": "melee",
               "uniq": [
+                "Emtpy_Equipment3",
                 "Ancient_Claw2",
                 "Blighted_Claw3",
                 "Dragon_Claw2",
                 "Infernal_Claw3",
                 "Rune_Claw2",
-                "Silent_Surge_Crossblade4",
-                "Twin_Exiles3"
+                "Silent_Surge_Crossblade4"
               ],
               "isPerWepMod": true,
               "wepModifiers": {
@@ -3529,7 +3533,35 @@
                   "name": "HandToHand1",
                   "id": "HandToHand1",
                   "level": 1,
-                  "modifiers": {}
+                  "uiMods": {
+                     "conditionalModifiers": [
+                      {
+                        "description": "Can use Gloves as Weapons ",
+                        "condition": {
+                          "type": "EmptySlot",
+                          "slotIDs": [
+                            "melvorD:Shield"
+                          ]
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                        {
+                        "description": "Gloves have special stats when used as weapons",
+                        "condition": {
+                          "type": "EmptySlot",
+                          "slotIDs": [
+                            "melvorD:Shield"
+                          ]
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
+                  },
+                  "changeFunc":"makeGlovesWeapons"
                 },
                 {
                   "name": "HandToHand2",
