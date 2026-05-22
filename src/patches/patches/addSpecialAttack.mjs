@@ -88,6 +88,12 @@ export function addSpecialAttack() {
         const weapMap = { weapons: this.type.allWeapons, attack: attack };
         addEffecttoWeaponList(weapMap);
     }
+
+    if (this._localID == "Blunts3") {
+        const attack = game.specialAttacks.getObjectSafe('WTM:ConcussiveSmash');
+        const weapMap = { weapons: this.type.allWeapons, attack: attack };
+        addEffecttoWeaponList(weapMap);
+    }
 }
 
 

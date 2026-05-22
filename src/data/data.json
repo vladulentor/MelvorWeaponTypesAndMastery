@@ -26,6 +26,45 @@
         "usesRunesPerProc": false
       },
       {
+        "id": "ConcussiveSmash",
+        "defaultChance": 30,
+        "damage": [
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHitDR",
+            "maxPercent": 100,
+            "minRoll": "MaxHitDR",
+            "minPercent": 1,
+            "roll": true
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "WTM:Daze",
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "effectID": "WTM:Broken",
+            "chance": 20
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 300,
+        "lifesteal": 0,
+        "name": "Concussive Smash",
+        "description": "Smash into your Enemy's armour, dealing up to 100% + (Enemy DR%) Normal Hit damage (Eg. 25% DR = up to 125% normal hit damage). On a hit, inflicts Daze for 2 turns and has a ${onHitEffect1chance}% chance to inflict Broken. Avoidable.",
+        "descriptionGenerator": "Smash into your Enemy's armour, dealing up to 100% + (Attacker DR%) Normal Hit damage (Eg. 25% DR = up to 125% normal hit damage). On a hit, <hitEffect>. <Avoidable>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "DevastatingSlice",
         "defaultChance": 15,
         "damage": [
@@ -103,8 +142,8 @@
         ],
         "onhitEffects": [],
         "cantMiss": false,
-        "attackCount": 5,
-        "attackInterval": 400,
+        "attackCount": 10,
+        "attackInterval": 250,
         "lifesteal": 0,
         "name": "Whirling Manoeuvre",
         "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each. While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect Enemy attacks for ${preHitEffect0modValue0}% of their damage.",
@@ -167,9 +206,53 @@
         "id": "Terrify",
         "name": "Terrify",
         "adjective": "Terrified"
+      },
+      {
+        "id": "Daze",
+        "name": "Daze",
+        "adjective": "Dazed"
       }
     ],
     "combatEffects": [
+      {
+        "id": "Daze",
+        "name": "Daze",
+        "media": "assets/combat/status/dazed.png",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "target": "Target",
+        "tooltipSpans": [
+          {
+            "type": "Stats",
+            "statGroupName": "stacks"
+          },
+          {
+            "type": "Turns",
+            "turns": "p.turns"
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "cantEvade": 1,
+              "cantSpecialAttack": 1,
+              "cantRegenBarrier": 1,
+              "attackInterval": 10
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 1
+          }
+        ],
+        "effectGroups": [
+          "WTM:Daze",
+          "melvorD:StunLike",
+          "melvorD:Debuff"
+        ]
+      },
       {
         "id": "PracticedLunge0",
         "templateID": "melvorD:StaticSelfCountingModifier",
@@ -353,15 +436,15 @@
           {
             "name": "stacks",
             "modifiers": {
-              "reflectDamage": 20,
-              "dodgeChance": 20
+              "reflectDamage": 30,
+              "dodgeChance": 30
             }
           }
         ],
         "parameters": [
           {
             "name": "turns",
-            "initialValue": 1
+            "initialValue": 2
           }
         ],
         "effectGroups": [
@@ -484,9 +567,9 @@
         ]
       },
       {
-        "id": "Power",
-        "name": "Power",
-        "media": "assets/combat/status/strength_increase.png",
+        "id": "Certainty",
+        "name": "Certainty",
+        "media": "assets/combat/status/attack_increase.svg",
         "templateID": "melvorD:StackingNonCountingModifier",
         "target": "Self",
         "parameters": [
@@ -507,7 +590,7 @@
           {
             "name": "stacks",
             "modifiers": {
-              "damageDealt": 4
+              "accuracyRating": 4
             }
           }
         ],
@@ -518,8 +601,8 @@
       {
         "id": "Swiftness",
         "name": "Swiftness",
-        "media": "assets/combat/status/speedup.svg",
-        "templateID": "melvorD:StackingNonCountingModifier",
+        "media": "assets/combat/status/evasion_increase.svg",
+        "templateID": "melvorD:StaticNonCountingModifier",
         "target": "Self",
         "parameters": [
           {
@@ -539,7 +622,7 @@
           {
             "name": "stacks",
             "modifiers": {
-              "attackInterval": -2
+              "evasion": 4
             }
           }
         ],
@@ -701,91 +784,27 @@
         ]
       },
       {
-        "id": "ForcefulSweep0",
-        "templateID": "melvorD:StaticSelfCountingModifier",
-        "name": "Forceful Sweep",
-        "media": "assets/combat/status/strength_increase.png",
-        "target": "Self",
+        "id": "Broken",
+        "name": "Broken",
+        "media": "assets/combat/status/resistance_decrease.png",
+        "templateID": "melvorD:StaticNonCountingModifier",
+        "target": "Target",
+        "parameters": [],
         "statGroups": [
           {
             "name": "stacks",
             "modifiers": {
-              "summoningMaxHit": 100,
-              "maxHit": 100
-            }
-          }
-        ],
-        "parameters": [
-          {
-            "name": "turns",
-            "initialValue": 1
-          }
-        ],
-        "effectGroups": [
-          "melvorD:Buff"
-        ]
-      },
-      {
-        "id": "Counterattack0",
-        "templateID": "melvorD:StaticSelfCountingModifier",
-        "name": "Counterattack",
-        "media": "assets/combat/status/evasion_increase.svg",
-        "target": "Self",
-        "tooltipSpans": [
-          {
-            "type": "Stats",
-            "statGroupName": "stacks"
-          },
-          {
-            "type": "Turns",
-            "turns": "p.turns"
-          }
-        ],
-        "parameters": [
-          {
-            "name": "turns",
-            "initialValue": 1
-          }
-        ],
-        "statGroups": [
-          {
-            "name": "stacks",
-            "modifiers": {
-              "meleeImmunity": 1,
-              "rangedImmunity": 1,
-              "magicImmunity": 1
+              "resistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": -50
+                }
+              ]
             }
           }
         ],
         "effectGroups": [
-          "melvorD:Buff"
-        ]
-      },
-      {
-        "id": "Counterattack1",
-        "templateID": "WTM:SelfCountingDefensive",
-        "name": "Counterattack",
-        "media": "assets/combat/status/attack_increase.svg",
-        "parameters": [
-          {
-            "name": "maxStacks",
-            "initialValue": 5
-          },
-          {
-            "name": "turns",
-            "initialValue": 0
-          }
-        ],
-        "statGroups": [
-          {
-            "name": "stacks",
-            "modifiers": {
-              "meleeMaxHit": 10
-            }
-          }
-        ],
-        "effectGroups": [
-          "melvorD:Buff"
+          "melvorD:Debuff"
         ]
       }
     ],
@@ -2875,33 +2894,45 @@
               ],
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {
-                  "WTM:accuracyRatingPer10000Evasion": 5,
-                  "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
-                }
+                "combatEffects": [
+                  {
+                    "appliesWhen": "EvadedAttack",
+                    "effectID": "WTM:Certainty",
+                    "chance": 10
+                  },
+                  {
+                    "appliesWhen": "HitWithAttack",
+                    "effectID": "WTM:Swiftness",
+                    "chance": 10
+                  }
+                ]
               },
               "levels": [
                 {
                   "name": "Polearms1",
                   "id": "Polearms1",
                   "level": 1,
+                  "shiny": false,
                   "overwriteTypeIcons": [
+                    1,
                     1
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "WTM:accuracyRatingPer10000Evasion": 5
+                      "WTM:accuracyRatingPer10000Evasion": 5,
+                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Gain 5% Global Accuracy Rating per 10,000 Global Evasion",
+                      "description": "Gain 5% Global Accuracy Rating per 10,000 Global Evasion and 0.5% Dodge Chance per 10,000 Enemy Global Accuracy Rating",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
                       "modifiers": {
-                        "WTM:accuracyRatingPer10000Evasion": 5
+                        "WTM:accuracyRatingPer10000Evasion": 5,
+                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
                       }
                     }
                   ]
@@ -2910,50 +2941,32 @@
                   "name": "Polearms2",
                   "id": "Polearms2",
                   "level": 2,
+                  "shiny": false,
                   "overwriteTypeIcons": [
+                    1,
                     1
                   ],
                   "uiMods": {
-                    "modifiers": {
-                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
-                    }
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "description": "Gain 0.5% Dodge Chance per 10,000 Enemy Global Accuracy Rating",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Polearms"
+                    "combatEffects": [
+                      {
+                        "customDescription": "50% Chance to gain 1 stack of Certainty when Evading an Attack and 1 stack of Swiftness when Hitting with an Attack (5 turns, max 25 stacks).",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Polearms"
+                        },
+                        "appliesWhen": "EvadedAttack",
+                        "effectID": "WTM:Certainty"
                       },
-                      "modifiers": {
-                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Polearms"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "effectID": "WTM:Swiftness"
                       }
-                    }
-                  ]
-                },
-                {
-                  "name": "Polearms3",
-                  "id": "Polearms3",
-                  "level": 3,
-                  "changeFunc": "addSpecialAttack",
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_POLEARMS3"
+                    ]
                   },
-                  "conditionalModifiers": [
-                    {
-                      "description": "Unlock the Whirling Manoeuvre Special Attack",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Polearms"
-                      },
-                      "modifiers": {}
-                    }
-                  ]
-                },
-                {
-                  "name": "Polearms4",
-                  "id": "Polearms4",
-                  "level": 4,
                   "combatEffects": [
                     {
                       "condition": {
@@ -2961,7 +2974,8 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Power"
+                      "effectID": "WTM:Certainty",
+                      "chance": 50
                     },
                     {
                       "condition": {
@@ -2969,7 +2983,172 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Swiftness"
+                      "effectID": "WTM:Swiftness",
+                      "chance": 50
+                    }
+                  ]
+                },
+                {
+                  "name": "Polearms3",
+                  "id": "Polearms3",
+                  "level": 3,
+                  "shiny": true,
+                  "changeFunc": "addSpecialAttack",
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_POLEARMS3"
+                  },
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Gain 5 stacks of Certainty and Swiftness at the Start of the Fight. Also unlocks the Whirling Manoeuvre special attack.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Polearms"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "modifiers": {}
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Certainty",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Swiftness",
+                      "chance": 100
+                    }
+                  ]
+                },
+                {
+                  "name": "Polearms4",
+                  "id": "Polearms4",
+                  "level": 4,
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+50 Flat Bonus to: Slash, Stab, and Block Attack; Melee, Magic, and Ranged Defence",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Polearms"
+                        },
+                        "modifiers": {
+                          "flatSlashAttackBonus": 50,
+                          "flatStabAttackBonus": 50,
+                          "flatBlockAttackBonus": 50,
+                          "flatMeleeDefenceBonus": 50,
+                          "flatMagicDefenceBonus": 50,
+                          "flatRangedDefenceBonus": 50
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "modifiers": {
+                        "flatSlashAttackBonus": 50,
+                        "flatStabAttackBonus": 50,
+                        "flatBlockAttackBonus": 50,
+                        "flatMeleeDefenceBonus": 50,
+                        "flatMagicDefenceBonus": 50,
+                        "flatRangedDefenceBonus": 50
+                      }
                     }
                   ]
                 },
@@ -2977,9 +3156,38 @@
                   "name": "Polearms5",
                   "id": "Polearms5",
                   "level": 5,
-                  "modifiers": {
-                    "dodgeChance": 5
-                  }
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+50% Evasion and Accuracy Rating, +10% Accuracy Rating per 10,000 Enemy Evasion, and +1% Dodge Chance per Enemy Accuracy Rating.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Polearms"
+                        },
+                        "modifiers": {
+                          "evasion": 50,
+                          "accuracyRating": 50,
+                          "WTM:accuracyRatingPer10000Evasion": 10,
+                          "WTM:dodgeChancePer10000EnemyAccuracyRating": 1
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Polearms"
+                      },
+                      "modifiers": {
+                        "evasion": 50,
+                        "accuracyRating": 50,
+                        "WTM:accuracyRatingPer10000Evasion": 10,
+                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 1
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -3007,8 +3215,12 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "critChance": 50,
-                  "flatAttackInterval": 200
+                  "maxHitBasedOnTargetResistance": [
+                    {
+                      "damageTypeID": "melvorD:Normal",
+                      "value": 0.25
+                    }
+                  ]
                 }
               },
               "levels": [
@@ -3016,31 +3228,276 @@
                   "name": "Blunts1",
                   "id": "Blunts1",
                   "level": 1,
-                  "modifiers": {}
+                  "shiny": false,
+                  "overwriteTypeIcons": [
+                    1
+                  ],
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+1% Melee Accuracy and Max Hit per 8 Strength levels (floored) and +5% Melee Strength Bonus from Equipment per 10 Enemy Resistance",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Blunts"
+                        },
+                        "modifiers": {
+                          "meleeAccuracyMaxHitPer8Strength": 1,
+                          "meleeStrengthBonusPer10EnemyResistance": [
+                            {
+                              "damageTypeID": "melvorD:Normal",
+                              "value": 5
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Blunts"
+                      },
+                      "modifiers": {
+                        "meleeAccuracyMaxHitPer8Strength": 1,
+                        "meleeStrengthBonusPer10EnemyResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Blunts2",
                   "id": "Blunts2",
                   "level": 2,
-                  "modifiers": {}
+                  "shiny": false,
+                  "overwriteTypeIcons": [
+                    1,
+                    1
+                  ],
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "On your first hit, 50% chance to inflict Broken on the Enemy, reducing their Resistance by half. While the Enemy is Broken, 20% chance on hit to inflict Daze for 1 turn.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Blunts"
+                        },
+                        "appliesWhen": "HitWithFirstAttack",
+                        "chance": 50,
+                        "effectID": "WTM:Broken"
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Blunts"
+                      },
+                      "appliesWhen": "HitWithFirstAttack",
+                      "chance": 50,
+                      "effectID": "WTM:Broken"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "character": "Enemy",
+                            "effectID": "WTM:Broken",
+                            "type": "CombatEffect"
+                          },
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Blunts"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 10,
+                      "effectID": "WTM:Daze"
+                    }
+                  ]
                 },
                 {
                   "name": "Blunts3",
                   "id": "Blunts3",
                   "level": 3,
-                  "modifiers": {}
+                  "shiny": true,
+                  "changeFunc": "addSpecialAttack",
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_BLUNTS3"
+                  },
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Unlocks the Concussive Smash special attack.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Blunts"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Blunts"
+                      },
+                      "modifiers": {}
+                    }
+                  ]
                 },
                 {
                   "name": "Blunts4",
                   "id": "Blunts4",
+                  "shiny": false,
                   "level": 4,
-                  "modifiers": {}
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "+10% Chance to inflict Daze for 1 turn on Hit. If Enemy is Broken, +10% chance to inflict Stun for 1 turn on Hit.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Blunts"
+                        },
+                        "effectID": "WTM:Daze",
+                        "chance": 10
+                      },
+                      {
+                        "condition": {
+                          "type": "Every",
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:Blunts"
+                            },
+                            {
+                              "character": "Enemy",
+                              "effectID": "WTM:Broken",
+                              "type": "CombatEffect"
+                            }
+                          ]
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "effectID": "melvorD:Stun",
+                        "chance": 10,
+                        "initialParams": [
+                          {
+                            "name": "turns",
+                            "value": 1
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Blunts"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Daze",
+                      "chance": 10
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Blunts"
+                          },
+                          {
+                            "character": "Enemy",
+                            "effectID": "WTM:Broken",
+                            "type": "CombatEffect"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "melvorD:Stun",
+                      "chance": 10,
+                      "initialParams": [
+                        {
+                          "name": "turns",
+                          "value": 1
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "name": "Blunts5",
                   "id": "Blunts5",
                   "level": 5,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+2% Melee Accuracy and Max Hit per 8 Strength levels (floored) and +10% Melee Strength Bonus from Equipment per 10 Enemy Resistance. +30% extra Damage Dealt to Dazed or Stunned Enemies.",
+                        "condition": {
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:Blunts"
+                            },
+                            {
+                              "groupID": "melvorD:StunLike",
+                              "character": "Enemy",
+                              "type": "CombatEffectGroup"
+                            }
+                          ]
+                        },
+                        "modifiers": {
+                          "damageDealt": 30
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Blunts"
+                          },
+                          {
+                            "groupID": "melvorD:StunLike",
+                            "character": "Enemy",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "damageDealt": 30
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Blunts"
+                      },
+                      "modifiers": {
+                        "meleeStrengthBonusPer10EnemyResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 10
+                          }
+                        ],
+                        "meleeAccuracyMaxHitPer8Strength": 2
+                      }
+                    }
+                  ]
                 }
               ]
             },
