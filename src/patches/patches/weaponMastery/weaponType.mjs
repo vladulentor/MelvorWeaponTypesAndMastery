@@ -1,8 +1,8 @@
 // Hello, and welcome to hell
-const { loadModule, onInterfaceReady } = mod.getContext(import.meta);
+const ctx = mod.getContext(import.meta);
 
-const { getRielkLangString, templateRielkLangString } = await loadModule('src/language/translationManager.mjs');
-const { EffectRegistry } = await loadModule('src/patches/patchRegistry.mjs');
+const { getRielkLangString, templateRielkLangString } = await ctx.loadModule('src/language/translationManager.mjs');
+const { EffectRegistry } = await ctx.loadModule('src/patches/patchRegistry.mjs');
 
 class WeaponMasteryLevel extends RealmedObject {
     constructor(namespace, data, game, parentType, levelIndex) {
@@ -49,9 +49,17 @@ const MagicMaterial = ["Air", "Water", "Earth", "Fire", "Crystal", "Unholy", "My
 
 export class WeaponMastery extends RealmedObject {
     constructor(namespace, data, game) {
-
+        let stupid = false;
+        try {
+           stupid = ctx.settings.section('──⚔──').get('stupid-mode');
+        }
+        catch (e) { }
         super(namespace, data, game);
-        this.name = data.name; //getRielkLangString(`WEAPON_MASTERIES_${this._localID}`);
+        this.name = stupid && data.stupidName ? data.stupidName : data.name; //getRielkLangString(`WEAPON_MASTERIES_${this._localID}`);
+        if (data.flavorText)
+            this.flavorText = stupid && data.stupidFlavorText ? data.stupidFlavorText : data.flavorText;
+        else this.flavorText = "This text is flavorless hoss";
+
         this._media = data.media;
         this._mediaAlt = data.mediaAlt;
         this._mediaCol = data.mediaCol;
@@ -80,9 +88,6 @@ export class WeaponMastery extends RealmedObject {
         this.Wtype = data.type;
         this.activeWeapon = undefined
         this.game = game;
-        if (data.flavorText)
-            this.flavorText = data.flavorText;
-        else this.flavorText = "This text is flavorless hoss";
         this.isPerWepMod = data.isPerWepMod ?? false;
         if (this.isPerWepMod) {
             this.wepProvidedStats = new StatProvider();
@@ -91,7 +96,7 @@ export class WeaponMastery extends RealmedObject {
         } // This is very stupid and inefficient but FUCK IT
         this.wepModifiers = new StatObject(data.wepModifiers, game, this._localID);
         this._uiWepMod = this.wepModifiers;
-        if(data.wepModShiny) this.wepModShiny = data.wepModShiny;
+        if (data.wepModShiny) this.wepModShiny = data.wepModShiny;
 
         // for (let i = 0; i < this.fixture.length; i++)
         //   this.fixture[i] = game.construction.fixtures.getObjectByID(this.fixture[i]);
@@ -156,7 +161,7 @@ export class WeaponMastery extends RealmedObject {
         return Math.min(this.uncappedxpPercent, this.xpPercentCap);
     }
     get xpPercentCap() {
-        if (this.levelCap == 5) return 100;statProviders
+        if (this.levelCap == 5) return 100; statProviders
         return xpthresholds[this.levelCap];
     }
     get active() {

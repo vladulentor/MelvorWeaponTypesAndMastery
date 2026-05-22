@@ -47,20 +47,28 @@ export const SettingsManager = {
     ctxSettings: null,
 
     async init(ctx) {
-        const setN = '──⚔──';
-
-        this.ctxSettings = ctx.settings.section(setN);
+        this.ctxSettings = ctx.settings.section('──⚔──');
         this.ctxSettings.add([
+            {
+
+                type: 'switch',
+                name: 'stupid-mode',
+                label: 'silly mode',
+                hint: 'Changes weapon names and tooltips',
+                default: false,
+                onChange: (newV, val) => this.updateButton(newV, val)
+
+            },
             {
                 type: 'label',
                 label: (() => {
                     const el = document.createElement('span');
                     el.innerText = 'Weapon Type and Experience Settings';
                     el.style.fontWeight = '900';   // could have bootstrapped these but it's fine
-                    el.style.fontSize = '1.2rem';  
+                    el.style.fontSize = '1.2rem';
                     return el;
                 })(),
-                 name: 'label',
+                name: 'label',
                 display: getRielkLangString('MENU_SETTINGS_WEAPONS_SECTION'),
             }]);
 
@@ -86,7 +94,7 @@ export const SettingsManager = {
 
 
         this.ctxSettings.add([
-           
+
             {
                 type: 'button',
                 name: 'save-reload',
@@ -97,17 +105,17 @@ export const SettingsManager = {
                     window.location.reload();
                 }
             },
-             {
+            {
                 type: 'label',
                 label: (() => {
                     const el = document.createElement('span');
                     el.classList = "text-danger";
-                    el.innerText = 'Danger Zone!';
+                    el.innerText = getRielkLangString('MENU_DANGER_ZONE');
                     el.style.fontWeight = '900';   // could have bootstrapped these but it's fine
-                    el.style.fontSize = '1.2rem';  
+                    el.style.fontSize = '1.2rem';
                     return el;
                 })(),
-                 name: 'label',
+                name: 'label',
                 display: getRielkLangString('MENU_SETTINGS_WEAPONS_SECTION'),
             },
             {

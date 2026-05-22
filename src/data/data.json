@@ -4,6 +4,28 @@
   "data": {
     "attacks": [
       {
+        "id": "MountedStrike",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 100,
+            "attackCount": 1
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+        ],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 100,
+        "lifesteal": 0,
+        "name": "Mounted Strike",
+        "description": "Attack normally, on hit instruct your companions to attack twice undodgeably.",
+        "descriptionGenerator": "Attack <hitCount> for <damage>. On hit, <hitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "DevastatingSlice",
         "defaultChance": 15,
         "damage": [
@@ -1097,7 +1119,9 @@
             {
               "id": "ThrustingSwords",
               "name": "Thrusting Swords",
-              "flavorText": "“Stick 'em with the pointy end.”",
+              "stupidName":"Pointy Bits",
+              "flavorText":"Light and well-balanced for dancing around enemies",
+              "stupidFlavorText": "“Stick 'em with the pointy end.”",
               "mat": [
                 "Sword"
               ],

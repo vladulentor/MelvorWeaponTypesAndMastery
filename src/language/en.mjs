@@ -50,7 +50,7 @@ export const language = {
 'MODIFIER_TOOLTIP_AXES4':'<div class="text-center"><span class="text-warning font-weight-bold">Hemorrhage</span><br>Deals up to 500% damage dealt over the course of 20 seconds</div>',
     'WTM_EFFECT_TOOLTIP_SYNCRONIZE': 'At max stacks, below effects activate',
 
-
+    'MENU_DANGER_ZONE':'Danger Zone',
     'MENU_SETTINGS_WEAPONS_SECTION': 'Weapon Type & XP Settings',
     'MENU_TEXT_TYPE': "Type",
     'MENU_WEP_MAXED': 'This Weapon\'s Mastery is Maxed <br> It will not gain or contribute further Mastery XP',
