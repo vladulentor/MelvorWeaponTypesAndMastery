@@ -14,6 +14,9 @@ function addAttacktoWeapons(weapon, attack) {
         weapon.overrideSpecialChances = makearrayforweaponattacks(weapon, toChop);
         weapon.overrideSpecialChances.push(attack.defaultChance);
     }
+    else if(weapon.overrideSpecialChances){
+        weapon.overrideSpecialChances.push(attack.defaultChance);
+    }
     weapon.specialAttacks.push(attack);
 }
 
