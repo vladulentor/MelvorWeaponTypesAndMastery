@@ -75,7 +75,21 @@
                                     "name": "Artefacts4",
                                     "id": "Artefacts4",
                                     "level": 4,
-                                    "modifiers": {}
+                                    "modifiers": {
+                                        "effectIgnoreChance": 5
+                                    },
+                                    "conditionalModifiers": [
+                                        {
+                                            "description": "Unlock the Spark of Mystery special Attack",
+                                            "condition": {
+                                                "type": "WeaponType",
+                                                "weaponType": "WTM:Artefacts"
+                                            },
+                                            "modifiers": {
+                                                "runePreservationChance": 15
+                                            }
+                                        }
+                                    ]
                                 },
                                 {
                                     "name": "Artefacts5",

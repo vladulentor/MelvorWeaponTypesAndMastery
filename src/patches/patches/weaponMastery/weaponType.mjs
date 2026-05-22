@@ -277,5 +277,9 @@ export class WeaponMastery extends RealmedObject {
         this._curLvl = 5;
         this.computeProvidedStats(true);
     }
+    goUpToLv(lv) {
+        this._curLvl = lv;
+        this.computeProvidedStats(true);
+    }
 }
 

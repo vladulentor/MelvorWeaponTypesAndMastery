@@ -51,3 +51,7 @@ export function addFollowupSummonAttacks({ patch }) { //hey you didnt capitalize
         }
     });
 }
+
+function genfunniAttack(remType){
+ourEfe
+}
