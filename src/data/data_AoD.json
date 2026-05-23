@@ -10,29 +10,27 @@
                         {
                             "id": "Artefacts",
                             "name": "Artefacts",
-                            "specAttack3": "WTM:SparkOfMystery",
+                            "stupidName": "The Slot Machine",
+                            "flavorText": "Instruments representing Magic at its ficklest. To be used with great care and greater caution.",
+                            "stupidFlavorText":"No matter what they tell you, NEVER stop gambling",
+                            "specAttack3": "WTM:PandorasSpark",
                             "media": "assets/artifacts.svg",
                             "mediaAlt": "assets/black_filled_svgs/artifacts.svg",
                             "mediaCol": "assets/filled_svgs/artifacts.svg",
                             "type": "magic",
                             "uniq": [
-                                "Magic_Flute8",
-                                "Powered_Red_Crystal8",
-                                "Trickery_Mirror8"
+                                "Magic_Flute4",
+                                "Powered_Red_Crystal4",
+                                "Trickery_Mirror4"
                             ],
-                            "isPerWepMod": true,
+                            "isPerWepMod": false,
                             "wepModifiers": {
                                 "modifiers": {
-                                    "resistance": [
-                                        {
-                                            "damageTypeID": "melvorD:Normal",
-                                            "value": 10
-                                        }
-                                    ],
+                                    "magicCritChance": 3.33,
                                     "effectIgnoreChance": [
                                         {
                                             "effectGroupID": "melvorD:Debuff",
-                                            "value": 20
+                                            "value": 3.33
                                         }
                                     ]
                                 }
@@ -42,22 +40,181 @@
                                     "name": "Artefacts1",
                                     "id": "Artefacts1",
                                     "level": 1,
+                                    "overwriteTypeIcons": [
+                                        1
+                                    ],
+                                    "uiMods": {
+                                        "modifiers": {
+                                            "WTM:RandomUpSpellDamRune": 1
+                                        }
+                                    },
+                                    "conditionalModifiers": [
+                                        {
+                                            "description": "RandomUpSpellDamRune",
+                                            "condition": {
+                                                "type": "WeaponType",
+                                                "weaponType": "WTM:Artefacts"
+                                            },
+                                            "modifiers": {
+                                                "WTM:RandomUpSpellDamRune": 1
+                                            }
+                                        }
+                                    ],
                                     "modifiers": {}
                                 },
                                 {
                                     "name": "Artefacts2",
                                     "id": "Artefacts2",
                                     "level": 2,
-                                    "modifiers": {}
+                                    "uiMods": {
+                                        "modifiers": {
+                                            "effectIgnoreChance": 3.33
+                                        }
+                                    },
+                                    "modifiers": {
+                                        "effectIgnoreChance": [
+                                            {
+                                                "effectGroupID": "melvorD:StunLike",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Stun",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Freeze",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Crystallize",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Sleep",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Drowsy",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Slow",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Frostburn",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:DamageOverTime",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:BurnDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:BleedDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:PoisonDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:DeadlyPoisonDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:BarrierBleedDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:BarrierBurnDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:LacerationDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Stacking",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Curse",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Debuff",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:Fear",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorD:CrystalSanction",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorItA:Corruption",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorItA:Blight",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorItA:Wither",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorItA:Silence",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorItA:EldritchCurse",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorItA:Voidburst",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorItA:ToxinDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "melvorItA:AblazeDOT",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "WTM:Intimidation",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "WTM:Terrify",
+                                                "value": 3.33
+                                            },
+                                            {
+                                                "effectGroupID": "WTM:Daze",
+                                                "value": 3.33
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
                                     "name": "Artefacts3",
                                     "id": "Artefacts3",
                                     "level": 3,
+                                    "tooltip": {
+                                        "1": "MENU_TOOLTIPS_ARTEFACTS3"
+                                    },
                                     "uiMods": {
                                         "conditionalModifiers": [
                                             {
-                                                "description": "Unlock the Spark of Mystery special Attack",
+                                                "description": "Unlock the Pandora's Spark Special Attack",
                                                 "condition": {
                                                     "type": "WeaponType",
                                                     "weaponType": "WTM:Artefacts"
@@ -68,25 +225,35 @@
                                             }
                                         ]
                                     },
-                                    "modifiers": {},
+                                    "modifiers": {
+                                        "WTM:ExtraPotencyEffects": 3
+                                    },
                                     "changeFunc": "addSpecialAttack"
                                 },
                                 {
                                     "name": "Artefacts4",
                                     "id": "Artefacts4",
                                     "level": 4,
-                                    "modifiers": {
-                                        "effectIgnoreChance": 5
+                                    "modifiers": {},
+                                    "overwriteTypeIcons": [
+                                        1,
+                                        1
+                                    ],
+                                    "uiMods": {
+                                        "modifiers": {
+                                            "WTM:RandomRuneReduction": 83,
+                                            "WTM:RandomDamIncrease": -17
+                                        }
                                     },
                                     "conditionalModifiers": [
                                         {
-                                            "description": "Unlock the Spark of Mystery special Attack",
                                             "condition": {
                                                 "type": "WeaponType",
                                                 "weaponType": "WTM:Artefacts"
                                             },
                                             "modifiers": {
-                                                "runePreservationChance": 15
+                                                "WTM:RandomRuneReduction": 83,
+                                                "WTM:RandomDamIncrease": -17
                                             }
                                         }
                                     ]
@@ -95,7 +262,33 @@
                                     "name": "Artefacts5",
                                     "id": "Artefacts5",
                                     "level": 5,
-                                    "modifiers": {}
+                                    "overwriteTypeIcons": [
+                                        1,
+                                        0
+                                    ],
+                                    "tooltip": {
+                                        "1": "MENU_TOOLTIPS_ARTEFACTS5"
+                                    },
+                                    "uiMods": {
+                                        "modifiers": {
+                                            "WTM:ExtraPotencyEffects": 6,
+                                            "WTM:blessingChance": 0.33
+                                        }
+                                    },
+                                    "conditionalModifiers": [
+                                        {
+                                            "condition": {
+                                                "type": "WeaponType",
+                                                "weaponType": "WTM:Artefacts"
+                                            },
+                                            "modifiers": {
+                                                "WTM:ExtraPotencyEffects": 7
+                                            }
+                                        }
+                                    ],
+                                    "modifiers": {
+                                        "WTM:blessingChance": 0.33
+                                    }
                                 }
                             ]
                         }

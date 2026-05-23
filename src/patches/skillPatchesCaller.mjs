@@ -8,7 +8,7 @@ const { addCombatSkillXP } = await loadModule('src/patches/patches/addCombatSkil
 
 const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
 
-const { addFollowupSummonAttacks } = await loadModule('src/patches/patches/addFollowupSummonAttacks.mjs');
+const { miscCombatPatches } = await loadModule('src/patches/patches/miscCombatPatches.mjs');
 
 
 
@@ -25,6 +25,7 @@ const {birthOfMonk} = await loadModule('src/patches/patches/birthOfMonk.mjs');
 const {addSummonQuickenAttack} = await loadModule('src/patches/patches/addSummonQuickenAttack.mjs');
 
 const {addSlashingToCompanion} = await loadModule('src/patches/patches/addSlashingToCompanion.mjs');
+const {addRandomReductions} = await loadModule('src/patches/patches/addRandomReductions.mjs');
 
 
 
@@ -43,12 +44,13 @@ export function patchSkillsBeforeDataReg(ctx) {
         addSlashingToCompanion(ctx);        
         addCombatSkillXP(ctx);
         addSummonQuickenAttack(ctx);
-        addFollowupSummonAttacks(ctx);
+        miscCombatPatches(ctx);
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
         patchDodgeChance(ctx);
         addPlayerBarrier(ctx);
         addParry(ctx);
+        addRandomReductions(ctx);
         birthOfMonk(ctx);
         birthOfMonk2(ctx);
 }
@@ -60,8 +62,7 @@ export function patchSkillsAfterDataReg(ctx) {
 /* TO DO
 ADD NUMBER UNDER XP FOR WEAPONS
 DO MORE TOUCH UPS ON THE BANK MENU
-GET THOSE WEAPON SPECIAL ATTACK SHORT REFRACTORS IN
-GET THOSE TRANSLATION INJECTING STUFF IN
+
 GET ALL TEXT TRANSLATED
 
 

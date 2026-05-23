@@ -4,17 +4,17 @@
   "data": {
     "attacks": [
       {
-        "id": "SparkOfMystery",
-        "damage": [],
-        "defaultChance": 20,
+        "id": "PandorasSpark",
+        "damage":[],
+        "defaultChance": 15,
         "prehitEffects": [],
         "onhitEffects": [],
         "cantMiss": true,
         "attackCount": 1,
         "attackInterval": 100,
         "lifesteal": 0,
-        "name": "Spark Of Mystery",
-        "description": "Inflict a completely random effect on the Enemy and yourself",
+        "name": "Pandora's spark",
+        "description": "Inflict a Triple-charged random effect on yourself and the Enemy",
         "usesRunesPerProc": false
       },
       {
@@ -999,6 +999,80 @@
         ]
       },
       {
+        "id": "RandomUpSpellDamRune",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "lang": "MODIFIER_DATA_RandomUpSpellDamRune",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+       {
+        "id": "blessingChance",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "lang": "MODIFIER_DATA_blessingChance",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+       {
+        "id": "RandomRuneReduction",
+        "inverted": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_RandomRuneReduction",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+       {
+        "id": "RandomDamIncrease",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_RandomDamIncrease",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+       {
+        "id": "ExtraPotencyEffects",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_ExtraPotencyEffects",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "unlockParry",
         "allowedScopes": [
           {
@@ -1260,7 +1334,7 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Unlock the Practiced Lunge special attack",
+                      "description": "Unlock the Practiced Lunge Special Attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
@@ -1600,7 +1674,7 @@
                   "level": 3,
                   "conditionalModifiers": [
                     {
-                      "description": "Adds the Devastating Slice special attack:<br>(15%) Attack twice for 90% of your normal damage each. On hit, inflict Terrify (+15% Attack Interval) for 3 turns.<br>While the Enemy is Terrified, they suffer -5% to Accuracy, Max Hit, Evasion, and Total Resistance.",
+                      "description": "Adds the Devastating Slice Special Attack:<br>(15%) Attack twice for 90% of your normal damage each. On hit, inflict Terrify (+15% Attack Interval) for 3 turns.<br>While the Enemy is Terrified, they suffer -5% to Accuracy, Max Hit, Evasion, and Total Resistance.",
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -2277,7 +2351,7 @@
                   "shiny": true,
                   "conditionalModifiers": [
                     {
-                      "description": "Daggers gain the special attack, Death Approaches, which deals 99.99% of Enemy's Max HP on hit.",
+                      "description": "Daggers gain the Special Attack, Death Approaches, which deals 99.99% of Enemy's Max HP on hit.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Daggers"
@@ -2673,7 +2747,7 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Unlock the Bloodlust special attack",
+                      "description": "Unlock the Bloodlust Special Attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
@@ -3356,7 +3430,7 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Unlocks the Concussive Smash special attack.",
+                        "description": "Unlocks the Concussive Smash Special Attack.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Blunts"
@@ -4066,7 +4140,7 @@
                   "level": 3,
                   "shiny": true,
                   "modifiers": {
-                    "xpFromMasteryTokens": 0.15,
+                    "xpFromMasteryTokens": 0.05,
                     "masteryPoolCap": 25
                   }
                 },
