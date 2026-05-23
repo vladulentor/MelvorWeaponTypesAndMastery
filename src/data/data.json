@@ -1014,6 +1014,38 @@
         ]
       },
        {
+        "id": "RandomRuneReduction",
+        "inverted": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_RandomRuneReduction",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+       {
+        "id": "RandomDamIncrease",
+        "inverted": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_RandomRuneReduction",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+       {
         "id": "ExtraPotencyEffects",
         "allowedScopes": [
           {

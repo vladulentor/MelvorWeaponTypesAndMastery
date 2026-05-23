@@ -25,6 +25,7 @@ const {birthOfMonk} = await loadModule('src/patches/patches/birthOfMonk.mjs');
 const {addSummonQuickenAttack} = await loadModule('src/patches/patches/addSummonQuickenAttack.mjs');
 
 const {addSlashingToCompanion} = await loadModule('src/patches/patches/addSlashingToCompanion.mjs');
+const {addRandomReductions} = await loadModule('src/patches/patches/addRandomReductions.mjs');
 
 
 
@@ -49,6 +50,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchDodgeChance(ctx);
         addPlayerBarrier(ctx);
         addParry(ctx);
+        addRandomReductions(ctx);
         birthOfMonk(ctx);
         birthOfMonk2(ctx);
 }
@@ -60,8 +62,7 @@ export function patchSkillsAfterDataReg(ctx) {
 /* TO DO
 ADD NUMBER UNDER XP FOR WEAPONS
 DO MORE TOUCH UPS ON THE BANK MENU
-GET THOSE WEAPON SPECIAL ATTACK SHORT REFRACTORS IN
-GET THOSE TRANSLATION INJECTING STUFF IN
+
 GET ALL TEXT TRANSLATED
 
 

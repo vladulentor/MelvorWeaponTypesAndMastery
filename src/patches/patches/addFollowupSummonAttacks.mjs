@@ -62,7 +62,7 @@ export function addFollowupSummonAttacks({ patch }) { //hey you didnt capitalize
     patch(Player, "onMagicAttackFailure").after(function (o) {
         this.attackInterrupted = true;
     });
-    ctx.patch(Monster, "corruptedMedia").get(function (originalFn) {
+    patch(Monster, "corruptedMedia").get(function (originalFn) {
         const abysMan = this.namespace === 'melvorItA';
         if (!abysMan) {
             return this.media;

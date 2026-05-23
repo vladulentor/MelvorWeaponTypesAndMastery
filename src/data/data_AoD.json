@@ -42,7 +42,9 @@
                                     "name": "Artefacts1",
                                     "id": "Artefacts1",
                                     "level": 1,
-                                    "modifiers": {}
+                                    "modifiers": {
+                                        "WTM:RandomUpSpellDamRune":1
+                                    }
                                 },
                                 {
                                     "name": "Artefacts2",
