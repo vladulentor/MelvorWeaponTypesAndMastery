@@ -53,7 +53,8 @@ export const language = {
 </div>
 `,
     'MODIFIER_TOOLTIP_AXES4': '<div class="text-center"><span class="text-warning font-weight-bold">Hemorrhage</span><br>Deals up to 500% damage dealt over the course of 20 seconds</div>',
-'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the Enemy.</span><div class="col-12 mb-1 dropdown-divider"></div><div class="text-center"><span class="text-warning font-weight-bold">Triple-charge:</span> All effect damage and modifiers are amplified by 3×</div></div>',    'MENU_TOOLTIPS_ARTEFACTS5': '<div class="text-center"><span class="text-warning font-weight-bold">Triple-triple-charge</span><br>All effect damage and modifiers are amplified by 9×</div>',
+'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the Enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-warning font-weight-bold">Triple-charge</span><br><span>All effect damage and modifiers are amplified by 3×</span></div>',
+'MENU_TOOLTIPS_ARTEFACTS5': '<div class="text-center"><span class="text-warning font-weight-bold">Triple-triple-charge</span><br>All effect damage and modifiers are amplified by 9×</div>',
     'WTM_EFFECT_TOOLTIP_SYNCRONIZE': 'At max stacks, below effects activate',
 
     'MENU_DANGER_ZONE': 'Danger Zone',
