@@ -15,6 +15,7 @@ export const language = {
     'MODIFIER_DATA_slashingOnSummon': '${value}% of Slash Attack bonus added as Familiar damage',
     'MODIFIER_DATA_skillItemDoublingChanceGlobal': '${value}% Chance to Double Items in Skills',
     'MODIFIER_DATA_RandomUpSpellDamRune':'Randomize Spell Damage and Rune Cost from 25% to 200% every cast',
+    'MODIFIER_DATA_blessingChance':'${value}% chance to recieve 3 random buffs with tripled potency at the start of your turn',
     'MODIFIER_TOOLTIP_THRUSTING1':'<div class="text-center"><span class="text-warning font-weight-bold">Dueling Stance</span><br>Start Fight with 1 stack and on hit<br> Lose 1 stack on being hit<br> 1% bonus to Dodge Chance, Convert Miss into Hit, and Attack Interval per stack</div>',
     'MODIFIER_TOOLTIP_THRUSTING3':'<div class="text-center"><span class="text-warning font-weight-bold">Practiced Lunge (15%)</span><br>Perform a careful, practiced lunge which ignores Enemy Resistance and cannot miss</div>',
     

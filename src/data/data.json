@@ -1005,8 +1005,21 @@
             "scopes": {},
             "descriptions": [
               {
-                "text": "",
                 "lang": "MODIFIER_DATA_RandomUpSpellDamRune",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+       {
+        "id": "blessingChance",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "lang": "MODIFIER_DATA_blessingChance",
                 "includeSign": false
               }
             ]

@@ -26,7 +26,16 @@ Player.prototype.unavoidableSummonAttack = function () {
 
 }
 
+const buffList = game.combatEffects.allObjects.filter(buff => buff.effectGroups.some(group => group == game.combatEffectGroups.getObjectByID("melvorD:Buff")));
 export function addFollowupSummonAttacks({ patch }) { //hey you didnt capitalize up you idiot
+    patch(Player, "attack").after(function (dam, target, attack) {
+        if (rollPercentage(this.game.modifiers.getValue("WTM:blessingChance", ModifierQuery.EMPTY))) {
+            for (let w = 0; w < 3; w++) 
+                this.applyCombatEffect(changeEffectPotency(buffList[Math.floor(Math.random() * buffList.length)], 3), this, { type: "Attack" }, undefined);
+            
+        }
+    });
+
     patch(Player, "attack").after(function (dam, target, attack) {
 
         let count = attack.summonFollowAttacks || 0 + this.game.modifiers.getValue("WTM:ExtraSummonHits", ModifierQuery.EMPTY);
@@ -71,10 +80,7 @@ export function addFollowupSummonAttacks({ patch }) { //hey you didnt capitalize
     });
 }
 const nmbrKeys = ['maxPercent', 'minPercent', 'maxValue', 'minValue'];
-function addSecTimer(effect, timer){
-    effect.parameters[WTMTurns] = timer;
-    effect.behaviours.push(new ModifyParameterBehaviour)
-}
+
 function changeEffectPotency(effect, potC) {
     if (effect.damageGroups) {
         Object.values(effect.damageGroups).forEach(group => {

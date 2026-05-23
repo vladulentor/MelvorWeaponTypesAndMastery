@@ -110,7 +110,9 @@
                                     "name": "Artefacts5",
                                     "id": "Artefacts5",
                                     "level": 5,
-                                    "modifiers": {}
+                                    "modifiers": {
+                                        "WTM:blessingChance":0.33
+                                    }
                                 }
                             ]
                         }
