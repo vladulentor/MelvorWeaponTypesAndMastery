@@ -1,15 +1,15 @@
-# Weapon Mastery Data Format
+# Weapon Type Data Format
 
 Short write-up on how to input ''Weapon Mastery'' data.
 ---
 
 ## Overview
 
-Weapon Masteries (Weapon Types, but their internal name is Weapon Masteries, it's confusing I know)
+Weapon Types (internal name is Weapon Masteries)
 
-A mastery consists of:
-- Basic metadata (id, name, media)
-- List of Weapons that it is a type for
+A Type consists of:
+- Metadata (id, name, flavortext, media, colMedia)
+- List of Weapons the Type encompasses
 - 5 progression levels
 - Weapon-specific modifiers (`wepModifiers`)
 
@@ -33,7 +33,7 @@ A mastery consists of:
   "uniq": ["Example_Item1", "Example_Another_Item3"],
   "wepModifiers": {},
   "isPerWepMod":false,
-    "specAttack3":"ExampleAttack",
+  "specAttack3":"ExampleAttack",
   "levels": [
     {
       "id": "example_mastery1",
@@ -66,13 +66,13 @@ A mastery consists of:
 
 ### `id`
 
-* Unique identifier for the mastery
+* Unique identifier for the type
 
 ---
 
 ### `name`
 
-* Display name of the mastery (Note, we'll be using lang-strings for this later, but now it's just all English)
+* Display name of the type.
 
 ---
 
