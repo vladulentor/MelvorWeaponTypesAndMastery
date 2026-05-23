@@ -5,7 +5,7 @@
     "attacks": [
       {
         "id": "SparkOfMystery",
-        "damage":[],
+        "damage": [],
         "defaultChance": 20,
         "prehitEffects": [],
         "onhitEffects": [],
@@ -615,7 +615,7 @@
         "id": "Swiftness",
         "name": "Swiftness",
         "media": "assets/combat/status/evasion_increase.svg",
-        "templateID": "melvorD:StaticNonCountingModifier",
+        "templateID": "melvorD:StackingNonCountingModifier",
         "target": "Self",
         "parameters": [
           {
@@ -2945,19 +2945,19 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "WTM:accuracyRatingPer10000Evasion": 5,
+                      "WTM:accuracyRatingPer10000Evasion": 10,
                       "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Gain 5% Global Accuracy Rating per 10,000 Global Evasion and 0.5% Dodge Chance per 10,000 Enemy Global Accuracy Rating",
+                      "description": "Gain 10% Global Accuracy Rating per 10,000 Global Evasion and 0.5% Dodge Chance per 10,000 Enemy Global Accuracy Rating",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
                       "modifiers": {
-                        "WTM:accuracyRatingPer10000Evasion": 5,
+                        "WTM:accuracyRatingPer10000Evasion": 10,
                         "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
                       }
                     }
@@ -2975,7 +2975,7 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "customDescription": "50% Chance to gain 1 stack of Certainty when Evading an Attack and 1 stack of Swiftness when Hitting with an Attack (5 turns, max 25 stacks).",
+                        "customDescription": "50% Chance to gain 1 stack of Certainty when Evading an Attack and 1 stack of Swiftness when Hitting with an Attack (max 25 stacks).",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Polearms"
@@ -3024,26 +3024,19 @@
                     "1": "MODIFIER_TOOLTIP_POLEARMS3"
                   },
                   "uiMods": {
-                    "conditionalModifiers": [
+                    "combatEffects": [
                       {
-                        "description": "Gain 5 stacks of Certainty and Swiftness at the Start of the Fight. Also unlocks the Whirling Manoeuvre special attack.",
+                        "customDescription": "Gain 5 stacks of Certainty and Swiftness at the Start of the Fight. Also unlocks the Whirling Manoeuvre special attack.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Polearms"
                         },
-                        "modifiers": {}
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:Certainty",
+                        "chance": 100
                       }
                     ]
                   },
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Polearms"
-                      },
-                      "modifiers": {}
-                    }
-                  ],
                   "combatEffects": [
                     {
                       "condition": {
@@ -3872,7 +3865,6 @@
                 }
               ]
             },
-           
             {
               "id": "Staves",
               "name": "Staves",
