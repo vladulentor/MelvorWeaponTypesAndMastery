@@ -25,7 +25,7 @@
             "descriptions": [
               {
                 "text": "${value}% chance to ignore all effects",
-                "lang": "MODIFIER_DATA_skillItemDoublingChanceGlobal"
+                "lang": "MODIFIER_DATA_effectIgnoreChanceGlobal"
               }
             ]
           }

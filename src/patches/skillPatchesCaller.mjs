@@ -8,7 +8,7 @@ const { addCombatSkillXP } = await loadModule('src/patches/patches/addCombatSkil
 
 const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
 
-const { addFollowupSummonAttacks } = await loadModule('src/patches/patches/addFollowupSummonAttacks.mjs');
+const { miscCombatPatches } = await loadModule('src/patches/patches/miscCombatPatches.mjs');
 
 
 
@@ -44,7 +44,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         addSlashingToCompanion(ctx);        
         addCombatSkillXP(ctx);
         addSummonQuickenAttack(ctx);
-        addFollowupSummonAttacks(ctx);
+        miscCombatPatches(ctx);
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
         patchDodgeChance(ctx);

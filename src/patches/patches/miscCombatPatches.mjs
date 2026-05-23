@@ -27,12 +27,12 @@ Player.prototype.unavoidableSummonAttack = function () {
 }
 
 const buffList = game.combatEffects.allObjects.filter(buff => buff.effectGroups.some(group => group == game.combatEffectGroups.getObjectByID("melvorD:Buff")));
-export function addFollowupSummonAttacks({ patch }) { //hey you didnt capitalize up you idiot
+export function miscCombatPatches({ patch }) {
     patch(Player, "attack").after(function (dam, target, attack) {
         if (rollPercentage(this.game.modifiers.getValue("WTM:blessingChance", ModifierQuery.EMPTY))) {
-            for (let w = 0; w < 3; w++) 
-                this.applyCombatEffect(changeEffectPotency(buffList[Math.floor(Math.random() * buffList.length)], 3), this, { type: "Attack" }, undefined);
-            
+            for (let w = 0; w < 3; w++)
+                this.applyCombatEffect(changeEffectPotency(buffList[Math.floor(Math.random() * buffList.length)], 3), this, { type: "Attack", WTMSpecial: true }, undefined);
+
         }
     });
 
@@ -49,15 +49,16 @@ export function addFollowupSummonAttacks({ patch }) { //hey you didnt capitalize
                 }
             }, 150);
         }
-        if (attack.id == "WTM:SparkOfMystery") {
+
+        if (attack.id == "WTM:PandorasSpark") {
             const funnyNum1 = Math.floor(Math.random() * game.combatEffects.allObjects.length);
             const funnyNum2 = Math.floor(Math.random() * game.combatEffects.allObjects.length)
             const ourEffect = game.combatEffects.allObjects[funnyNum1];
             const theirEffect = game.combatEffects.allObjects[funnyNum2];
             changeEffectPotency(ourEffect, this.game.modifiers.getValue("WTM:ExtraPotencyEffects", ModifierQuery.EMPTY));
             changeEffectPotency(theirEffect, this.game.modifiers.getValue("WTM:ExtraPotencyEffects", ModifierQuery.EMPTY));
-            this.applyCombatEffect(ourEffect, this, { type: "Attack" }, undefined)
-            target.applyCombatEffect(theirEffect, this, { type: "Attack" }, undefined)
+            this.applyCombatEffect(ourEffect, this, { type: "Attack", WTMSpecial: true }, undefined)
+            target.applyCombatEffect(theirEffect, this, { type: "Attack", WTMSpecial: true }, undefined)
         }
     });
     patch(Character, "removeCombatEffect").before(function (effect) {
@@ -78,6 +79,12 @@ export function addFollowupSummonAttacks({ patch }) { //hey you didnt capitalize
         }
         return o();
     });
+    patch(EffectRenderer, "addEffectIcon").after(function (_, activeEffect, turnText, tooltipContent, media) {
+        if (activeEffect.source.WTMSpecial) {
+            this.icons.get(activeEffect).number.classList.add("construction-victory");
+        }
+    });
+
 }
 const nmbrKeys = ['maxPercent', 'minPercent', 'maxValue', 'minValue'];
 
