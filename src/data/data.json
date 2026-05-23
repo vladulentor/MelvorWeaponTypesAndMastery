@@ -4136,7 +4136,7 @@
                   "level": 3,
                   "shiny": true,
                   "modifiers": {
-                    "xpFromMasteryTokens": 0.15,
+                    "xpFromMasteryTokens": 0.05,
                     "masteryPoolCap": 25
                   }
                 },

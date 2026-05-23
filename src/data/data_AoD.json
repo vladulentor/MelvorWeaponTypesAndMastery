@@ -42,8 +42,19 @@
                                     "name": "Artefacts1",
                                     "id": "Artefacts1",
                                     "level": 1,
+                                    "conditionalModifiers": [
+                                        {
+                                            "description": "RandomUpSpellDamRune",
+                                            "condition": {
+                                                "type": "WeaponType",
+                                                "weaponType": "WTM:Artefacts"
+                                            },
+                                            "modifiers": {
+                                        "WTM:RandomUpSpellDamRune": 1
+                                            }
+                                        }
+                                    ],
                                     "modifiers": {
-                                        "WTM:RandomUpSpellDamRune":1
                                     }
                                 },
                                 {
@@ -71,7 +82,7 @@
                                         ]
                                     },
                                     "modifiers": {
-                                        "WTM:ExtraPotencyEffects":3
+                                        "WTM:ExtraPotencyEffects": 3
                                     },
                                     "changeFunc": "addSpecialAttack"
                                 },
