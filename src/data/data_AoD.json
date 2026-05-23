@@ -68,7 +68,9 @@
                                             }
                                         ]
                                     },
-                                    "modifiers": {},
+                                    "modifiers": {
+                                        "WTM:ExtraPotencyEffects":3
+                                    },
                                     "changeFunc": "addSpecialAttack"
                                 },
                                 {

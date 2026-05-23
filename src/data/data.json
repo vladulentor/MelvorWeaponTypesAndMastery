@@ -999,6 +999,36 @@
         ]
       },
       {
+        "id": "RandomUpSpellDamRune",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_RandomUpSpellDamRune",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+       {
+        "id": "ExtraPotencyEffects",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_ExtraPotencyEffects",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "unlockParry",
         "allowedScopes": [
           {
