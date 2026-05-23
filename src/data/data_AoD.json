@@ -11,7 +11,7 @@
                             "id": "Artefacts",
                             "name": "Artefacts",
                             "stupidName": "The Slot Machine",
-                            "flavorText": "Instruments representing Magic in its ficklest. To be used with great care and greater caution.",
+                            "flavorText": "Instruments representing Magic at its ficklest. To be used with great care and greater caution.",
                             "stupidFlavorText":"No matter what they tell you, NEVER stop gambling",
                             "specAttack3": "WTM:PandorasSpark",
                             "media": "assets/artifacts.svg",
@@ -214,7 +214,7 @@
                                     "uiMods": {
                                         "conditionalModifiers": [
                                             {
-                                                "description": "Unlock the Spark of Mystery Special Attack",
+                                                "description": "Unlock the Pandora's Spark Special Attack",
                                                 "condition": {
                                                     "type": "WeaponType",
                                                     "weaponType": "WTM:Artefacts"
