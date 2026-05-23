@@ -19,9 +19,9 @@
                             "mediaCol": "assets/filled_svgs/artifacts.svg",
                             "type": "magic",
                             "uniq": [
-                                "Magic_Flute8",
-                                "Powered_Red_Crystal8",
-                                "Trickery_Mirror8"
+                                "Magic_Flute4",
+                                "Powered_Red_Crystal4",
+                                "Trickery_Mirror4"
                             ],
                             "isPerWepMod": false,
                             "wepModifiers": {
