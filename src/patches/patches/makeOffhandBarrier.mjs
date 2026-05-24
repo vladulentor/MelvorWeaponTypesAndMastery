@@ -2,7 +2,9 @@
 
 const offhands = [
     { item: "melvorD:Bronze_Shield", runeCost:15, barrierHP:{type:"fixed", value:10}},
-    { item: "melvorD:Bronze_Shield_T_S", runeCost:15, barrierHP:{type:"fixed", value:10} }
+    { item: "melvorD:Bronze_Shield_T_S", runeCost:15, barrierHP:{type:"fixed", value:10}},
+        { item: "melvorD:Iron_Shield", runeCost:15, barrierHP:{type:"roll", minRoll:7, maxRoll:12}}
+
 
 
 ]
