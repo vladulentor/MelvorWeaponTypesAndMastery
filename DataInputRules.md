@@ -28,8 +28,8 @@ A Type consists of:
   "mediaCol": "assets/media/exampleCol.svg",
   "extraLangStrings":{"en":{"EXAMPLE_TYPE_TITLE":"Example"}, "de":{"EXAMPLE_TYPE_TITLE":"Beispiel"}},
   "mat": ["exampleItemLine"],
-  "type": "example",
-  "kind": "example",
+  "type": "melee",
+  "kind": "melee",
   "uniq": ["Example_Item1", "Example_Another_Item3"],
   "wepModifiers": {},
   "isPerWepMod":false,
@@ -226,6 +226,7 @@ A weapon Mastery Modification can be used to add new individual weapons, crafted
 "mat": ["Example"],
 "kind": ["ExampleMaterial"],
 "uniq": ["Example_Item2", "Example_Item0"],
+"killMe":false
 }
 ```
  (All of them are still in Agility's Skill Data in Modifications)
@@ -247,8 +248,12 @@ A weapon Mastery Modification can be used to add new individual weapons, crafted
 
 * List of items that are to be added to the modified weapon mastery. Written as an array of strings that are composed of the item's local ID and uniqueness.
 
-## P.S. Using WeaponType and Weapon Conditional Modifiers.
-Most of a type's level modifiers should be conditionalModifiers scoped to their own weaponType, the weapon conditionalModifier is what the system creates if `isPerWepMod` is active. These conditionalModifiers can be used anywhere a StatObject is accepted.
+### `killMe` (optional)
+
+* Boolean with default value of `false`, if set to `true` will delete the type before game loading, this is used when one desires to change a type's internal features (item list, modifiers). By deleting the type a new, different one (or ones) can be defined in its stead.
+
+## P.S. Using WeaponType and EmptySlot Conditional Modifiers.
+Most of a type's level modifiers should be conditionalModifiers scoped to their own weaponType. The Empty Slot condition can accept a string or array of strings, and returns `true` only if the slots are empty. These conditionalModifiers can be used anywhere a StatObject is accepted.
 ### Weapon Type
 ```json
                   "conditionalModifiers": [
@@ -269,8 +274,8 @@ Most of a type's level modifiers should be conditionalModifiers scoped to their 
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "Weapon",
-                        "weapon": "exampleWeaponLocalID"
+                        "type": "EmptySlot",
+                        "slotIDs": "exampleSlotID"
                       },
                       "modifiers": {
                       },
