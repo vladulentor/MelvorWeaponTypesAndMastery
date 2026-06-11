@@ -1650,6 +1650,22 @@
           }
         ]
       },
+       {
+        "id": "addSpellBarrier",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "there we are",
+                "lang": "MODIFIER_DATA_addSpellBarrier",
+                "includeSign": false
+              }
+            ]
+          }
+        ]
+      },
+      
       {
         "id": "RandomUpSpellDamRune",
         "allowedScopes": [

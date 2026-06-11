@@ -1,3 +1,9 @@
+
+
+const { loadModule } = mod.getContext(import.meta);
+
+const { PlayerSpellShield } = await loadModule('src/patches/patches/addPlayerBarrier.mjs');
+
 function giveWeaponMasteryXP(weap, amount) {
     if (!weap) {
         console.log("WHAT THE FUCK DID YOU DO")
@@ -50,6 +56,7 @@ export function patchWeaponTypeLogic({ patch }) {
 
         const newWeapon = pl.equipment.getItemInSlot("melvorD:Weapon");
         const newType = newWeapon.weaponType;
+
         // we should probably have used an event here
         // well it's written down at works already so
         if (combatMenus.weaponMastery) combatMenus.weaponMastery.highlightButton(newType);
@@ -61,7 +68,7 @@ export function patchWeaponTypeLogic({ patch }) {
                 pl.equippedWeaponType.toggleMasteredWeaponStats(0);
 
         }
-                // special code for special stats of gloves because I am such a special boy and make so much special code
+        // special code for special stats of gloves because I am such a special boy and make so much special code
         if (pl.equippedWeapon !== newWeapon) {
             pl.equippedWeapon = newWeapon;
         }
@@ -74,17 +81,18 @@ export function patchWeaponTypeLogic({ patch }) {
             }
         }
     });
-    patch(Equipment, "addEquipmentStats").after(function (ret, stats) { 
-    if(game.combat.player.equippedWeapon?.SpecWeaponStats)
-        stats.addStats(game.combat.player.equippedWeapon.SpecWeaponStats);
+    patch(Equipment, "addEquipmentStats").after(function (ret, stats) {
+        if (game.combat.player.equippedWeapon?.SpecWeaponStats)
+            stats.addStats(game.combat.player.equippedWeapon.SpecWeaponStats);
+    });
+    patch(Player, "updateForEquipmentChange").after(function (_) {
+        this.spellShield.changeShield(game.combat.player.equipment.getItemInSlot("melvorD:Shield"), game.modifiers.getValue("WTM:addSpellBarrier", ModifierQuery.EMPTY))
     });
     
     /*patch(Player, "computeEquipmentStats").before(function () {
 
     })
 
-    patch(Player, "updateForEquipmentChange").after(function (_) {
-
-    });*/
+    */
 }
 

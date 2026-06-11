@@ -48,7 +48,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
         patchDodgeChance(ctx);
-        addPlayerBarrier(ctx);
+        //addPlayerBarrier(ctx);
         addParry(ctx);
         addRandomReductions(ctx);
         birthOfMonk(ctx);
