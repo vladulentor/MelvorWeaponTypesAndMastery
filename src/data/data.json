@@ -4,8 +4,497 @@
   "data": {
     "attacks": [
       {
+        "id": "BigSmash",
+        "defaultChance": 20,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 200
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "WTM:BarbaricStrength"
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 100,
+        "lifesteal": 0,
+        "name": "Big Smash",
+        "description": "You smash the Enemy for ${attackDamageMaxValue0}% of your normal damage.If you hit, you gain 1 stack of Barbaric Strength, giving you for ${onHitEffect0modValue} Flat Melee Max Hit until the End of the Fight.",
+        "descriptionGenerator": "You make an attack that deals <damage>. On hit, <hitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "Eradication",
+        "defaultChance": 30,
+        "damage": [
+          {
+            "damageType": "Custom",
+            "character": "Target",
+            "minRoll": "CurrentHP",
+            "minPercent": 25,
+            "maxRoll": "CurrentHP",
+            "maxPercent": 75,
+            "roll": true
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackTypes": [
+          "magic"
+        ],
+        "attackCount": 1,
+        "attackInterval": 200,
+        "lifesteal": 10,
+        "usesPrayerPointsPerProc": true,
+        "name": "Eradication",
+        "description": "You snuff the life force out of the Enemy, dealing damage equal to ${attackDamageMaxValue0}%-${attackDamageMaxValue1}% of their current HP, and heal for ${lifesteal}% of the damage dealt. Uses Prayer Points.",
+        "descriptionGenerator": "Make an attack that deals <damage>.",
+        "usesRunesPerProc": true,
+        "canNormalAttack": false
+      },
+      {
+        "id": "RelentlessFury",
+        "defaultChance": 100,
+        "damage": [
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 2,
+            "roll": false,
+            "attackCount": 0
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 4,
+            "roll": false,
+            "attackCount": 1
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 8,
+            "roll": false,
+            "attackCount": 2
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 16,
+            "roll": false,
+            "attackCount": 3
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 32,
+            "roll": false,
+            "attackCount": 4
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "chance": 1,
+            "effectID": "WTM:ResistanceDecrease",
+            "targetOverride": "Self"
+          },
+          {
+            "chance": 1,
+            "effectID": "melvorD:Stun",
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 5,
+        "attackInterval": 200,
+        "lifesteal": 0,
+        "name": "Relentless Fury",
+        "description": "Your fists mutate into zealots of unbridled rage. Make ${hitCount} attacks, each dealing a small percentage of your Maximum Hit: 1st—${attackDamageMaxValue0}%; 2nd—${attackDamageMaxValue1}%; 3rd—${attackDamageMaxValue2}%; 4th—${attackDamageMaxValue3}%; and 5th—${attackDamageMaxValue4}%. Each hit has a ${onHitEffect0chance}% chance to decrease your Damage Reduction by ${onHitEffect0modValue}% for the rest of the fight and to inflict a 1-turn Stun on the Enemy.",
+        "descriptionGenerator": "Attack <hitCount> times, dealing <damage> and <hitEffect> on hit.",
+        "usesRunesPerProc": false,
+        "canNormalAttack": false
+      },
+      {
+        "id": "BarrageOfFlamingDeath",
+        "defaultChance": 100,
+        "damage": [
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 2,
+            "roll": false,
+            "attackCount": 0
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 4,
+            "roll": false,
+            "attackCount": 1
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 8,
+            "roll": false,
+            "attackCount": 2
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHit",
+            "maxPercent": 16,
+            "roll": false,
+            "attackCount": 3
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "chance": 1,
+            "effectID": "WTM:Deadfire"
+          },
+          {
+            "chance": 1,
+            "effectID": "WTM:Deadfire",
+            "condition": {
+              "character": "Enemy",
+              "effectID": "melvorD:Burn",
+              "type": "CombatEffect"
+            }
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 4,
+        "attackInterval": 250,
+        "lifesteal": 0,
+        "name": "Barrage of Flaming Death",
+        "description": "Your fists become humble servants of the eternal godflame, Ragnar. Make ${hitCount} attacks, each dealing a small percentage of your Maximum Hit: 1st—${attackDamageMaxValue0}%; 2nd—${attackDamageMaxValue1}%; 3rd—${attackDamageMaxValue2}%; and 4th—${attackDamageMaxValue3}%. Each hit has a ${onHitEffect0chance}% chance (doubled if the Enemy is Burning) to inflict Deadfire, a powerful Burn that deals ${onHitEffect0DamageMaxValue0}% of the Enemy's current hitpoints as damage over ${onHitEffect0duration}s.",
+        "descriptionGenerator": "Attack <hitCount> times, dealing <damage> and <hitEffect> on hit.",
+        "usesRunesPerProc": false,
+        "canNormalAttack": false
+      },
+      {
+        "id": "SpikedCarapace",
+        "defaultChance": 40,
+        "damage": [],
+        "prehitEffects": [
+          {
+            "effectID": "WTM:SpikedCarapace0"
+          }
+        ],
+        "onhitEffects": [],
+        "cantMiss": true,
+        "attackCount": 1,
+        "attackInterval": 50,
+        "lifesteal": 0,
+        "name": "Spiked Carapace",
+        "description": "Your gloves instantly grow to five times their size and form a massive, spiky shell around your body for ${preHitEffect0turns} turn(s). While protected by this carapace, you have +${preHitEffect0modValue0}% Reflect Damage, +${preHitEffect0modValue1}% chance to ignore Slow Effects, and +${preHitEffect0modValue2}% Flat Damage Reduction. If this buff is already active, make a normal attack instead.",
+        "descriptionGenerator": "On use, <preHitEffect>. If buff already active, make normal attack.",
+        "usesRunesPerProc": false,
+        "canNormalAttack": true
+      },
+      {
+        "id": "Stonewall",
+        "defaultChance": 30,
+        "damage": [
+          {
+            "character": "Attacker",
+            "roll": true,
+            "minRoll": "DefenceLevel",
+            "minPercent": 100,
+            "maxRoll": "DefenceLevel",
+            "maxPercent": 500,
+            "damageType": "Custom"
+          }
+        ],
+        "prehitEffects": [
+          {
+            "effectID": "melvorF:StoneWall0",
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "onhitEffects": [],
+        "cantMiss": true,
+        "attackCount": 1,
+        "attackInterval": 1000,
+        "lifesteal": 0,
+        "name": "Stonewall",
+        "description": "Upon driving your fists into the rocky earth, you conjure a massive stone barrier, giving you +${preHitEffect0modValue0}% Flat Damage Reduction for ${preHitEffect0turns} turn(s). Then, you hurl the stone at the Enemy, dealing damage equal to ${attackDamageMaxValue0}%-${attackDamageMaxValue1}% of your Defence level (Unavoidable).",
+        "descriptionGenerator": "Puts up a wall that <prehitEffect>. Then, deal <damage>. <Avoidable>.",
+        "usesRunesPerProc": false,
+        "canNormalAttack": true
+      },
+      {
+        "id": "LichsMadness",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "BurnFixed100",
+            "maxPercent": 75,
+            "roll": false,
+            "attackCount": 0
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "Fixed",
+            "maxPercent": 30,
+            "roll": false,
+            "attackCount": 1
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MagicScaling",
+            "maxPercent": 35,
+            "roll": false,
+            "attackCount": 1
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "Fixed",
+            "maxPercent": 30,
+            "roll": false,
+            "attackCount": 2
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MagicScaling",
+            "maxPercent": 35,
+            "roll": false,
+            "attackCount": 2
+          }
+        ],
+        "prehitEffects": [
+          {
+            "effectID": "melvorD:Frostburn",
+            "chance": 100,
+            "targetOverride": "Self"
+          },
+          {
+            "effectID": "melvorD:Burn",
+            "chance": 100,
+            "targetOverride": "Self"
+          }
+        ],
+        "onhitEffects": [
+          {
+            "effectID": "melvorD:Burn",
+            "chance": 33.333,
+            "targetOverride": "Target"
+          },
+          {
+            "effectID": "melvorD:Frostburn",
+            "chance": 33.333,
+            "targetOverride": "Target"
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 3,
+        "attackInterval": 300,
+        "lifesteal": 0,
+        "name": "Lich's Madness",
+        "description": "Engulf your body in umbral flame and coat your extremities in jet ice shards, inflicting Burn and Frostburn on yourself, then strike ${hitCount} times. On the 1st attack, deal ${attackDamageMaxValue0}% of your normal (doubled if Enemy is Burning). On the 2nd and 3rd attacks, deal damage equal tio ${attackDamageMaxValue1} + ${attackDamageMaxValue2}% of your Magic level. Each hit has a ${onHitEffect0chance}% chance to inflict Burn which deals ${onHitEffect0DamageMaxValue0}% of the Enemy's current hitpoints as damage over ${onHitEffect0duration}s, and Frostburn for ${onHitEffect2turns} turns.",
+        "descriptionGenerator": "An <avoidable> attack that deals <damage> damage. On a hit, <hitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "FistOfTheWinterWinds",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 100
+          },
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MagicScaling",
+            "maxPercent": 35,
+            "roll": false
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "melvorD:Freeze",
+            "chance": 25,
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 500,
+        "lifesteal": 0,
+        "name": "Fist of the Winter Winds",
+        "description": "Harness the winter winds, striking for ${attackDamageMaxValue0}% of your normal damage + ${attackDamageMaxValue1}% of your Magic level. On a hit, ${onHitEffect0chance}% chance to inflict Freeze for ${onHitEffect0turns} turns.",
+        "descriptionGenerator": "An <avoidable> attack that deals <damage> damage. On a hit, <hitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "ToxicNeedleFlurry",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 80
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "melvorD:Poison",
+            "chance": 20
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 5,
+        "attackInterval": 200,
+        "lifesteal": 0,
+        "name": "Toxic Needle Flurry",
+        "description": "Fire ${hitCount} small needles from your knuckles in a flurry of jabs that deal up to ${attackDamageMaxValue0}% of your normal damage each (Avoidable). On a hit has a ${onHitEffect0chance}% chance to inflict Poison that deals ${onHitEffect0DamageMaxValue0}% of the Enemy's max hitpoints as damage over ${onHitEffect0duration}s.",
+        "descriptionGenerator": "Fire <count> small needles that deal <damage> damage each (<Avoidable>). On a hit <hitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "CycloneFist",
+        "defaultChance": 10,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 75
+          }
+        ],
+        "prehitEffects": [
+          {
+            "effectID": "WTM:CycloneFist0"
+          }
+        ],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackCount": 7,
+        "attackInterval": 600,
+        "lifesteal": 0,
+        "name": "Cyclone Fist",
+        "description": "Surrounds you in wind for ${duration}s, while dealing ${attackDamageMaxValue0}% normal damage ${hitCount} times. Gives you +${preHitEffect0modValue0}% Global Evasion and +${preHitEffect0modValue1} Flat Reflect Damage until the end of the attack.",
+        "descriptionGenerator": "Surrounds <attacker> in wind for <duration>, while dealing <damage> <avoidable> damage <count> times. On use, <prehitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "Shatterstrikes",
+        "defaultChance": 30,
+        "damage": [
+          {
+            "damageType": "Custom",
+            "character": "Target",
+            "maxRoll": "Crystallize",
+            "maxPercent": 15,
+            "roll": false,
+            "attackCount": 0
+          },
+          {
+            "damageType": "Custom",
+            "character": "Target",
+            "maxRoll": "Crystallize",
+            "maxPercent": 15,
+            "roll": false,
+            "attackCount": 1
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "chance": 2,
+            "effectID": "melvorD:Crystallize",
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "chance": 2,
+            "effectID": "melvorAoD:CrystalSanction"
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 2,
+        "attackInterval": 50,
+        "lifesteal": 0,
+        "name": "Shatterstrikes",
+        "description": "Harnessing pure crystalline power, you make two swift strikes against the Target, each dealing ${attackDamageMaxValue0}% of their maximum hit (doubled if the Enemy is Crystallized). On hit, ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for ${onHitEffect0turns} turn(s), and ${onHitEffect1chance}% chance to apply Crystal Sanction (Target's next attack deals no damage).",
+        "descriptionGenerator": "Make two <avoidable> attacks that deal <damage>. On hit, <hitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "CrystalStrike",
+        "defaultChance": 25,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 130
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "chance": 5,
+            "effectID": "melvorD:Crystallize",
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 2000,
+        "lifesteal": 0,
+        "name": "Crystal Strike",
+        "description": "You focus crystalline energy into your knuckles to make one powerful strike. On hit, deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for 1 turn.",
+        "descriptionGenerator": "Make an <avoidable> attack that deals <damage>. On hit, <hitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "PandorasSpark",
-        "damage":[],
+        "damage": [],
         "defaultChance": 15,
         "prehitEffects": [],
         "onhitEffects": [],
@@ -227,6 +716,117 @@
       }
     ],
     "combatEffects": [
+      {
+        "id": "BarbaricStrength",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "name": "Barbaric Strength",
+        "media": "assets/combat/status/strength_increase.png",
+        "target": "Self",
+        "parameters": [],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "flatMeleeMaxHit": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "Deadfire",
+        "templateID": "melvorD:BurnDOT",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 10
+          },
+          {
+            "name": "interval",
+            "initialValue": 500
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Target",
+                "roll": false,
+                "maxRoll": "CurrentHP",
+                "maxPercent": 30
+              }
+            ],
+            "applyDamageModifiers": true,
+            "applyTypeModifiers": "Burn",
+            "applyResistance": true,
+            "damageCap": 2000
+          }
+        ]
+      },
+      {
+        "id": "SpikedCarapace0",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Spiked Carapace",
+        "media": "assets/combat/status/resistance_increase.png",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 5
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "reflectDamage": 10,
+              "effectIgnoreChance": [
+                {
+                  "effectGroupID": "melvorD:Slow",
+                  "value": 50
+                }
+              ],
+              "flatResistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": 10
+                }
+              ]
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "CycloneFist0",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Cyclone Fist",
+        "media": "assets/combat/status/evasion_increase.png",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 0
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "evasion": 10,
+              "flatReflectDamage": 30
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
       {
         "id": "Daze",
         "name": "Daze",
@@ -819,6 +1419,30 @@
         "effectGroups": [
           "melvorD:Debuff"
         ]
+      },
+      {
+        "id": "ResistanceDecrease",
+        "name": "Resistance Decreased",
+        "media": "assets/combat/status/resistance_decrease.png",
+        "templateID": "melvorD:StaticNonCountingModifier",
+        "target": "Self",
+        "parameters": [],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "flatResistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": -1
+                }
+              ]
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
       }
     ],
     "combatEffectTemplates": [
@@ -955,6 +1579,34 @@
     ],
     "modifiers": [
       {
+        "id": "maxHitBasedOnMissingHitpoints",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "+${value}% Max Hit for each 1% of Hitpoints missing",
+                "lang": "MODIFIER_DATA_maxHitBasedOnMissingHitpoints"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "critChanceBasedOnMissingHitpoints",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "+${value}% Critical Hit chance for each 1% of Hitpoints missing",
+                "lang": "MODIFIER_DATA_critChanceBasedOnMissingHitpoints"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "slashingOnSummon",
         "allowedScopes": [
           {
@@ -1012,7 +1664,7 @@
           }
         ]
       },
-       {
+      {
         "id": "blessingChance",
         "allowedScopes": [
           {
@@ -1026,7 +1678,7 @@
           }
         ]
       },
-       {
+      {
         "id": "RandomRuneReduction",
         "inverted": true,
         "allowedScopes": [
@@ -1042,7 +1694,7 @@
           }
         ]
       },
-       {
+      {
         "id": "RandomDamIncrease",
         "allowedScopes": [
           {
@@ -1057,7 +1709,7 @@
           }
         ]
       },
-       {
+      {
         "id": "ExtraPotencyEffects",
         "allowedScopes": [
           {
