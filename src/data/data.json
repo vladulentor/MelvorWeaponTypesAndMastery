@@ -722,7 +722,20 @@
         "name": "Barbaric Strength",
         "media": "assets/combat/status/strength_increase.png",
         "target": "Self",
-        "parameters": [],
+        "parameters": [
+                {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 100
+          },
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          }
+        ],
         "statGroups": [
           {
             "name": "stacks",
@@ -1650,7 +1663,7 @@
           }
         ]
       },
-       {
+      {
         "id": "addSpellBarrier",
         "allowedScopes": [
           {
@@ -1665,7 +1678,6 @@
           }
         ]
       },
-      
       {
         "id": "RandomUpSpellDamRune",
         "allowedScopes": [

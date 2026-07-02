@@ -81,14 +81,30 @@ export function patchWeaponTypeLogic({ patch }) {
             }
         }
     });
+
+    //Super waepon shit
     patch(Equipment, "addEquipmentStats").after(function (ret, stats) {
         if (game.combat.player.equippedWeapon?.SpecWeaponStats)
             stats.addStats(game.combat.player.equippedWeapon.SpecWeaponStats);
     });
-    patch(Player, "updateForEquipmentChange").after(function (_) {
-        this.spellShield.changeShield(game.combat.player.equipment.getItemInSlot("melvorD:Shield"), game.modifiers.getValue("WTM:addSpellBarrier", ModifierQuery.EMPTY))
+    patch(Player, "addEquippedItemModifiers").after(function () {
+        if (this.equippedWeapon?.SpecWeaponMods?.modifiers)
+            this.modifiers.addModifiers(this.equippedWeapon, this.equippedWeapon?.SpecWeaponMods.modifiers);
     });
-    
+    patch(Enemy, "addPlayerEquipmentModifiers").after(function () {
+        if (this.manager.player.equippedWeapon?.SpecWeaponMods?.enemyModifiers)
+            this.modifiers.addModifiers(this.manager.player.equippedWeapon, this.manager.player.equippedWeapon?.SpecWeaponMods.enemyModifiers);
+
+    });
+     patch(Player, "mergeInheritedEffectApplicators").after(function () {
+        if (this.equippedWeapon?.SpecWeaponMods?.combatEffects)
+            this.mergeEffectApplicators( this.equippedWeapon?.SpecWeaponMods.combatEffects);
+    });
+
+    /*patch(Player, "updateForEquipmentChange").after(function (_) {
+        this.spellShield.changeShield(game.combat.player.equipment.getItemInSlot("melvorD:Shield"), game.modifiers.getValue("WTM:addSpellBarrier", ModifierQuery.EMPTY))
+    });*/
+
     /*patch(Player, "computeEquipmentStats").before(function () {
 
     })
