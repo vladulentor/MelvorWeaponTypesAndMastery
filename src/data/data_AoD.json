@@ -12,7 +12,7 @@
                             "name": "Artefacts",
                             "stupidName": "The Slot Machine",
                             "flavorText": "Instruments representing Magic at its ficklest. To be used with great care and greater caution.",
-                            "stupidFlavorText":"No matter what they tell you, NEVER stop gambling",
+                            "stupidFlavorText": "No matter what they tell you, NEVER stop gambling",
                             "specAttack3": "WTM:PandorasSpark",
                             "media": "assets/artifacts.svg",
                             "mediaAlt": "assets/black_filled_svgs/artifacts.svg",
@@ -21,7 +21,10 @@
                             "uniq": [
                                 "Magic_Flute4",
                                 "Powered_Red_Crystal4",
-                                "Trickery_Mirror4"
+                                "Trickery_Mirror4",
+                                "Elementalist_Gloves2",
+                                "Glacia_God_Gloves3",
+                                "Burning_Madness_Gloves4"
                             ],
                             "isPerWepMod": false,
                             "wepModifiers": {
@@ -155,38 +158,6 @@
                                             },
                                             {
                                                 "effectGroupID": "melvorD:CrystalSanction",
-                                                "value": 3.33
-                                            },
-                                            {
-                                                "effectGroupID": "melvorItA:Corruption",
-                                                "value": 3.33
-                                            },
-                                            {
-                                                "effectGroupID": "melvorItA:Blight",
-                                                "value": 3.33
-                                            },
-                                            {
-                                                "effectGroupID": "melvorItA:Wither",
-                                                "value": 3.33
-                                            },
-                                            {
-                                                "effectGroupID": "melvorItA:Silence",
-                                                "value": 3.33
-                                            },
-                                            {
-                                                "effectGroupID": "melvorItA:EldritchCurse",
-                                                "value": 3.33
-                                            },
-                                            {
-                                                "effectGroupID": "melvorItA:Voidburst",
-                                                "value": 3.33
-                                            },
-                                            {
-                                                "effectGroupID": "melvorItA:ToxinDOT",
-                                                "value": 3.33
-                                            },
-                                            {
-                                                "effectGroupID": "melvorItA:AblazeDOT",
                                                 "value": 3.33
                                             },
                                             {

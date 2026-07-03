@@ -4,6 +4,90 @@
   "data": {
     "attacks": [
       {
+        "id": "Shadowshot",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 25
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "melvorD:Bleed100"
+          },
+          {
+            "effectID": "WTM:Immobilize",
+            "targetOverride": "Target",
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "effectID": "WTM:SlinkIntoShadows",
+            "targetOverride": "Self"
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 50,
+        "lifesteal": 0,
+        "name": "Shadowshot",
+        "description": "You quickly fire a targeted arrow that deals ${attackDamageMaxValue0}% of your normal damage. On hit, inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s, and apply Immobilize (Can't Attack) for ${onHitEffect1turns} turns. Then, Slink Into Shadows and gain +${onHitEffect2modValue0}% Global Evasion, +${onHitEffect2modValue1}% Damage Reduction and -${onHitEffect2modValue2}% Attack Interval for ${onHitEffect2turns} turns. If effects are already active, perform a regular attack instead.",
+        "descriptionGenerator": "Quickly fire an arrow, dealing <damage> and <onhitEffect>. If effects already active, perform a regular attack instead.",
+        "usesRunesPerProc": false,
+        "canNormalAttack": true
+      },
+      {
+        "id": "Barrage",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 20
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "WTM:Hobbled",
+            "chance": 5
+          }
+        ],
+        "cantMiss": false,
+        "attackCount": 12,
+        "attackInterval": 100,
+        "lifesteal": 0,
+        "name": "Barrage",
+        "description": "Barrage the Enemy with a hail of arrows that each deal ${attackDamageMaxValue0}% of your normal damage, and have a ${onHitEffect0chance}% to apply 1 stack of Hobbled (Attack Interval is increased by 1% per stack, up to 25 stacks).",
+        "descriptionGenerator": "An <avoidable> attack that deals <damage> <count> times. On use, <prehitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "QuickReload",
+        "defaultChance": 15,
+        "damage": [],
+        "prehitEffects": [
+          {
+            "effectID": "WTM:QuickReload0"
+          }
+        ],
+        "onhitEffects": [],
+        "cantMiss": true,
+        "attackCount": 1,
+        "attackInterval": 150,
+        "lifesteal": 0,
+        "name": "Quick Reload",
+        "description": "You take a moment to grease the track of your crossbow, gaining -${preHitEffect0modValue0}% Ranged Attack Interval for ${preHitEffect0turns} turns. If buff is already active, perform a regular attack instead.",
+        "descriptionGenerator": "You grease the track of your crossbow, gaining <prehitEffect>. If buff is already active, perform a regular attack instead.",
+        "usesRunesPerProc": false,
+        "canNormalAttack": true
+      },
+      {
         "id": "BigSmash",
         "defaultChance": 20,
         "damage": [
@@ -23,7 +107,7 @@
         "attackInterval": 100,
         "lifesteal": 0,
         "name": "Big Smash",
-        "description": "You smash the Enemy for ${attackDamageMaxValue0}% of your normal damage.If you hit, you gain 1 stack of Barbaric Strength, giving you for ${onHitEffect0modValue} Flat Melee Max Hit until the End of the Fight.",
+        "description": "You smash the Enemy for ${attackDamageMaxValue0}% of your normal damage. If you hit, you gain 1 stack of Barbaric Strength, giving you for ${onHitEffect0modValue} Flat Melee Max Hit until the End of the Fight.",
         "descriptionGenerator": "You make an attack that deals <damage>. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -700,6 +784,26 @@
     ],
     "combatEffectGroups": [
       {
+        "id": "AttunementAir",
+        "name": "Elemental Attunement — Air",
+        "adjective": "Attuned to Air"
+      },
+      {
+        "id": "AttunementWater",
+        "name": "Elemental Attunement — Water",
+        "adjective": "Attuned to Water"
+      },
+      {
+        "id": "AttunementEarth",
+        "name": "Elemental Attunement — Earth",
+        "adjective": "Attuned to Earth"
+      },
+      {
+        "id": "AttunementFire",
+        "name": "Elemental Attunement — Fire",
+        "adjective": "Attuned to Fire"
+      },
+      {
         "id": "Intimidation",
         "name": "Intimidation",
         "adjective": "Intimidated"
@@ -717,12 +821,572 @@
     ],
     "combatEffects": [
       {
+        "id": "WaterHeal",
+        "templateID": "melvorD:Regen",
+        "name": "Refreshing Rain",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 1
+          },
+          {
+            "name": "interval",
+            "initialValue": 50
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "totalHealing",
+            "damage": [
+              {
+                "roll": false,
+                "character": "Attacker",
+                "maxRoll": "MaxHP",
+                "maxPercent": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "BurnVulnerability",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Burn Vulnerability",
+        "media": "assets/combat/status/vulnerability_burn.png",
+        "target": "Target",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "burnDOTDamageTaken": 100
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
+      },
+      {
+        "id": "Steadfast",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Steadfast",
+        "media": "assets/combat/status/steadfast.png",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "effectImmunity": [
+                {
+                  "effectGroupID": "melvorD:Sleep",
+                  "value": 1
+                },
+                {
+                  "effectGroupID": "melvorD:Slow",
+                  "value": 1
+                },
+                {
+                  "effectGroupID": "melvorD:Stun",
+                  "value": 1
+                },
+                {
+                  "effectGroupID": "melvorD:Fear",
+                  "value": 1
+                }
+              ]
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff",
+          "melvorD:FearImmune",
+          "melvorD:StunImmune",
+          "melvorD:SleepImmune"
+        ]
+      },
+      {
+        "id": "AuraAir",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Lightning Aura",
+        "media": "assets/combat/status/auraair.png",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 10
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "combatEffects": [
+              {
+                "appliesWhen": "HitByAttack",
+                "chance": 100,
+                "effectID": "melvorD:Stun",
+                "initialParams": [
+                  {
+                    "name": "turns",
+                    "value": 1
+                  }
+                ],
+                "targetOverride": "Target"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "AuraWater",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Chilly Aura",
+        "media": "assets/combat/status/aurawater.png",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 10
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "flatResistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": 10
+                }
+              ]
+            },
+            "combatEffects": [
+              {
+                "appliesWhen": "HitByAttack",
+                "chance": 100,
+                "effectID": "melvorD:Slow",
+                "initialParams": [
+                  {
+                    "name": "turns",
+                    "value": 1
+                  },
+                  {
+                    "name": "magnitude",
+                    "value": 69
+                  }
+                ],
+                "targetOverride": "Target"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "AuraEarth",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Earthen Aura",
+        "media": "assets/combat/status/auraearth.png",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 10
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "rangedProtection": 20,
+              "flatResistanceAgainstRanged": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": 15
+                }
+              ]
+            },
+            "combatEffects": [
+              {
+                "appliesWhen": "HitByAttack",
+                "chance": 100,
+                "effectID": "melvorD:Bleed100",
+                "targetOverride": "Target"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "AuraFire",
+        "templateID": "melvorD:SelfCountingReflexive",
+        "name": "Fiery Aura",
+        "media": "assets/combat/status/aurafire.png",
+        "parameters": [
+          {
+            "name": "maxStacks",
+            "initialValue": 5
+          },
+          {
+            "name": "turns",
+            "initialValue": 10
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "magicMaxHit": [
+                {
+                  "subcategoryID": "melvorD:Fire",
+                  "value": 10
+                }
+              ]
+            },
+            "combatEffects": [
+              {
+                "appliesWhen": "HitByAttack",
+                "chance": 100,
+                "effectID": "melvorD:Burn",
+                "targetOverride": "Target"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "AttunementAir",
+        "templateID": "melvorD:StaticNonCountingModifier",
+        "name": "Elemental Attunement — Air",
+        "media": "assets/combat/status/attunement_air.png",
+        "target": "Self",
+        "parameters": [],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "magicMaxHit": [
+                {
+                  "subcategoryID": "melvorD:Air",
+                  "value": 25
+                }
+              ]
+            },
+            "combatEffects": [
+              {
+                "appliesWhen": "EvadedAttack",
+                "chance": 10,
+                "effectID": "WTM:Daze",
+                "targetOverride": "Target",
+                "initialParams": [
+                  {
+                    "name": "turns",
+                    "value": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "WTM:AttunementAir"
+        ],
+        "exclusiveGroups": [
+          "WTM:AttunementWater",
+          "WTM:AttunementEarth",
+          "WTM:AttunementFire"
+        ]
+      },
+      {
+        "id": "AttunementWater",
+        "templateID": "melvorD:StaticNonCountingModifier",
+        "name": "Elemental Attunement — Water",
+        "media": "assets/combat/status/attunement_water.png",
+        "target": "Self",
+        "parameters": [],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "magicMaxHit": [
+                {
+                  "subcategoryID": "melvorD:Water",
+                  "value": 25
+                }
+              ]
+            },
+            "combatEffects": [
+              {
+                "appliesWhen": "SummonAttack",
+                "chance": 10,
+                "effectID": "melvorD:Heal0",
+                "targetOverride": "Self"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "WTM:AttunementWater"
+        ],
+        "exclusiveGroups": [
+          "WTM:AttunementAir",
+          "WTM:AttunementEarth",
+          "WTM:AttunementFire"
+        ]
+      },
+      {
+        "id": "AttunementEarth",
+        "templateID": "melvorD:StaticNonCountingModifier",
+        "name": "Elemental Attunement — Earth",
+        "media": "assets/combat/status/attunement_earth.png",
+        "target": "Self",
+        "parameters": [],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "magicMaxHit": [
+                {
+                  "subcategoryID": "melvorD:Earth",
+                  "value": 25
+                }
+              ]
+            },
+            "combatEffects": [
+              {
+                "appliesWhen": "HitByAttack",
+                "chance": 10,
+                "effectID": "WTM:Fortified",
+                "targetOverride": "Self"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "WTM:AttunementEarth"
+        ],
+        "exclusiveGroups": [
+          "WTM:AttunementAir",
+          "WTM:AttunementWater",
+          "WTM:AttunementFire"
+        ]
+      },
+      {
+        "id": "AttunementFire",
+        "templateID": "melvorD:StaticNonCountingModifier",
+        "name": "Elemental Attunement — Fire",
+        "media": "assets/combat/status/attunement_fire.png",
+        "target": "Self",
+        "parameters": [],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "magicMaxHit": [
+                {
+                  "subcategoryID": "melvorD:Fire",
+                  "value": 25
+                }
+              ]
+            },
+            "combatEffects": [
+              {
+                "appliesWhen": "HitWithAttack",
+                "chance": 10,
+                "effectID": "melvorD:Burn",
+                "targetOverride": "Target"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "WTM:AttunementFire"
+        ],
+        "exclusiveGroups": [
+          "WTM:AttunementAir",
+          "WTM:AttunementWater",
+          "WTM:AttunementEarth"
+        ]
+      },
+      {
+        "id": "Volley",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Volley",
+        "media": "assets/combat/status/crit_increase.png",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "rangedAttackInterval": -50,
+              "rangedMaxHit": -50,
+              "rangedAccuracyRating": -50
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "SlinkIntoShadows",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Slink Into Shadows",
+        "media": "assets/combat/status/evasion_increase.svg",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "evasion": 40,
+              "flatResistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": 10
+                }
+              ],
+              "flatAttackInterval": -200
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "DOTVulnerability",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "DOT Vulnerability",
+        "media": "assets/combat/status/vulnerability.png",
+        "target": "Target",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "dotDamageTaken": 25
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
+      },
+      {
+        "id": "QuickReload0",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Quick Reload",
+        "media": "assets/combat/status/speedup.svg",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "attackInterval": -10
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "StraightShooter",
+        "templateID": "melvorD:StaticModifiers",
+        "name": "Straight Shooter",
+        "media": "assets/combat/status/crit_increase.png",
+        "tooltipSpans": [
+          {
+            "type": "String",
+            "value": "Next attack can't miss and is guaranteed to be a critical hit."
+          }
+        ],
+        "target": "Self",
+        "parameters": [],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "rangedCritChance": 100,
+              "cantMiss": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ],
+        "behaviours": [
+          {
+            "type": "RemoveEffect",
+            "triggersOn": [
+              {
+                "type": "PostAttack"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "BarbaricStrength",
         "templateID": "melvorD:StackingNonCountingModifier",
         "name": "Barbaric Strength",
         "media": "assets/combat/status/strength_increase.png",
         "target": "Self",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 25
+          }
+        ],
         "statGroups": [
           {
             "name": "stacks",
@@ -1244,6 +1908,95 @@
         ]
       },
       {
+        "id": "Alacrity",
+        "name": "Alacrity",
+        "media": "assets/combat/status/speedup.svg",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 25
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "attackInterval": -1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "Concentration",
+        "name": "Concentration",
+        "media": "assets/combat/status/crit_increase.png",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 25
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "critChance": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "ZephyrSpeed",
+        "name": "Zephyr Speed",
+        "media": "assets/combat/status/speedup.svg",
+        "templateID": "WTM:SelfCountingReductiveOnHit",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "attackInterval": -15
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff",
+          "WTM:AttunementAir"
+        ]
+      },
+      {
         "id": "Advantage",
         "name": "Advantage",
         "media": "assets/combat/status/advantage.webp",
@@ -1397,6 +2150,35 @@
         ]
       },
       {
+        "id": "Fortified",
+        "name": "Fortified",
+        "media": "assets/combat/status/resistance_increase.png",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 3
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "resistance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": 50
+                }
+              ]
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
         "id": "Broken",
         "name": "Broken",
         "media": "assets/combat/status/resistance_decrease.png",
@@ -1443,9 +2225,246 @@
         "effectGroups": [
           "melvorD:Debuff"
         ]
+      },
+      {
+        "id": "Hobbled",
+        "name": "Hobbled",
+        "media": "assets/combat/status/slowed.svg",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 25
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "attackInterval": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
+      },
+      {
+        "id": "Impact",
+        "name": "Impact",
+        "media": "assets/combat/status/critdmg_increase.png",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 25
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "critMultiplier": 4
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "Immobilize",
+        "name": "Immobilized",
+        "media": "assets/combat/status/null.svg",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 1
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "cantAttack": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff",
+          "melvorD:Slow"
+        ]
+      }
+    ],
+    "combatEffectTables": [
+      {
+        "id": "RandomAttunement",
+        "table": [
+          {
+            "effectID": "WTM:AttunementAir",
+            "weight": 1
+          },
+          {
+            "effectID": "WTM:AttunementWater",
+            "weight": 1
+          },
+          {
+            "effectID": "WTM:AttunementEarth",
+            "weight": 1
+          },
+          {
+            "effectID": "WTM:AttunementFire",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "id": "RandomCondition",
+        "table": [
+          {
+            "effectID": "melvorD:Poison",
+            "weight": 1
+          },
+          {
+            "effectID": "melvorD:Bleed100",
+            "weight": 1
+          },
+          {
+            "effectID": "melvorD:Burn",
+            "weight": 1
+          },
+          {
+            "effectID": "WTM:Immobilize",
+            "weight": 1,
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "effectID": "melvorD:Slow",
+            "initialParams": [
+              {
+                "name": "turns",
+                "value": 2
+              },
+              {
+                "name": "magnitude",
+                "value": 20
+              }
+            ],
+            "weight": 1
+          }
+        ]
       }
     ],
     "combatEffectTemplates": [
+      {
+        "id": "ReductiveOnHit",
+        "description": "Mixin Template. Defines behaviours for an effect that applies modifiers that decrease in strength each time the character hits with an attack. The effect is removed if the applied modifiers reach zero.",
+        "baseEffectData": {
+          "turnText": "statGroup.stacks",
+          "descriptionTemplateData": {
+            "initialParameters": {
+              "maxStacks": "initialStacks"
+            },
+            "statGroups": {
+              "": "stacks"
+            }
+          },
+          "target": "Self",
+          "behaviours": [
+            {
+              "type": "ModifyStats",
+              "statGroupName": "stacks",
+              "newValue": "p.initialStacks",
+              "triggersOn": [
+                {
+                  "type": "EffectApplied"
+                }
+              ]
+            },
+            {
+              "type": "ModifyStats",
+              "statGroupName": "stacks",
+              "newValue": "statGroup.stacks - 1",
+              "triggersOn": [
+                {
+                  "type": "HitWithAttack"
+                }
+              ]
+            },
+            {
+              "type": "RemoveEffect",
+              "triggersOn": [
+                {
+                  "type": "StatsChange",
+                  "statGroupName": "stacks",
+                  "condition": {
+                    "operator": "==",
+                    "lhValue": "statGroup.stacks",
+                    "rhValue": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "SelfCountingReductiveOnHit",
+        "baseTemplates": [
+          "melvorD:SelfTurnCounting",
+          "WTM:ReductiveOnHit"
+        ],
+        "baseEffectData": {
+          "tooltipSpans": [
+            {
+              "type": "Stats",
+              "statGroupName": "stacks"
+            },
+            {
+              "type": "StacksWithMax",
+              "stacks": "statGroup.stacks",
+              "maxStacks": "p.initialStacks"
+            },
+            {
+              "type": "LastsForTurns",
+              "turns": "p.turns"
+            }
+          ],
+          "behaviours": [
+            {
+              "type": "ModifyParameter",
+              "paramName": "turns",
+              "newValue": "param.turns + 1",
+              "triggersOn": [
+                {
+                  "type": "EffectApplied"
+                }
+              ]
+            }
+          ]
+        }
+      },
       {
         "id": "Defensive",
         "description": "Mixin Template. Defines behaviours for an effect that applies modifiers that increase in strength each time the character evades an attack, up to a maximum value.",
@@ -1650,7 +2669,7 @@
           }
         ]
       },
-       {
+      {
         "id": "addSpellBarrier",
         "allowedScopes": [
           {
@@ -1665,7 +2684,6 @@
           }
         ]
       },
-      
       {
         "id": "RandomUpSpellDamRune",
         "allowedScopes": [
@@ -1944,7 +2962,8 @@
                         "customDescription": "Unlock Dueling Stance",
                         "appliesWhen": "StartOfFight",
                         "effectID": "WTM:DuelingStance",
-                        "chance": 100
+                        "chance": 100,
+                        "applyEffectWhenMerged": true
                       }
                     ]
                   },
@@ -1953,6 +2972,7 @@
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:DuelingStance",
                       "chance": 100,
+                      "applyEffectWhenMerged": true,
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
@@ -2596,6 +3616,7 @@
                         "weaponType": "WTM:Greatswords"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Terrify",
                       "initialParams": [
                         {
@@ -2610,6 +3631,7 @@
                         "weaponType": "WTM:Greatswords"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Intimidation",
                       "initialParams": [
                         {
@@ -2624,6 +3646,7 @@
                         "weaponType": "WTM:Greatswords"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Shaken",
                       "initialParams": [
                         {
@@ -3327,7 +4350,7 @@
                   "uiMods": {
                     "modifiers": {
                       "lifesteal": 10,
-                      "maxHitBasedOnTargetCurrentHitpoints": 0.1
+                      "WTM:maxHitBasedOnMissingHitpoints": 0.1
                     }
                   },
                   "conditionalModifiers": [
@@ -3339,7 +4362,7 @@
                       },
                       "modifiers": {
                         "lifesteal": 10,
-                        "maxHitBasedOnTargetCurrentHitpoints": 0.1
+                        "WTM:maxHitBasedOnMissingHitpoints": 0.1
                       }
                     }
                   ]
@@ -3774,6 +4797,7 @@
                           "weaponType": "WTM:Polearms"
                         },
                         "appliesWhen": "StartOfFight",
+                        "applyEffectWhenMerged": true,
                         "effectID": "WTM:Certainty",
                         "chance": 100
                       }
@@ -3786,6 +4810,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Certainty",
                       "chance": 100
                     },
@@ -3795,6 +4820,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Certainty",
                       "chance": 100
                     },
@@ -3804,6 +4830,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Certainty",
                       "chance": 100
                     },
@@ -3813,6 +4840,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Certainty",
                       "chance": 100
                     },
@@ -3822,6 +4850,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Certainty",
                       "chance": 100
                     },
@@ -3831,6 +4860,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Swiftness",
                       "chance": 100
                     },
@@ -3840,6 +4870,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Swiftness",
                       "chance": 100
                     },
@@ -3849,6 +4880,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Swiftness",
                       "chance": 100
                     },
@@ -3858,6 +4890,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Swiftness",
                       "chance": 100
                     },
@@ -3867,6 +4900,7 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
                       "effectID": "WTM:Swiftness",
                       "chance": 100
                     }
@@ -4272,13 +5306,15 @@
             {
               "id": "HandToHand",
               "name": "Hand-to-Hand",
-              "media": "assets/handtohand.svg",
+              "flavorText": "Move fast, strike hard, and evade whilst wearing no armour.",
+              "stupidName": "Fisting",
+              "stupidFlavorText": "Before there were weapons, there were fists.",
               "mediaAlt": "assets/black_filled_svgs/handtohand.svg",
               "mediaCol": "assets/filled_svgs/handtohand.svg",
-              "type": "melee",
               "mat": [
                 "Gloves"
               ],
+              "type": "melee",
               "kind": "melee",
               "uniq": [
                 "Emtpy_Equipment3",
@@ -4287,15 +5323,40 @@
                 "Dragon_Claw2",
                 "Infernal_Claw3",
                 "Rune_Claw2",
-                "Silent_Surge_Crossblade4"
+                "Silent_Surge_Crossblade4",
+                "Desert_Wrappings2",
+                "Biting_Gloves4",
+                "Paladin_Gloves2",
+                "Bulky_Gloves3",
+                "Aeris_God_Gloves3",
+                "Poison_Virulence_Gloves4",
+                "Terran_God_Gloves3",
+                "Spiked_Shell_Gloves4",
+                "Ragnar_God_Gloves3",
+                "Relentless_Fury_Gloves4",
+                "Eradicating_Gloves4",
+                "Gauntlets_of_Rage3",
+                "Vorloran_Protector_Gloves4",
+                "Vorloran_Devastator_Gloves4",
+                "Vorloran_Watcher_Gloves4"
               ],
-              "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {
-                  "lifesteal": 20,
-                  "reflectDamage": 10
-                }
+                "conditionalModifiers": [
+                  {
+                    "condition": {
+                      "targetAttackType": "ranged",
+                      "thisAttackType": "any",
+                      "character": "Player",
+                      "type": "CombatType"
+                    },
+                    "modifiers": {
+                      "reflectDamage": 10
+                    }
+                  }
+                ]
               },
+              "isPerWepMod": true,
+              "specAttack3": "WTM:KnockoutBlow",
               "levels": [
                 {
                   "name": "HandToHand1",
@@ -4304,19 +5365,7 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Can use Gloves as Weapons ",
-                        "condition": {
-                          "type": "EmptySlot",
-                          "slotIDs": [
-                            "melvorD:Shield"
-                          ]
-                        },
-                        "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
-                        }
-                      },
-                      {
-                        "description": "Gloves have special stats when used as weapons",
+                        "description": "Can use Gloves as Weapons, which have unique stats and abilities. Additionally, +20% of your Defence Level added as Flat Hidden Defence Levels and +20% Total Resistance while wearing nothing in the Platebody or Platelegs slots.",
                         "condition": {
                           "type": "EmptySlot",
                           "slotIDs": [
@@ -4329,37 +5378,250 @@
                       }
                     ]
                   },
-                  "changeFunc": "makeGlovesWeapons"
+                  "changeFunc": "makeGlovesWeapons",
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "EmptySlot",
+                        "slotIDs": [
+                          "melvorD:Platebody",
+                          "melvorD:Platelegs"
+                        ]
+                      },
+                      "modifiers": {
+                        "flatHiddenSkillLevelBasedOnLevels": [
+                          {
+                            "skillID": "melvorD:Defence",
+                            "value": 20
+                          }
+                        ],
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 20
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "HandToHand2",
                   "id": "HandToHand2",
                   "level": 2,
-                  "modifiers": {}
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "You have -0.1s Attack Interval with Hand-to-Hand weapons, and while wearing nothing in the Platebody and Platelegs slots, you have +20% Reflect Damage against Ranged Attacks",
+                        "condition": {
+                          "type": "EmptySlot",
+                          "slotIDs": [
+                            "melvorD:Shield"
+                          ]
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HandToHand"
+                      },
+                      "modifiers": {
+                        "flatAttackInterval": -100
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "EmptySlot",
+                            "slotIDs": [
+                              "melvorD:Platebody",
+                              "melvorD:Platelegs"
+                            ]
+                          },
+                          {
+                            "targetAttackType": "ranged",
+                            "thisAttackType": "any",
+                            "character": "Player",
+                            "type": "CombatType"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "reflectDamage": 20
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "HandToHand3",
                   "id": "HandToHand3",
                   "level": 3,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Unlock the Knockout Blow Special Attack. Gain a further 10% increase to added Hidden Defence Levels and Total Resistance while wearing nothing in the Platebody or Platelegs slots.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HandToHand"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ],
+                    "changeFunc": "addSpecialAttack"
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HandToHand"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "EmptySlot",
+                        "slotIDs": [
+                          "melvorD:Platebody",
+                          "melvorD:Platelegs"
+                        ]
+                      },
+                      "modifiers": {
+                        "flatHiddenSkillLevelBasedOnLevels": [
+                          {
+                            "skillID": "melvorD:Defence",
+                            "value": 10
+                          }
+                        ],
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 10
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
                 },
                 {
                   "name": "HandToHand4",
                   "id": "HandToHand4",
                   "level": 4,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+10% Max Hit and -0.1s Attack Interval with Hand-to-Hand weapons. +20% Chance to ignore Slow, Stun, and Sleep while wearing nothing in the Platebody or Platelegs slots.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HandToHand"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HandToHand"
+                      },
+                      "modifiers": {
+                        "maxHit": 10,
+                        "flatAttackInterval": -100
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "EmptySlot",
+                        "slotIDs": [
+                          "melvorD:Platebody",
+                          "melvorD:Platelegs"
+                        ]
+                      },
+                      "effectIgnoreChance": [
+                        {
+                          "effectGroupID": "melvorD:Slow",
+                          "value": 20
+                        },
+                        {
+                          "effectGroupID": "melvorD:Stun",
+                          "value": 20
+                        },
+                        {
+                          "effectGroupID": "melvorD:Sleep",
+                          "value": 20
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "name": "HandToHand5",
                   "id": "HandToHand5",
                   "level": 5,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+100% HP Regen and -5s HP Regen Interval while wearing nothing in the Platebody or Platelegs slots.<br>Stuns you inflict with Hand-to-Hand weapons last 1 turn longer.<br>Enemy Global Evasion is decreased by 10% each time you inflict a Stun (stacks up to 3 times, lasts until end of fight).",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HandToHand"
+                        },
+                        "modifiers": {
+                          "stunDurationIncreaseChance": 100,
+                          "decreaseEnemyEvasionOnStun": 100
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HandToHand"
+                      },
+                      "modifiers": {
+                        "stunDurationIncreaseChance": 100,
+                        "decreaseEnemyEvasionOnStun": 100
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "EmptySlot",
+                        "slotIDs": [
+                          "melvorD:Platebody",
+                          "melvorD:Platelegs"
+                        ]
+                      },
+                      "flatRegenerationInterval": -500,
+                      "hitpointRegeneration": 100
+                    }
+                  ]
                 }
               ]
             },
             {
               "id": "Crossbows",
               "name": "Crossbows",
+              "flavorText": "Sacrifice speed and excitement for accuracy and ease. Elegant in their simplicity, a town of farmers could use these to ward off raiding golbins.",
+              "stupidFlavorText": "One shot, one kill.",
               "mat": [
                 "Crossbow"
               ],
@@ -4384,10 +5646,10 @@
               "mediaCol": "assets/filled_svgs/crossbows.svg",
               "type": "ranged",
               "isPerWepMod": true,
+              "specAttack3": "WTM:QuickReload",
               "wepModifiers": {
                 "modifiers": {
-                  "ammoPreservationChance": 30,
-                  "rangedStrengthBonusPer8Ranged": 2
+                  "rangedAccuracyRating": 10
                 }
               },
               "levels": [
@@ -4395,31 +5657,197 @@
                   "name": "Crossbows1",
                   "id": "Crossbows1",
                   "level": 1,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+10% Attack Interval Penalty but +40% Ranged Accuracy with Crossbows",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Crossbows"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Crossbows"
+                      },
+                      "modifiers": {
+                        "attackInterval": 10,
+                        "rangedAccuracyRating": 40
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Crossbows2",
                   "id": "Crossbows2",
                   "level": 2,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+20% Ammo Preservation Chance and your attack rolls with Crossbows are lucky (roll twice, take highest chance)",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Crossbows"
+                        },
+                        "modifiers": {
+                          "attackRolls": 1,
+                          "ammoPreservationChance": 20
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Crossbows"
+                      },
+                      "modifiers": {
+                        "attackRolls": 1,
+                        "ammoPreservationChance": 20
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Crossbows3",
                   "id": "Crossbows3",
                   "level": 3,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+10% Ranged Accuracy with Crossbows and gain the Quick Reload special attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Crossbows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1,
+                          "rangedAccuracyRating": 10
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Crossbows"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1,
+                        "rangedAccuracyRating": 10
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
                 },
                 {
                   "name": "Crossbows4",
                   "id": "Crossbows4",
                   "level": 4,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "Your first Crossbow attack against an Enemy can't miss and is a guaranteed critical hit.",
+                        "appliesWhen": "StartOfFight",
+                        "applyEffectWhenMerged": true,
+                        "effectID": "WTM:StraightShooter",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Crossbows"
+                        }
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
+                      "effectID": "WTM:StraightShooter",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Crossbows"
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Crossbows5",
                   "id": "Crossbows5",
                   "level": 5,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Crossbow Attack Interval Penalty reduced by 5% (from 10%), Combat Triangle Damage Modifier vs Melee increased by 15% (from 85%), and Ranged Accuracy Rating increased by 30% while Enemy HP is ≥90%.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Crossbows"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Crossbows"
+                      },
+                      "modifiers": {
+                        "rangedAttackInterval": -5
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Crossbows"
+                          },
+                          {
+                            "type": "Hitpoints",
+                            "character": "Enemy",
+                            "value": 90,
+                            "operator": ">="
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "rangedAccuracyRating": 30
+                      }
+                    },
+                    {
+                      "condition": {
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Crossbows"
+                          },
+                          {
+                            "type": "CombatType",
+                            "character": "Player",
+                            "targetAttackType": "melee",
+                            "thisAttackType": "ranged"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "rangedMaxHit": 15
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -4452,10 +5880,10 @@
               "mediaCol": "assets/filled_svgs/heavybows.svg",
               "type": "ranged",
               "isPerWepMod": true,
+              "specAttack3": "WTM:Barrage",
               "wepModifiers": {
                 "modifiers": {
-                  "critChance": 30,
-                  "accuracyRating": 60
+                  "rangedCritChance": 2.5
                 }
               },
               "levels": [
@@ -4463,31 +5891,222 @@
                   "name": "HeavyBows1",
                   "id": "HeavyBows1",
                   "level": 1,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+5% Crit Chance and +2 Flat Ranged Strength Bonus per 0.1s Attack Interval",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "modifiers": {
+                          "rangedCritChance": 5,
+                          "flatRangedStrengthBonusPerAttackInterval": 1
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "modifiers": {
+                        "rangedCritChance": 5,
+                        "flatRangedStrengthBonusPerAttackInterval": 1
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "HeavyBows2",
                   "id": "HeavyBows2",
                   "level": 2,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+1% Max Hit for every 1% of Enemy Resistance, +10% Damage Dealt to Bosses",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "modifiers": {
+                          "maxHitBasedOnTargetResistance": [
+                            {
+                              "damageTypeID": "melvorD:Normal",
+                              "value": 1
+                            }
+                          ],
+                          "damageDealtToBosses": 10
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "modifiers": {
+                        "maxHitBasedOnTargetResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 1
+                          }
+                        ],
+                        "damageDealtToBosses": 10
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "HeavyBows3",
                   "id": "HeavyBows3",
                   "level": 3,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+50% Critical Hit Multiplier and gain the Barrage special attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1,
+                          "critMultiplier": 50
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1,
+                        "critMultiplier": 50
+                      }
+                    }
+                  ],
+                  "changeFunc": "addSpecialAttack"
                 },
                 {
                   "name": "HeavyBows4",
                   "id": "HeavyBows4",
                   "level": 4,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "5% chance to apply 1 stack of Vulnerability on hit (+1% increased damage taken, max 25 stacks). While an Enemy has at least 1 stack of Vulnerability, they have -10% Flat Resistance.",
+                        "appliesWhen": "HitWithAttack",
+                        "effectID": "WTM:Vulnerability",
+                        "chance": 5,
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        }
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Vulnerability",
+                      "chance": 5,
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      }
+                    }
+                  ],
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:HeavyBows"
+                          },
+                          {
+                            "effectID": "WTM:Vulnerability",
+                            "character": "Enemy",
+                            "type": "CombatEffect"
+                          }
+                        ]
+                      },
+                      "enemyModifiers": {
+                        "flatResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": -10
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "HeavyBows5",
                   "id": "HeavyBows5",
                   "level": 5,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+33% of your Ranged Level added as Hidden Ranged Levels, +5% chance to ignore Enemy Resistance (increased to +10% against Bosses), and +50% Critical Hit Multiplier",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "modifiers": {
+                        "flatHiddenSkillLevelBasedOnLevels": [
+                          {
+                            "skillID": "melvorD:Ranged",
+                            "value": 33
+                          }
+                        ],
+                        "ignoreResistanceWhenAttackingChance": 5,
+                        "critMultiplier": 50
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:HeavyBows"
+                          },
+                          {
+                            "type": "FightingBoss",
+                            "character": "Player"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "ignoreResistanceWhenAttackingChance": 5
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -4510,10 +6129,11 @@
               "mediaCol": "assets/filled_svgs/lightbows.webp",
               "type": "ranged",
               "isPerWepMod": true,
+              "specAttack3": "WTM:Shadowshot",
               "wepModifiers": {
                 "modifiers": {
-                  "evasion": 30,
-                  "rangedAttackInterval": -15
+                  "evasion": 10,
+                  "rangedAttackInterval": -5
                 }
               },
               "levels": [
@@ -4521,31 +6141,234 @@
                   "name": "LightBows1",
                   "id": "LightBows1",
                   "level": 1,
-                  "modifiers": {}
+                  "shiny": false,
+                  "changeFunc": "addSpecialAttack",
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "-1% Max Hit per 1% Enemy Resistance, but +25% Evasion and -0.2s Attack Interval",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
+                      },
+                      "modifiers": {
+                        "maxHitBasedOnTargetResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": -1
+                          }
+                        ],
+                        "evasion": 25,
+                        "flatAttackInterval": -200
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "LightBows2",
                   "id": "LightBows2",
                   "level": 2,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "description": "Attacks have a 1% chance to inflict a random effect on the Enemy: Poison, Burn, Bleed (100%), Slow (20%, 2 turns), or Immobilize (can't attack, 2 turns). Enemy takes +25% DoT Damage for 3 turns after you Evade an Attack.",
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 1,
+                        "tableID": "WTM:RandomCondition",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        }
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 1,
+                      "tableID": "WTM:RandomCondition",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
+                      }
+                    },
+                    {
+                      "appliesWhen": "EvadedAttack",
+                      "chance": 100,
+                      "effectID": "WTM:DOTVulnerability",
+                      "targetOverride": "Target",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "LightBows3",
                   "id": "LightBows3",
                   "level": 3,
-                  "modifiers": {}
+                  "shiny": true,
+                  "changeFunc": "addSpecialAttack",
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Adds the Shadowshot special attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  }
                 },
                 {
                   "name": "LightBows4",
                   "id": "LightBows4",
                   "level": 4,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "When Enemy is afflicted by any DOT effect, you deal +10% Damage and Enemy deals -10%.<br>When Enemy is afflicted by any Debuff effect, you deal +10% Damage and Enemy deals -10%.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:LightBows"
+                          },
+                          {
+                            "type": "CombatEffectGroup",
+                            "groupID": "melvorD:DamageOverTime",
+                            "character": "Enemy"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "damageDealt": 10
+                      },
+                      "enemyModifiers": {
+                        "damageDealt": -10
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:LightBows"
+                          },
+                          {
+                            "type": "CombatEffectGroup",
+                            "groupID": "melvorD:Debuff",
+                            "character": "Enemy"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "damageDealt": 10
+                      },
+                      "enemyModifiers": {
+                        "damageDealt": -10
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "LightBows5",
                   "id": "LightBows5",
                   "level": 5,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "description": "When Hit by an Attack, 10% chance to Slink Into Shadows, gaining -0.2s Attack Interval, +40% Evasion, and +10% Flat Resistance for 3 turns. Your Evasion and Resistance are increased by 10% while the Enemy is afflicted by a DOT or Debuff effect (up to +20%).",
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 1,
+                        "tableID": "WTM:RandomCondition",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:LightBows"
+                          },
+                          {
+                            "type": "CombatEffectGroup",
+                            "groupID": "melvorD:DamageOverTime",
+                            "character": "Enemy"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "evasion": 10,
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 10
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:LightBows"
+                          },
+                          {
+                            "type": "CombatEffectGroup",
+                            "groupID": "melvorD:Debuff",
+                            "character": "Enemy"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "evasion": 10,
+                        "resistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 10
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -4570,8 +6393,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "attackInterval": -50,
-                  "cantSpecialAttack": 1
+                  "rangedAttackInterval": -5
                 }
               },
               "levels": [
@@ -4579,49 +6401,208 @@
                   "name": "Thrown1",
                   "id": "Thrown1",
                   "level": 1,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "description": "Can't use Special Attacks. Can't Preserve Ammo. +10% chance on hit to gain 1 stack of Alacrity (-1% Attack Interval, max 25 stacks)",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 10,
+                        "effectID": "WTM:Alacrity"
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "description": "+10% chance on hit to gain 1 stack of Alacrity (-1% Attack Interval, max 25 stacks)",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Thrown"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 10,
+                      "effectID": "WTM:Alacrity"
+                    }
+                  ],
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Thrown"
+                      },
+                      "isNegative": true,
+                      "modifiers": {
+                        "cantSpecialAttack": 1,
+                        "ammoPreservationChance": -999999
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Thrown2",
                   "id": "Thrown2",
                   "level": 2,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "-10% Ranged Attack Interval",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {
+                          "rangedAttackInterval": -10
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Thrown"
+                      },
+                      "modifiers": {
+                        "rangedAttackInterval": -10
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Thrown3",
                   "id": "Thrown3",
                   "level": 3,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "description": "You start each fight with a Volley of thrown weapons that lasts for 3 turns (-50% to Attack Interval, Max Hit, and Accuracy)",
+                    "combatEffects": [
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "appliesWhen": "StartOfFight",
+                        "applyEffectWhenMerged": true,
+                        "chance": 100,
+                        "effectID": "WTM:Volley"
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Thrown"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
+                      "chance": 100,
+                      "effectID": "WTM:Volley"
+                    }
+                  ]
                 },
                 {
                   "name": "Thrown4",
                   "id": "Thrown4",
                   "level": 4,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "During your Volley, the Enemy is Confused (+2% of remaining HP taken as damage on a successful attack (once per turn, capped at 10K damage)).",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Thrown"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:Volley"
+                          }
+                        ]
+                      },
+                      "enemyModifiers": {
+                        "currentHPDamageTakenOnAttack": 2
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Thrown5",
                   "id": "Thrown5",
                   "level": 5,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "During your Volley, +25% Ranged Max Hit and Ranged Accuracy Rating, and the Enemy's attacks are unlucky (they roll twice and take the lowest number).",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Thrown"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:Volley"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "rangedAccuracyRating": 25,
+                        "rangedMaxHit": 25
+                      },
+                      "enemyModifiers": {
+                        "attackRolls": -1
+                      }
+                    }
+                  ]
                 }
               ]
             },
             {
-              "id": "Staves",
-              "name": "Staves",
+              "id": "StavesWands",
+              "name": "Staves & Wands",
               "mat": [
                 "Staff",
                 "Battlestaff",
-                "Staff_of"
+                "Staff_of",
+                "Imbued",
+                "Wand"
               ],
               "kind": "magic",
               "uniq": [
                 "Basic_Staff1",
-                "Fire_Imbued_Wand1",
-                "Water_Imbued_Wand1",
-                "Earth_Imbued_Wand1",
-                "Air_Imbued_Wand1",
                 "Blazing_Shadow_Staff3",
                 "Blight_Burst_Staff2",
                 "Blighted_Staff3",
@@ -4637,61 +6618,7 @@
                 "Natures_Call_Staff2",
                 "Natures_Wrath_Staff3",
                 "Rotten_Staff3",
-                "Water_Pulse_Staff3"
-              ],
-              "media": "assets/staves.svg",
-              "mediaAlt": "assets/black_filled_svgs/staves.svg",
-              "mediaCol": "assets/filled_svgs/staves.svg",
-              "type": "magic",
-              "isPerWepMod": true,
-              "wepModifiers": {
-                "modifiers": {
-                  "endOfTurnEvasion2": 100,
-                  "onHitSlowMagnitude": 15
-                }
-              },
-              "levels": [
-                {
-                  "name": "Staves1",
-                  "id": "Staves1",
-                  "level": 1,
-                  "modifiers": {}
-                },
-                {
-                  "name": "Staves2",
-                  "id": "Staves2",
-                  "level": 2,
-                  "modifiers": {}
-                },
-                {
-                  "name": "Staves3",
-                  "id": "Staves3",
-                  "level": 3,
-                  "modifiers": {}
-                },
-                {
-                  "name": "Staves4",
-                  "id": "Staves4",
-                  "level": 4,
-                  "modifiers": {}
-                },
-                {
-                  "name": "Staves5",
-                  "id": "Staves5",
-                  "level": 5,
-                  "modifiers": {}
-                }
-              ]
-            },
-            {
-              "id": "Wands",
-              "name": "Wands",
-              "mat": [
-                "Imbued",
-                "Wand"
-              ],
-              "kind": "magic",
-              "uniq": [
+                "Water_Pulse_Staff3",
                 "Foresight_Wand3",
                 "Ocean_Song3",
                 "Shadow_Wand3",
@@ -4702,47 +6629,620 @@
                 "Voidfire_Cascade_Wand3",
                 "Witherbind_Wand3"
               ],
-              "media": "assets/wands.svg",
-              "mediaAlt": "assets/black_filled_svgs/wands.svg",
-              "mediaCol": "assets/filled_svgs/wands.svg",
+              "media": "assets/staves.svg",
+              "mediaAlt": "assets/black_filled_svgs/staves.svg",
+              "mediaCol": "assets/filled_svgs/staves.svg",
               "type": "magic",
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {
-                  "runePreservationChance": 40,
-                  "magicDamageBonus": 20
-                }
+                "modifiers": {}
               },
               "levels": [
                 {
-                  "name": "Wands1",
-                  "id": "Wands1",
+                  "name": "Staves1",
+                  "id": "StavesWands1",
                   "level": 1,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "description": "Attune to an element at the Start of the Fight. The element's spells gain 25% Max Hit and you have a 10% chance to apply an effect:<br>Air: On Evade, Daze, Can't Special Attack or Evade, Enemy, 3 turns | Water: On Summon Attack, Heal, 150% of Max HP over 20s, Self | Earth: On Being Hit, Fortified, +50% of Current DR added as DR, Self, 3 turns | Fire: On Hit, Burn, Enemy",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:StavesWands"
+                        },
+                        "appliesWhen": "StartOfFight",
+                        "applyEffectWhenMerged": true,
+                        "tableID": "WTM:RandomAttunement",
+                        "chance": 100
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StavesWands"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
+                      "tableID": "WTM:ElementalAttunement",
+                      "chance": 100
+                    }
+                  ]
                 },
                 {
-                  "name": "Wands2",
-                  "id": "Wands2",
+                  "name": "StavesWands2",
+                  "id": "StavesWands2",
                   "level": 2,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "description": "Gain bonuses while attuned to an element.<br>Air: -15% Attack Interval which decays on hit and lasts 3 turns | Water: Heal for 5% of your Current HP every 2 turns | Earth: +5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack | Fire: Enemy takes +15% Damage from Burn",
+                        "condition": {
+                          "type": "Every",
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:StavesWands"
+                            },
+                            {
+                              "type": "CombatEffect",
+                              "character": "Player",
+                              "effectID": "WTM:AttunementAir"
+                            }
+                          ]
+                        },
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:ZephyrSpeed",
+                        "applyEffectWhenMerged": true
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "description": "Air",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementAir"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:ZephyrSpeed",
+                      "applyEffectWhenMerged": true
+                    },
+                    {
+                      "description": "Water",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementWater"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "PostFirstAttack",
+                      "effectID": "melvorD:EndOfTurnCurrentHealing",
+                      "initialParams": [
+                        {
+                          "name": "XTurns",
+                          "value": 2
+                        },
+                        {
+                          "name": "percent",
+                          "value": 5
+                        }
+                      ]
+                    },
+                    {
+                      "description": "Earth",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementEarth"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitByAttack",
+                      "chance": 10,
+                      "effectID": "melvorD:Bleed100"
+                    }
+                  ],
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementEarth"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "reflectDamage": 5
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementFire"
+                          }
+                        ]
+                      },
+                      "enemyModifiers": {
+                        "burnDOTDamageTaken": 15
+                      }
+                    }
+                  ]
                 },
                 {
-                  "name": "Wands3",
-                  "id": "Wands3",
+                  "name": "StavesWands3",
+                  "id": "StavesWands3",
                   "level": 3,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "description": "Gain more attunement bonuses:<br>Air: On Crit, gain 1 stack of Concentration and 1 stack of Impact | Water: On Hit, apply 1 stack of Vulnerability | Earth: At the Start of the Fight, become Steadfast for 3 turns | Fire: At the Start of the Fight, inflict Burn on the Enemy<br>Attuning to an element also surrounds you in a protective Aura that has effects when Hit by an Attack for 10 turns.",
+                        "condition": {
+                          "type": "Every",
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:StavesWands"
+                            },
+                            {
+                              "type": "CombatEffect",
+                              "character": "Player",
+                              "effectID": "WTM:AttunementAir"
+                            }
+                          ]
+                        },
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:AuraAir"
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "description": "Air",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementAir"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:AuraAir"
+                    },
+                    {
+                      "description": "Air",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementAir"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Concentration",
+                      "targetOverride": "Self"
+                    },
+                    {
+                      "description": "Air",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementAir"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "CritWithAttack",
+                      "effectID": "WTM:Impact",
+                      "targetOverride": "Self"
+                    },
+                    {
+                      "description": "Water",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementWater"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:AuraWater"
+                    },
+                    {
+                      "description": "Water",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementWater"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "effectID": "WTM:Vulnerability",
+                      "targetOverride": "Target"
+                    },
+                    {
+                      "description": "Earth",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementEarth"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:AuraEarth"
+                    },
+                    {
+                      "description": "Earth",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementEarth"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Steadfast",
+                      "applyEffectWhenMerged": true
+                    },
+                    {
+                      "description": "Fire",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementFire"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:AuraFire",
+                      "applyEffectWhenMerged": true
+                    },
+                    {
+                      "description": "Fire",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementFire"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "melvorD:Burn",
+                      "targetOverride": "Target"
+                    }
+                  ]
                 },
                 {
-                  "name": "Wands4",
-                  "id": "Wands4",
+                  "name": "StavesWands4",
+                  "id": "StavesWands4",
                   "level": 4,
-                  "modifiers": {}
+                  "shiny": false,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+20% Crit Multiplier, +5% of Max HP added as Regen, +5% Flat Resistance, +10% Dmg Dealt to Burning Enemies",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:StavesWands"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:StavesWands"
+                      },
+                      "modifiers": {
+                        "critMultiplier": 20,
+                        "hPRegenBasedOnMaxHP": 5,
+                        "flatResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 5
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Enemy",
+                            "effectID": "melvorD:Burn"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "magicMaxHit": 10
+                      }
+                    }
+                  ]
                 },
                 {
-                  "name": "Wands5",
-                  "id": "Wands5",
+                  "name": "StavesWands5",
+                  "id": "StavesWands5",
                   "level": 5,
-                  "modifiers": {}
+                  "shiny": true,
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Gain powerful bonuses when attuned to an element:<br>Air: +20% Dmg Dealt when Enemy HP is ≤50% | Water: +10% Dmg Dealt When Player HP is ≥50% and Heal for 10% Max HP on Evade | Earth: +20% Chance to Ignore Fear, Sleep, Slow, and Stun, and +10% Dmg Dealt to Bleeding Targets | Fire: 10% Chance on Hit to apply Burn Vulnerability to the Enemy (x2 Dmg Taken from Burn)",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:StavesWands"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "modifiers": {
+                        "damageDealt": 20
+                      },
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementAir"
+                          },
+                          {
+                            "character": "Enemy",
+                            "type": "Hitpoints",
+                            "operator": "<=",
+                            "value": 50
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "modifiers": {
+                        "damageDealt": 10
+                      },
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementWater"
+                          },
+                          {
+                            "character": "Player",
+                            "type": "Hitpoints",
+                            "operator": ">=",
+                            "value": 50
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "modifiers": {
+                        "effectIgnoreChance": [
+                          {
+                            "effectGroupID": "melvorD:Stun",
+                            "value": 20
+                          },
+                          {
+                            "effectGroupID": "melvorD:Fear",
+                            "value": 20
+                          },
+                          {
+                            "effectGroupID": "melvorD:Sleep",
+                            "value": 20
+                          },
+                          {
+                            "effectGroupID": "melvorD:Slow",
+                            "value": 20
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementEarth"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "modifiers": {
+                        "damageDealt": 10
+                      },
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementEarth"
+                          },
+                          {
+                            "character": "Enemy",
+                            "groupID": "melvorD:BleedDOT",
+                            "type": "CombatEffectGroup"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementWater"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "EvadedAttack",
+                      "effectID": "WTM:WaterHeal"
+                    },
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:StavesWands"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementFire"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "HitWithFirstAttack",
+                      "effectID": "WTM:BurnVulnerability",
+                      "chance": 10
+                    }
+                  ]
                 }
               ]
             },
@@ -4756,6 +7256,8 @@
                 "Almighty_Lute4",
                 "Ancient_Scythe4",
                 "Archaeologists_Whip5",
+                "Barbarian_Gloves3",
+                "Bobs_Gloves4",
                 "Bobs_Lost_Rake4",
                 "Bobs_Rake5",
                 "Chefs_Spoon4",
