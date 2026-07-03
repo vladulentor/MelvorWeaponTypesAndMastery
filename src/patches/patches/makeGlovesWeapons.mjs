@@ -10,7 +10,8 @@ const gloves = [
             [{ key: 'attackSpeed', value: 2200 }], modifiers: [{
                 "seedDropConversionChance": 50,
                 "foodPreservationChance": 25
-            }]
+            }
+        ]
     },
     {
         item: "melvorD:Bronze_Gloves", attackType: "melee", wepStats:
@@ -38,7 +39,7 @@ const gloves = [
                 "autoEatEfficiency": 30,
                 "hitpointRegeneration": 100
             }
-            ]
+        ]
     },
     {
         item: "melvorF:Elementalist_Gloves", attackType: "magic", wepStats:
@@ -84,7 +85,8 @@ const gloves = [
                 ],
                 "damageTakenAddedAsPrayerPoints": 0.1
 
-            }]
+            }
+        ]
     },
     {
         item: "melvorAoD:Bulky_Gloves", attackType: "melee", wepStats:
@@ -154,7 +156,8 @@ const gloves = [
                 "WTM:maxHitBasedOnMissingHitpoints": 1,
                 "WTM:critChanceBasedOnMissingHitpoints": 1
 
-            }]
+            }
+        ]
     },
     {
         item: "melvorTotH:Vorloran_Protector_Gloves", attackType: "melee", wepStats:
@@ -172,8 +175,9 @@ const gloves = [
                     }
                 ]
 
-            }],
-        enemyModifiers: [{
+            },
+        ],
+        enemyModifiers: {
             "resistance": [
                 {
                     "damageTypeID": "melvorD:Normal",
@@ -181,7 +185,7 @@ const gloves = [
                 }
             ]
         }
-        ]
+        
     },
     {
         item: "melvorTotH:Vorloran_Devastator_Gloves", attackType: "melee", wepStats:
@@ -199,16 +203,16 @@ const gloves = [
                     }
                 ]
 
-            }],
-        enemyModifiers: [{
+            },
+        ],
+        enemyModifiers: {
             "resistance": [
                 {
                     "damageTypeID": "melvorD:Normal",
                     "value": -4
                 }
             ]
-        }
-        ],
+        },
         combatEffects: [
             {
                 "appliesWhen": "HitWithAttack",
@@ -233,8 +237,9 @@ const gloves = [
                     }
                 ]
 
-            }],
-        enemyModifiers: [{
+            },
+        ],
+        enemyModifiers: {
             "resistance": [
                 {
                     "damageTypeID": "melvorD:Normal",
@@ -242,7 +247,7 @@ const gloves = [
                 }
             ]
         }
-        ],
+        ,
         combatEffects: [
             {
                 "appliesWhen": "HitWithAttack",
@@ -275,18 +280,49 @@ export function makeGlovesWeapons() {
     gloves.forEach(upgradeset => {
         const item = game.items.getObjectByID(upgradeset.item);
         if (item == undefined) return;
-        item.attackType = upgradeset.attackType;
         item.damageType = game.normalDamage;
         item.equipRequirements.push(reqD);
         item.validSlots.unshift(wepSlot);
         item.equipRequirements.level = 5;
         item.SpecWeaponStats = [];
         upgradeset.wepStats.forEach(wepStat => {
-            item.SpecWeaponStats.push(wepStat)
             if (wepStat.key == 'attackSpeed')
                 item.attackSpeed = wepStat.value / 1000;
+            if (wepStat.key == 'resistance')
+                wepStat.damageType = game.damageTypes.getObjectByID("melvorD:Normal")
+
+            item.SpecWeaponStats.push(wepStat)
+
+
+
         })
+        if (upgradeset.specialAttacks) // All of our specialAttacks are 1 element so let's hope that they stay like that
+        {
+            const atk = game.specialAttacks.getObjectByID(upgradeset.specialAttacks[0]);
+            if (atk)
+                item.specialAttacks = [atk];
+            if (upgradeset.overrideSpecialChances)
+                item.overrideSpecialChances = upgradeset.overrideSpecialChances
+        }
+        item.SpecWeaponMods = new StatObject(upgradeset, game, item._localID);
+
     })
+    // Too lazy for smarti nitialization so we just flush the regqueue after we create it, sorry not sorryZ
+    for (let i = 0; i < game.softDataRegQueue.length; i++) {
+        const { data, object, where } = game.softDataRegQueue[i];
+        try {
+            object.registerSoftDependencies(data, game);
+        }
+        catch (e) {
+            if (where !== undefined) {
+                throw new Error(`Error registering soft data dependency in ${where}: ${e}`);
+            }
+            throw e;
+        }
+    }
+    this.softDataRegQueue = [];
+
+    game.combat.computeAllStats();
 
 }
 
@@ -296,7 +332,7 @@ export function birthOfMonk2(ctx) { // Wanna see a fucking botch
         const item = game.items.getObjectByID(upgradeset.item);
         if (item == undefined) return;
         item.occupiesSlots.push(gloveSlot);
-
+        item.attackType = upgradeset.attackType;
     })
     ctx.patch(EquipmentItem, 'fitsInSlot').after(function (ret, slotID) {
         if (!ret && slotID == "melvorD:Weapon" && gloves.some(glove => glove.item == this.id))

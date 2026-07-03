@@ -51,7 +51,7 @@ export class WeaponMastery extends RealmedObject {
     constructor(namespace, data, game) {
         let stupid = false;
         try {
-           stupid = ctx.settings.section('──⚔──').get('stupid-mode');
+            stupid = ctx.settings.section('──⚔──').get('stupid-mode');
         }
         catch (e) { }
         super(namespace, data, game);
@@ -88,11 +88,10 @@ export class WeaponMastery extends RealmedObject {
         this.Wtype = data.type;
         this.activeWeapon = undefined
         this.game = game;
-        if(data.extraLangStrings){
-            if(data.extraLangStrings[setLang])
-            {addRielkLangStrings(data.extraLangStrings[setLang])}
+        if (data.extraLangStrings) {
+            if (data.extraLangStrings[setLang]) { addRielkLangStrings(data.extraLangStrings[setLang]) }
         }
-        if(data.specAttack3) this.specAttack3 = game.specialAttacks.getObjectByID(data.specAttack3);
+        if (data.specAttack3) this.specAttack3 = game.specialAttacks.getObjectByID(data.specAttack3);
         this.isPerWepMod = data.isPerWepMod ?? false;
         if (this.isPerWepMod) {
             this.wepProvidedStats = new StatProvider();
@@ -280,6 +279,13 @@ export class WeaponMastery extends RealmedObject {
     goUpToLv(lv) {
         this._curLvl = lv;
         this.computeProvidedStats(true);
+    }
+    permanentMaxMeOut() {
+        this.allWeapons.forEach(weapon => {
+            game.stats.Items.add(weapon, ItemStats.TotalAttacks, 100000);
+        });
+        this.computeProvidedStats(true);
+
     }
 }
 

@@ -12,12 +12,8 @@ export function birthOfMonk({ patch }) {
     })
     patch(Player, 'computeAttackType').replace(function (_) {
         const item = this.equipment.getItemInSlot("melvorD:Weapon" /* EquipmentSlotIDs.Weapon */);
-        if (item instanceof WeaponItem) {
+        if (item instanceof WeaponItem || item instanceof EquipmentItem ) {
             this.attackType = item.attackType;
-        }
-        else if (item instanceof EquipmentItem) {
-            this.attackType = 'melee';
-
         }
         else {
             throw new Error(`Equipped weapon ${item.name} is not a weapon or equipment!`);
