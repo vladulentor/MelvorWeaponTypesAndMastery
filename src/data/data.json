@@ -877,6 +877,7 @@
         "templateID": "melvorD:StaticSelfCountingModifier",
         "name": "Steadfast",
         "media": "assets/combat/status/steadfast.png",
+        "target": "Target",
         "parameters": [
           {
             "name": "turns",
@@ -920,6 +921,7 @@
         "templateID": "melvorD:StaticSelfCountingModifier",
         "name": "Lightning Aura",
         "media": "assets/combat/status/auraair.png",
+        "target":"Target",
         "parameters": [
           {
             "name": "turns",
@@ -952,6 +954,8 @@
       {
         "id": "AuraWater",
         "templateID": "melvorD:StaticSelfCountingModifier",
+                "target":"Target",
+
         "name": "Chilly Aura",
         "media": "assets/combat/status/aurawater.png",
         "parameters": [
@@ -998,6 +1002,8 @@
       {
         "id": "AuraEarth",
         "templateID": "melvorD:StaticSelfCountingModifier",
+                "target":"Target",
+
         "name": "Earthen Aura",
         "media": "assets/combat/status/auraearth.png",
         "parameters": [
@@ -1229,6 +1235,7 @@
       {
         "id": "Volley",
         "templateID": "melvorD:StaticSelfCountingModifier",
+        
         "name": "Volley",
         "media": "assets/combat/status/crit_increase.png",
         "target": "Self",
@@ -1978,6 +1985,8 @@
         "templateID": "WTM:SelfCountingReductiveOnHit",
         "target": "Self",
         "parameters": [
+          {"name": "initialStacks",
+        "initialValue": 1},
           {
             "name": "turns",
             "initialValue": 3
@@ -2240,7 +2249,9 @@
           {
             "name": "maxStacks",
             "initialValue": 25
-          }
+          },
+          {"name": "initialStacks",
+        "initialValue": 1}
         ],
         "statGroups": [
           {
@@ -2669,7 +2680,6 @@
           }
         ]
       },
-      
       {
         "id": "addSpellBarrier",
         "allowedScopes": [
@@ -6085,7 +6095,10 @@
                             "value": 33
                           }
                         ],
-                        "ignoreResistanceWhenAttackingChance": 5,
+                        "ignoreResistanceWhenAttackingChance": [  {
+                              "damageTypeID": "melvorD:Normal",
+                              "value": 5
+                            }],
                         "critMultiplier": 50
                       }
                     },
@@ -6104,7 +6117,10 @@
                         ]
                       },
                       "modifiers": {
-                        "ignoreResistanceWhenAttackingChance": 5
+                        "ignoreResistanceWhenAttackingChance": [ {
+                              "damageTypeID": "melvorD:Normal",
+                              "value": 5
+                            }]
                       }
                     }
                   ]
@@ -6592,14 +6608,12 @@
               ]
             },
             {
-              "id": "StavesWands",
-              "name": "Staves & Wands",
+              "id": "Staves",
+              "name": "Staves",
               "mat": [
                 "Staff",
                 "Battlestaff",
-                "Staff_of",
-                "Imbued",
-                "Wand"
+                "Staff_of"
               ],
               "kind": "magic",
               "uniq": [
@@ -6619,16 +6633,7 @@
                 "Natures_Call_Staff2",
                 "Natures_Wrath_Staff3",
                 "Rotten_Staff3",
-                "Water_Pulse_Staff3",
-                "Foresight_Wand3",
-                "Ocean_Song3",
-                "Shadow_Wand3",
-                "Silent_Tangle_Wand3",
-                "Slicing_Maelstrom_Wand3",
-                "Soul_Taker_Wand2",
-                "Toxic_Fumes_Wand1",
-                "Voidfire_Cascade_Wand3",
-                "Witherbind_Wand3"
+                "Water_Pulse_Staff3"
               ],
               "media": "assets/staves.svg",
               "mediaAlt": "assets/black_filled_svgs/staves.svg",
@@ -6641,7 +6646,7 @@
               "levels": [
                 {
                   "name": "Staves1",
-                  "id": "StavesWands1",
+                  "id": "Staves1",
                   "level": 1,
                   "shiny": false,
                   "uiMods": {
@@ -6650,7 +6655,7 @@
                         "description": "Attune to an element at the Start of the Fight. The element's spells gain 25% Max Hit and you have a 10% chance to apply an effect:<br>Air: On Evade, Daze, Can't Special Attack or Evade, Enemy, 3 turns | Water: On Summon Attack, Heal, 150% of Max HP over 20s, Self | Earth: On Being Hit, Fortified, +50% of Current DR added as DR, Self, 3 turns | Fire: On Hit, Burn, Enemy",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:StavesWands"
+                          "weaponType": "WTM:Staves"
                         },
                         "appliesWhen": "StartOfFight",
                         "applyEffectWhenMerged": true,
@@ -6658,23 +6663,11 @@
                         "chance": 100
                       }
                     ]
-                  },
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:StavesWands"
-                      },
-                      "appliesWhen": "StartOfFight",
-                      "applyEffectWhenMerged": true,
-                      "tableID": "WTM:ElementalAttunement",
-                      "chance": 100
-                    }
-                  ]
+                  }
                 },
                 {
-                  "name": "StavesWands2",
-                  "id": "StavesWands2",
+                  "name": "Staves2",
+                  "id": "Staves2",
                   "level": 2,
                   "shiny": false,
                   "uiMods": {
@@ -6686,7 +6679,7 @@
                           "conditions": [
                             {
                               "type": "WeaponType",
-                              "weaponType": "WTM:StavesWands"
+                              "weaponType": "WTM:Staves"
                             },
                             {
                               "type": "CombatEffect",
@@ -6709,7 +6702,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6729,7 +6722,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6758,7 +6751,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6779,7 +6772,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6798,7 +6791,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6814,8 +6807,8 @@
                   ]
                 },
                 {
-                  "name": "StavesWands3",
-                  "id": "StavesWands3",
+                  "name": "Staves3",
+                  "id": "Staves3",
                   "level": 3,
                   "shiny": true,
                   "uiMods": {
@@ -6827,7 +6820,7 @@
                           "conditions": [
                             {
                               "type": "WeaponType",
-                              "weaponType": "WTM:StavesWands"
+                              "weaponType": "WTM:Staves"
                             },
                             {
                               "type": "CombatEffect",
@@ -6849,7 +6842,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6868,7 +6861,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6888,7 +6881,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6908,7 +6901,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6927,7 +6920,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6947,7 +6940,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6966,7 +6959,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -6986,7 +6979,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7006,7 +6999,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7022,8 +7015,8 @@
                   ]
                 },
                 {
-                  "name": "StavesWands4",
-                  "id": "StavesWands4",
+                  "name": "Staves4",
+                  "id": "Staves4",
                   "level": 4,
                   "shiny": false,
                   "uiMods": {
@@ -7032,7 +7025,7 @@
                         "description": "+20% Crit Multiplier, +5% of Max HP added as Regen, +5% Flat Resistance, +10% Dmg Dealt to Burning Enemies",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:StavesWands"
+                          "weaponType": "WTM:Staves"
                         },
                         "modifiers": {}
                       }
@@ -7042,7 +7035,7 @@
                     {
                       "condition": {
                         "type": "WeaponType",
-                        "weaponType": "WTM:StavesWands"
+                        "weaponType": "WTM:Staves"
                       },
                       "modifiers": {
                         "critMultiplier": 20,
@@ -7061,7 +7054,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7077,8 +7070,8 @@
                   ]
                 },
                 {
-                  "name": "StavesWands5",
-                  "id": "StavesWands5",
+                  "name": "Staves5",
+                  "id": "Staves5",
                   "level": 5,
                   "shiny": true,
                   "uiMods": {
@@ -7087,7 +7080,7 @@
                         "description": "Gain powerful bonuses when attuned to an element:<br>Air: +20% Dmg Dealt when Enemy HP is ≤50% | Water: +10% Dmg Dealt When Player HP is ≥50% and Heal for 10% Max HP on Evade | Earth: +20% Chance to Ignore Fear, Sleep, Slow, and Stun, and +10% Dmg Dealt to Bleeding Targets | Fire: 10% Chance on Hit to apply Burn Vulnerability to the Enemy (x2 Dmg Taken from Burn)",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:StavesWands"
+                          "weaponType": "WTM:Staves"
                         },
                         "modifiers": {}
                       }
@@ -7103,7 +7096,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7128,7 +7121,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7170,7 +7163,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7189,7 +7182,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7212,7 +7205,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7230,7 +7223,7 @@
                         "conditions": [
                           {
                             "type": "WeaponType",
-                            "weaponType": "WTM:StavesWands"
+                            "weaponType": "WTM:Staves"
                           },
                           {
                             "type": "CombatEffect",
@@ -7244,6 +7237,69 @@
                       "chance": 10
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "id": "Wands",
+              "name": "Wands",
+              "mat": [
+                "Imbued",
+                "Wand"
+              ],
+              "kind": "magic",
+              "uniq": [
+                "Foresight_Wand3",
+                "Ocean_Song3",
+                "Shadow_Wand3",
+                "Silent_Tangle_Wand3",
+                "Slicing_Maelstrom_Wand3",
+                "Soul_Taker_Wand2",
+                "Toxic_Fumes_Wand1",
+                "Voidfire_Cascade_Wand3",
+                "Witherbind_Wand3"
+              ],
+              "media": "assets/wands.svg",
+              "mediaAlt": "assets/black_filled_svgs/wands.svg",
+              "mediaCol": "assets/filled_svgs/wands.svg",
+              "type": "magic",
+              "isPerWepMod": true,
+              "wepModifiers": {
+                "modifiers": {
+                  "runePreservationChance": 40,
+                  "magicDamageBonus": 20
+                }
+              },
+              "levels": [
+                {
+                  "name": "Wands1",
+                  "id": "Wands1",
+                  "level": 1,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Wands2",
+                  "id": "Wands2",
+                  "level": 2,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Wands3",
+                  "id": "Wands3",
+                  "level": 3,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Wands4",
+                  "id": "Wands4",
+                  "level": 4,
+                  "modifiers": {}
+                },
+                {
+                  "name": "Wands5",
+                  "id": "Wands5",
+                  "level": 5,
+                  "modifiers": {}
                 }
               ]
             },
