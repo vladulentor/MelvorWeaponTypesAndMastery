@@ -133,6 +133,7 @@ function addClassToItem(item, type, bonuniq = 1) {
     if (item.weaponType !== undefined) { console.error("Hey you DUNDERHEAD I'm the big red text telling you you tried to set an item to an item that already had one. Yeah this one: ", item.name); return; }
     item.weaponType = type;
     item.uniqueness = bonuniq;
+    if(item.equipmentStats) //annoying ass defensive coding
     item.attackSpeed = item.equipmentStats[0].key === 'attackSpeed' ? item.equipmentStats[0].value / 1000 : 4;
 
     type.allWeapons.push(item);

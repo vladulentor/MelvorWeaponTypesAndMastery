@@ -3070,6 +3070,7 @@
                     },
                     "conditionalModifiers": [
                       {
+                        "descriptionLang":"WTM_DESC_THRUSTING4",
                         "description": "If your Shield slot is empty, triple the above bonuses and gain +10% chance to pierce Enemy Resistance.",
                         "condition": {
                           "type": "WeaponType",
@@ -3216,7 +3217,8 @@
             {
               "id": "Greatswords",
               "name": "Greatswords",
-              "flavorText": "Ist big, ja?",
+              "flavorText":"Simply brutal and brutally simple implements",
+              "stupidFlavorText": "Ist big, ja?",
               "mat": [
                 "2H_Sword"
               ],
@@ -3715,7 +3717,7 @@
             {
               "id": "CurvedSwords",
               "name": "Curved Swords",
-              "flavorText": "Curved swords. Curved! Swords!",
+              "stupidFlavorText": "Curved swords. Curved! Swords!",
               "specAttack3": "WTM:MountedStrike",
               "mat": [
                 "Scimitar"
@@ -3916,12 +3918,13 @@
               "media": "assets/daggers.svg",
               "mediaAlt": "assets/black_filled_svgs/daggers.svg",
               "mediaCol": "assets/filled_svgs/daggers.svg",
+              "stupidName":"Asshole Sword",
               "type": "melee",
               "specAttack3": "WTM:DeathApproaches",
               "mat": [
                 "Dagger"
               ],
-              "flavorText": "Famous for its high kill-per-square-inch value",
+              "stupidFlavorText": "For thugs, thieves, and skullduggers (read: assholes)",
               "kind": "melee",
               "uniq": [
                 "Black_Dagger3",
@@ -4331,7 +4334,7 @@
               ],
               "specAttack3": "WTM:Bloodlust",
               "kind": "melee",
-              "flavorText": "Good for turning one full-width asshole into two half-width assholes",
+              "stupidFlavorText": "Good for turning one full-width asshole into two half-width assholes",
               "uniq": [
                 "Big_Ron2",
                 "Black_Battleaxe3",
@@ -4999,8 +5002,9 @@
             },
             {
               "id": "Blunts",
+              "name":"Bludgeoning Weapons",
               "specAttack3": "WTM:ConcussiveSmash",
-              "name": "Blunts",
+              "stupidName": "Blunts",
               "mat": [
                 "2H_Hammer",
                 "Hammer"
@@ -5317,9 +5321,9 @@
             {
               "id": "HandToHand",
               "name": "Hand-to-Hand",
-              "flavorText": "Move fast, strike hard, and evade whilst wearing no armour.",
               "stupidName": "Fisting",
-              "stupidFlavorText": "Before there were weapons, there were fists.",
+              "stupidFlavorText": "Before there were weapons, there were fists",
+                            "media": "assets/handtohand.svg",
               "mediaAlt": "assets/black_filled_svgs/handtohand.svg",
               "mediaCol": "assets/filled_svgs/handtohand.svg",
               "mat": [
@@ -5631,8 +5635,7 @@
             {
               "id": "Crossbows",
               "name": "Crossbows",
-              "flavorText": "Sacrifice speed and excitement for accuracy and ease. Elegant in their simplicity, a town of farmers could use these to ward off raiding golbins.",
-              "stupidFlavorText": "One shot, one kill.",
+              "stupidFlavorText": "Good for turning goblins into wall-mounted coat-hangers",
               "mat": [
                 "Crossbow"
               ],
@@ -5869,6 +5872,7 @@
                 "Longbow"
               ],
               "kind": "ranged",
+              "stupidFlavorText":"Great for roleplaying as a ballista draw-pull",
               "uniq": [
                 "Ancient_Hunting_Bow3",
                 "Ancient_Longbow3",
@@ -6142,6 +6146,7 @@
                 "Poisoned_Shortbow3"
               ],
               "media": "assets/lightbows.webp",
+              "stupidFlavorText":"If a lil' gobbo picked up a lightbow would it be a heavy bow for him? 🤔 emoji",
               "mediaAlt": "assets/black_filled_svgs/lightbows.svg",
               "mediaCol": "assets/filled_svgs/lightbows.webp",
               "type": "ranged",
@@ -6392,6 +6397,7 @@
             {
               "id": "Thrown",
               "name": "Thrown",
+              "stupidName":"Misc. Shit",
               "mat": [
                 "Throwing_Knife",
                 "Javelin"
@@ -6403,6 +6409,7 @@
                 "Ancient_Javelin3",
                 "Slingshot2"
               ],
+              "stupidFlavorText":"Random bullshit GO! 🪨🪓👟🥔🐓🛞🔨",
               "media": "assets/thrown.svg",
               "mediaAlt": "assets/black_filled_svgs/thrown.svg",
               "mediaCol": "assets/filled_svgs/thrown.svg",
@@ -7306,6 +7313,8 @@
             {
               "id": "Special",
               "name": "Special",
+              "stupidName":"Torture",
+              "stupidFlavorText":"If you're wondering why this exists: yes, it's because we hate you",
               "uniq": [
                 "Abyssal_Hourglass_Inverted4",
                 "Abyssal_Hourglass_Upright4",
@@ -7328,9 +7337,8 @@
                 "Old_Wooden_Ladle5",
                 "Potion_Stirrer4",
                 "Silentsnap_Crab_Claw3",
-                "Sturdy_Fancy_Quill4",
-                "Void_Vortex_Whip3"
-              ],
+                "Sturdy_Fancy_Quill4"
+                ],
               "media": "assets/special.svg",
               "mediaAlt": "assets/black_filled_svgs/special.svg",
               "mediaCol": "assets/filled_svgs/special.svg",

@@ -4,6 +4,17 @@ const ctx = mod.getContext(import.meta);
 const { getRielkLangString, templateRielkLangString, addRielkLangStrings } = await ctx.loadModule('src/language/translationManager.mjs');
 const { EffectRegistry } = await ctx.loadModule('src/patches/patchRegistry.mjs');
 
+
+const noXP = { name: getRielkLangString("WTM_UNIQ_No_XP"), color: "#af0000", width: '0%' };
+const stock = { name: getRielkLangString("WTM_UNIQ_Stock"), color: "#2dd432", width: '40%' };
+const unusual = { name: getRielkLangString("WTM_UNIQ_Unusual"), color: "#3a9adf", width: '60%' };
+const distinct = { name: getRielkLangString("WTM_UNIQ_Distinct"), color: "#d33290", width: '80%' };
+const exotic = { name: getRielkLangString("WTM_UNIQ_Exotic"), color: "#ffaf02", width: '90%' };
+const exoticpl = { name: getRielkLangString("WTM_UNIQ_Exotic+"), color: "#ffaf02", width: '90%' };
+
+export const uniqtoclass = [noXP, stock, unusual, distinct, exotic, exoticpl, exoticpl, exoticpl, exoticpl];
+
+
 class WeaponMasteryLevel extends RealmedObject {
     constructor(namespace, data, game, parentType, levelIndex) {
         super(namespace, data, game);
@@ -55,9 +66,9 @@ export class WeaponMastery extends RealmedObject {
         }
         catch (e) { }
         super(namespace, data, game);
-        this.name = stupid && data.stupidName ? data.stupidName : data.name; //getRielkLangString(`WEAPON_MASTERIES_${this._localID}`);
+        this.name = stupid && data.stupidName ? data.stupidName : getRielkLangString(`WTM_WEAPON_NAME_${this._localID}`);
         if (data.flavorText)
-            this.flavorText = stupid && data.stupidFlavorText ? data.stupidFlavorText : data.flavorText;
+            this.flavorText = stupid && data.stupidFlavorText ? data.stupidFlavorText : getRielkLangString(`WTM_WEAPON_FLAVORTEXT_${this._localID}`);
         else this.flavorText = "This text is flavorless hoss";
 
         this._media = data.media;

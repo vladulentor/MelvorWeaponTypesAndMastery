@@ -219,4 +219,12 @@ export function patchTranslations(ctx) {
         return patch(activeEffect);
     });
 
+    ctx.patch(ConditionalModifier, "getDescriptionTemplate").replace(function (patch) {
+        if (this._descriptionLang?.startsWith("WTM")) {
+            return getRielkLangString(this.langID);
+        }
+        return patch();
+    });
+
+
 }

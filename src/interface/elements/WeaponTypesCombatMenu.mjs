@@ -5,6 +5,9 @@ const ctx = mod.getContext(import.meta);
 
 const { templateRielkLangStringWithNodes, templateRielkLangString, getRielkLangString } = await ctx.loadModule('src/language/translationManager.mjs');
 
+const {uniqtoclass} = await ctx.loadModule('src/patches/patches/weaponMastery/weaponType.mjs');
+
+
 // we should put these in a data type so that it's all connected by data and nice but... nobody is adding more weapon types, I'd like to see them try.
 const weaponOverTypes = [
     { id: "melee", name: getLangString("ATTACK_TYPE_melee"), media: ctx.getResourceUrl('assets/melee.svg') },
@@ -143,13 +146,6 @@ class WeaponTypeMenuElement extends HTMLElement {
 }
 
 
-const noXP = { name: "No XP", color: "#af0000", width: '0%' };
-const stock = { name: "Stock", color: "#2dd432", width: '35%' };
-const unusual = { name: "Unusual", color: "#3a9adf", width: '55%' };
-const distinct = { name: "Distinct", color: "#d33290", width: '75%' };
-const exotic = { name: "Exotic", color: "#ffaf02", width: '85%' };
-
-const uniqtoclass = [noXP, stock, unusual, distinct, exotic, exotic, exotic, exotic, exotic];
 
 window.customElements.define('weapon-types-menu', WeaponTypeMenuElement);
 
