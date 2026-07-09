@@ -9,6 +9,7 @@ const { addCombatSkillXP } = await loadModule('src/patches/patches/addCombatSkil
 const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
 
 const { miscCombatPatches } = await loadModule('src/patches/patches/miscCombatPatches.mjs');
+const { addMissingHealthMaxHit } = await loadModule('src/patches/patches/addMissingHealthMaxHit.mjs');
 
 
 
@@ -40,7 +41,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchConditionalMod(ctx)
         addWeaponMasteryUI(ctx);
         patchWeaponTypeLogic(ctx);
-
+        addMissingHealthMaxHit(ctx);
         addSlashingToCompanion(ctx);        
         addCombatSkillXP(ctx);
         addSummonQuickenAttack(ctx);
@@ -60,10 +61,9 @@ export function patchSkillsAfterDataReg(ctx) {
 
 }
 /* TO DO
-ADD NUMBER UNDER XP FOR WEAPONS
-DO MORE TOUCH UPS ON THE BANK MENU
-
 GET ALL TEXT TRANSLATED
 
 
-MORE REWRITES FOR WEAPON TYPES (ONLY AFTER REBALANCES)*/
+MORE REWRITES FOR WEAPON TYPES (ONLY AFTER REBALANCES)
+SCREAM AT EDWIN MORE BECAUSE OF TYPES (<- Important )
+*/

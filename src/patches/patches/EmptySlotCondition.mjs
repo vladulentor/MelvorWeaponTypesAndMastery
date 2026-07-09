@@ -7,7 +7,7 @@ export class EmptySlotCondition extends BooleanCondition {
   }
 
   _checkIfMet(manager) {
-    return this.slots.every(slot => game.combat.player.equipment.getItemInSlot(slot)._localID === 'Empty_Equipment' )
+    return this.slots.every(slot => (game.combat.player.equipment.getItemInSlot(slot)._localID === 'Empty_Equipment') )
   }
   checkIfMetForChar(char){
     return (char instanceof Player && this.slots.every(slot => char.equipment.getItemInSlot(slot)._localID === 'Empty_Equipment'));

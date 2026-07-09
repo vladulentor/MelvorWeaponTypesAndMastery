@@ -67,9 +67,7 @@ export class WeaponMastery extends RealmedObject {
         catch (e) { }
         super(namespace, data, game);
         this.name = stupid && data.stupidName ? data.stupidName : getRielkLangString(`WTM_WEAPON_NAME_${this._localID}`);
-        if (data.flavorText)
-            this.flavorText = stupid && data.stupidFlavorText ? data.stupidFlavorText : getRielkLangString(`WTM_WEAPON_FLAVORTEXT_${this._localID}`);
-        else this.flavorText = "This text is flavorless hoss";
+        this.flavorText = stupid && data.stupidFlavorText ? data.stupidFlavorText : getRielkLangString(`WTM_WEAPON_FLAVORTEXT_${this._localID}`);
 
         this._media = data.media;
         this._mediaAlt = data.mediaAlt;
