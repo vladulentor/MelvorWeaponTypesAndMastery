@@ -4783,6 +4783,7 @@
             {
               "id": "Polearms",
               "name": "Polearms",
+              "stupidName":"Long Pole",
               "media": "assets/polearms.svg",
               "mediaAlt": "assets/black_filled_svgs/polearms.svg",
               "mediaCol": "assets/filled_svgs/polearms.svg",
