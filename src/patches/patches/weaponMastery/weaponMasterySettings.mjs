@@ -8,7 +8,9 @@ const baseGame = new Set(["melvorAoD", "melvorTotH", "melvorItA"]);
 function buildRelnsSet() {
     const set = new Set();
     for (const m of game.items.weapons.namespaceMaps.keys())
-        if (game.registeredNamespaces.registeredNamespaces.get(m).isModded) { set.add(m) }
+        if (game.registeredNamespaces.registeredNamespaces.get(m).isModded) { set.add(m) };
+    for (const m of game.weaponMasteries.namespaceMaps.keys())
+        if(m !=="WTM") {set.add(m)};
     return set;
 }
 function returnDef(ns) {

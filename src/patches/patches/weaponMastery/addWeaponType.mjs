@@ -12,14 +12,14 @@ export function addWeaponType(settings, namespaces) {
             setMap.set(namespace, "full")
 
         }
-
+        console.log("HERE'S THE MAP BEPIS", setMap);
     }
     for (const type of game.weaponMasteries.allObjects) {
         // Handle material-based weapons
         if (type.mat) {
             for (const mat of type.mat) {
                 for (const material of type.kind) {
-                    addClass(`${material}_${mat}`, type, 1, setMap, settings);
+                    addClass(`${material}_${mat}`, type, 1, setMap); // all material-based weapons are uniqueneess 1
                 }
             }
         }
@@ -114,7 +114,7 @@ export function addWeaponType(settings, namespaces) {
 }
 
 
-function addClass(name, type, bonuniq = 1, namespaces, settings) {
+function addClass(name, type, bonuniq = 1, namespaces) {
     let item = null;
     let namespacef = null;
     for (const namespace of namespaces.keys()) {
@@ -127,14 +127,17 @@ function addClass(name, type, bonuniq = 1, namespaces, settings) {
         if (set !== "none")
             addClassToItem(item, type, uniq);
     }
+    else {
+        console.log("You fucked up finding", name);
+    }
 
 }
 function addClassToItem(item, type, bonuniq = 1) {
     if (item.weaponType !== undefined) { console.error("Hey you DUNDERHEAD I'm the big red text telling you you tried to set an item to an item that already had one. Yeah this one: ", item.name); return; }
     item.weaponType = type;
     item.uniqueness = bonuniq;
-    if(item.equipmentStats && item.equipmentStats.length > 0) //annoying ass defensive coding I hate
-    item.attackSpeed = item.equipmentStats[0].key === 'attackSpeed' ? item.equipmentStats[0].value / 1000 : 4;
+    if (item.equipmentStats && item.equipmentStats.length > 0) //annoying ass defensive coding I hate
+        item.attackSpeed = item.equipmentStats[0].key === 'attackSpeed' ? item.equipmentStats[0].value / 1000 : 4;
 
     type.allWeapons.push(item);
 

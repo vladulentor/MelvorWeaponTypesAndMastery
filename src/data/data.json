@@ -4783,7 +4783,7 @@
             {
               "id": "Polearms",
               "name": "Polearms",
-              "stupidName":"Long Pole",
+              "stupidName": "Long Pole",
               "media": "assets/polearms.svg",
               "mediaAlt": "assets/black_filled_svgs/polearms.svg",
               "mediaCol": "assets/filled_svgs/polearms.svg",
@@ -6484,17 +6484,20 @@
                   "level": 1,
                   "shiny": false,
                   "changeFunc": "addSpecialAttack",
+                  "overwriteTypeIcons": [
+                    1
+                  ],
                   "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "description": "-1% Max Hit per 1% Enemy Resistance, but +25% Evasion and -0.2s Attack Interval",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
-                        },
-                        "modifiers": {}
-                      }
-                    ]
+                    "modifiers": {
+                      "maxHitBasedOnTargetResistance": [
+                        {
+                          "damageTypeID": "melvorD:Normal",
+                          "value": -1
+                        }
+                      ],
+                      "evasion": 25,
+                      "flatAttackInterval": -200
+                    }
                   },
                   "conditionalModifiers": [
                     {
@@ -6519,11 +6522,33 @@
                   "name": "LightBows2",
                   "id": "LightBows2",
                   "level": 2,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_LIGHT21",
+                    "2": "MODIFIER_TOOLTIP_LIGHT22"
+                  },
                   "shiny": false,
                   "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Attacks have a 1% chance to inflict a random effect on the Enemy ",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      },
+                      {
+                        "description": "Apply Vulnerability to Enemy after you Evade an Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      }
+                    ],
                     "combatEffects": [
                       {
-                        "description": "Attacks have a 1% chance to inflict a random effect on the Enemy: Poison, Burn, Bleed (100%), Slow (20%, 2 turns), or Immobilize (can't attack, 2 turns). Enemy takes +25% DoT Damage for 3 turns after you Evade an Attack.",
+                        "description": ". .",
                         "appliesWhen": "HitWithAttack",
                         "chance": 1,
                         "tableID": "WTM:RandomCondition",
@@ -6561,6 +6586,9 @@
                   "id": "LightBows3",
                   "level": 3,
                   "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_LIGHT31"
+                  },
                   "changeFunc": "addSpecialAttack",
                   "uiMods": {
                     "conditionalModifiers": [
@@ -6583,7 +6611,15 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "When Enemy is afflicted by any DOT effect, you deal +10% Damage and Enemy deals -10%.<br>When Enemy is afflicted by any Debuff effect, you deal +10% Damage and Enemy deals -10%.",
+                        "description": "When Enemy is afflicted by any DoT effect, take -10% and deal +10% damage",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      },
+                      {
+                        "description": "When Enemy is afflicted by any Debuff effect, take -10% and deal +10% damage",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:LightBows"
@@ -6645,18 +6681,34 @@
                   "level": 5,
                   "shiny": true,
                   "uiMods": {
-                    "combatEffects": [
-                      {
-                        "description": "When Hit by an Attack, 10% chance to Slink Into Shadows, gaining -0.2s Attack Interval, +40% Evasion, and +10% Flat Resistance for 3 turns. Your Evasion and Resistance are increased by 10% while the Enemy is afflicted by a DOT or Debuff effect (up to +20%).",
-                        "appliesWhen": "HitWithAttack",
-                        "chance": 1,
-                        "tableID": "WTM:RandomCondition",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
+                    "uiMods": {
+                      "conditionalModifiers": [
+                        {
+                          "description": "+10% chance to Slink Into Shadows when hit by an attack",
+                          "condition": {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:LightBows"
+                          },
+                          "modifiers": {}
+                        },
+                        {
+                          "description": "When Enemy is afflicted by any Debuff effect, gain +10% Evasion and Resistance",
+                          "condition": {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:LightBows"
+                          },
+                          "modifiers": {}
+                        },
+                        {
+                          "description": "When Enemy is afflicted by any DoT effect, gain +10% Evasion and Resistance",
+                          "condition": {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:LightBows"
+                          },
+                          "modifiers": {}
                         }
-                      }
-                    ]
+                      ]
+                    }
                   },
                   "conditionalModifiers": [
                     {
@@ -6745,10 +6797,31 @@
                   "id": "Thrown1",
                   "level": 1,
                   "shiny": false,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_THROWN1"
+                  },
                   "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+10% chance on hit to gain Alacrity",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      },
+                      {
+                        "description": "Can't use Special Attacks or Preserve Ammo",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      }
+                    ],
                     "combatEffects": [
                       {
-                        "description": "Can't use Special Attacks. Can't Preserve Ammo. +10% chance on hit to gain 1 stack of Alacrity (-1% Attack Interval, max 25 stacks)",
+                        "description": "",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Thrown"
@@ -6790,19 +6863,13 @@
                   "id": "Thrown2",
                   "level": 2,
                   "shiny": false,
+                  "overwriteTypeIcons": [
+                    1
+                  ],
                   "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "description": "-10% Ranged Attack Interval",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Thrown"
-                        },
-                        "modifiers": {
-                          "rangedAttackInterval": -10
-                        }
-                      }
-                    ]
+                    "modifiers": {
+                      "rangedAttackInterval": -10
+                    }
                   },
                   "conditionalModifiers": [
                     {
@@ -6821,18 +6888,18 @@
                   "id": "Thrown3",
                   "level": 3,
                   "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_THROWN3"
+                  },
                   "uiMods": {
-                    "description": "You start each fight with a Volley of thrown weapons that lasts for 3 turns (-50% to Attack Interval, Max Hit, and Accuracy)",
-                    "combatEffects": [
+                    "conditionalModifiers": [
                       {
+                        "description": "You start each fight with a Volley",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:Thrown"
+                          "weaponType": "WTM:LightBows"
                         },
-                        "appliesWhen": "StartOfFight",
-                        "applyEffectWhenMerged": true,
-                        "chance": 100,
-                        "effectID": "WTM:Volley"
+                        "modifiers": {}
                       }
                     ]
                   },
@@ -6854,10 +6921,13 @@
                   "id": "Thrown4",
                   "level": 4,
                   "shiny": false,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_THROWN4"
+                  },
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "During your Volley, the Enemy is Confused (+2% of remaining HP taken as damage on a successful attack (once per turn, capped at 10K damage)).",
+                        "description": "During your Volley, the Enemy is Confused",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Thrown"
@@ -6893,17 +6963,24 @@
                   "id": "Thrown5",
                   "level": 5,
                   "shiny": true,
+                  "overwriteTypeIcons": [
+                    1,
+                    1
+                  ],
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "During your Volley, +25% Ranged Max Hit and Ranged Accuracy Rating, and the Enemy's attacks are unlucky (they roll twice and take the lowest number).",
+                        "description": "+25% Ranged Max Hit and Ranged Accuracy Rating during your Volley and the Enemy's attacks are unlucky (they roll twice and take the lowest number).",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Thrown"
                         },
                         "modifiers": {}
                       }
-                    ]
+                    ],
+                    "enemyModifiers": {
+                      "attackRolls": -1
+                    }
                   },
                   "conditionalModifiers": [
                     {
@@ -6975,18 +7052,34 @@
                   "id": "Staves1",
                   "level": 1,
                   "shiny": false,
+                  "tooltip": {
+                    "3": "MODIFIER_TOOLTIP_WANDS1"
+                  },
                   "uiMods": {
-                    "combatEffects": [
+                    "conditionalModifiers": [
                       {
-                        "description": "Attune to an element at the Start of the Fight. The element's spells gain 25% Max Hit and you have a 10% chance to apply an effect:<br>Air: On Evade, Daze, Can't Special Attack or Evade, Enemy, 3 turns | Water: On Summon Attack, Heal, 150% of Max HP over 20s, Self | Earth: On Being Hit, Fortified, +50% of Current DR added as DR, Self, 3 turns | Fire: On Hit, Burn, Enemy",
+                        "description": "Attune to an element at the Start of the Fight",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:Staves"
+                          "weaponType": "WTM:Thrown"
                         },
-                        "appliesWhen": "StartOfFight",
-                        "applyEffectWhenMerged": true,
-                        "tableID": "WTM:RandomAttunement",
-                        "chance": 100
+                        "modifiers": {}
+                      },
+                      {
+                        "description": "Attuned element's spells gain +25% Max Hit",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {}
+                      },
+                      {
+                        "description": "10% chance to apply an effect based on element",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {}
                       }
                     ]
                   }
@@ -6996,27 +7089,18 @@
                   "id": "Staves2",
                   "level": 2,
                   "shiny": false,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_WANDS2"
+                  },
                   "uiMods": {
-                    "combatEffects": [
+                    "conditionalModifiers": [
                       {
-                        "description": "Gain bonuses while attuned to an element.<br>Air: -15% Attack Interval which decays on hit and lasts 3 turns | Water: Heal for 5% of your Current HP every 2 turns | Earth: +5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack | Fire: Enemy takes +15% Damage from Burn",
+                        "description": "Gain a bonus based on attuned element",
                         "condition": {
-                          "type": "Every",
-                          "conditions": [
-                            {
-                              "type": "WeaponType",
-                              "weaponType": "WTM:Staves"
-                            },
-                            {
-                              "type": "CombatEffect",
-                              "character": "Player",
-                              "effectID": "WTM:AttunementAir"
-                            }
-                          ]
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
                         },
-                        "appliesWhen": "StartOfFight",
-                        "effectID": "WTM:ZephyrSpeed",
-                        "applyEffectWhenMerged": true
+                        "modifiers": {}
                       }
                     ]
                   },
@@ -7137,26 +7221,26 @@
                   "id": "Staves3",
                   "level": 3,
                   "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_WANDS3"
+                  },
                   "uiMods": {
-                    "combatEffects": [
+                    "conditionalModifiers": [
                       {
-                        "description": "Gain more attunement bonuses:<br>Air: On Crit, gain 1 stack of Concentration and 1 stack of Impact | Water: On Hit, apply 1 stack of Vulnerability | Earth: At the Start of the Fight, become Steadfast for 3 turns | Fire: At the Start of the Fight, inflict Burn on the Enemy<br>Attuning to an element also surrounds you in a protective Aura that has effects when Hit by an Attack for 10 turns.",
+                        "description": "Gain a bonus based on attuned element",
                         "condition": {
-                          "type": "Every",
-                          "conditions": [
-                            {
-                              "type": "WeaponType",
-                              "weaponType": "WTM:Staves"
-                            },
-                            {
-                              "type": "CombatEffect",
-                              "character": "Player",
-                              "effectID": "WTM:AttunementAir"
-                            }
-                          ]
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
                         },
-                        "appliesWhen": "StartOfFight",
-                        "effectID": "WTM:AuraAir"
+                        "modifiers": {}
+                      },
+                      {
+                        "description": "Attuning to an element surrounds you in a protective Aura that has effects when Hit by an Attack for 10 turns",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {}
                       }
                     ]
                   },
@@ -7345,15 +7429,40 @@
                   "id": "Staves4",
                   "level": 4,
                   "shiny": false,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
                   "uiMods": {
+                    "modifiers": {
+                      "critMultiplier": 20,
+                      "hPRegenBasedOnMaxHP": 5,
+                      "flatResistance": [
+                        {
+                          "damageTypeID": "melvorD:Normal",
+                          "value": 5
+                        }
+                      ]
+                    },
                     "conditionalModifiers": [
                       {
-                        "description": "+20% Crit Multiplier, +5% of Max HP added as Regen, +5% Flat Resistance, +10% Dmg Dealt to Burning Enemies",
                         "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Staves"
+                          "type": "Every",
+                          "conditions": [
+                            {
+                              "type": "CombatEffect",
+                              "character": "Enemy",
+                              "effectID": "melvorD:Burn"
+                            }
+                          ]
                         },
-                        "modifiers": {}
+                        "modifiers": {
+                          "magicMaxHit": 10
+                        }
                       }
                     ]
                   },
@@ -7400,10 +7509,13 @@
                   "id": "Staves5",
                   "level": 5,
                   "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_WANDS5"
+                  },
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Gain powerful bonuses when attuned to an element:<br>Air: +20% Dmg Dealt when Enemy HP is ≤50% | Water: +10% Dmg Dealt When Player HP is ≥50% and Heal for 10% Max HP on Evade | Earth: +20% Chance to Ignore Fear, Sleep, Slow, and Stun, and +10% Dmg Dealt to Bleeding Targets | Fire: 10% Chance on Hit to apply Burn Vulnerability to the Enemy (x2 Dmg Taken from Burn)",
+                        "description": "Gain a powerful bonus based on attuned element",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Staves"

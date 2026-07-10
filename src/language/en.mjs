@@ -37,10 +37,10 @@ export const language = {
     'MODIFIER_TOOLTIP_BLUNTS4': '<div class="text-center"><span class="text-success font-weight-bold">Stun</span><br>Cannot evade, attacks against Character deal 30% increased damage, also applies Stun Immunity on Application</div>',
     'MODIFIER_TOOLTIP_DAGGER1': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>Gives +1% damage taken per stack (up to 50 stacks, stacks expire in 3 turns)</div>',
     'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-warning font-weight-bold">Death Approaches (5%)</span><br>You find the most vulnerable spot to strike your opponent, dealing 33.33% of their max HP on hit</div>',
-        
+
     'MODIFIER_TOOLTIP_HTH1': '<div class="text-center"><span class="text-info font-weight-bold">Unfettered</span><br>You are considered unfettered if your Platebody and Shield slots are empty</div>',
 
-        'MODIFIER_TOOLTIP_HTH3': '<div class="text-center"><span class="text-warning font-weight-bold">Knockout Blow (??%)</span><br>If you\'re seeing this go and tell Edwin he forgot to add the Knockout Blow attack</div>',
+    'MODIFIER_TOOLTIP_HTH3': '<div class="text-center"><span class="text-warning font-weight-bold">Knockout Blow (??%)</span><br>If you\'re seeing this go and tell Edwin he forgot to add the Knockout Blow attack</div>',
 
 
     'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, then instruct your Familiars to perform two Unavoidable Attacks</div>',
@@ -73,10 +73,23 @@ export const language = {
 </div>
 `,
     'MODIFIER_TOOLTIP_AXES4': '<div class="text-center"><span class="text-success font-weight-bold">Hemorrhage</span><br>Deals up to 500% damage dealt over the course of 20 seconds</div>',
-        'MODIFIER_TOOLTIP_HEAVY4': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>+1% increased damage taken per stack, up to 25 stacks, flat -10% Flat Resistance</div>',
+    'MODIFIER_TOOLTIP_HEAVY4': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>+1% increased damage taken per stack, up to 25 stacks, flat -10% Flat Resistance</div>',
+    'MODIFIER_TOOLTIP_LIGHT21': '<div class="text-center"><span class="text-info font-weight-bold">Random Effects</span><br><Poison, Burn, Bleed, Slow, or Immobilize/div>',
 
+    'MODIFIER_TOOLTIP_LIGHT22': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>Take 25% DoT Damage for 3 turns/div>',
+    'MODIFIER_TOOLTIP_LIGHT31': '<div class="text-center"><span class="text-warning font-weight-bold">Shadowshot (15%)</span><br>If not under Sneak Into Shadows, quickly fire a targeted arrow that deals 25% of your normal damage. On hit, inflict Bleed and Immobilize. Then Slink Into Shadows. Otherwise perform a normal attack <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Slink Into Shadows</span><br><span>Gain 40% evasion, 10% resistance and -0.2s attack interval</span></div>',
+
+    'MODIFIER_TOOLTIP_THROWN1': '<div class="text-center"><span class="text-success font-weight-bold">Alacrity</span><br>-1% Attack Interval per stack, up to 25</div>',
+    'MODIFIER_TOOLTIP_THROWN3': '<div class="text-center"><span class="text-success font-weight-bold">Volley</span><br>-50% to Attack Interval and Max Hit, and Accuracy. Lasts for 3 turns</div>',
+    'MODIFIER_TOOLTIP_THROWN4': '<div class="text-center"><span class="text-success font-weight-bold">Confused</span><br>2% of remaining HP dealt on a successful attack (once per turn, up to 10,000 damage)</div>',
+
+    'MODIFIER_TOOLTIP_WANDS1':'<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Evade, Daze, Can\'t Special Attack or Evade, Enemy, 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Summon Attack, Heal, 150% of Max HP over 20s <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>On Being Hit, +50% of Current DR added as DR, for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>On Hit, Burn, Enemy</div>',
+    'MODIFIER_TOOLTIP_WANDS2':'<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>-15% Attack Interval which decays on hit and lasts 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>Heal for 5% of your Current HP every 2 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>Enemy takes +15% Damage from Burn</div>',
+    'MODIFIER_TOOLTIP_WANDS3':'<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Crit, gain 1 stack of Concentration and 1 stack of Impact<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Hit, apply 1 stack of Vulnerability<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>At the Start of the Fight, become Steadfast for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>At the Start of the Fight, inflict Burn on the Enemy<div class="col-12 mb-1 dropdown-divider"></div>.</div>',
+    'MODIFIER_TOOLTIP_WANDS5':'<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>+20% Dmg Dealt when Enemy HP is ≤50%<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>+10% Dmg Dealt When Player HP is ≥50% and Heal for 10% Max HP on Evade<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+20% Chance to Ignore Fear, Sleep, Slow, and Stun, and +10% Dmg Dealt to Bleeding Targets<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>10% Chance on Hit to apply Burn Vulnerability to the Enemy (x2 Dmg Taken from Burn)</div>',
     'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the Enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-warning font-weight-bold">Triple-charge</span><br><span>All effect damage and modifier values are amplified by 3×</span></div>',
-    'MENU_TOOLTIPS_ARTEFACTS5': '<div class="text-center"><span class="text-warning font-weight-bold">Triple-triple-charge</span><br>All effect damage and modifier values are amplified by 9×</div>',
+    'MENU_TOOLTIPS_ARTEFACTS5': '<div class="text-center"><span class="text-info font-weight-bold">Triple-triple-charge</span><br>All effect damage and modifier values are amplified by 9×</div>',
+
     'WTM_EFFECT_TOOLTIP_SYNCRONIZE': 'At max stacks, below effects activate',
 
     'MENU_DANGER_ZONE': 'Danger Zone',
@@ -151,10 +164,10 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Greatswords": "Simply brutal and brutally simple",
     "WTM_WEAPON_FLAVORTEXT_CurvedSwords": "Dancing blades that embolden your companions",
     "WTM_WEAPON_FLAVORTEXT_Daggers": "Opportunistic weapons designed to chip at enemies' defenses",
-    "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, these grow in power as the fight rages",
+    "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, axes grow in power as the fight rages",
     "WTM_WEAPON_FLAVORTEXT_Polearms": "Point, strike, repeat. Designed to land repetitive strikes at a safe distance",
     "WTM_WEAPON_FLAVORTEXT_Blunts": "Specialized in dazing their victims and breaking through defenses",
-    "WTM_WEAPON_FLAVORTEXT_HandToHand": "The lack of armor gives you the speed to evade while you hit hard",
+    "WTM_WEAPON_FLAVORTEXT_HandToHand": "Without tools or heavy armor, you can become a fleet and deadly weapon",
     "WTM_WEAPON_FLAVORTEXT_Crossbows": "Sacrifice speed for absolute accuracy and overwhelming strength",
     "WTM_WEAPON_FLAVORTEXT_HeavyBows": "Unerring, powerful instruments meant to find weak points",
     "WTM_WEAPON_FLAVORTEXT_LightBows": "Evasive bows meant to pelt attackers with arrows while staying out of harm's way",

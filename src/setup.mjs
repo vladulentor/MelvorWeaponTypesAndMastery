@@ -25,7 +25,7 @@ export async function setup(ctx) {
     let typeMap = new Set();
     ctx.onModsLoaded(async (ctx) => {
         typeMap = await setup.initSettings(ctx);
-
+        console.log("HERE IT IS", typeMap);
     })
     ctx.onCharacterLoaded(async (ctx) => {
         addWeaponType(ctx.settings.section('──⚔──'), typeMap);

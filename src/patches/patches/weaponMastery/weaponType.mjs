@@ -54,9 +54,9 @@ class WeaponMasteryLevel extends RealmedObject {
 }
 
 const xpthresholds = [0, 7, 20, 40, 65, 95];
-const MeleeMaterial = ["Bronze", "Iron", "Steel", "Mithril", "Crystal", "Adamant", "Rune", "Unholy", "Dragon", "Pure_Crystal", "Corundum", "Augite", "Divine", "Meteorite", "Abyssium", "Brumite", "Gloomite", "Witherite", "Netherite"];
-const RangedMaterial = ["Normal", "Oak", "Willow", "Crystal", "Maple", "Yew", "Unholy", "Magic", "Redwood", "Pure_Crystal", "Elderwood", "Revenant", "Carrion", "Twisted", "Plagueroot", "Shadebark", "Crumbletain", "Whisperwillow"];
-const MagicMaterial = ["Air", "Water", "Earth", "Fire", "Crystal", "Unholy", "Mystic", "Pure_Crystal", "Poison", "Infernal", "Despair", "Lightning", "Archaic", "Meteorite", "Calamity", "Abyssal", "Brume", "Gloom", "Wither", "Nether", "Desolation", "Cataclysm"];
+    const MeleeMaterial = ["Bronze", "Iron", "Steel", "Mithril", "Crystal", "Adamant", "Rune", "Unholy", "Dragon", "Pure_Crystal", "Corundum", "Augite", "Divine", "Meteorite", "Abyssium", "Brumite", "Gloomite", "Witherite", "Netherite"];
+    const RangedMaterial = ["Normal", "Oak", "Willow", "Crystal", "Maple", "Yew", "Unholy", "Magic", "Redwood", "Pure_Crystal", "Elderwood", "Revenant", "Carrion", "Twisted", "Plagueroot", "Shadebark", "Crumbletain", "Whisperwillow"];
+    const MagicMaterial = ["Air", "Water", "Earth", "Fire", "Crystal", "Unholy", "Mystic", "Pure_Crystal", "Poison", "Infernal", "Despair", "Lightning", "Archaic", "Meteorite", "Calamity", "Abyssal", "Brume", "Gloom", "Wither", "Nether", "Desolation", "Cataclysm"];
 
 export class WeaponMastery extends RealmedObject {
     constructor(namespace, data, game) {
