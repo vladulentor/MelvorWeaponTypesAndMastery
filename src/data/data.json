@@ -698,14 +698,8 @@
         "prehitEffects": [],
         "onhitEffects": [
           {
-            "chance": 20,
-            "effectID": "WTM:Terrify",
-            "initialParams": [
-              {
-                "name": "turns",
-                "value": 3
-              }
-            ]
+            "chance": 5,
+            "effectID": "WTM:Shaken"
           }
         ],
         "cantMiss": false,
@@ -713,7 +707,7 @@
         "attackInterval": 200,
         "lifesteal": 0,
         "name": "Devastating Slice",
-        "description": "Deliver your massive blade unto the Enemy with a wide, arcing slash that strikes ${hitCount} times for up to ${attackDamageMaxValue0}% of your normal damage per hit. On hit, has a ${onHitEffect0chance}% Chance to inflict Terrify (+15% Attack Interval) on the Enemy for 3 turns.",
+        "description": "Deliver your massive blade unto the Enemy with a wide, arcing slash that strikes ${hitCount} times for up to ${attackDamageMaxValue0}% of your normal damage per hit. On hit, has a ${onHitEffect0chance}% Chance to inflict Shaken (-${onHitEffect0modValue}% Global Evasion and -${onHitEffect0modValue1)%) Total Resistance on the Enemy for ${onHitEffect0turns} turns.",
         "descriptionGenerator": "Attack <hitCount> for <damage>. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -1669,8 +1663,8 @@
           {
             "name": "stacks",
             "modifiers": {
-              "accuracyRating": -15,
-              "maxHit": -15
+              "accuracyRating": -10,
+              "maxHit": -10
             }
           }
         ],
@@ -1696,11 +1690,11 @@
           {
             "name": "stacks",
             "modifiers": {
-              "evasion": -15,
+              "evasion": -10,
               "resistance": [
                 {
                   "damageTypeID": "melvorD:Normal",
-                  "value": -15
+                  "value": -10
                 }
               ]
             }
@@ -1726,9 +1720,20 @@
         "statGroups": [
           {
             "name": "stacks",
-            "modifiers": {
-              "attackInterval": 15
-            }
+            "combatEffects": [
+              {
+                "appliesWhen": "PreAttack",
+                "chance": 10,
+                "effectID": "melvorD:Stun",
+                "initialParams": [
+                  {
+                    "name": "turns",
+                    "value": 1
+                  }
+                ],
+                "targetOverride": "Self"
+              }
+            ]
           }
         ],
         "effectGroups": [
@@ -3281,18 +3286,36 @@
               "type": "melee",
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {
-                  "meleeStrengthBonusWith2HWeapon": 5
-                }
+                "combatEffects": [
+                  {
+                    "customDescription": "At the Start of the Fight, Terrify the Enemy for 3 turns.",
+                    "appliesWhen": "StartOfFight",
+                    "effectID": "WTM:Terrify"
+                  }
+                ]
               },
               "levels": [
                 {
                   "name": "Greatswords1",
                   "id": "Greatswords1",
-                  "shiny": false,
+                  "shiny": true,
                   "level": 1,
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_GREAT1"
+                  },
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Greatswords"
+                        },
+                        "customDescription": "+2% Chance On Hit to inflict Intimidation (-10% Global Accuracy and Max Hit) on the Enemy for 3 turns.",
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 2,
+                        "effectID": "WTM:Intimidation"
+                      }
+                    ]
                   },
                   "combatEffects": [
                     {
@@ -3300,42 +3323,10 @@
                         "type": "WeaponType",
                         "weaponType": "WTM:Greatswords"
                       },
-                      "customDescription": "20% Chance on Hit to inflict Intimidation",
-                      "chance": 20,
+                      "customDescription": "+2% Chance On Hit to inflict Intimidation (-10% Global Accuracy and Max Hit) on the Enemy for 3 turns.",
                       "appliesWhen": "HitWithAttack",
+                      "chance": 2,
                       "effectID": "WTM:Intimidation"
-                    }
-                  ],
-                  "conditionalModifiers": [
-                    {
-                      "description": "+10% Max Hit",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "modifiers": {
-                        "maxHit": 10
-                      }
-                    },
-                    {
-                      "description": "+5% Max Hit if the Enemy is Intimidated",
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Greatswords"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Intimidation",
-                            "type": "CombatEffect"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "maxHit": 5
-                      }
                     }
                   ]
                 },
@@ -3347,36 +3338,73 @@
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_GREAT2"
                   },
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "customDescription": "20% Chance on Hit to inflict Shaken",
-                      "chance": 20,
-                      "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Shaken"
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+10% of your Strength Level added as Hidden Strength Levels",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Greatswords"
+                        },
+                        "modifiers": {
+                          "flatHiddenSkillLevelBasedOnLevels": [
+                            {
+                              "skillID": "melvorD:Strength",
+                              "value": 10
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "modifiers": {
+                      "meleeStrengthBonusWith2HWeapon": 1
                     }
-                  ],
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "+10% Total Resistance",
+                      "description": "+10% of your Strength Level added as Hidden Strength Levels and +1% Melee Strength Bonus from Equipment while using 2H weapons",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Greatswords"
                       },
                       "modifiers": {
-                        "resistance": [
+                        "flatHiddenSkillLevelBasedOnLevels": [
                           {
-                            "damageTypeID": "melvorD:Normal",
+                            "skillID": "melvorD:Strength",
                             "value": 10
                           }
                         ]
                       }
-                    },
+                    }
+                  ],
+                  "modifiers": {
+                    "meleeStrengthBonusWith2HWeapon": 1
+                  }
+                },
+                {
+                  "name": "Greatswords3",
+                  "id": "Greatswords3",
+                  "shiny": true,
+                  "level": 3,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_GREAT3"
+                  },
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Unlock the Devastating Slice Special Attack. While the Enemy is Shaken, +1% Chance On Hit to inflict Intimidation on the Enemy for 3 turns.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Greatswords"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
+                  },
+                  "combatEffects": [
                     {
-                      "description": "+5% Total Resistance while if the Enemy is Shaken",
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -3391,67 +3419,9 @@
                           }
                         ]
                       },
-                      "modifiers": {
-                        "resistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 5
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "Greatswords3",
-                  "id": "Greatswords3",
-                  "shiny": true,
-                  "level": 3,
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_GREAT3"
-                  },
-                  "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "description": "Unlock the Mounted Strike Special Attack",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:CurvedSwords"
-                        },
-                        "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
-                        }
-                      }
-                    ]
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "description": "Unlock the Devastating Slice Special Attack",
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Greatswords"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Terrify",
-                            "type": "CombatEffect"
-                          }
-                        ]
-                      },
-                      "enemyModifiers": {
-                        "accuracyRating": -5,
-                        "maxHit": -5,
-                        "evasion": -5,
-                        "resistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": -5
-                          }
-                        ]
-                      }
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 1,
+                      "effectID": "WTM:Intimidation"
                     }
                   ],
                   "changeFunc": "addSpecialAttack"
@@ -3468,131 +3438,48 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "1% Chance on Hit, Being Hit, and Evading to inflict a random Fear Effect for 3 turns",
+                        "description": "While the Enemy is Intimidated or Shaken, +1% Melee Accuracy and Melee Max Hit per 8 Strength Skill Levels (Floored). +10% Chance to ignore Fear effects",
                         "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Polearms"
+                          "type": "Every",
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:Greatswords"
+                            },
+                            {
+                              "type": "Some",
+                              "conditions": [
+                                {
+                                  "character": "Enemy",
+                                  "effectID": "WTM:Intimidation",
+                                  "type": "CombatEffect"
+                                },
+                                {
+                                  "character": "Enemy",
+                                  "effectID": "WTM:Shaken",
+                                  "type": "CombatEffect"
+                                }
+                              ]
+                            }
+                          ]
                         },
                         "modifiers": {
-                          "flatSlashAttackBonus": 50
-                        }
-                      },
-                      {
-                        "description": "+5% Max Hit and Total Resistance per Fear Effect on the Enemy",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Polearms"
-                        },
-                        "modifiers": {
-                          "flatSlashAttackBonus": 50
+                          "meleeAccuracyMaxHitPer8Strength": 1
                         }
                       }
-                    ]
-                  },
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "HitByAttack",
-                      "effectID": "WTM:Intimidation"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Intimidation"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Intimidation"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "HitByAttack",
-                      "effectID": "WTM:Shaken"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Shaken"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Shaken"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "HitByAttack",
-                      "effectID": "WTM:Terrify",
-                      "initialParams": [
+                    ],
+                    "modifiers": {
+                      "effectIgnoreChance": [
                         {
-                          "name": "turns",
-                          "value": 3
-                        }
-                      ]
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "EvadedAttack",
-                      "effectID": "WTM:Terrify",
-                      "initialParams": [
-                        {
-                          "name": "turns",
-                          "value": 3
-                        }
-                      ]
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "chance": 1,
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Terrify",
-                      "initialParams": [
-                        {
-                          "name": "turns",
-                          "value": 3
+                          "effectGroupID": "melvorD:Fear",
+                          "value": 10
                         }
                       ]
                     }
-                  ],
+                  },
                   "conditionalModifiers": [
                     {
-                      "description": "+5% Max Hit and Total Resistance while the Enemy is Intimidated",
+                      "description": "While the Enemy is Intimidated or Shaken, +1% Melee Accuracy and Melee Max Hit per 8 Strength Skill Levels (Floored)",
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -3601,177 +3488,16 @@
                             "weaponType": "WTM:Greatswords"
                           },
                           {
-                            "character": "Enemy",
-                            "effectID": "WTM:Intimidation",
-                            "type": "CombatEffect"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "maxHit": 5,
-                        "resistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 5
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "description": "+5% Max Hit and Total Resistance while wielding Greatswords and the Enemy is Shaken",
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Greatswords"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Shaken",
-                            "type": "CombatEffect"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "maxHit": 5,
-                        "resistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 5
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "description": "+5% Max Hit and Total Resistance while wielding Greatswords and the Enemy is Terrified",
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Greatswords"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Terrify",
-                            "type": "CombatEffect"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "maxHit": 5,
-                        "resistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 5
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "Greatswords5",
-                  "id": "Greatswords5",
-                  "shiny": true,
-                  "level": 5,
-                  "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "description": "While the Enemy is afflicted by all Fear Effects, gain +30% Max Hit and +15% Total Resistance",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Polearms"
-                        },
-                        "modifiers": {
-                          "flatSlashAttackBonus": 50
-                        }
-                      },
-                      {
-                        "description": "Inflict all Fear Effects for 3 turns at the start of the Fight",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Polearms"
-                        },
-                        "modifiers": {
-                          "flatSlashAttackBonus": 50
-                        }
-                      }
-                    ]
-                  },
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "appliesWhen": "StartOfFight",
-                      "applyEffectWhenMerged": true,
-                      "effectID": "WTM:Terrify",
-                      "initialParams": [
-                        {
-                          "name": "turns",
-                          "value": 3
-                        }
-                      ]
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "appliesWhen": "StartOfFight",
-                      "applyEffectWhenMerged": true,
-                      "effectID": "WTM:Intimidation",
-                      "initialParams": [
-                        {
-                          "name": "turns",
-                          "value": 3
-                        }
-                      ]
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Greatswords"
-                      },
-                      "appliesWhen": "StartOfFight",
-                      "applyEffectWhenMerged": true,
-                      "effectID": "WTM:Shaken",
-                      "initialParams": [
-                        {
-                          "name": "turns",
-                          "value": 3
-                        }
-                      ]
-                    }
-                  ],
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Greatswords"
-                          },
-                          {
-                            "type": "Every",
+                            "type": "Some",
                             "conditions": [
                               {
                                 "character": "Enemy",
-                                "effectID": "WTM:Terrify",
+                                "effectID": "WTM:Intimidation",
                                 "type": "CombatEffect"
                               },
                               {
                                 "character": "Enemy",
                                 "effectID": "WTM:Shaken",
-                                "type": "CombatEffect"
-                              },
-                              {
-                                "character": "Enemy",
-                                "effectID": "WTM:Intimidation",
                                 "type": "CombatEffect"
                               }
                             ]
@@ -3779,14 +3505,80 @@
                         ]
                       },
                       "modifiers": {
-                        "maxHit": 30,
-                        "resistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 15
-                          }
-                        ]
+                        "meleeAccuracyMaxHitPer8Strength": 1
                       }
+                    }
+                  ],
+                  "modifiers": {
+                    "effectIgnoreChance": [
+                      {
+                        "effectGroupID": "melvorD:Fear",
+                        "value": 10
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "Greatswords5",
+                  "id": "Greatswords5",
+                  "shiny": true,
+                  "level": 5,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "At the Start of the Fight, Intimidate and Enshaken the Enemy for 3 turns.<br>+1% Chance On Hit to Terrify (10% Chance Before Attacking to instead be Stunned for 1 turn) the Enemy for 3 turns. +10% Chance to increase the duration of Fear effects inflicted by 1 turn.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Greatswords"
+                        },
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:Intimidation"
+                      },
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Greatswords"
+                        },
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:Shaken"
+                      },
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Greatswords"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 1,
+                        "effectID": "WTM:Terrify"
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "customDescription": "At the Start of the Fight, Intimidate and Enshaken the Enemy for 3 turns.<br>+1% Chance On Hit to Terrify (10% Chance Before Attacking to instead be Stunned for 1 turn) the Enemy for 3 turns. +10% Chance to increase the duration of Fear effects inflicted by 1 turn.",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Intimidation"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:Shaken"
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 1,
+                      "effectID": "WTM:Terrify"
                     }
                   ]
                 }
@@ -3814,7 +3606,7 @@
               "mediaAlt": "assets/black_filled_svgs/curvedswords.svg",
               "mediaCol": "assets/filled_svgs/curvedswords.svg",
               "type": "melee",
-              "isPerWepMod": true,
+              "isPerWepMod": false,
               "wepModifiers": {
                 "modifiers": {
                   "WTM:slashingOnSummon": 15,

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://melvoridle.com/assets/schema/gameData.json",
+  "namespace": "rielkConstruction",
+  "data": {
+    "combatEffects": [
+      
+    ],
+    "items": [
+      {
+        "modifiers": {},
+        "enemyModifiers": {
+          "ablazeDOTDamageTaken": 1
+        },
+        "conditionalModifiers": [
+          {
+            "description": "While the Enemy is Intimidated or Shaken, +1% Melee Accuracy and Melee Max Hit per 8 Strength Skill Levels (Floored). +10% Chance to ignore Fear effects",
+            "condition": {
+              "type": "Every",
+              "conditions": [
+                {
+                  "type": "WeaponType",
+                  "weaponType": "WTM:Greatswords"
+                },
+                {
+                  "type": "Some",
+                  "conditions": [
+                    {
+                      "character": "Enemy",
+                      "effectID": "WTM:Intimidation",
+                      "type": "CombatEffect"
+                    },
+                    {
+                      "character": "Enemy",
+                      "effectID": "WTM:Shaken",
+                      "type": "CombatEffect"
+                    }
+                  ]
+                }
+              ]
+            },
+            "modifiers": {
+              "meleeAccuracyMaxHitPer8Strength": 1
+            }
+          }
+        ],
+        "combatEffects": [
+          {
+            "customDescription": "At the Start of the Fight, Intimidate and Enshaken the Enemy for 3 turns.<br>+1% Chance On Hit to Terrify (10% Chance Before Attacking to instead be Stunned for 1 turn) the Enemy for 3 turns. +10% Chance to increase the duration of Fear effects inflicted by 1 turn.",
+            "condition": {
+              "type": "WeaponType",
+              "weaponType": "WTM:Greatswords"
+            },
+            "appliesWhen": "StartOfFight",
+            "effectID": "WTM:Intimidation"
+          },
+          {
+            "condition": {
+              "type": "WeaponType",
+              "weaponType": "WTM:Greatswords"
+            },
+            "appliesWhen": "StartOfFight",
+            "effectID": "WTM:Shaken"
+          },
+          {
+            "condition": {
+              "type": "WeaponType",
+              "weaponType": "WTM:Greatswords"
+            },
+            "appliesWhen": "HitWithAttack",
+            "chance": 1,
+            "effectID": "WTM:Terrify"
+          }
+        ]
+      }
+    ]
+  }
+}
