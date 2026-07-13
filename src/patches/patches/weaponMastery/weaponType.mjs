@@ -180,7 +180,7 @@ export class WeaponMastery extends RealmedObject {
         return Math.min(this.uncappedxpPercent, this.xpPercentCap);
     }
     get xpPercentCap() {
-        if (this.levelCap == 5) return 100; statProviders
+        if (this.levelCap == 5) return 100;
         return xpthresholds[this.levelCap];
     }
     get active() {
@@ -214,8 +214,8 @@ export class WeaponMastery extends RealmedObject {
     }
     get progressToNextLevel() {
         const lv = this.level;
-        if (xpthresholds.length < lv + 1) return 100;
         const nlv = lv + 1;
+        if (xpthresholds.length <= nlv) return 100;
         const thrxp = this.xp / this.maxXP * 100;
         return Math.min(100, 100 * (thrxp - xpthresholds[lv]) / (xpthresholds[nlv] - xpthresholds[lv]))
     }

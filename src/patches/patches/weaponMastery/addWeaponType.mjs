@@ -127,9 +127,9 @@ function addClass(name, type, bonuniq = 1, namespaces) {
         if (set !== "none")
             addClassToItem(item, type, uniq);
     }
-    else {
+    /*else {
         console.log("You fucked up finding", name);
-    }
+    }*/
 
 }
 function addClassToItem(item, type, bonuniq = 1) {

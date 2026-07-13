@@ -274,5 +274,5 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Wands": "Defensive, general magical implements for the wary wizard",
     "WTM_WEAPON_FLAVORTEXT_Artefacts": "Instruments representing Magic at its ficklest, to be used with great care and greater caution",
     "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, but nothing is stopping you",
-
+    "WTM_MAX":"MAX"
 }    

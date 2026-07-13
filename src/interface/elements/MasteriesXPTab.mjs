@@ -1,3 +1,7 @@
+const { loadModule } = mod.getContext(import.meta);
+
+const { getRielkLangString } = await loadModule('src/language/translationManager.mjs');
+
 class CombatWeaponTypeProgressTableRow {
     constructor(body) {
         this.weaponTypeLevelContainers = [];
@@ -43,25 +47,41 @@ class CombatWeaponTypeProgressTableRow {
     updateXP(game, weaponType) {
         const xp = Math.floor(weaponType.xp);
         const level = weaponType.level;
-        const nextxp = weaponType.xpAtLevel(level + 1);
+        let nextxp
+        if (level < 5)
+            nextxp = weaponType.xpAtLevel(level + 1);
+        else
+            nextxp = weaponType.maxXP;
         this.weaponTypeXp.textContent =
             `${numberWithCommas(xp)} / ${numberWithCommas(nextxp)}`;
 
-        const progress = weaponType.progressToNextLevel;
-
-        this.weaponTypeLevelProgress.textContent = formatPercent(Math.floor(progress));
-        this.weaponTypeProgressBar.style.width = `${progress}%`;
+        let progress = weaponType.progressToNextLevel;
+        let ff = 0;
+        if (progress == 100 && level >= 5) {
+            this.weaponTypeLevelProgress.textContent = getRielkLangString(`WTM_MAX`);
+            this.weaponTypeProgressBar.style.width = `100%`;
+            this.weaponTypeLevelProgress.classList.add("construction-success");
+            this.weaponTypeProgressBar.classList.add("construction-bar");
+            ff=1;
+        }
+        else {
+            this.weaponTypeLevelProgress.textContent = formatPercent(Math.floor(progress));
+            this.weaponTypeProgressBar.style.width = `${progress}%`;
+            this.weaponTypeLevelProgress.classList.remove("construction-success");
+            this.weaponTypeProgressBar.classList.remove("construction-bar");
+        }
 
         if (this.weaponTypeXPTooltip === undefined) {
             this.weaponTypeXPTooltip = this.createXPTooltip(this.weaponTypeProgressBarContainer);
         }
 
         this.weaponTypeXPTooltip.setContent(
-            `<div class='text-center'>${this.weaponTypeXp.textContent}</div>`
+            `<div class='text-center ${ff == 1?'construction-success':''}'>${this.weaponTypeXp.textContent}</div>`
         );
     }
 
     updateLevel(game, weaponType) {
+
         this.weaponTypeLevel.textContent =
             `${weaponType.level} / ${weaponType.levelCap}`;
     }
@@ -89,7 +109,7 @@ export class CombatWeaponTypeProgressTableElement extends HTMLElement {
         this._content = new DocumentFragment();
         this._content.append(getTemplateNode('combat-weapon-type-progress-table-template'));
         // this.levelCapHeader = getElementFromFragment(this._content, 'level-cap-header', 'th');
-        this.table = getElementFromFragment(this._content, 'table-id', 'table'); 
+        this.table = getElementFromFragment(this._content, 'table-id', 'table');
         this.tableBody = getElementFromFragment(this._content, 'table-body', 'tbody');
         this.eyething = getElementFromFragment(this._content, 'eye-segment', 'div');
         this.openeye = getElementFromFragment(this._content, 'weapon-type-menu-open', 'i');
