@@ -3856,10 +3856,10 @@
                 "Sacrificial_Dagger3",
                 "Shadow_Dagger1"
               ],
-              "isPerWepMod": false,
+              "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "critMultiplier": 1
+                  "meleeCritChance": 5
                 }
               },
               "levels": [
@@ -7491,7 +7491,7 @@
                 "Voidfire_Cascade_Wand3",
                 "Witherbind_Wand3"
               ],
-              "media": "assets/wands.svg",
+              "media": "assets/wands.png",
               "mediaAlt": "assets/black_filled_svgs/wands.svg",
               "mediaCol": "assets/filled_svgs/wands.svg",
               "type": "magic",
