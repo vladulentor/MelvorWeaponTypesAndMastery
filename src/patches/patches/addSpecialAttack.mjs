@@ -46,11 +46,8 @@ function fuckassResetFunc(attack) {
 }
 
 export function addSpecialAttack() {
-    if(this.type.specAttack3)
-        addEffecttoWeaponList({weapons:this.type.allWeapons, attack:this.type.specAttack3})
- // Edwin if you're reading this cuz you wanna add a special attack to a type just add it to the type (not level)'s "specAttack3" attribute and add the "addSpecialAttack" function to the level you want it to be added at.
- 
- // It's been automated so your mod (or others) can add special attacks without custom code, though it's now less flexible
+    if(this.specAttack)
+        addEffecttoWeaponList({weapons:this.type.allWeapons, attack:this.specAttack})
 
 }
 
@@ -62,13 +59,11 @@ const SPECIAL_MOD3_VALUE = 5;
 export function increaseSpecialAttackChance() {
     let toadd = 0;
 
-    const ourAttacks = game.weaponMasteries.allObjects.flatMap(w => w.specAttack3);
+    const ourAttacks = game.weaponMasteries.allObjects.flatMap(w => w.levels.filter(t=> t.specAttack).map(t=>t.specAttack));
 
     if (this._localID == "Special4") {
         toadd += SPECIAL_MOD3_VALUE;
     }
-
-
     for (let attack of ourAttacks.values()) {
         attack.defaultChance += toadd;
         fuckassResetFunc(attack);

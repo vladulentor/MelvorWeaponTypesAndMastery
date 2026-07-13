@@ -33,7 +33,6 @@ A Type consists of:
   "uniq": ["Example_Item1", "Example_Another_Item3"],
   "wepModifiers": {},
   "isPerWepMod":false,
-  "specAttack3":"ExampleAttack",
   "levels": [
     {
       "id": "example_mastery1",
@@ -135,12 +134,6 @@ A Type consists of:
 
 ---
 
-### `specAttack3`
-
-* Namsepaced-id of a special attack that will be added to any level with the `addSpecialAttack` changeFunc.
-
----
-
 ### `wepModifiers`
 
 * A **StatObject**
@@ -173,6 +166,7 @@ A Type consists of:
   "modifiers": {},
   "enemyModifiers": {},
   "conditionalModifiers": [],
+  "specAttack":"WTM:Example_Attack",  
   "changeFunc":"exampleFunc",
   "shiny": true
 }
@@ -207,6 +201,9 @@ An object with indexed strings, if present will performa a string-lookup to the 
 
   * Changes the visual style of the level
 
+* `specAttack` (optional)
+ 
+  * Accepts a namespaced special attack. The special attack will be added to all weapons of that type on level up, adds no extra ui
 
 | State    | Normal | Shiny           |
 | -------- | ------ | --------------- |

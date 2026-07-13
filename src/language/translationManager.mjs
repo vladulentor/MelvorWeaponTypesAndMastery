@@ -221,7 +221,7 @@ export function patchTranslations(ctx) {
 
     ctx.patch(ConditionalModifier, "getDescriptionTemplate").replace(function (patch) {
         if (this._descriptionLang?.startsWith("WTM")) {
-            return getRielkLangString(this.langID);
+            return getRielkLangString(this._descriptionLang);
         }
         return patch();
     });

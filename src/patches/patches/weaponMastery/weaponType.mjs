@@ -18,11 +18,11 @@ export const uniqtoclass = [noXP, stock, unusual, distinct, exotic, exoticpl, ex
 class WeaponMasteryLevel extends RealmedObject {
     constructor(namespace, data, game, parentType, levelIndex) {
         super(namespace, data, game);
+        this.changeFunc = [];
         if (data.changeFunc) {
             this.changeFunc = Array.isArray(data.changeFunc)
                 ? data.changeFunc
                 : [data.changeFunc];
-            this.canCallChangeFunc = true;
         }
         this.type = parentType
         this.tooltips = [];
@@ -30,12 +30,19 @@ class WeaponMasteryLevel extends RealmedObject {
             this.tooltips[ind] = getRielkLangString(key)
         if (data.overwriteTypeIcons) this.overwriteTypeIcons = data.overwriteTypeIcons;
         // I absolutely hate doing it like this
-        this.name = templateRielkLangString("WEAPON_TYPE_LEVEL", { weaponType: parentType._localID, level: levelIndex });
+        this.name = getLangString("MENU_TEXT_LEVEL_HEADER") + levelIndex;
+        if (data.specAttack) {
+            this.changeFunc.push("addSpecialAttack");
+            this.specAttack = game.specialAttacks.getObjectByID(data.specAttack);
+        }
         if (data.shiny) this.shiny = data.shiny;
         if (data.order) this.order = data.order;
         this.wepModifiers = new StatObject(data, game, this._localID);
         if (data.uiMods) this.uiMods = new StatObject(data.uiMods, game, this._localID);
         else this.uiMods = this.wepModifiers; //hopefully js makes a shallow copy
+        if (this.changeFunc)
+            this.canCallChangeFunc = true;
+
 
     }
 
@@ -54,9 +61,9 @@ class WeaponMasteryLevel extends RealmedObject {
 }
 
 const xpthresholds = [0, 7, 20, 40, 65, 95];
-    const MeleeMaterial = ["Bronze", "Iron", "Steel", "Mithril", "Crystal", "Adamant", "Rune", "Unholy", "Dragon", "Pure_Crystal", "Corundum", "Augite", "Divine", "Meteorite", "Abyssium", "Brumite", "Gloomite", "Witherite", "Netherite"];
-    const RangedMaterial = ["Normal", "Oak", "Willow", "Crystal", "Maple", "Yew", "Unholy", "Magic", "Redwood", "Pure_Crystal", "Elderwood", "Revenant", "Carrion", "Twisted", "Plagueroot", "Shadebark", "Crumbletain", "Whisperwillow"];
-    const MagicMaterial = ["Air", "Water", "Earth", "Fire", "Crystal", "Unholy", "Mystic", "Pure_Crystal", "Poison", "Infernal", "Despair", "Lightning", "Archaic", "Meteorite", "Calamity", "Abyssal", "Brume", "Gloom", "Wither", "Nether", "Desolation", "Cataclysm"];
+const MeleeMaterial = ["Bronze", "Iron", "Steel", "Mithril", "Crystal", "Adamant", "Rune", "Unholy", "Dragon", "Pure_Crystal", "Corundum", "Augite", "Divine", "Meteorite", "Abyssium", "Brumite", "Gloomite", "Witherite", "Netherite"];
+const RangedMaterial = ["Normal", "Oak", "Willow", "Crystal", "Maple", "Yew", "Unholy", "Magic", "Redwood", "Pure_Crystal", "Elderwood", "Revenant", "Carrion", "Twisted", "Plagueroot", "Shadebark", "Crumbletain", "Whisperwillow"];
+const MagicMaterial = ["Air", "Water", "Earth", "Fire", "Crystal", "Unholy", "Mystic", "Pure_Crystal", "Poison", "Infernal", "Despair", "Lightning", "Archaic", "Meteorite", "Calamity", "Abyssal", "Brume", "Gloom", "Wither", "Nether", "Desolation", "Cataclysm"];
 
 export class WeaponMastery extends RealmedObject {
     constructor(namespace, data, game) {
@@ -100,7 +107,6 @@ export class WeaponMastery extends RealmedObject {
         if (data.extraLangStrings) {
             if (data.extraLangStrings[setLang]) { addRielkLangStrings(data.extraLangStrings[setLang]) }
         }
-        if (data.specAttack3) this.specAttack3 = game.specialAttacks.getObjectByID(data.specAttack3);
         this.isPerWepMod = data.isPerWepMod ?? false;
         if (this.isPerWepMod) {
             this.wepProvidedStats = new StatProvider();
