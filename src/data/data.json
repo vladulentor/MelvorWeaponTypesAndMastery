@@ -3303,6 +3303,7 @@
                 "Aranite_2H_Blade1",
                 "Basic_2H_Sword1",
                 "Black_2H_Sword3",
+                "Ancient_2H_Sword4",
                 "Blighted_2H_Hook_Sword3",
                 "Cursed_2H_Sword2",
                 "Darksteel_2H_SWord2",
@@ -5314,6 +5315,7 @@
               "kind": "melee",
               "uniq": [
                 "Empty_Equipment4",
+                "Void_Vortex_Whip2",
                 "Ancient_Claw2",
                 "Blighted_Claw2",
                 "Dragon_Claw2",
@@ -6796,6 +6798,15 @@
               ],
               "kind": "magic",
               "uniq": [
+                "Staff_of_Air1",
+                "Staff_of_Earth1",
+                "Staff_of_Water1",
+                "Staff_of_Fire1",
+                "Mystic_Air_Staff1",
+                "Mystic_Earth_Staff1",
+                "Mystic_Water_Staff1",
+                "Mystic_Fire_Staff1",
+                "Mystic_Pure_Crystal_Staff2",
                 "Basic_Staff1",
                 "Blazing_Shadow_Staff3",
                 "Blight_Burst_Staff2",
@@ -7463,6 +7474,13 @@
               ],
               "kind": "magic",
               "uniq": [
+                "Magic_Wand_Basic1",
+                "Magic_Wand_Powerful2",
+                "Magic_Wand_Elite2",
+                "Air_Imbued_Wand2",
+                "Earth_Imbued_Wand2",
+                "Water_Imbued_Wand2",
+                "Fire_Imbued_Wand2",
                 "Foresight_Wand3",
                 "Ocean_Song3",
                 "Shadow_Wand3",
@@ -7494,13 +7512,15 @@
                   "name": "Wands1",
                   "id": "Wands1",
                   "level": 1,
-                  "overwriteTypeIcons":[1],
+                  "overwriteTypeIcons": [
+                    1
+                  ],
                   "uiMods": {
                     "modifiers": {
                       "flatRangedDefenceBonusBasedOnResistance": [
                         {
                           "damageTypeID": "melvorD:Normal",
-                          "value": 2.5
+                          "value": 2
                         }
                       ]
                     }
@@ -7516,7 +7536,7 @@
                         "flatRangedDefenceBonusBasedOnResistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 2.5
+                            "value": 2
                           }
                         ]
                       }
@@ -7585,16 +7605,22 @@
                       "healingOnHitBasedOnTargetResistance": [
                         {
                           "damageTypeID": "melvorD:Normal",
-                          "value": 10
-                        }
-                      ],
-                      "flatRangedDefenceBonusBasedOnResistance": [
-                        {
-                          "damageTypeID": "melvorD:Normal",
-                          "value": 3
+                          "value": 5
                         }
                       ]
-                    }
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "description": "+1 All Defence Bonus per 1% of Damage Reduction",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Wands"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
                   },
                   "conditionalModifiers": [
                     {
@@ -7617,7 +7643,19 @@
                     "flatRangedDefenceBonusBasedOnResistance": [
                       {
                         "damageTypeID": "melvorD:Normal",
-                        "value": 0.5
+                        "value": 1
+                      }
+                    ],
+                    "flatMeleeDefenceBonusBasedOnResistance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": 1
+                      }
+                    ],
+                    "flatMagicDefenceBonusBasedOnResistance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": 1
                       }
                     ]
                   }
@@ -7636,7 +7674,7 @@
                       "maxHitBasedOnTargetResistance": [
                         {
                           "damageTypeID": "melvorD:Normal",
-                          "value": 0.2
+                          "value": 0.25
                         }
                       ],
                       "WTM:runePreservationCap": 5
@@ -7662,13 +7700,7 @@
                     }
                   ],
                   "modifiers": {
-                    "WTM:runePreservationCap": 5,
-                    "flatRangedDefenceBonusBasedOnResistance": [
-                      {
-                        "damageTypeID": "melvorD:Normal",
-                        "value": 3
-                      }
-                    ]
+                    "WTM:runePreservationCap": 5
                   }
                 }
               ]
