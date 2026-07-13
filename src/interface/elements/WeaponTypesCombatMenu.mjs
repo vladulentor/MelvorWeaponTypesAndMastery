@@ -163,6 +163,8 @@ export class WeaponTypesCombatMenu {
         this.weaponTypeMPic = getElementFromFragment(this._content, 'weaponTypeMiniPic', 'img');
         this.weaponTypeMiniTHing = getElementFromFragment(this._content, 'weaponTypeMiniTHing', 'div');
         this.weaponMaxedCheck = getElementFromFragment(this._content, 'weaponMaxedCheck', 'span');
+        this.weaponMastCont = getElementFromFragment(this._content, 'weaponMastCont', 'span');
+
 
         this.weaponTypeMTex = getElementFromFragment(this._content, 'WeaponTypeMiniText', 'span');
         this.weaponPic = getElementFromFragment(this._content, 'weaponPic', 'img');
@@ -320,15 +322,24 @@ export class WeaponTypesCombatMenu {
         this.typeMenu.text.classList.toggle(`${type.maxed ? 'construction-victory' : 'text-success'}`, type.activeWeapon);
         this.typeMenu.bgIcon.src = type.media;
         this.typeMenu.type = type;
-        const [typeLabel, toolTipText] = type.isPerWepMod // yay for needlessly optimal code
-            ? [this.typeMenu.wepModEquipped, this.typeMenu.wepModEquippedTool]
-            : [this.typeMenu.wepModPermanent, this.typeMenu.wepModPermanentTool];
-        this.typeMenu.wepModType.innerText = typeLabel;
         const typeWM = type.activeWeapon && game.combat.player.equippedWeapon.masteryMaxed
 
-        this.typeMenu.wepModType.classList.toggle("text-success", typeWM);
+        if (type.levelCap <= 1) {
+            hideElement(this.weaponMastCont);
+        }
+        else {
+            showElement(this.weaponMastCont);
 
-        this.typeMenu.wepModType._tippy.setContent(`<div class="text-center">${toolTipText}</div>`);
+            const [typeLabel, toolTipText] = type.isPerWepMod // yay for needlessly optimal code
+                ? [this.typeMenu.wepModEquipped, this.typeMenu.wepModEquippedTool]
+                : [this.typeMenu.wepModPermanent, this.typeMenu.wepModPermanentTool];
+            this.typeMenu.wepModType.innerText = typeLabel;
+
+            this.typeMenu.wepModType.classList.toggle("text-success", typeWM);
+
+            this.typeMenu.wepModType._tippy.setContent(`<div class="text-center">${toolTipText}</div>`);
+
+        }
         this.typeMenu.typeFlvText.innerText = type.flavorText || " ";
         this.setMods();
         this.typeMenu.wepModText.querySelectorAll('span').forEach(span => { // Annoying retarded bullshit that I hate

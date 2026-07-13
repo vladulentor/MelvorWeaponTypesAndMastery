@@ -34,7 +34,7 @@ class TranslationManager {
 const tm = new TranslationManager();
 await tm.syncLang();
 
-export function addRielkLangStrings(strings){
+export function addRielkLangStrings(strings) {
     Object.assign(tm.loadedLangJson, strings)
 }
 
@@ -135,6 +135,9 @@ export function patchTranslations(ctx) {
 
     ctx.patch(ConditionalModifier, "getDescriptionTemplate").replace(function (patch) {
         if (this._descriptionLang?.startsWith("WTM")) {
+            console.log(this);
+            console.log(this._descriptionLang);
+            console.log(getRielkLangString(this._descriptionLang));
             return getRielkLangString(this._descriptionLang);
         }
         return patch();

@@ -24,6 +24,7 @@ export class WeaponMasteryUI {
         icon.className = 'fa fa-question-circle';
         this.title.appendChild(icon);
         this.setWeaponMasteryTooltip(this.title);
+        
 
         this.weaponItem = getElementFromFragment(this._content, 'weaponMasteryItem', 'div');
         this.weaponPic = getElementFromFragment(this._content, 'weaponPic', 'img');
@@ -36,7 +37,7 @@ export class WeaponMasteryUI {
         this.weaponXPNumber = getElementFromFragment(this._content, 'weaponXPNumber', 'div');
 
 
-        this.weaponXPFill = getElementFromFragment(this._content, 'weaponXpFill', 'div');
+        this.weaponXPFill = getElementFromFragment(this._content, 'weaponXpFill', 'div');        
         this.weaponModDisc = getElementFromFragment(this._content, 'unlockedWeaponMod', 'div');
         this.weaponModText = getElementFromFragment(this._content, 'weaponModifierValue', 'div');
 
