@@ -12,7 +12,6 @@ export function addWeaponType(settings, namespaces) {
             setMap.set(namespace, "full")
 
         }
-        console.log("HERE'S THE MAP BEPIS", setMap);
     }
     for (const type of game.weaponMasteries.allObjects) {
         // Handle material-based weapons

@@ -10,7 +10,7 @@ const stock = { name: getRielkLangString("WTM_UNIQ_Stock"), color: "#2dd432", wi
 const unusual = { name: getRielkLangString("WTM_UNIQ_Unusual"), color: "#3a9adf", width: '60%' };
 const distinct = { name: getRielkLangString("WTM_UNIQ_Distinct"), color: "#d33290", width: '80%' };
 const exotic = { name: getRielkLangString("WTM_UNIQ_Exotic"), color: "#ffaf02", width: '90%' };
-const exoticpl = { name: getRielkLangString("WTM_UNIQ_Exotic+"), color: "#ffaf02", width: '90%' };
+const exoticpl = { name: getRielkLangString("WTM_UNIQ_Exotic+"), color: "#ffaf02", width: '100%' };
 
 export const uniqtoclass = [noXP, stock, unusual, distinct, exotic, exoticpl, exoticpl, exoticpl, exoticpl];
 
@@ -197,7 +197,7 @@ export class WeaponMastery extends RealmedObject {
         return 0;
     }
     get levelCap() {
-        return 5 //Math.min(...this.fixture.map(f => f.currentTier));
+        return this.fixture ? this.fixture.currentTier : 5;
     }
     get maxed() {
         return this._curLvl >= this.levelCap;
@@ -245,8 +245,11 @@ export class WeaponMastery extends RealmedObject {
         this.maxXP = this.allWeapons.reduce((tot, w) => tot + w.weaponXPCap, 0);
         this._curLvl = this.level;
         this.computeProvidedStats(false);
-        combatSkillProgressTable.weaponTypesTable.updateXP(this.game, this);
-        combatSkillProgressTable.weaponTypesTable.updateLevel(this.game, this);
+        if (combatSkillProgressTable.weaponTypesTable) {
+            combatSkillProgressTable.weaponTypesTable.updateXP(this.game, this);
+            combatSkillProgressTable.weaponTypesTable.updateLevel(this.game, this);
+
+        }
 
     }
     computeProvidedStats(updatePlayer = true) {
