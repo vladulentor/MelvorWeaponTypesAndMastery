@@ -2836,6 +2836,20 @@
         ]
       },
       {
+        "id": "runePreservationCap",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "Raises or lowers Rune Preservation Cap",
+                "lang": "MODIFIER_DATA_runePreservationCap"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "increaseWeaponXP",
         "allowedScopes": [
           {
@@ -3572,7 +3586,10 @@
                         "chance": 1,
                         "effectID": "WTM:Terrify"
                       }
-                    ]
+                    ],
+                    "modifiers": {
+                      "WTM:fearDurationIncreaseChance": 10
+                    }
                   },
                   "combatEffects": [
                     {
@@ -3600,6 +3617,18 @@
                       "appliesWhen": "HitWithAttack",
                       "chance": 1,
                       "effectID": "WTM:Terrify"
+                    }
+                  ],
+                  "conditionalModifiers": [
+                    {
+                      "description": "fear extendo",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Greatswords"
+                      },
+                      "modifiers": {
+                        "WTM:fearDurationIncreaseChance": 10
+                      }
                     }
                   ]
                 }
@@ -7451,8 +7480,13 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "runePreservationChance": 40,
-                  "magicDamageBonus": 20
+                  "runePreservationChance": 10,
+                  "flatRangedDefenceBonusBasedOnResistance": [
+                    {
+                      "damageTypeID": "melvorD:Normal",
+                      "value": 1
+                    }
+                  ]
                 }
               },
               "levels": [
@@ -7460,31 +7494,182 @@
                   "name": "Wands1",
                   "id": "Wands1",
                   "level": 1,
-                  "modifiers": {}
+                  "overwriteTypeIcons":[1],
+                  "uiMods": {
+                    "modifiers": {
+                      "flatRangedDefenceBonusBasedOnResistance": [
+                        {
+                          "damageTypeID": "melvorD:Normal",
+                          "value": 2.5
+                        }
+                      ]
+                    }
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "description": "Increase rune cost reduction of magic weapons",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Wands"
+                      },
+                      "modifiers": {
+                        "flatRangedDefenceBonusBasedOnResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 2.5
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Wands2",
                   "id": "Wands2",
                   "level": 2,
-                  "modifiers": {}
+                  "overwriteTypeIcons": [
+                    1
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "runePreservationChance": 10
+                    }
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "description": "Increase rune cost reduction of magic weapons",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Wands"
+                      },
+                      "modifiers": {
+                        "runePreservationChance": 10
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "Wands3",
                   "id": "Wands3",
                   "level": 3,
-                  "modifiers": {}
+                  "shiny": true,
+                  "overwriteTypeIcons": [
+                    0
+                  ],
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "Increase rune cost reduction of magic weapons",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Wands"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
+                  },
+                  "changeFunc": "increaseRuneReduction"
                 },
                 {
                   "name": "Wands4",
                   "id": "Wands4",
                   "level": 4,
-                  "modifiers": {}
+                  "overwriteTypeIcons": [
+                    1,
+                    0
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "healingOnHitBasedOnTargetResistance": [
+                        {
+                          "damageTypeID": "melvorD:Normal",
+                          "value": 10
+                        }
+                      ],
+                      "flatRangedDefenceBonusBasedOnResistance": [
+                        {
+                          "damageTypeID": "melvorD:Normal",
+                          "value": 3
+                        }
+                      ]
+                    }
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "description": "Increase rune cost reduction of magic weapons",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Wands"
+                      },
+                      "modifiers": {
+                        "healingOnHitBasedOnTargetResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 10
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "modifiers": {
+                    "flatRangedDefenceBonusBasedOnResistance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": 0.5
+                      }
+                    ]
+                  }
                 },
                 {
                   "name": "Wands5",
                   "id": "Wands5",
+                  "shiny": true,
                   "level": 5,
-                  "modifiers": {}
+                  "overwriteTypeIcons": [
+                    1,
+                    0
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "maxHitBasedOnTargetResistance": [
+                        {
+                          "damageTypeID": "melvorD:Normal",
+                          "value": 0.2
+                        }
+                      ],
+                      "WTM:runePreservationCap": 5
+                    }
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "description": "Increase rune cost reduction of magic weapons",
+                      "condition": {
+                        "type": "EmptySlot",
+                        "slotIDs": [
+                          "melvorD:Shield"
+                        ]
+                      },
+                      "modifiers": {
+                        "maxHitBasedOnTargetResistance": [
+                          {
+                            "damageTypeID": "melvorD:Normal",
+                            "value": 0.25
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "modifiers": {
+                    "WTM:runePreservationCap": 5,
+                    "flatRangedDefenceBonusBasedOnResistance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": 3
+                      }
+                    ]
+                  }
                 }
               ]
             },

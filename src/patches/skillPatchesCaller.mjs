@@ -11,6 +11,7 @@ const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
 const { miscCombatPatches } = await loadModule('src/patches/patches/miscCombatPatches.mjs');
 const { addMissingHealthMaxHit } = await loadModule('src/patches/patches/addMissingHealthMaxHit.mjs');
 
+const { patchRunePreservationCap } = await loadModule('src/patches/patches/patchRunePreservationCap.mjs');
 
 
 const { addWeaponMasteryUI } = await loadModule('src/patches/patches/weaponMastery/weaponMasteryUI.mjs');
@@ -51,6 +52,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
         patchDodgeChance(ctx);
+        patchRunePreservationCap(ctx);
         //addPlayerBarrier(ctx);
         addParry(ctx);
         addRandomReductions(ctx);

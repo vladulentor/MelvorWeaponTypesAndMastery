@@ -115,6 +115,7 @@ export const language = {
     'MODIFIER_DATA_RandomUpSpellDamRune': 'Randomize Spell Damage and Rune Cost from 50% to 250% every cast',
     'MODIFIER_DATA_RandomRuneReduction': 'Decrease Minimum Random Rune Cost to 33%',
     'MODIFIER_DATA_RandomDamIncrease': 'Increase Maximum Random Spell Damage to 333%',
+    'MODIFIER_DATA_runePreservationCap':"${value}% Rune preservation Cap",
     'MODIFIER_DATA_maxHitBasedOnMissingHitpoints': '${value}% Max Hit for each 1% of Hitpoints missing',
     'MODIFIER_DATA_fearDurationIncreaseChance':'${value}% chance to increase the length of fear effects inflicted by 1 turn',
     'MODIFIER_DATA_blessingChance': '${value}% chance to recieve three Triple-charged Buffs at the start of your turn',
