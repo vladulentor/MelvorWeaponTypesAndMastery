@@ -717,7 +717,7 @@
         "damage": [
           {
             "damageType": "Normal",
-            "amplitude": 100
+            "amplitude": 50
           }
         ],
         "prehitEffects": [
@@ -1600,13 +1600,13 @@
           },
           {
             "type": "String",
-            "value": "+1 stack on Hit and Evade, -1 stack on Miss and Being Hit (min 1 stack, max 20)"
+            "value": "+1 stack on Hit and Evade, -1 stack on Miss and Being Hit (min 1 stack, max 10)"
           }
         ],
         "parameters": [
           {
             "name": "maxStacks",
-            "initialValue": 20
+            "initialValue": 10
           }
         ],
         "statGroups": [
@@ -3070,26 +3070,41 @@
                     1
                   ],
                   "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+5% Dodge Chance, +5% Chance to Convert a Miss Into a Hit, and -5% Attack Interval.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:ThrustingSwords"
+                        },
+                        "modifiers": {
+                          "dodgeChance": 5,
+                          "convertMissIntoHit": 5,
+                          "attackInterval": -5
+                        }
+                      }
+                    ],
                     "modifiers": {
-                      "dodgeChance": 10,
-                      "convertMissIntoHit": 10,
-                      "attackInterval": -10
+                      "flatStabAttackBonus": 10
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "When wielding Thrusting Swords, gain a 10% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval.",
+                      "description": "+5% Dodge Chance, +5% Chance to Convert a Miss Into a Hit, and -5% Attack Interval.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
                       },
                       "modifiers": {
-                        "dodgeChance": 10,
-                        "convertMissIntoHit": 10,
-                        "attackInterval": -10
+                        "dodgeChance": 5,
+                        "convertMissIntoHit": 5,
+                        "attackInterval": -5
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "flatStabAttackBonus": 10
+                  }
                 },
                 {
                   "name": "ThrustingSwords3",
@@ -3155,15 +3170,14 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "When wielding Thrusting Swords, gain a 5% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval. If you also have nothing equipped in your Shield slot, triple that bonus and gain +10% Chance to ignore Enemy Resistance.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
                       },
                       "modifiers": {
-                        "attackInterval": -5,
-                        "dodgeChance": 5,
-                        "convertMissIntoHit": 5
+                        "attackInterval": -3,
+                        "dodgeChance": 3,
+                        "convertMissIntoHit": 3
                       }
                     },
                     {
@@ -3182,9 +3196,9 @@
                           }
                         ],
                         "modifiers": {
-                          "dodgeChance": 10,
-                          "convertMissIntoHit": 10,
-                          "attackInterval": -10,
+                          "dodgeChance": 6,
+                          "convertMissIntoHit": 6,
+                          "attackInterval": -6,
                           "ignoreResistanceWhenAttackingChance": [
                             {
                               "damageTypeID": "melvorD:Normal",
@@ -3279,7 +3293,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Disarm",
-                      "chance": 10
+                      "chance": 5
                     },
                     {
                       "conditions": [
@@ -3296,7 +3310,7 @@
                       ],
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Disarm",
-                      "chance": 10
+                      "chance": 5
                     }
                   ]
                 }
@@ -4316,7 +4330,10 @@
                         "WTM:maxHitBasedOnMissingHitpoints": 0.1
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "flatMeleeMaxHit": 2
+                  }
                 },
                 {
                   "name": "Axes2",
@@ -4344,7 +4361,7 @@
                       {
                         "appliesWhen": "HitWithAttack",
                         "effectID": "melvorD:Bleed100",
-                        "chance": 10
+                        "chance": 5
                       }
                     ]
                   },
@@ -4363,14 +4380,14 @@
                   ],
                   "combatEffects": [
                     {
-                      "customDescription": "10% chance to inflict a Bleed on Hit",
+                      "customDescription": "5% chance to inflict a Bleed on Hit",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "melvorD:Bleed100",
-                      "chance": 10
+                      "chance": 5
                     }
                   ]
                 },
@@ -4395,7 +4412,10 @@
                         "WTM:fakeModifierAddTextDescToWepType": 1
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "lifesteal": 5
+                  }
                 },
                 {
                   "name": "Axes4",
@@ -4431,7 +4451,7 @@
                           "weaponType": "WTM:Axes"
                         },
                         "appliesWhen": "HitWithAttack",
-                        "chance": 10,
+                        "chance": 5,
                         "effectID": "melvorD:Bleed100"
                       }
                     ]
@@ -4513,12 +4533,12 @@
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 10,
+                        "chance": 5,
                         "effectID": "WTM:BloodlustPlayer"
                       },
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 10,
+                        "chance": 5,
                         "effectID": "WTM:Hemorrhage"
                       }
                     ]
@@ -4530,7 +4550,7 @@
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "effectID": "WTM:BloodlustPlayer"
                     },
                     {
@@ -4539,7 +4559,7 @@
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "effectID": "WTM:BloodlustEnemy"
                     },
                     {
@@ -4548,12 +4568,12 @@
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "effectID": "WTM:Hemorrhage"
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -4572,7 +4592,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -4591,7 +4611,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -4639,12 +4659,12 @@
                   {
                     "appliesWhen": "EvadedAttack",
                     "effectID": "WTM:Certainty",
-                    "chance": 10
+                    "chance": 5
                   },
                   {
                     "appliesWhen": "HitWithAttack",
                     "effectID": "WTM:Swiftness",
-                    "chance": 10
+                    "chance": 5
                   }
                 ]
               },
@@ -4660,20 +4680,20 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "WTM:accuracyRatingPer10000Evasion": 10,
-                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
+                      "WTM:accuracyRatingPer10000Evasion": 5,
+                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.25
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Gain 10% Global Accuracy Rating per 10,000 Global Evasion and 0.5% Dodge Chance per 10,000 Enemy Global Accuracy Rating",
+                      "description": "Gain 5% Global Accuracy Rating per 10,000 Global Evasion and 0.25% Dodge Chance per 10,000 Enemy Global Accuracy Rating",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
                       },
                       "modifiers": {
-                        "WTM:accuracyRatingPer10000Evasion": 10,
-                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
+                        "WTM:accuracyRatingPer10000Evasion": 5,
+                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.25
                       }
                     }
                   ]
@@ -4696,17 +4716,17 @@
                       {
                         "appliesWhen": "EvadedAttack",
                         "effectID": "WTM:Certainty",
-                        "chance": 50
+                        "chance": 25
                       },
                       {
                         "appliesWhen": "HitWithAttack",
                         "effectID": "WTM:Swiftness",
-                        "chance": 50
+                        "chance": 25
                       }
                     ],
                     "conditionalModifiers": [
                       {
-                        "description": "50% Chance to gain 1 stack of Certainty when evading an attack",
+                        "description": "25% Chance to gain 1 stack of Certainty when evading an attack",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Polearms"
@@ -4716,7 +4736,7 @@
                         }
                       },
                       {
-                        "description": "50% Chance to gain 1 stack of Swiftness when hitting with an attack",
+                        "description": "25% Chance to gain 1 stack of Swiftness when hitting with an attack",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Polearms"
@@ -4735,7 +4755,7 @@
                       },
                       "appliesWhen": "EvadedAttack",
                       "effectID": "WTM:Certainty",
-                      "chance": 50
+                      "chance": 25
                     },
                     {
                       "condition": {
@@ -4744,7 +4764,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Swiftness",
-                      "chance": 50
+                      "chance": 25
                     }
                   ]
                 },
@@ -4884,7 +4904,10 @@
                       "effectID": "WTM:Swiftness",
                       "chance": 100
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "evasion": 5
+                  }
                 },
                 {
                   "name": "Polearms4",
@@ -4895,7 +4918,7 @@
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_POLE4",
-                        "description": "+50 Bonus to Slash, Stab, and Block Attack",
+                        "description": "+25 Bonus to Slash, Stab, and Block Attack",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Polearms"
@@ -4906,7 +4929,7 @@
                       },
                       {
                         "descriptionLang": "WTM_POLE42",
-                        "description": "+50 Bonus to Melee, Magic, and Ranged Defence",
+                        "description": "+25 Bonus to Melee, Magic, and Ranged Defence",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Polearms"
@@ -4924,12 +4947,12 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "modifiers": {
-                        "flatSlashAttackBonus": 50,
-                        "flatStabAttackBonus": 50,
-                        "flatBlockAttackBonus": 50,
-                        "flatMeleeDefenceBonus": 50,
-                        "flatMagicDefenceBonus": 50,
-                        "flatRangedDefenceBonus": 50
+                        "flatSlashAttackBonus": 25,
+                        "flatStabAttackBonus": 25,
+                        "flatBlockAttackBonus": 25,
+                        "flatMeleeDefenceBonus": 25,
+                        "flatMagicDefenceBonus": 25,
+                        "flatRangedDefenceBonus": 25
                       }
                     }
                   ]
@@ -4947,10 +4970,10 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "evasion": 50,
-                      "accuracyRating": 50,
-                      "WTM:accuracyRatingPer10000Evasion": 10,
-                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 1
+                      "evasion": 10,
+                      "accuracyRating": 10,
+                      "WTM:accuracyRatingPer10000Evasion": 5,
+                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
                     }
                   },
                   "conditionalModifiers": [
@@ -4960,13 +4983,19 @@
                         "weaponType": "WTM:Polearms"
                       },
                       "modifiers": {
-                        "evasion": 50,
-                        "accuracyRating": 50,
-                        "WTM:accuracyRatingPer10000Evasion": 10,
-                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 1
+                        "evasion": 10,
+                        "accuracyRating": 10,
+                        "WTM:accuracyRatingPer10000Evasion": 5,
+                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.5
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "evasion": 5,
+                    "accuracyRating": 5,
+                    "WTM:accuracyRatingPer10000Evasion": 2.5,
+                    "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.25
+                  }
                 }
               ]
             },
@@ -5065,7 +5094,7 @@
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithFirstAttack",
-                        "chance": 50,
+                        "chance": 10,
                         "effectID": "WTM:Broken"
                       },
                       {
@@ -5129,7 +5158,7 @@
                         "weaponType": "WTM:Blunts"
                       },
                       "appliesWhen": "HitWithFirstAttack",
-                      "chance": 50,
+                      "chance": 10,
                       "effectID": "WTM:Broken"
                     },
                     {
@@ -5176,6 +5205,9 @@
                         }
                       }
                     ]
+                  },
+                  "modifiers": {
+                    "ignoreResistanceWhenAttackingChance": 2
                   },
                   "conditionalModifiers": [
                     {
@@ -5237,7 +5269,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Daze",
-                      "chance": 20
+                      "chance": 5
                     },
                     {
                       "condition": {
@@ -5256,7 +5288,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "melvorD:Stun",
-                      "chance": 10,
+                      "chance": 5,
                       "initialParams": [
                         {
                           "name": "turns",
@@ -5264,7 +5296,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "stunDurationIncreaseChance": 5
                 },
                 {
                   "name": "Blunts5",
@@ -5286,7 +5319,7 @@
                       "meleeStrengthBonusPer10EnemyResistance": [
                         {
                           "damageTypeID": "melvorD:Normal",
-                          "value": 10
+                          "value": 5
                         }
                       ],
                       "meleeAccuracyMaxHitPer8Strength": 2
@@ -5301,7 +5334,7 @@
                           "type": "CombatEffectGroup"
                         },
                         "modifiers": {
-                          "damageDealt": 30
+                          "damageDealt": 10
                         }
                       }
                     ]
@@ -5323,7 +5356,7 @@
                         ]
                       },
                       "modifiers": {
-                        "damageDealt": 30
+                        "damageDealt": 10
                       }
                     },
                     {
@@ -5335,7 +5368,7 @@
                         "meleeStrengthBonusPer10EnemyResistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 10
+                            "value": 5
                           }
                         ],
                         "meleeAccuracyMaxHitPer8Strength": 2
@@ -5481,11 +5514,11 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "flatAttackInterval": -100
+                      "flatAttackInterval": -50
                     },
                     "conditionalModifiers": [
                       {
-                        "description": "+20% Reflect Damage against Ranged Attacks when unfettered",
+                        "description": "+10% Reflect Damage against Ranged Attacks when unfettered",
                         "condition": {
                           "type": "EmptySlot",
                           "slotIDs": [
@@ -5505,7 +5538,7 @@
                         "weaponType": "WTM:HandToHand"
                       },
                       "modifiers": {
-                        "flatAttackInterval": -100
+                        "flatAttackInterval": -50
                       }
                     },
                     {
@@ -5528,10 +5561,18 @@
                         ]
                       },
                       "modifiers": {
-                        "reflectDamage": 20
+                        "reflectDamage": 10
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "resistance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "name": "HandToHand3",
@@ -5555,7 +5596,7 @@
                         }
                       },
                       {
-                        "description": "+10% Hidden Defence Levels and Total Resistance when unfettered",
+                        "description": "+5% Hidden Defence Levels and Total Resistance when unfettered",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
@@ -5588,13 +5629,13 @@
                         "flatHiddenSkillLevelBasedOnLevels": [
                           {
                             "skillID": "melvorD:Defence",
-                            "value": 10
+                            "value": 5
                           }
                         ],
                         "resistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 10
+                            "value": 5
                           }
                         ]
                       }
@@ -5618,12 +5659,12 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "maxHit": 10,
-                      "flatAttackInterval": -100
+                      "maxHit": 5,
+                      "flatAttackInterval": -50
                     },
                     "conditionalModifiers": [
                       {
-                        "description": "+20% Chance to ignore Slow, Stun, and Sleep when unfettered",
+                        "description": "+10% Chance to ignore Slow, Stun, and Sleep when unfettered",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
@@ -5641,8 +5682,8 @@
                         "weaponType": "WTM:HandToHand"
                       },
                       "modifiers": {
-                        "maxHit": 10,
-                        "flatAttackInterval": -100
+                        "maxHit": 5,
+                        "flatAttackInterval": -50
                       }
                     },
                     {
@@ -5656,19 +5697,35 @@
                       "effectIgnoreChance": [
                         {
                           "effectGroupID": "melvorD:Slow",
-                          "value": 20
+                          "value": 10
                         },
                         {
                           "effectGroupID": "melvorD:Stun",
-                          "value": 20
+                          "value": 10
                         },
                         {
                           "effectGroupID": "melvorD:Sleep",
-                          "value": 20
+                          "value": 10
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "effectIgnoreChance": [
+                      {
+                        "effectGroupID": "melvorD:Slow",
+                        "value": 2.5
+                      },
+                      {
+                        "effectGroupID": "melvorD:Stun",
+                        "value": 2.5
+                      },
+                      {
+                        "effectGroupID": "melvorD:Sleep",
+                        "value": 2.5
+                      }
+                    ]
+                  }
                 },
                 {
                   "name": "HandToHand5",
@@ -5687,19 +5744,19 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "stunDurationIncreaseChance": 100,
-                      "decreaseEnemyEvasionOnStun": 100
+                      "stunDurationIncreaseChance": 50,
+                      "decreaseEnemyEvasionOnStun": 50
                     },
                     "conditionalModifiers": [
                       {
-                        "description": "+100% HP Regen and -5s HP Regen Interval when unfettered",
+                        "description": "+50% HP Regen and -2.5s HP Regen Interval when unfettered",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
                         },
                         "modifiers": {
-                          "stunDurationIncreaseChance": 100,
-                          "decreaseEnemyEvasionOnStun": 100
+                          "stunDurationIncreaseChance": 50,
+                          "decreaseEnemyEvasionOnStun": 50
                         }
                       }
                     ]
@@ -5711,8 +5768,8 @@
                         "weaponType": "WTM:HandToHand"
                       },
                       "modifiers": {
-                        "stunDurationIncreaseChance": 100,
-                        "decreaseEnemyEvasionOnStun": 100
+                        "stunDurationIncreaseChance": 50,
+                        "decreaseEnemyEvasionOnStun": 50
                       }
                     },
                     {
@@ -5724,8 +5781,8 @@
                         ]
                       },
                       "modifiers": {
-                        "flatRegenerationInterval": -500,
-                        "hitpointRegeneration": 100
+                        "flatRegenerationInterval": -250,
+                        "hitpointRegeneration": 50
                       }
                     }
                   ]
@@ -5779,7 +5836,7 @@
                   "uiMods": {
                     "modifiers": {
                       "attackInterval": 10,
-                      "rangedAccuracyRating": 40
+                      "rangedAccuracyRating": 20
                     }
                   },
                   "conditionalModifiers": [
@@ -5790,7 +5847,7 @@
                       },
                       "modifiers": {
                         "attackInterval": 10,
-                        "rangedAccuracyRating": 40
+                        "rangedAccuracyRating": 20
                       }
                     }
                   ]
@@ -5821,7 +5878,10 @@
                         "ammoPreservationChance": 20
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "ammoPreservationChance": 5
+                  }
                 },
                 {
                   "name": "Crossbows3",
@@ -5901,7 +5961,10 @@
                         "weaponType": "WTM:Crossbows"
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "rangedCritChance": 2
+                  }
                 },
                 {
                   "name": "Crossbows5",
