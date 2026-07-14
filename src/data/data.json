@@ -4335,7 +4335,10 @@
                         "WTM:maxHitBasedOnMissingHitpoints": 0.1
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "flatMeleeMaxHit": 2
+                  }
                 },
                 {
                   "name": "Axes2",
@@ -4363,7 +4366,7 @@
                       {
                         "appliesWhen": "HitWithAttack",
                         "effectID": "melvorD:Bleed100",
-                        "chance": 10
+                        "chance": 5
                       }
                     ]
                   },
@@ -4382,14 +4385,14 @@
                   ],
                   "combatEffects": [
                     {
-                      "customDescription": "10% chance to inflict a Bleed on Hit",
+                      "customDescription": "5% chance to inflict a Bleed on Hit",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "melvorD:Bleed100",
-                      "chance": 10
+                      "chance": 5
                     }
                   ]
                 },
@@ -4414,7 +4417,10 @@
                         "WTM:fakeModifierAddTextDescToWepType": 1
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "lifesteal": 5
+                  }
                 },
                 {
                   "name": "Axes4",
@@ -4450,7 +4456,7 @@
                           "weaponType": "WTM:Axes"
                         },
                         "appliesWhen": "HitWithAttack",
-                        "chance": 10,
+                        "chance": 5,
                         "effectID": "melvorD:Bleed100"
                       }
                     ]
@@ -4527,12 +4533,12 @@
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 10,
+                        "chance": 5,
                         "effectID": "WTM:BloodlustPlayer"
                       },
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 10,
+                        "chance": 5,
                         "effectID": "WTM:Hemorrhage"
                       }
                     ]
@@ -4544,7 +4550,7 @@
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "effectID": "WTM:BloodlustPlayer"
                     },
                     {
@@ -4553,7 +4559,7 @@
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "effectID": "WTM:BloodlustEnemy"
                     },
                     {
@@ -4562,12 +4568,12 @@
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "effectID": "WTM:Hemorrhage"
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -4586,7 +4592,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -4605,7 +4611,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
