@@ -19,8 +19,8 @@ export const language = {
 
     'WTM_POLE3': "Unlock the Whirling Manoeuvre Special Attack",
     'WTM_POLE32': "Gain 5 stacks of Certainty and Swiftness at the Start of the Fight",
-    'WTM_POLE4': "+50 Bonus to Slash, Stab, and Block Attack",
-    'WTM_POLE42': "+50 Bonus to Melee, Magic, and Ranged Defence",
+    'WTM_POLE4': "+25 Bonus to Slash, Stab, and Block Attack",
+    'WTM_POLE42': "+25 Bonus to Melee, Magic, and Ranged Defence",
 
     'WTM_BLUNT1': "",
     'WTM_BLUNT2': "",
@@ -308,7 +308,7 @@ export const language = {
     'MODIFIER_TOOLTIP_LIGHT31': '<div class="text-center"><span class="text-danger font-weight-bold">Shadowshot (15%)</span><br>If not under Slink Into Shadows, quickly fire a targeted arrow that deals 25% of your normal damage. On hit, inflict Bleed and Immobilize. Then Slink Into Shadows. Otherwise perform a normal attack <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Slink Into Shadows</span><br><span>Gain 40% evasion, 10% resistance and -0.2s attack interval</span></div>',
     'MODIFIER_TOOLTIP_HTH3': '<div class="text-center"><span class="text-danger font-weight-bold">Channeled Palm Strike (10%)</span><br>Channel your inner strength and perform an avoidable normal attack. Deals 100% of your normal damage and inflicts Stun on the enemy for 1 turn on hit.</div>',
     'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-danger font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Triple-charge</span><br><span>All effect damage and modifier values are amplified by 3×</span></div>',
-    'MODIFIER_TOOLTIP_THRUSTING3': '<div class="text-center"><span class="text-danger font-weight-bold">Practiced Lunge (15%)</span><br>Perform an unavoidable lunge that ignores enemy Resistance. Deals 100% Normal Damage</div>',
+    'MODIFIER_TOOLTIP_THRUSTING3': '<div class="text-center"><span class="text-danger font-weight-bold">Practiced Lunge (15%)</span><br>Perform an unavoidable lunge that ignores enemy Resistance. Deals 50% Normal Damage</div>',
 
     'SPECIAL_ATTACK_DESC_ DeathApproaches': "Strike your enemy's weak spot, dealing ${attackDamageMaxValue0}% of their max HP.",
     'SPECIAL_ATTACK_DESC_ PracticedLunge': "Perform an unavoidable lunge that ignores enemy Resistance. Deals ${attackDamageMaxValue0}% normal damage.",
