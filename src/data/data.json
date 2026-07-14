@@ -3172,7 +3172,6 @@
                   },
                   "conditionalModifiers": [
                     {
-                      
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
@@ -5159,7 +5158,6 @@
                       "effectID": "WTM:Daze"
                     }
                   ]
-                  
                 },
                 {
                   "name": "Blunts3",
@@ -5471,11 +5469,11 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "flatAttackInterval": -100
+                      "flatAttackInterval": -50
                     },
                     "conditionalModifiers": [
                       {
-                        "description": "+20% Reflect Damage against Ranged Attacks when unfettered",
+                        "description": "+10% Reflect Damage against Ranged Attacks when unfettered",
                         "condition": {
                           "type": "EmptySlot",
                           "slotIDs": [
@@ -5495,7 +5493,7 @@
                         "weaponType": "WTM:HandToHand"
                       },
                       "modifiers": {
-                        "flatAttackInterval": -100
+                        "flatAttackInterval": -50
                       }
                     },
                     {
@@ -5518,10 +5516,18 @@
                         ]
                       },
                       "modifiers": {
-                        "reflectDamage": 20
+                        "reflectDamage": 10
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "resistance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": 1
+                      }
+                    ]
+                  }
                 },
                 {
                   "name": "HandToHand3",
@@ -5545,7 +5551,7 @@
                         }
                       },
                       {
-                        "description": "+10% Hidden Defence Levels and Total Resistance when unfettered",
+                        "description": "+5% Hidden Defence Levels and Total Resistance when unfettered",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
@@ -5578,13 +5584,13 @@
                         "flatHiddenSkillLevelBasedOnLevels": [
                           {
                             "skillID": "melvorD:Defence",
-                            "value": 10
+                            "value": 5
                           }
                         ],
                         "resistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 10
+                            "value": 5
                           }
                         ]
                       }
@@ -5608,12 +5614,12 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "maxHit": 10,
-                      "flatAttackInterval": -100
+                      "maxHit": 5,
+                      "flatAttackInterval": -50
                     },
                     "conditionalModifiers": [
                       {
-                        "description": "+20% Chance to ignore Slow, Stun, and Sleep when unfettered",
+                        "description": "+10% Chance to ignore Slow, Stun, and Sleep when unfettered",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
@@ -5631,8 +5637,8 @@
                         "weaponType": "WTM:HandToHand"
                       },
                       "modifiers": {
-                        "maxHit": 10,
-                        "flatAttackInterval": -100
+                        "maxHit": 5,
+                        "flatAttackInterval": -50
                       }
                     },
                     {
@@ -5646,19 +5652,35 @@
                       "effectIgnoreChance": [
                         {
                           "effectGroupID": "melvorD:Slow",
-                          "value": 20
+                          "value": 10
                         },
                         {
                           "effectGroupID": "melvorD:Stun",
-                          "value": 20
+                          "value": 10
                         },
                         {
                           "effectGroupID": "melvorD:Sleep",
-                          "value": 20
+                          "value": 10
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "effectIgnoreChance": [
+                      {
+                        "effectGroupID": "melvorD:Slow",
+                        "value": 2.5
+                      },
+                      {
+                        "effectGroupID": "melvorD:Stun",
+                        "value": 2.5
+                      },
+                      {
+                        "effectGroupID": "melvorD:Sleep",
+                        "value": 2.5
+                      }
+                    ]
+                  }
                 },
                 {
                   "name": "HandToHand5",
@@ -5677,19 +5699,19 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "stunDurationIncreaseChance": 100,
-                      "decreaseEnemyEvasionOnStun": 100
+                      "stunDurationIncreaseChance": 50,
+                      "decreaseEnemyEvasionOnStun": 50
                     },
                     "conditionalModifiers": [
                       {
-                        "description": "+100% HP Regen and -5s HP Regen Interval when unfettered",
+                        "description": "+50% HP Regen and -2.5s HP Regen Interval when unfettered",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
                         },
                         "modifiers": {
-                          "stunDurationIncreaseChance": 100,
-                          "decreaseEnemyEvasionOnStun": 100
+                          "stunDurationIncreaseChance": 50,
+                          "decreaseEnemyEvasionOnStun": 50
                         }
                       }
                     ]
@@ -5701,8 +5723,8 @@
                         "weaponType": "WTM:HandToHand"
                       },
                       "modifiers": {
-                        "stunDurationIncreaseChance": 100,
-                        "decreaseEnemyEvasionOnStun": 100
+                        "stunDurationIncreaseChance": 50,
+                        "decreaseEnemyEvasionOnStun": 50
                       }
                     },
                     {
@@ -5714,8 +5736,8 @@
                         ]
                       },
                       "modifiers": {
-                        "flatRegenerationInterval": -500,
-                        "hitpointRegeneration": 100
+                        "flatRegenerationInterval": -250,
+                        "hitpointRegeneration": 50
                       }
                     }
                   ]
