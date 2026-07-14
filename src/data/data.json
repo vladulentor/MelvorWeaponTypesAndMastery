@@ -3438,7 +3438,7 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "While the Enemy is Intimidated or Shaken, +1% Melee Accuracy and Melee Max Hit per 8 Strength Skill Levels (Floored). +10% Chance to ignore Fear effects",
+                        "description": "While the Enemy is Intimidated or Shaken, +1% Melee Accuracy and Melee Max Hit per 8 Strength Skill Levels (Floored)",
                         "condition": {
                           "type": "Every",
                           "conditions": [
