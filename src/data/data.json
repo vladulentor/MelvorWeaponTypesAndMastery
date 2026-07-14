@@ -783,6 +783,46 @@
         "usesRunesPerProc": false
       },
       {
+        "id": "Blindside",
+        "defaultChance": 75,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 35
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackCount": 2,
+        "attackInterval": 150,
+        "lifesteal": 0,
+        "name": "Blindside",
+        "description": "Strike from the shadows, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage each time. <br> Each strike has +15% Crit chance and +10% Crit Damage.",
+        "descriptionGenerator": "<Avoidable> attack for <damage>.",
+        "usesRunesPerProc": false
+      },
+       {
+        "id": "Multishot",
+        "defaultChance": 5,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 35
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 150,
+        "lifesteal": 0,
+        "name": "Blindside",
+        "description": "Strike from the shadows, making 1 + (Stealth/50) number of strikes that deal ${attackDamageMaxValue0}% of your Normal damage each. <br> Every Attack has +15% Crit chance and +200% Crit Damage.",
+        "descriptionGenerator": "<Avoidable> attack for <damage>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "DeathApproaches",
         "defaultChance": 5,
         "damage": [
@@ -2878,6 +2918,20 @@
           }
         ]
       },
+       {
+        "id": "multiShotExtraShot",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_multiShotExtraShot"
+              }
+            ]
+          }
+        ]
+      },
       {
         "id": "increaseWeaponXPmelee",
         "allowedScopes": [
@@ -4002,7 +4056,7 @@
                   "id": "Daggers3",
                   "level": 3,
                   "shiny": true,
-                  "specAttack": "WTM:DeathApproaches",
+                  "specAttack": "WTM:Blindside",
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_DAGGER3"
                   },
@@ -5207,12 +5261,12 @@
                     ]
                   },
                   "modifiers": {
-                    "ignoreResistanceWhenAttackingChance":  [
-                            {
-                              "damageTypeID": "melvorD:Normal",
-                              "value": 2
-                            }
-                          ]
+                    "ignoreResistanceWhenAttackingChance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": 2
+                      }
+                    ]
                   },
                   "conditionalModifiers": [
                     {

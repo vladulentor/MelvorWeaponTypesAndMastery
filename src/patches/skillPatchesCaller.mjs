@@ -7,6 +7,7 @@ const { addCombatSkillXP } = await loadModule('src/patches/patches/addCombatSkil
 
 
 const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
+const { addFunkyAttackCounts } = await loadModule('src/patches/patches/addFunkyAttackCounts.mjs');
 
 const { miscCombatPatches } = await loadModule('src/patches/patches/miscCombatPatches.mjs');
 const { addMissingHealthMaxHit } = await loadModule('src/patches/patches/addMissingHealthMaxHit.mjs');
@@ -62,6 +63,7 @@ export function patchSkillsBeforeDataReg(ctx) {
 export function patchSkillsAfterDataReg(ctx) {
         
         patchFearLikeExtension();
+        addFunkyAttackCounts();
 
 
 }

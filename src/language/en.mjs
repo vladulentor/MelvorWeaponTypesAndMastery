@@ -108,6 +108,7 @@ export const language = {
     'MODIFIER_DATA_blessingChance': '${value}% chance to recieve three Triple-charged Buffs at the start of your turn',
     'MODIFIER_DATA_effectIgnoreChanceGlobal': '${value}% chance to ignore Negative Effects',
     'MODIFIER_DATA_ExtraPotencyEffects': 'Triple-triple-charge Pandora\'s Spark Effects',
+    'MODIFIER_DATA_multiShotExtraShot':'${value} shots for the super cool multishot',
     'MODIFIER_TOOLTIP_THRUSTING1': '<div class="text-center"><span class="text-success font-weight-bold">Dueling Stance</span><br>Start Fight with 1 stack and on hit<br> Lose 1 stack on being hit<br> 1% bonus to Dodge Chance, Convert Miss into Hit, and Attack Interval per stack</div>',
     'MODIFIER_TOOLTIP_THRUSTING5': '<div class="text-center"><span class="text-success font-weight-bold">Parry</span><br>When an enemy misses you with an attack, you have a chance to perform a counterattack<br> Counterattack deals damage equal to your minimum hit on hit.</div>',
     'MODIFIER_TOOLTIP_THRUSTING52': '<div class="text-center"><span class="text-success font-weight-bold">Disarm</span><br>When you hit with an attack, you have a 10% chance (20% without a shield) to inflict Disarm to them <br> Disarm prevents them from attacking for 1 turn.</div>',
@@ -299,7 +300,9 @@ export const language = {
     'SPECIAL_ATTACK_NAME_ WhirlingManoeuvre': "Whirling Manoeuvre",
     'SPECIAL_ATTACK_NAME_ Bloodlust': "Bloodlust",
     'SPECIAL_ATTACK_NAME_ DeathApproaches': "Death Approaches",
+    'SPECIAL_ATTACK_NAME_ Blindside': "Blindside",
 
+    
 
     'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-danger font-weight-bold">Death Approaches (5%)</span><br>Strike your enemy\'s weak spot, dealing 22% of their max HP</div>',
     'MODIFIER_TOOLTIP_GREAT3': '<div class="text-center"><span class="text-danger font-weight-bold">Devastating Slice (15%)</span><br>Deliver your blade unto the enemy with a wide, arching slash that strikes 2 times for up to 90% of your normal damage per hit.<br> On hit, has a 5% Chance to inflict Shaken for 5 turns.<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Shaken</span><br>-10% Global Evasion and -10% Total Resistance</div>',
@@ -333,6 +336,7 @@ export const language = {
     'SPECIAL_ATTACK_DESC_ Shatterstrikes': "Harnessing crystalline power, make two swift strikes against the Target, each dealing ${attackDamageMaxValue0}% your maximum hit (doubled if the enemy is Crystallized).<br> On hit, ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for ${onHitEffect0turns} turn(s), and ${onHitEffect1chance}% chance to apply Crystal Sanction (Target's next attack deals no damage).",
     'SPECIAL_ATTACK_DESC_ CrystalStrike': "Focus crystalline energy into your knuckles to land a powerful strike.<br> On hit, deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for 1 turn.",
     'SPECIAL_ATTACK_DESC_ WhirlingManoeuvre': "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each.<br> While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect enemy attacks for ${preHitEffect0modValue0}% of their damage.",
+    'SPECIAL_ATTACK_DESC_ Blindside': "Strike from the shadows, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage each time. <br> Each strike has +15% Crit chance and +10% Crit Damage.",
 
     'MENU_SETTINGS_TOOLTIP': 'Whether this Namespace\'s weapons should have Types or gain and contribute XP',
 

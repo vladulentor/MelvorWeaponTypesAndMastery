@@ -32,13 +32,10 @@ class WeaponMasteryLevel extends RealmedObject {
         // I absolutely hate doing it like this
         this.name = getLangString("MENU_TEXT_LEVEL_HEADER") + levelIndex;
         if (data.specAttack) {
-            console.log("Found it!")
             this.changeFunc.push("addSpecialAttack");
             this.specAttack = game.specialAttacks.getObjectByID(data.specAttack);
         }
-        else{
-            console.log("No sepcattakc in", this)
-        }
+       
         if (data.shiny) this.shiny = data.shiny;
         if (data.order) this.order = data.order;
         this.wepModifiers = new StatObject(data, game, this._localID);
