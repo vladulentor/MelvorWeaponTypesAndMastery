@@ -717,7 +717,7 @@
         "damage": [
           {
             "damageType": "Normal",
-            "amplitude": 100
+            "amplitude": 50
           }
         ],
         "prehitEffects": [
@@ -1600,13 +1600,13 @@
           },
           {
             "type": "String",
-            "value": "+1 stack on Hit and Evade, -1 stack on Miss and Being Hit (min 1 stack, max 20)"
+            "value": "+1 stack on Hit and Evade, -1 stack on Miss and Being Hit (min 1 stack, max 10)"
           }
         ],
         "parameters": [
           {
             "name": "maxStacks",
-            "initialValue": 20
+            "initialValue": 10
           }
         ],
         "statGroups": [
@@ -3013,7 +3013,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "dodgeChance": 10
+                  "dodgeChance": 5
                 }
               },
               "levels": [
@@ -3041,9 +3041,9 @@
                           "weaponType": "WTM:ThrustingSwords"
                         },
                         "modifiers": {
-                          "dodgeChance": 10,
-                          "convertMissIntoHit": 10,
-                          "attackInterval": -10
+                          "dodgeChance": 5,
+                          "convertMissIntoHit": 5,
+                          "attackInterval": -5
                         }
                       }
                     ]
@@ -3072,26 +3072,41 @@
                     1
                   ],
                   "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "description": "+5% Dodge Chance, +5% Chance to Convert a Miss Into a Hit, and -5% Attack Interval.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:ThrustingSwords"
+                        },
+                        "modifiers": {
+                          "dodgeChance": 5,
+                          "convertMissIntoHit": 5,
+                          "attackInterval": -5
+                        }
+                      }
+                    ],
                     "modifiers": {
-                      "dodgeChance": 10,
-                      "convertMissIntoHit": 10,
-                      "attackInterval": -10
+                      "flatStabAttackBonus": 10
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "When wielding Thrusting Swords, gain a 10% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval.",
+                      "description": "+5% Dodge Chance, +5% Chance to Convert a Miss Into a Hit, and -5% Attack Interval.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
                       },
                       "modifiers": {
-                        "dodgeChance": 10,
-                        "convertMissIntoHit": 10,
-                        "attackInterval": -10
+                        "dodgeChance": 5,
+                        "convertMissIntoHit": 5,
+                        "attackInterval": -5
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "flatStabAttackBonus": 10
+                  }
                 },
                 {
                   "name": "ThrustingSwords3",
@@ -3157,15 +3172,15 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "When wielding Thrusting Swords, gain a 5% bonus to Dodge Chance, Convert Miss Into Hit, and Attack Interval. If you also have nothing equipped in your Shield slot, triple that bonus and gain +10% Chance to ignore Enemy Resistance.",
+                      
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:ThrustingSwords"
                       },
                       "modifiers": {
-                        "attackInterval": -5,
-                        "dodgeChance": 5,
-                        "convertMissIntoHit": 5
+                        "attackInterval": -3,
+                        "dodgeChance": 3,
+                        "convertMissIntoHit": 3
                       }
                     },
                     {
@@ -3184,9 +3199,9 @@
                           }
                         ],
                         "modifiers": {
-                          "dodgeChance": 10,
-                          "convertMissIntoHit": 10,
-                          "attackInterval": -10,
+                          "dodgeChance": 6,
+                          "convertMissIntoHit": 6,
+                          "attackInterval": -6,
                           "ignoreResistanceWhenAttackingChance": [
                             {
                               "damageTypeID": "melvorD:Normal",
@@ -3205,8 +3220,8 @@
                   "shiny": true,
                   "uiMods": {
                     "modifiers": {
-                      "dodgeChance": 10,
-                      "convertMissIntoHit": 10
+                      "dodgeChance": 5,
+                      "convertMissIntoHit": 5
                     },
                     "conditionalModifiers": [
                       {
@@ -3228,16 +3243,16 @@
                     ],
                     "combatEffects": [
                       {
-                        "customDescription": "Unlocks the ability to Disarm. When you hit with an attack, you have a 10% chance to Disarm the Enemy, preventing them from attacking for 1 turn. Chance is increased to 20% if nothing equipped in Shield Slot.",
+                        "customDescription": "Unlocks the ability to Disarm. When you hit with an attack, you have a 5% chance to Disarm the Enemy, preventing them from attacking for 1 turn. Chance is increased to 10% if nothing equipped in Shield Slot.",
                         "appliesWhen": "HitWithAttack",
                         "effectID": "WTM:Disarm",
-                        "chance": 10
+                        "chance": 5
                       }
                     ]
                   },
                   "modifiers": {
-                    "dodgeChance": 10,
-                    "convertMissIntoHit": 10
+                    "dodgeChance": 5,
+                    "convertMissIntoHit": 5
                   },
                   "conditionalModifiers": [
                     {
@@ -3263,7 +3278,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Disarm",
-                      "chance": 10
+                      "chance": 5
                     },
                     {
                       "conditions": [
@@ -3280,7 +3295,7 @@
                       ],
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Disarm",
-                      "chance": 10
+                      "chance": 5
                     }
                   ]
                 }
