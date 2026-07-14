@@ -5791,7 +5791,7 @@
                   "uiMods": {
                     "modifiers": {
                       "attackInterval": 10,
-                      "rangedAccuracyRating": 40
+                      "rangedAccuracyRating": 20
                     }
                   },
                   "conditionalModifiers": [
@@ -5802,7 +5802,7 @@
                       },
                       "modifiers": {
                         "attackInterval": 10,
-                        "rangedAccuracyRating": 40
+                        "rangedAccuracyRating": 20
                       }
                     }
                   ]
@@ -5833,7 +5833,10 @@
                         "ammoPreservationChance": 20
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "ammoPreservationChance": 5
+                  }
                 },
                 {
                   "name": "Crossbows3",
@@ -5913,7 +5916,10 @@
                         "weaponType": "WTM:Crossbows"
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "rangedCritChance": 2
+                  }
                 },
                 {
                   "name": "Crossbows5",
