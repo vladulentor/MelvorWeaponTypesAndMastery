@@ -55,8 +55,9 @@ export function miscCombatPatches({ patch }) {
             const funnyNum2 = Math.floor(Math.random() * game.combatEffects.allObjects.length)
             const ourEffect = game.combatEffects.allObjects[funnyNum1];
             const theirEffect = game.combatEffects.allObjects[funnyNum2];
-            changeEffectPotency(ourEffect, this.game.modifiers.getValue("WTM:ExtraPotencyEffects", ModifierQuery.EMPTY));
-            changeEffectPotency(theirEffect, this.game.modifiers.getValue("WTM:ExtraPotencyEffects", ModifierQuery.EMPTY));
+            const potenc = this.game.modifiers.getValue("WTM:ExtraPotencyEffects", ModifierQuery.EMPTY)
+            changeEffectPotency(ourEffect, potenc);
+            changeEffectPotency(theirEffect, potenc);
             this.applyCombatEffect(ourEffect, this, { type: "Attack", WTMSpecial: true }, undefined)
             target.applyCombatEffect(theirEffect, this, { type: "Attack", WTMSpecial: true }, undefined)
         }
