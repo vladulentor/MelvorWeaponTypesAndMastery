@@ -3,9 +3,9 @@
 
 const ctx = mod.getContext(import.meta);
 
-const { templateRielkLangStringWithNodes, templateRielkLangString, getRielkLangString } = await ctx.loadModule('src/language/translationManager.mjs');
+const { templateRielkLangStringWithNodes, getRielkLangString } = await ctx.loadModule('src/language/translationManager.mjs');
 
-const {uniqtoclass} = await ctx.loadModule('src/patches/patches/weaponMastery/weaponType.mjs');
+const { uniqtoclass } = await ctx.loadModule('src/patches/patches/weaponMastery/weaponType.mjs');
 
 
 // we should put these in a data type so that it's all connected by data and nice but... nobody is adding more weapon types, I'd like to see them try.
@@ -163,16 +163,21 @@ export class WeaponTypesCombatMenu {
         this.weaponTypeMPic = getElementFromFragment(this._content, 'weaponTypeMiniPic', 'img');
         this.weaponTypeMiniTHing = getElementFromFragment(this._content, 'weaponTypeMiniTHing', 'div');
         this.weaponMaxedCheck = getElementFromFragment(this._content, 'weaponMaxedCheck', 'span');
+        this.weaponMastCont = getElementFromFragment(this._content, 'weaponMastCont', 'span');
+
 
         this.weaponTypeMTex = getElementFromFragment(this._content, 'WeaponTypeMiniText', 'span');
         this.weaponPic = getElementFromFragment(this._content, 'weaponPic', 'img');
         this.weaponName = getElementFromFragment(this._content, 'weaponName', 'div');
-        this.weaponRank = getElementFromFragment(this._content, 'weaponRank', 'div');
+        this.weaponRank = getElementFromFragment(this._content, 'weaponRank', 'span');
         this.weaponXPBar = getElementFromFragment(this._content, 'weaponXPBar', 'div');
         this.weaponXPNumber = getElementFromFragment(this._content, 'weaponXPNumber', 'div');
         this.weaponXPFill = getElementFromFragment(this._content, 'weaponXpFill', 'div');
+        const typeProf = getElementFromFragment(this._content, 'mastery-weapon-type-Prof-Elem', 'h5');
+
+
         this.emptyAsset = 'assets/media/bank/weapon_sword.png'
-        this.noWeaponText = "No weapon Equipped"; //getRielkLangString()
+        this.noWeaponText = getRielkLangString('WTM_EMTPY_EQUIP_NAME'); //getRielkLangString()
 
         // MENU SELECT PARTS
         this.weaponButtonGroup = getElementFromFragment(this._content, 'weaponIDButtonGroup', 'div');
@@ -240,8 +245,13 @@ export class WeaponTypesCombatMenu {
         };
         this.settypeBonusTooltip(this.typeMenu.wepModType);
         this.settypeBonusTooltip(this.weaponMaxedCheck);
-        this.weaponMaxedCheck._tippy.setContent(`<div class="text-center">${getRielkLangString('MENU_WEP_MAXED')}</div>`);
+        this.settypeBonusTooltip(typeProf);
+        this.settypeBonusTooltip(this.weaponRank);
 
+
+        this.weaponMaxedCheck._tippy.setContent(`<div class="text-center">${getRielkLangString('MENU_WEP_MAXED')}</div>`);
+        this.weaponRank._tippy.setContent(`<div class="text-center">${getRielkLangString('MENU_UNIQ_TOOLTIP')}</div>`);
+        typeProf._tippy.setContent(`<div class="text-center">${getRielkLangString('MENU_TYPEPROF_TOOLTIP')}</div>`);
 
     }
     // ----------TYPE MENU FUNCTIONS ------------
@@ -312,15 +322,24 @@ export class WeaponTypesCombatMenu {
         this.typeMenu.text.classList.toggle(`${type.maxed ? 'construction-victory' : 'text-success'}`, type.activeWeapon);
         this.typeMenu.bgIcon.src = type.media;
         this.typeMenu.type = type;
-        const [typeLabel, toolTipText] = type.isPerWepMod // yay for needlessly optimal code
-            ? [this.typeMenu.wepModEquipped, this.typeMenu.wepModEquippedTool]
-            : [this.typeMenu.wepModPermanent, this.typeMenu.wepModPermanentTool];
-        this.typeMenu.wepModType.innerText = typeLabel;
         const typeWM = type.activeWeapon && game.combat.player.equippedWeapon.masteryMaxed
 
-        this.typeMenu.wepModType.classList.toggle("text-success", typeWM);
+        if (type.levelCap <= 1) {
+            hideElement(this.weaponMastCont);
+        }
+        else {
+            showElement(this.weaponMastCont);
 
-        this.typeMenu.wepModType._tippy.setContent(`<div class="text-center">${toolTipText}</div>`);
+            const [typeLabel, toolTipText] = type.isPerWepMod // yay for needlessly optimal code
+                ? [this.typeMenu.wepModEquipped, this.typeMenu.wepModEquippedTool]
+                : [this.typeMenu.wepModPermanent, this.typeMenu.wepModPermanentTool];
+            this.typeMenu.wepModType.innerText = typeLabel;
+
+            this.typeMenu.wepModType.classList.toggle("text-success", typeWM);
+
+            this.typeMenu.wepModType._tippy.setContent(`<div class="text-center">${toolTipText}</div>`);
+
+        }
         this.typeMenu.typeFlvText.innerText = type.flavorText || " ";
         this.setMods();
         this.typeMenu.wepModText.querySelectorAll('span').forEach(span => { // Annoying retarded bullshit that I hate
@@ -520,21 +539,8 @@ export class WeaponTypesCombatMenu {
     setMods() {
         this.typeMenu.wepModText.innerHTML = this.typeMenu.type._uiWepMod.describeLineBreak(1, this.typeMenu.type.doubledIndBonuses);
         for (let i = 0; i < this.typeMenu.steps.length; i++) {
-            let lockText = !this.typeMenu.type.fixture ? "" : this.typeMenu.type.fixture.length > 1 ? templateRielkLangStringWithNodes(
-                "MENU_UPGRADE_TYPE3",
-                {
-                    fixImg0: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[0].media]] }),
-                    fixImg1: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[1].media]] }),
-                    fixImg2: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[2].media]] })
-                },
-                {
-                    fixName0: this.typeMenu.type.fixture[0].name,
-                    fixName1: this.typeMenu.type.fixture[1].name,
-                    fixName2: this.typeMenu.type.fixture[2].name
-                }
-            )
-                : templateRielkLangStringWithNodes("MENU_UPGRADE_TYPE",
-                    { fixImg: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture[0].media]] }) }, { fixName: this.typeMenu.type.fixture[0].name });
+            let lockText = !this.typeMenu.type.fixture ? "" : templateRielkLangStringWithNodes("MENU_UPGRADE_TYPE",
+                { fixImg: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.typeMenu.type.fixture.media]] }) }, { fixName: this.typeMenu.type.fixture.name });
 
             const shiny = !!this.typeMenu.type.levels[i].shiny;
 
@@ -661,9 +667,6 @@ export class WeaponTypesCombatMenu {
                 this.selectedOType = overT.name;
                 this.changeSelectedButton(button);
                 this.changeSelectedMenu(button.menu);
-                // this is stupid I just want it to work
-                //this.attackSpellMenu.setBook(book);
-                //this.selectedAttackBook = book;
                 firstWep = false;
             }
             this.buttonList.push(button);

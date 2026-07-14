@@ -12,7 +12,7 @@ export function birthOfMonk({ patch }) {
     })
     patch(Player, 'getAccuracyValues').replace(function (orig) {
         const item = this.equipment.getItemInSlot("melvorD:Weapon" /* EquipmentSlotIDs.Weapon */);
-        if (item instanceof EquipmentItem ) {
+        if (item instanceof EquipmentItem) {
             this.attackType = item.attackType;
         }
         return orig();
@@ -20,7 +20,7 @@ export function birthOfMonk({ patch }) {
     })
     patch(Player, 'computeAttackType').replace(function (_) {
         const item = this.equipment.getItemInSlot("melvorD:Weapon" /* EquipmentSlotIDs.Weapon */);
-        if (item instanceof WeaponItem || item instanceof EquipmentItem ) {
+        if (item instanceof WeaponItem || item instanceof EquipmentItem) {
             this.attackType = item.attackType;
         }
         else {

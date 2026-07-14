@@ -2,7 +2,7 @@
 const { loadModule } = mod.getContext(import.meta);
 
 const { templateRielkLangStringWithNodes, templateRielkLangString, getRielkLangString } = await loadModule('src/language/translationManager.mjs');
-const {uniqtoclass} = await loadModule('src/patches/patches/weaponMastery/weaponType.mjs');
+const { uniqtoclass } = await loadModule('src/patches/patches/weaponMastery/weaponType.mjs');
 
 const ctx = mod.getContext(import.meta);
 
@@ -24,6 +24,7 @@ export class WeaponMasteryUI {
         icon.className = 'fa fa-question-circle';
         this.title.appendChild(icon);
         this.setWeaponMasteryTooltip(this.title);
+        
 
         this.weaponItem = getElementFromFragment(this._content, 'weaponMasteryItem', 'div');
         this.weaponPic = getElementFromFragment(this._content, 'weaponPic', 'img');
@@ -36,7 +37,7 @@ export class WeaponMasteryUI {
         this.weaponXPNumber = getElementFromFragment(this._content, 'weaponXPNumber', 'div');
 
 
-        this.weaponXPFill = getElementFromFragment(this._content, 'weaponXpFill', 'div');
+        this.weaponXPFill = getElementFromFragment(this._content, 'weaponXpFill', 'div');        
         this.weaponModDisc = getElementFromFragment(this._content, 'unlockedWeaponMod', 'div');
         this.weaponModText = getElementFromFragment(this._content, 'weaponModifierValue', 'div');
 
@@ -79,10 +80,10 @@ export class WeaponMasteryUI {
             getElementFromFragment(this._content, 'lock4', 'div'),
             getElementFromFragment(this._content, 'lock5', 'div'),
         ];
-                   this.wepModTypeApplic= getRielkLangString('MENU_GLOBAL_APPLIC'),
-            this.wepModGlobApplic=getRielkLangString('MENU_TYPE_APPLIC'),
+        this.wepModTypeApplic = getRielkLangString('MENU_GLOBAL_APPLIC'),
+            this.wepModGlobApplic = getRielkLangString('MENU_TYPE_APPLIC'),
 
-        this.stepsButton.onclick = () => this.toggleModifierList();
+            this.stepsButton.onclick = () => this.toggleModifierList();
     }
     // --- Tooltip shit --
 
@@ -421,21 +422,8 @@ export class WeaponMasteryUI {
     }
     setMods() {
         for (let i = 0; i < this.steps.length; i++) {
-            let lockText = !this.type.fixture? "" : this.type.fixture.length > 1 ? templateRielkLangStringWithNodes(
-                "MENU_UPGRADE_TYPE3",
-                {
-                    fixImg0: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[0].media]] }),
-                    fixImg1: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[1].media]] }),
-                    fixImg2: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[2].media]] })
-                },
-                {
-                    fixName0: this.type.fixture[0].name,
-                    fixName1: this.type.fixture[1].name,
-                    fixName2: this.type.fixture[2].name
-                }
-            )
-                : templateRielkLangStringWithNodes("MENU_UPGRADE_TYPE",
-                    { fixImg: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture[0].media]] }) }, { fixName: this.type.fixture[0].name });
+            let lockText = !this.type.fixture ? "" : templateRielkLangStringWithNodes("MENU_UPGRADE_TYPE",
+                { fixImg: createElement('img', { className: 'skill-icon-xs', attributes: [['src', this.type.fixture.media]] }) }, { fixName: this.type.fixture.name });
 
             const shiny = !!this.type.levels[i].shiny;
             if (this.type.levelCap <= i) {

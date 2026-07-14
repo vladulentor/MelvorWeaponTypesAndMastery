@@ -1,6 +1,13 @@
 // GLOVE LIST
+const { loadModule } = mod.getContext(import.meta);
+
+const { getRielkLangString } = await loadModule('src/language/translationManager.mjs');
 
 const gloves = [
+    {
+        item: "melvorD:Empty_Equipment", attackType: "melee", wepStats:
+            [{ key: 'attackSpeed', value: 2000 }]
+    },
     {
         item: "melvorD:Barbarian_Gloves", attackType: "melee", wepStats:
             [{ key: 'attackSpeed', value: 2200 }], specialAttacks: ["WTM:BigSmash"]
@@ -11,7 +18,7 @@ const gloves = [
                 "seedDropConversionChance": 50,
                 "foodPreservationChance": 25
             }
-        
+
     },
     {
         item: "melvorD:Bronze_Gloves", attackType: "melee", wepStats:
@@ -39,7 +46,7 @@ const gloves = [
                 "autoEatEfficiency": 30,
                 "hitpointRegeneration": 100
             }
-        
+
     },
     {
         item: "melvorF:Elementalist_Gloves", attackType: "magic", wepStats:
@@ -86,7 +93,7 @@ const gloves = [
                 "damageTakenAddedAsPrayerPoints": 0.1
 
             }
-        
+
     },
     {
         item: "melvorAoD:Bulky_Gloves", attackType: "melee", wepStats:
@@ -157,7 +164,7 @@ const gloves = [
                 "WTM:critChanceBasedOnMissingHitpoints": 1
 
             }
-        
+
     },
     {
         item: "melvorTotH:Vorloran_Protector_Gloves", attackType: "melee", wepStats:
@@ -176,7 +183,7 @@ const gloves = [
                 ]
 
             },
-        
+
         enemyModifiers: {
             "resistance": [
                 {
@@ -185,7 +192,7 @@ const gloves = [
                 }
             ]
         }
-        
+
     },
     {
         item: "melvorTotH:Vorloran_Devastator_Gloves", attackType: "melee", wepStats:
@@ -204,7 +211,7 @@ const gloves = [
                 ]
 
             },
-        
+
         enemyModifiers: {
             "resistance": [
                 {
@@ -238,7 +245,7 @@ const gloves = [
                 ]
 
             },
-        
+
         enemyModifiers: {
             "resistance": [
                 {
@@ -334,6 +341,13 @@ export function birthOfMonk2(ctx) { // Wanna see a fucking botch
         item.occupiesSlots.push(gloveSlot);
         item.attackType = upgradeset.attackType;
     })
+
+    //super botch for empty equip
+    const notN = getRielkLangString('WTM_EMTPY_EQUIP_NAME');
+    Object.defineProperty(game.emptyEquipmentItem, 'name', {
+        value: notN,
+    });
+    game.emptyEquipmentItem.attackSpeed = 2000;
     ctx.patch(EquipmentItem, 'fitsInSlot').after(function (ret, slotID) {
         if (!ret && slotID == "melvorD:Weapon" && gloves.some(glove => glove.item == this.id))
             return true;

@@ -45,6 +45,7 @@
                                     "overwriteTypeIcons": [
                                         1
                                     ],
+                                    "shiny": true,
                                     "uiMods": {
                                         "modifiers": {
                                             "WTM:RandomUpSpellDamRune": 1
@@ -181,6 +182,7 @@
                                     "tooltip": {
                                         "1": "MENU_TOOLTIPS_ARTEFACTS3"
                                     },
+                                    "shiny": true,
                                     "uiMods": {
                                         "conditionalModifiers": [
                                             {
@@ -236,6 +238,7 @@
                                         1,
                                         0
                                     ],
+                                    "shiny": true,
                                     "tooltip": {
                                         "1": "MENU_TOOLTIPS_ARTEFACTS5"
                                     },

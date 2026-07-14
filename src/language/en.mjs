@@ -1,5 +1,103 @@
 export const language = {
+    'WTM_THRUST1': "Unlock Dueling Stance",
+    'WTM_THRUST2': "",
+    'WTM_THRUST3': "Unlock the Practiced Lunge Special Attack",
+    'WTM_THRUST4': "Unlocks the ability to Parry with Thrusting Swords. When an Enemy misses you with an attack, you have a chance to perform a counterattack that deals damage equal to your minimum hit on hit",
+    'WTM_THRUST5': "",
+    'WTM_GREAT1': "20% Chance on Hit to inflict Intimidation",
+    'WTM_GREAT2': "20% Chance on Hit to inflict Shaken",
+    'WTM_GREAT3': "Unlock the Mounted Strike Special Attack",
+    'WTM_GREAT4': "1% Chance on Hit, Being Hit, and Evading to inflict a random Fear Effect for 3 turns",
+    'WTM_GREAT42': "+5% Max Hit and Total Resistance per Fear Effect on the Enemy",
 
+    'WTM_GREAT5': "While the Enemy is afflicted by all Fear Effects, gain +30% Max Hit and +15% Total Resistance",
+    'WTM_GREAT52': "Inflict all Fear Effects for 3 turns at the start of the Fight",
+
+    'WTM_POLE1': "",
+    'WTM_POLE2': "",
+    'WTM_POLE3': "Unlock the Whirling Manoeuvre Special Attack",
+    'WTM_POLE32': "Gain 5 stacks of Certainty and Swiftness at the Start of the Fight",
+    'WTM_POLE4': "+50 Bonus to Slash, Stab, and Block Attack",
+    'WTM_POLE2': "+50 Bonus to Melee, Magic, and Ranged Defence",
+
+    'WTM_POLE5': "",
+
+    'WTM_BLUNT1': "",
+    'WTM_BLUNT2': "",
+    'WTM_BLUNT3': "",
+    'WTM_BLUNT4': "",
+    'WTM_BLUNT5': "",
+
+    'WTM_DAGGER1': "Inflict 1 stack of Vulnerability on Hit, or 3 stacks on Critical",
+    'WTM_DAGGER2': "+25% Bleed and Poison damage. +5% Crit Chance and +50% Crit Multiplier. Double those if Enemy is Bleeding or Poisoned.",
+    'WTM_DAGGER3': "Unlock the Death Approaches Special Attack",
+    'WTM_DAGGER5': "While the Enemy has at least 1 stack of Vulnerability, its Resistance is halved. Apply 2 extra stacks on Hit if Enemy is Bleeding, 3 on Crit. Repeat if Enemy is Poisoned.",
+
+    'WTM_CURVED1': "",
+    'WTM_CURVED2': "",
+    'WTM_CURVED3': "Unlock the Mounted Strike Special Attack",
+    'WTM_CURVED4': "",
+    'WTM_CURVED5': "Unlock Advantage",
+
+    'WTM_HTH1': "",
+    'WTM_HTH2': "",
+    'WTM_HTH3': "",
+    'WTM_HTH4': "",
+    'WTM_HTH5': "",
+
+    'WTM_AXES1': "",
+    'WTM_AXES2': "",
+    'WTM_AXES3': "Unlock the Bloodlust Special Attack",
+    'WTM_AXES4': "Inflict Bloodlust and Hemorrhage when hitting with an attack (once a turn)",
+    'WTM_AXES42': "25% chance to apply Hemorrhage on Hit while Target is Bleeding.",
+
+    'WTM_AXES5': "+10% chance for both while Enemy is bleeding",
+
+    'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack.",
+
+    'WTM_CROSS1': "",
+    'WTM_CROSS2': "",
+    'WTM_CROSS3': "",
+    'WTM_CROSS4': "",
+    'WTM_CROSS5': "",
+
+    'WTM_HBOW1': "",
+    'WTM_HBOW2': "",
+    'WTM_HBOW3': "",
+    'WTM_HBOW4': "",
+    'WTM_HBOW5': "",
+
+    'WTM_LBOW1': "",
+    'WTM_LBOW2': "",
+    'WTM_LBOW3': "",
+    'WTM_LBOW4': "",
+    'WTM_LBOW5': "",
+
+    'WTM_THROWN1': "",
+    'WTM_THROWN2': "",
+    'WTM_THROWN3': "",
+    'WTM_THROWN4': "",
+    'WTM_THROWN5': "",
+
+    'WTM_STAVES1': "",
+    'WTM_STAVES2': "",
+    'WTM_STAVES3': "",
+    'WTM_STAVES4': "",
+    'WTM_STAVES5': "",
+
+    'WTM_WANDS1': "",
+    'WTM_WANDS2': "",
+    'WTM_WANDS3': "",
+    'WTM_WANDS4': "",
+    'WTM_WANDS5': "",
+
+    'WTM_ARTEF1': "",
+    'WTM_ARTEF2': "",
+    'WTM_ARTEF3': "",
+    'WTM_ARTEF4': "",
+    'WTM_ARTEF5': "",
+
+    'WTM_EMTPY_EQUIP_NAME': 'Unarmed',
     'MODIFIER_DATA_increaseWeaponXPMelee': "${value}% Melee Weapon Mastery XP",
     'MODIFIER_DATA_increaseWeaponXPRanged': "${value}% Ranged Weapon Mastery XP",
     'MODIFIER_DATA_increaseWeaponXPMagic': "${value}% Magic Weapon Mastery XP",
@@ -17,8 +115,9 @@ export const language = {
     'MODIFIER_DATA_RandomUpSpellDamRune': 'Randomize Spell Damage and Rune Cost from 50% to 250% every cast',
     'MODIFIER_DATA_RandomRuneReduction': 'Decrease Minimum Random Rune Cost to 33%',
     'MODIFIER_DATA_RandomDamIncrease': 'Increase Maximum Random Spell Damage to 333%',
+    'MODIFIER_DATA_runePreservationCap': "${value}% Rune preservation Cap",
     'MODIFIER_DATA_maxHitBasedOnMissingHitpoints': '${value}% Max Hit for each 1% of Hitpoints missing',
-
+    'MODIFIER_DATA_fearDurationIncreaseChance': '${value}% chance to increase the length of fear effects inflicted by 1 turn',
     'MODIFIER_DATA_blessingChance': '${value}% chance to recieve three Triple-charged Buffs at the start of your turn',
     'MODIFIER_DATA_effectIgnoreChanceGlobal': '${value}% chance to ignore Negative Effects',
     'MODIFIER_DATA_ExtraPotencyEffects': 'Triple-triple-charge Pandora\'s Spark Effects',
@@ -83,13 +182,12 @@ export const language = {
     'MODIFIER_TOOLTIP_THROWN3': '<div class="text-center"><span class="text-success font-weight-bold">Volley</span><br>-50% to Attack Interval and Max Hit, and Accuracy. Lasts for 3 turns</div>',
     'MODIFIER_TOOLTIP_THROWN4': '<div class="text-center"><span class="text-success font-weight-bold">Confused</span><br>2% of remaining HP dealt on a successful attack (once per turn, up to 10,000 damage)</div>',
 
-    'MODIFIER_TOOLTIP_WANDS1':'<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Evade, Daze, Can\'t Special Attack or Evade, Enemy, 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Summon Attack, Heal, 150% of Max HP over 20s <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>On Being Hit, +50% of Current DR added as DR, for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>On Hit, Burn, Enemy</div>',
-    'MODIFIER_TOOLTIP_WANDS2':'<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>-15% Attack Interval which decays on hit and lasts 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>Heal for 5% of your Current HP every 2 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>Enemy takes +15% Damage from Burn</div>',
-    'MODIFIER_TOOLTIP_WANDS3':'<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Crit, gain 1 stack of Concentration and 1 stack of Impact<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Hit, apply 1 stack of Vulnerability<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>At the Start of the Fight, become Steadfast for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>At the Start of the Fight, inflict Burn on the Enemy<div class="col-12 mb-1 dropdown-divider"></div>.</div>',
-    'MODIFIER_TOOLTIP_WANDS5':'<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>+20% Dmg Dealt when Enemy HP is ≤50%<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>+10% Dmg Dealt When Player HP is ≥50% and Heal for 10% Max HP on Evade<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+20% Chance to Ignore Fear, Sleep, Slow, and Stun, and +10% Dmg Dealt to Bleeding Targets<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>10% Chance on Hit to apply Burn Vulnerability to the Enemy (x2 Dmg Taken from Burn)</div>',
+    'MODIFIER_TOOLTIP_STAVES1': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Evade, Daze, Can\'t Special Attack or Evade, Enemy, 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Summon Attack, Heal, 150% of Max HP over 20s <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>On Being Hit, +50% of Current DR added as DR, for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>On Hit, Burn, Enemy</div>',
+    'MODIFIER_TOOLTIP_STAVES2': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>-15% Attack Interval which decays on hit and lasts 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>Heal for 5% of your Current HP every 2 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>Enemy takes +15% Damage from Burn</div>',
+    'MODIFIER_TOOLTIP_STAVES3': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Crit, gain 1 stack of Concentration and 1 stack of Impact<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Hit, apply 1 stack of Vulnerability<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>At the Start of the Fight, become Steadfast for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>At the Start of the Fight, inflict Burn on the Enemy<div class="col-12 mb-1 dropdown-divider"></div>.</div>',
+    'MODIFIER_TOOLTIP_STAVES5': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>+20% Dmg Dealt when Enemy HP is ≤50%<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>+10% Dmg Dealt When Player HP is ≥50% and Heal for 10% Max HP on Evade<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+20% Chance to Ignore Fear, Sleep, Slow, and Stun, and +10% Dmg Dealt to Bleeding Targets<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>10% Chance on Hit to apply Burn Vulnerability to the Enemy (x2 Dmg Taken from Burn)</div>',
     'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the Enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-warning font-weight-bold">Triple-charge</span><br><span>All effect damage and modifier values are amplified by 3×</span></div>',
     'MENU_TOOLTIPS_ARTEFACTS5': '<div class="text-center"><span class="text-info font-weight-bold">Triple-triple-charge</span><br>All effect damage and modifier values are amplified by 9×</div>',
-
     'WTM_EFFECT_TOOLTIP_SYNCRONIZE': 'At max stacks, below effects activate',
 
     'MENU_DANGER_ZONE': 'Danger Zone',
@@ -110,7 +208,8 @@ export const language = {
     'MENU_TOOLTIP_INTRO2': 'You can use your Weapon Stats to determine starting Weapon Mastery XP, or delete them to start with a clean slate',
     'MENU_TOOLTIP_INTRO3': 'You can delete stats at any point in the Mod Settings',
     'MENU_WARNING': 'Are you sure?',
-
+    'MENU_UPGRADE_TYPE': 'Further Construct your ${fixImg}${fixName} to Unlock',
+    'MENU_TYPEPROF_TOOLTIP':'Proficiency with a Type grows as more weapons of that Type are Mastered',
     'MENU_WARNING1': 'This will delete your existing Weapon Stats',
     'MENU_WARNING15': '(E.g. Total Attacks and Enemies Killed stats)',
     'MENU_WARNING2': 'This action cannot be undone!',
@@ -126,14 +225,17 @@ export const language = {
     'MENU_POPUP_GODELETE': 'Reset my Stats',
     'MENU_POPUP_DELETEFINAL': 'Reset all Weapon stats',
     'MENU_POPUP_BACK': 'Back',
+    'MENU_UNIQ_TOOLTIP': 'Weapon Uniqueness <br> More unique weapons can be trained for longer and provide more Mastery XP until they are Mastered. <br> Uniqueness is based on rarity, and has no relation to strength.',
     'MENU_SETTINGS_NOXP': 'Types & No XP',
     'MENU_SETTINGS_NONE': 'No Types & No XP',
     'MENU_SETTINGS_HOVER_TYPE': "Weapons have Types and can train and can be trained to receive and contribute Mastery XP",
     'MENU_SETTINGS_HOVER_NOXP': "Weapons have Types but cannot be trained to receive and contribute Mastery XP",
     'MENU_SETTINGS_HOVER_NONE': "Weapons do not have Types",
-
+    
+    
 
     'MENU_SETTINGS_TOOLTIP': 'Whether this Namespace\'s weapons should have Types or gain and contribute XP',
+
 
     'WTM_UNIQ_No_XP': 'No XP',
     'WTM_UNIQ_Stock': 'Stock',
@@ -169,12 +271,12 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Blunts": "Specialized in dazing their victims and breaking through defenses",
     "WTM_WEAPON_FLAVORTEXT_HandToHand": "Without tools or heavy armor, you can become a fleet and deadly weapon",
     "WTM_WEAPON_FLAVORTEXT_Crossbows": "Sacrifice speed for absolute accuracy and overwhelming strength",
-    "WTM_WEAPON_FLAVORTEXT_HeavyBows": "Unerring, powerful instruments meant to find weak points",
+    "WTM_WEAPON_FLAVORTEXT_HeavyBows": "Unerring, powerful instruments meant to find the weakness in your foes",
     "WTM_WEAPON_FLAVORTEXT_LightBows": "Evasive bows meant to pelt attackers with arrows while staying out of harm's way",
     "WTM_WEAPON_FLAVORTEXT_Thrown": "If the first one misses, the next five won't",
     "WTM_WEAPON_FLAVORTEXT_Staves": "Elementally-attuned kaleidoscopic tools of the arcane",
     "WTM_WEAPON_FLAVORTEXT_Wands": "Defensive, general magical implements for the wary wizard",
     "WTM_WEAPON_FLAVORTEXT_Artefacts": "Instruments representing Magic at its ficklest, to be used with great care and greater caution",
     "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, but nothing is stopping you",
-
+    "WTM_MAX": "MAX"
 }    

@@ -25,7 +25,6 @@ export async function setup(ctx) {
     let typeMap = new Set();
     ctx.onModsLoaded(async (ctx) => {
         typeMap = await setup.initSettings(ctx);
-        console.log("HERE IT IS", typeMap);
     })
     ctx.onCharacterLoaded(async (ctx) => {
         addWeaponType(ctx.settings.section('──⚔──'), typeMap);
@@ -42,7 +41,6 @@ export async function setup(ctx) {
     })
     ctx.onInterfaceReady(async (ctx) => {
         const popupS = ctx.characterStorage.getItem('popupSeen');
-        console.log("HERE IT IS!!!", popupS)
         if (!popupS && 0) // REMOVE THIS WHEN PUBLISHING DO NOT FORGET
             firstTimePopup(ctx);
         ctx.characterStorage.setItem('popupSeen', true);

@@ -34,7 +34,7 @@ class TranslationManager {
 const tm = new TranslationManager();
 await tm.syncLang();
 
-export function addRielkLangStrings(strings){
+export function addRielkLangStrings(strings) {
     Object.assign(tm.loadedLangJson, strings)
 }
 
@@ -95,21 +95,6 @@ export function patchTranslations(ctx) {
             return getRielkLangString(`ITEM_DESCRIPTION_${this.localID}`);
         return patch();
     });
-    ctx.patch(ShopPurchase, 'name').get(function (patch) {
-        if (this.namespace === 'rielkConstruction' && this._customName !== undefined)
-            return getRielkLangString(`SHOP_NAME_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(ShopPurchase, 'description').get(function (patch) {
-        if (this.namespace === 'rielkConstruction' && this._customDescription !== undefined)
-            return getRielkLangString(`SHOP_DESCRIPTION_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(HerbloreRecipe, 'name').get(function (patch) {
-        if (this.namespace === 'rielkConstruction')
-            return getRielkLangString(`POTION_NAME_${this.localID}`);
-        return patch();
-    });
     ctx.patch(Pet, 'name').get(function (patch) {
         if (this.namespace === 'rielkConstruction')
             return getRielkLangString(`PET_NAME_${this.localID}`);
@@ -138,77 +123,6 @@ export function patchTranslations(ctx) {
 
         return patch();
     });
-    ctx.patch(AncientRelic, 'name').get(function (orig) {
-        let ret = orig();
-        if (this.namespace == 'rielkConstruction')
-            ret = this.number <= 5 ?
-                templateRielkLangString('SKILL_RELIC', { skill: this.skill.name, number: `${this.number}` }) :
-                templateRielkLangString('SKILL_MASTER_RELIC', { skill: this.skill.name });
-        return ret
-    })
-    ctx.patch(MasteryLevelUnlock, 'description').get(function (patch) {
-        const ret = patch();
-        if (this._descriptionID !== undefined && ret.startsWith('UNDEFINED TRANSLATION')) {
-            const ret2 = getRielkLangString(`MASTERY_BONUS_ ${this.skill.localID}_ ${this._descriptionID}`);
-            if (ret2.startsWith('UNDEFINED TRANSLATION'))
-                return ret;
-            return ret2;
-        }
-        return ret;
-    });
-    ctx.patch(Monster, 'name').get(function (patch) {
-        if (this.namespace === 'rielkConstruction') {
-            return getRielkLangString(`ENEMY_NAME_${this.localID}`);
-        }
-        return patch();
-    });
-    ctx.patch(SummoningSynergy, 'description').get(function (patch) {
-        if (this._customDescription?.startsWith('RIELK_SYNERGY'))
-            return getRielkLangString(this._customDescription)
-        return patch();
-    })
-    ctx.patch(ShopUpgradeChain, 'chainName').get(function (patch) {
-        if (this.namespace === 'rielkConstruction')
-            return getRielkLangString(`MENU_TEXT_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(ShopUpgradeChain, 'defaultName').get(function (patch) {
-        if (this.namespace === 'rielkConstruction')
-            return getRielkLangString(`MISC_TEXT_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(Pet, 'acquiredBy').get(function (patch) {
-        if (this._langHint !== undefined && this.namespace === 'rielkConstruction')
-            return getRielkLangString(`PET_DESCRIPTION_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(SkillCategory, 'name').get(function (patch) {
-        if (this.namespace === 'rielkConstruction')
-            return getRielkLangString(`SKILL_CATEGORY_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(ThievingNPC, 'name').get(function (patch) {
-        if (this.namespace === 'rielkConstruction')
-            return getRielkLangString(`THIEVING_NPC_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(PointOfInterest, "name").get(function (patch) {
-        if (this._namespace.name == "rielkConstruction")
-            return getRielkLangString(this._name)
-        return patch()
-
-    })
-    ctx.patch(PointOfInterest, "description").get(function (patch) {
-        if (this._namespace.name == "rielkConstruction")
-            return getRielkLangString(this._description)
-        return patch()
-
-    })
-    ctx.patch(AgilityObstacle, "name").get(function (patch) {
-        if (this._namespace.name == "rielkConstruction")
-            return getRielkLangString(`AGI_OBSTACLE_${this._localID}`)
-        return patch()
-    })
     ctx.patch(CombatEffectLangTTSpan, "getSpans").replace(function (patch, activeEffect) {
         if (this.langID.startsWith("WTM")) {
             let text = getRielkLangString(this.langID);
@@ -221,7 +135,10 @@ export function patchTranslations(ctx) {
 
     ctx.patch(ConditionalModifier, "getDescriptionTemplate").replace(function (patch) {
         if (this._descriptionLang?.startsWith("WTM")) {
-            return getRielkLangString(this.langID);
+            console.log(this);
+            console.log(this._descriptionLang);
+            console.log(getRielkLangString(this._descriptionLang));
+            return getRielkLangString(this._descriptionLang);
         }
         return patch();
     });

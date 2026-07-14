@@ -11,6 +11,7 @@ const { addParry } = await loadModule('src/patches/patches/addParry.mjs');
 const { miscCombatPatches } = await loadModule('src/patches/patches/miscCombatPatches.mjs');
 const { addMissingHealthMaxHit } = await loadModule('src/patches/patches/addMissingHealthMaxHit.mjs');
 
+const { patchRunePreservationCap } = await loadModule('src/patches/patches/patchRunePreservationCap.mjs');
 
 
 const { addWeaponMasteryUI } = await loadModule('src/patches/patches/weaponMastery/weaponMasteryUI.mjs');
@@ -22,6 +23,8 @@ const {patchAccuracyRating} = await loadModule('src/patches/patches/patchAccurac
 const {patchDodgeChance} = await loadModule('src/patches/patches/patchDodgeChance.mjs');
 const {addPlayerBarrier} = await loadModule('src/patches/patches/addPlayerBarrier.mjs');
 const {birthOfMonk} = await loadModule('src/patches/patches/birthOfMonk.mjs');
+const {patchFearLikeExtension} = await loadModule('src/patches/patches/patchFearLikeExtension.mjs');
+
 
 const {addSummonQuickenAttack} = await loadModule('src/patches/patches/addSummonQuickenAttack.mjs');
 
@@ -49,6 +52,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
         patchDodgeChance(ctx);
+        patchRunePreservationCap(ctx);
         //addPlayerBarrier(ctx);
         addParry(ctx);
         addRandomReductions(ctx);
@@ -57,6 +61,7 @@ export function patchSkillsBeforeDataReg(ctx) {
 }
 export function patchSkillsAfterDataReg(ctx) {
         
+        patchFearLikeExtension();
 
 
 }
