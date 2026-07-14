@@ -5089,7 +5089,7 @@
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithFirstAttack",
-                        "chance": 50,
+                        "chance": 10,
                         "effectID": "WTM:Broken"
                       },
                       {
@@ -5136,7 +5136,7 @@
                         "weaponType": "WTM:Blunts"
                       },
                       "appliesWhen": "HitWithFirstAttack",
-                      "chance": 50,
+                      "chance": 10,
                       "effectID": "WTM:Broken"
                     },
                     {
@@ -5159,6 +5159,7 @@
                       "effectID": "WTM:Daze"
                     }
                   ]
+                  
                 },
                 {
                   "name": "Blunts3",
@@ -5184,6 +5185,9 @@
                       }
                     ]
                   },
+                  "modifiers": {
+                    "ignoreResistanceWhenAttackingChance": 2
+                  },
                   "conditionalModifiers": [
                     {
                       "condition": {
@@ -5206,7 +5210,7 @@
                       {
                         "appliesWhen": "HitWithAttack",
                         "effectID": "WTM:Daze",
-                        "chance": 20
+                        "chance": 5
                       },
                       {
                         "condition": {
@@ -5216,7 +5220,7 @@
                         },
                         "appliesWhen": "HitWithAttack",
                         "effectID": "melvorD:Stun",
-                        "chance": 10,
+                        "chance": 5,
                         "initialParams": [
                           {
                             "name": "turns",
@@ -5234,7 +5238,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Daze",
-                      "chance": 20
+                      "chance": 5
                     },
                     {
                       "condition": {
@@ -5253,7 +5257,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "melvorD:Stun",
-                      "chance": 10,
+                      "chance": 5,
                       "initialParams": [
                         {
                           "name": "turns",
@@ -5261,7 +5265,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "stunDurationIncreaseChance": 5
                 },
                 {
                   "name": "Blunts5",
@@ -5273,7 +5278,7 @@
                       "meleeStrengthBonusPer10EnemyResistance": [
                         {
                           "damageTypeID": "melvorD:Normal",
-                          "value": 10
+                          "value": 5
                         }
                       ],
                       "meleeAccuracyMaxHitPer8Strength": 2
@@ -5286,7 +5291,7 @@
                           "type": "CombatEffectGroup"
                         },
                         "modifiers": {
-                          "damageDealt": 30
+                          "damageDealt": 10
                         }
                       }
                     ]
@@ -5308,7 +5313,7 @@
                         ]
                       },
                       "modifiers": {
-                        "damageDealt": 30
+                        "damageDealt": 10
                       }
                     },
                     {
@@ -5320,7 +5325,7 @@
                         "meleeStrengthBonusPer10EnemyResistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 10
+                            "value": 5
                           }
                         ],
                         "meleeAccuracyMaxHitPer8Strength": 2
