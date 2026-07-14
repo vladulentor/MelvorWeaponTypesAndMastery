@@ -5207,7 +5207,12 @@
                     ]
                   },
                   "modifiers": {
-                    "ignoreResistanceWhenAttackingChance": 2
+                    "ignoreResistanceWhenAttackingChance":  [
+                            {
+                              "damageTypeID": "melvorD:Normal",
+                              "value": 2
+                            }
+                          ]
                   },
                   "conditionalModifiers": [
                     {
