@@ -391,11 +391,11 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_ThrustingSwords": "Light and well-balanced for twirling around enemies",
     "WTM_WEAPON_FLAVORTEXT_Greatswords": "Simply brutal and brutally simple",
     "WTM_WEAPON_FLAVORTEXT_CurvedSwords": "Dancing blades that embolden your companions",
-    "WTM_WEAPON_FLAVORTEXT_Daggers": "Opportunistic weapons designed to chip at enemies' defenses",
+    "WTM_WEAPON_FLAVORTEXT_Daggers": "Light yet fatal, they seem to disappear from their owner's hand until they appear in their targets' backs",
     "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, axes grow in power as the fight rages",
     "WTM_WEAPON_FLAVORTEXT_Polearms": "Designed to land mildly-dangerous strikes at a mildly-safe distance",
     "WTM_WEAPON_FLAVORTEXT_Blunts": "Specialized in dazing their victims and breaking through defenses",
-    "WTM_WEAPON_FLAVORTEXT_HandToHand": "Without tools or heavy armor, you can become a fleet and deadly weapon",
+    "WTM_WEAPON_FLAVORTEXT_HandToHand": "Without tools or heavy armor, one's own body can become a fleet and deadly weapon",
     "WTM_WEAPON_FLAVORTEXT_Crossbows": "Sacrifice speed for absolute accuracy and overwhelming strength",
     "WTM_WEAPON_FLAVORTEXT_HeavyBows": "Unerring, powerful instruments meant to find the weakness in your foes",
     "WTM_WEAPON_FLAVORTEXT_LightBows": "Evasive bows meant to pelt attackers with arrows while staying out of harm's way",
@@ -403,6 +403,6 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Staves": "Elementally-attuned kaleidoscopic tools of the arcane",
     "WTM_WEAPON_FLAVORTEXT_Wands": "Defensive, general magical implements for the wary wizard",
     "WTM_WEAPON_FLAVORTEXT_Artefacts": "Instruments representing Magic at its ficklest, to be used with great care and greater caution",
-    "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, but nothing is stopping you",
+    "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, it's debatable whether these are even weapons... But nothing is stopping you",
     "WTM_MAX": "MAX"
 }    
