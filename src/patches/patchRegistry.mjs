@@ -7,6 +7,7 @@ const { increaseSpecialAttackChance } = await loadModule("src/patches/patches/ad
 
 const { makeWeaponsOffhand } = await loadModule("src/patches/patches/makeWeaponsOffhand.mjs");
 const { makeGlovesWeapons } = await loadModule("src/patches/patches/makeGlovesWeapons.mjs");
+const { modifySpecialAttack } = await loadModule("src/patches/patches/modifySpecialAttack.mjs");
 
 
 
@@ -15,5 +16,6 @@ addSpecialAttack,
 increaseSpecialAttackChance,
 increaseRuneReduction,
 makeWeaponsOffhand,
-makeGlovesWeapons
+makeGlovesWeapons,
+modifySpecialAttack
 };

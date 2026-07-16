@@ -28,10 +28,12 @@ export const language = {
     'WTM_BLUNT4': "+10% chance to inflict Stun when hitting an enemy with Broken",
     'WTM_BLUNT5': "If Target is currently Stunned, +30% Damage Dealt",
 
-    'WTM_DAGGER1': "Inflict 1 stack of Vulnerability on Hit, or 3 stacks on Critical",
-    'WTM_DAGGER2': "+25% Bleed and Poison damage. +5% Crit Chance and +50% Crit Multiplier. Double those if enemy is Bleeding or Poisoned.",
-    'WTM_DAGGER3': "Unlock the Death Approaches Special Attack",
-    'WTM_DAGGER5': "While the enemy has at least 1 stack of Vulnerability, its Resistance is halved. Inflict 2 extra stacks on Hit if enemy is Bleeding, 3 on Crit. Repeat if enemy is Poisoned.",
+    'WTM_DAGGER0': "+25 Stealth",
+    'WTM_DAGGER2': "Apply Shrouded when critically hitting with an attack",
+    'WTM_DAGGER3': "Unlocks the Blindside Special Attack",
+    'WTM_DAGGER4': 'Shrouded grants +1.5% critical hit chance per 25 Stealth',
+    'WTM_DAGGER5': "Shrouded grants -0.15s Flat Attack Interval per 25 Stealth",
+    'WTM_DAGGER52': "+50 Stealth",
 
     'WTM_CURVED3': "Unlock the Mounted Strike Special Attack",
     'WTM_CURVED5': "Unlock Advantage",
@@ -108,7 +110,16 @@ export const language = {
     'MODIFIER_DATA_blessingChance': '${value}% chance to recieve three Triple-charged Buffs at the start of your turn',
     'MODIFIER_DATA_effectIgnoreChanceGlobal': '${value}% chance to ignore Negative Effects',
     'MODIFIER_DATA_ExtraPotencyEffects': 'Triple-triple-charge Pandora\'s Spark Effects',
-    'MODIFIER_DATA_multiShotExtraShot':'${value} shots for the super cool multishot',
+    'MODIFIER_DATA_multiShotExtraShot': '${value} shots for the super cool multishot',
+    'MODIFIER_DATA_critChance25Stealth': "${value}% critical hit chance per 25 Stealth",
+    'MODIFIER_DATA_doubleLootChance25Stealth': "${value}% Chance To Double Loot in Combat per 25 Stealth",
+    'MODIFIER_DATA_flatAttackInterval100Stealth': "${value} Flat Attack Interval per 100 Stealth",
+    'MODIFIER_DATA_damageTaken25Stealth': "${value}% less Damage taken per 25 Stealth",
+    'MODIFIER_DATA_maxHit25Stealth': "${value}% Maximum Hit per 25 Stealth",
+    'MODIFIER_DATA_critMult25Stealth': "${value}% critical hit multiplier per 25 Stealth",
+
+
+
     'MODIFIER_TOOLTIP_THRUSTING1': '<div class="text-center"><span class="text-success font-weight-bold">Dueling Stance</span><br>Start Fight with 1 stack and on hit<br> Lose 1 stack on being hit<br> 1% bonus to Dodge Chance, Convert Miss into Hit, and Attack Interval per stack</div>',
     'MODIFIER_TOOLTIP_THRUSTING5': '<div class="text-center"><span class="text-success font-weight-bold">Parry</span><br>When an enemy misses you with an attack, you have a chance to perform a counterattack<br> Counterattack deals damage equal to your minimum hit on hit.</div>',
     'MODIFIER_TOOLTIP_THRUSTING52': '<div class="text-center"><span class="text-success font-weight-bold">Disarm</span><br>When you hit with an attack, you have a 10% chance (20% without a shield) to inflict Disarm to them <br> Disarm prevents them from attacking for 1 turn.</div>',
@@ -122,18 +133,20 @@ export const language = {
     'MODIFIER_TOOLTIP_BLUNTS21': '<div class="text-center"><span class="text-success font-weight-bold">Broken</span><br>Gives -50% resistance</div>',
     'MODIFIER_TOOLTIP_BLUNTS22': '<div class="text-center"><span class="text-success font-weight-bold">Dazed</span><br>Gives +10% attack interval and stops them from evading, regenerating barrier, or using special attacks</div>',
     'MODIFIER_TOOLTIP_BLUNTS4': '<div class="text-center"><span class="text-success font-weight-bold">Stun</span><br>Cannot evade, attacks against Character deal 30% increased damage, also applies Stun Immunity on Application</div>',
-    'MODIFIER_TOOLTIP_DAGGER1': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>Gives +1% damage taken per stack (up to 50 stacks, stacks expire in 3 turns)</div>',
+
+    'MODIFIER_TOOLTIP_DAGGER2': '<div class="text-center"><span class="text-success font-weight-bold">Shrouded</span><br>Gives +50% critical hit muptiplier, lasts for 5 seconds or until the fight ends.</div>',
+
 
     'MODIFIER_TOOLTIP_HTH1': '<div class="text-center"><span class="text-info font-weight-bold">Unfettered</span><br>You are considered unfettered if your Platebody and Shield slots are empty</div>',
 
 
 
     'MODIFIER_TOOLTIP_CURVED5': '<div class="text-center"><span class="text-success font-weight-bold">Advantage</span><brAdvantage gives stacking 5% Max Hit and Attack Interval to your Familiars per stack, up to 5 stacks<br>When at max stacks, spend stacks on hit by instructing your Companions to perform two Unavoidable Attacks</div>',
-    'MODIFIER_TOOLTIP_POLEARMS3': '<div class="text-center"><span class="text-danger font-weight-bold">Whirling Manoeuvre (15%)</span><br>Whirl your polearm around, attacking multiple times for a small portion of your normal damage each.<br> While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.</div>',
+    'MODIFIER_TOOLTIP_POLEARMS3': '<div class="text-center"><span class="text-warning font-weight-bold">Whirling Manoeuvre (15%)</span><br>Whirl your polearm around, attacking multiple times for a small portion of your normal damage each.<br> While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.</div>',
     'MODIFIER_TOOLTIP_AXES2': '<div class="text-center"><span class="text-success font-weight-bold">Bleed</span><br>Deals up to 100% damage dealt over the course of 10 seconds</div>',
     'MODIFIER_TOOLTIP_AXES3': `
 <div class="text-center px-1" style="max-width: 280px;">
-    <div class="text-danger font-weight-bold mb-1">Bloodlust (25%)</div>
+    <div class="text-warning font-weight-bold mb-1">Bloodlust (25%)</div>
     <div class="font-size-sm text-muted mb-2">Let out a bloodcurdling warcry. Inflict Bloodlust.</div>
     <div class="font-weight-bold text-success font-size-sm mb-1">Bloodlust (Max 10 stacks):</div>
     
@@ -170,10 +183,13 @@ export const language = {
     'MODIFIER_TOOLTIP_STAVES2': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>-15% Attack Interval which decays on hit and lasts 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>Heal for 5% of your Current HP every 2 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>Enemy takes +15% Damage from Burn</div>',
     'MODIFIER_TOOLTIP_STAVES3': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Crit, gain 1 stack of Concentration and 1 stack of Impact<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Hit, inflict 1 stack of Vulnerability<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>At the Start of the Fight, become Steadfast for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>At the Start of the Fight, inflict Burn on the enemy</div>',
     'MODIFIER_TOOLTIP_STAVES5': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>+20% Dmg Dealt when enemy HP is ≤50%<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>+10% Dmg Dealt When Player HP is ≥50% and Heal for 10% Max HP on Evade<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+20% Chance to Ignore Fear, Sleep, Slow, and Stun, and +10% Dmg Dealt to Bleeding Targets<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>10% Chance on Hit to inflict Burn Vulnerability to the enemy (x2 Dmg Taken from Burn)</div>',
-    'MENU_TOOLTIPS_ARTEFACTS5': '<div class="text-center"><span class="text-info font-weight-bold">Triple-triple-charge</span><br>All effect damage and modifier values are amplified by 9×</div>',
+    'MENU_TOOLTIPS_ARTEFACTS5': '<div class="text-center"><span class="text-success font-weight-bold">Triple-triple-charge</span><br>All effect damage and modifier values are amplified by 9×</div>',
 
     'WTM_EFFECT_TOOLTIP_SYNCRONIZE': 'At max stacks, below effects activate',
     'WTM_EFFECT_TOOLTIP_STRAIGHTSHOOTER': "Next attack is unavoidable and will Crit",
+    'WTM_EFFECT_TOOLTIP_SHROUDED': "You are veiled in shadow",
+
+
 
     'MENU_DANGER_ZONE': 'Danger Zone',
     'MENU_SETTINGS_WEAPONS_SECTION': 'Weapon Type & XP Settings',
@@ -218,7 +234,8 @@ export const language = {
     'MENU_SETTINGS_HOVER_NONE': "Weapons do not have Types",
 
     'COMBAT_EFFECT_NAME_ Intimidation': "Intimidation",
-
+    'WTM_PARRY': "Parry!",
+    'WTM_PARRY_CHANCE': "Parry chance",
     'COMBAT_EFFECT_NAME_ Disarm': "Disarm",
     'COMBAT_EFFECT_NAME_ DuelingStance': "DuelingStance",
     'COMBAT_EFFECT_NAME_ WaterHeal': "Refreshing Rain",
@@ -266,6 +283,10 @@ export const language = {
     'COMBAT_EFFECT_NAME_ Hobbled': "Hobbled",
     'COMBAT_EFFECT_NAME_ Impact': "Impact",
     'COMBAT_EFFECT_NAME_ Immobilize': "Immobilize",
+    'COMBAT_EFFECT_NAME_ Shrouded': "Shrouded",
+    'COMBAT_EFFECT_NAME_ Blindsiding': "Blindsiding",
+
+
 
     'COMBAT_EFFECTGROUP_NAME_ AttunementAir': "Elemental Attunement — Air",
     'COMBAT_EFFECTGROUP_NAME_ AttunementWater': "Elemental Attunement — Water",
@@ -302,16 +323,17 @@ export const language = {
     'SPECIAL_ATTACK_NAME_ DeathApproaches': "Death Approaches",
     'SPECIAL_ATTACK_NAME_ Blindside': "Blindside",
 
-    
 
-    'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-danger font-weight-bold">Death Approaches (5%)</span><br>Strike your enemy\'s weak spot, dealing 22% of their max HP</div>',
-    'MODIFIER_TOOLTIP_GREAT3': '<div class="text-center"><span class="text-danger font-weight-bold">Devastating Slice (15%)</span><br>Deliver your blade unto the enemy with a wide, arching slash that strikes 2 times for up to 90% of your normal damage per hit.<br> On hit, has a 5% Chance to inflict Shaken for 5 turns.<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Shaken</span><br>-10% Global Evasion and -10% Total Resistance</div>',
-    'MODIFIER_TOOLTIP_BLUNTS3': '<div class="text-center"><span class="text-danger font-weight-bold">Concussive Smash (30%)</span><br>Smash into your enemy\'s armour, dealing up to 100 + (enemy\'s DR)% Normal damage. Avoidable. <br> Inflicts Daze for 2 turns and has a 20% chance to inflict Broken on a hit.</div>',
-    'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-danger font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, on hit instruct your companions to perform an unavoidable attack each</div>',
-    'MODIFIER_TOOLTIP_LIGHT31': '<div class="text-center"><span class="text-danger font-weight-bold">Shadowshot (15%)</span><br>If not under Slink Into Shadows, quickly fire a targeted arrow that deals 25% of your normal damage. On hit, inflict Bleed and Immobilize. Then Slink Into Shadows. Otherwise perform a normal attack <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Slink Into Shadows</span><br><span>Gain 40% evasion, 10% resistance and -0.2s attack interval</span></div>',
-    'MODIFIER_TOOLTIP_HTH3': '<div class="text-center"><span class="text-danger font-weight-bold">Channeled Palm Strike (10%)</span><br>Channel your inner strength and perform an avoidable normal attack. Deals 100% of your normal damage and inflicts Stun on the enemy for 1 turn on hit.</div>',
-    'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-danger font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Triple-charge</span><br><span>All effect damage and modifier values are amplified by 3×</span></div>',
-    'MODIFIER_TOOLTIP_THRUSTING3': '<div class="text-center"><span class="text-danger font-weight-bold">Practiced Lunge (15%)</span><br>Perform an unavoidable lunge that ignores enemy Resistance. Deals 50% Normal Damage</div>',
+
+    'MODIFIER_TOOLTIP_GREAT3': '<div class="text-center"><span class="text-warning font-weight-bold">Devastating Slice (15%)</span><br>Deliver your blade unto the enemy with a wide, arching slash that strikes 2 times for up to 90% of your normal damage per hit.<br> On hit, has a 5% Chance to inflict Shaken for 5 turns.<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Shaken</span><br>-10% Global Evasion and -10% Total Resistance</div>',
+    'MODIFIER_TOOLTIP_BLUNTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Concussive Smash (30%)</span><br>Smash into your enemy\'s armour, dealing up to 100 + (enemy\'s DR)% Normal damage. Avoidable. <br> Inflicts Daze for 2 turns and has a 20% chance to inflict Broken on a hit.</div>',
+    'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, on hit instruct your companions to perform an unavoidable attack each</div>',
+    'MODIFIER_TOOLTIP_LIGHT31': '<div class="text-center"><span class="text-warning font-weight-bold">Shadowshot (15%)</span><br>If not under Slink Into Shadows, quickly fire a targeted arrow that deals 25% of your normal damage. On hit, inflict Bleed and Immobilize. Then Slink Into Shadows. Otherwise perform a normal attack <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Slink Into Shadows</span><br><span>Gain 40% evasion, 10% resistance and -0.2s attack interval</span></div>',
+    'MODIFIER_TOOLTIP_HTH3': '<div class="text-center"><span class="text-warning font-weight-bold">Channeled Palm Strike (10%)</span><br>Channel your inner strength and perform an avoidable normal attack. Deals 100% of your normal damage and inflicts Stun on the enemy for 1 turn on hit.</div>',
+    'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Triple-charge</span><br><span>All effect damage and modifier values are amplified by 3×</span></div>',
+    'MODIFIER_TOOLTIP_THRUSTING3': '<div class="text-center"><span class="text-warning font-weight-bold">Practiced Lunge (15%)</span><br>Perform an unavoidable lunge that ignores enemy Resistance. Deals 50% Normal Damage</div>',
+    'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-warning font-weight-bold">Blindside (15%)</span><br>Exploit the enemy\'s blind spots, attacking 1 + (Stealth/50) times, dealing 75% of your Normal damage. <br> Strikes have +30% critical hit multiplier.</div>',
+
 
     'SPECIAL_ATTACK_DESC_ DeathApproaches': "Strike your enemy's weak spot, dealing ${attackDamageMaxValue0}% of their max HP.",
     'SPECIAL_ATTACK_DESC_ PracticedLunge': "Perform an unavoidable lunge that ignores enemy Resistance. Deals ${attackDamageMaxValue0}% normal damage.",
@@ -336,7 +358,7 @@ export const language = {
     'SPECIAL_ATTACK_DESC_ Shatterstrikes': "Harnessing crystalline power, make two swift strikes against the Target, each dealing ${attackDamageMaxValue0}% your maximum hit (doubled if the enemy is Crystallized).<br> On hit, ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for ${onHitEffect0turns} turn(s), and ${onHitEffect1chance}% chance to apply Crystal Sanction (Target's next attack deals no damage).",
     'SPECIAL_ATTACK_DESC_ CrystalStrike': "Focus crystalline energy into your knuckles to land a powerful strike.<br> On hit, deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for 1 turn.",
     'SPECIAL_ATTACK_DESC_ WhirlingManoeuvre': "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each.<br> While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect enemy attacks for ${preHitEffect0modValue0}% of their damage.",
-    'SPECIAL_ATTACK_DESC_ Blindside': "Strike from the shadows, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage each time. <br> Each strike has +15% Crit chance and +10% Crit Damage.",
+    'SPECIAL_ATTACK_DESC_ Blindside': "Exploit the enemy's blind spots, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage. <br> Strikes have +${preHitEffect0modValue0}% critical hit multiplier.",
 
     'MENU_SETTINGS_TOOLTIP': 'Whether this Namespace\'s weapons should have Types or gain and contribute XP',
 

@@ -784,25 +784,29 @@
       },
       {
         "id": "Blindside",
-        "defaultChance": 75,
+        "defaultChance": 15,
         "damage": [
           {
             "damageType": "Normal",
-            "amplitude": 35
+            "amplitude": 75
           }
         ],
-        "prehitEffects": [],
+        "prehitEffects": [
+          {
+            "effectID": "WTM:Blindsiding"
+          }
+        ],
         "onhitEffects": [],
         "cantMiss": false,
-        "attackCount": 2,
+        "attackCount": 1,
         "attackInterval": 150,
         "lifesteal": 0,
         "name": "Blindside",
-        "description": "Strike from the shadows, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage each time. <br> Each strike has +15% Crit chance and +10% Crit Damage.",
+        "description": "Strike from the shadows, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage each time. <br> Every Attack has +${preHitEffect0modValue0}% critical hit multiplier.",
         "descriptionGenerator": "<Avoidable> attack for <damage>.",
         "usesRunesPerProc": false
       },
-       {
+      {
         "id": "Multishot",
         "defaultChance": 5,
         "damage": [
@@ -1373,6 +1377,102 @@
         ],
         "effectGroups": [
           "melvorD:Debuff"
+        ]
+      },
+      {
+        "id": "Shrouded",
+        "templateID": "melvorD:Proccing",
+        "name": "Shrouded",
+        "media": "assets/combat/status/shrouded.png",
+        "target": "Self",
+        "tooltipSpans": [
+          {
+            "type": "LangString",
+            "langID": "WTM_EFFECT_TOOLTIP_SHROUDED"
+          },
+          {
+            "type": "Stats",
+            "statGroupName": "theStuff"
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "theStuff",
+            "modifiers": {
+              "critMultiplier": 50
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stacks",
+            "initialValue": 1
+          },
+          {
+            "name": "procs",
+            "initialValue": 5
+          },
+          {
+            "name": "interval",
+            "initialValue": 1000
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "ModifyStats",
+            "statGroupName": "theStuff",
+            "newValue": "1",
+            "triggersOn": [
+              {
+                "type": "EffectApplied"
+              }
+            ]
+          },
+          {
+            "type": "RemoveEffect",
+            "triggersOn": [
+              {
+                "type": "EndOfFight"
+              },
+              {
+                "type": "StatsChange",
+                "statGroupName": "procs",
+                "condition": {
+                  "operator": "==",
+                  "lhValue": "p.procs",
+                  "rhValue": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Blindsiding",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Blindsiding",
+        "media": "assets/combat/status/crit_increase.png",
+        "target": "Self",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "critMultiplier": 30
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stacks",
+            "initialValue": 1
+          },
+          {
+            "name": "turns",
+            "initialValue": 0
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
         ]
       },
       {
@@ -2918,8 +3018,9 @@
           }
         ]
       },
-       {
+      {
         "id": "multiShotExtraShot",
+        "isCombat": true,
         "allowedScopes": [
           {
             "scopes": {},
@@ -2927,6 +3028,21 @@
               {
                 "text": "",
                 "lang": "MODIFIER_DATA_multiShotExtraShot"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "blindsideextrablind",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_blindsideextrablind"
               }
             ]
           }
@@ -2955,6 +3071,114 @@
               {
                 "text": "",
                 "lang": "MODIFIER_DATA_increaseWeaponXPRanged"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "critChance25Stealth",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_critChance25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "critMult25Stealth",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_critMult25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "doubleLootChance25Stealth",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_doubleLootChance25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flatAttackInterval100Stealth",
+        "inverted": true,
+        "isCombat": true,
+        "modifyValue": "value/1000",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_flatAttackInterval100Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "maxHit25Stealth",
+        "isCombat": true,
+        "modifyValue": "value/1000",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "lang": "MODIFIER_DATA_maxHit25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "damageTaken25Stealth",
+        "inverted": true,
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_damageTaken25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dodgeChance25Stealth",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_dodgeChance25Stealth"
               }
             ]
           }
@@ -3350,18 +3574,21 @@
                       "chance": 5
                     },
                     {
-                      "conditions": [
-                        {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:ThrustingSwords"
-                        },
-                        {
-                          "type": "EmptySlot",
-                          "slotIDs": [
-                            "melvorD:Shield"
-                          ]
-                        }
-                      ],
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          },
+                          {
+                            "type": "EmptySlot",
+                            "slotIDs": [
+                              "melvorD:Shield"
+                            ]
+                          }
+                        ]
+                      },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Disarm",
                       "chance": 5
@@ -3922,9 +4149,19 @@
               ],
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {
-                  "meleeCritChance": 5
-                }
+                "conditionalModifiers": [
+                  {
+                    "descriptionLang": "WTM_DAGGER0",
+                    "description": "+25 Stealth",
+                    "condition": {
+                      "type": "WeaponType",
+                      "weaponType": "WTM:Daggers"
+                    },
+                    "modifiers": {
+                      "thievingStealth": 25
+                    }
+                  }
+                ]
               },
               "levels": [
                 {
@@ -3934,38 +4171,71 @@
                   "shiny": false,
                   "overwriteTypeIcons": [
                     1,
-                    1
+                    0
                   ],
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_DAGGER1"
-                  },
                   "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "descriptionLang": "WTM_DAGGER1",
-                        "description": "Inflict 1 stack of Vulnerability on Hit, or 3 stacks on Critical",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:CurvedSwords"
-                        },
-                        "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
-                        }
-                      }
-                    ],
                     "modifiers": {
-                      "meleeCritChance": 10
+                      "WTM:critChance25Stealth": 1.5,
+                      "critChance": 3
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Daggers gain +10% Crit Chance.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Daggers"
                       },
                       "modifiers": {
-                        "meleeCritChance": 10
+                        "WTM:critChance25Stealth": 1.5
+                      }
+                    }
+                  ],
+                  "modifiers": {
+                    "critChance": 3
+                  }
+                },
+                {
+                  "name": "Daggers2",
+                  "id": "Daggers2",
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_DAGGER2"
+                  },
+                  "level": 2,
+                  "shiny": true,
+                  "order": [
+                    "c",
+                    "m"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "WTM:damageTaken25Stealth": -3
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_DAGGER2",
+                        "description": "Apply Shrouded when critically hitting with an attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Daggers"
+                        },
+                        "modifiers": {
+                          "WTM:damageTaken25Stealth": -3
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "modifiers": {
+                        "WTM:damageTaken25Stealth": -3
                       }
                     }
                   ],
@@ -3976,78 +4246,7 @@
                         "weaponType": "WTM:Daggers"
                       },
                       "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    }
-                  ]
-                },
-                {
-                  "name": "Daggers2",
-                  "id": "Daggers2",
-                  "level": 2,
-                  "shiny": false,
-                  "conditionalModifiers": [
-                    {
-                      "descriptionLang": "WTM_DAGGER2",
-                      "description": "+25% Bleed and Poison damage. +5% Crit Chance and +50% Crit Multiplier. Double those if Enemy is Bleeding or Poisoned.",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "modifiers": {
-                        "critMultiplier": 50,
-                        "meleeCritChance": 5
-                      },
-                      "enemyModifiers": {
-                        "bleedDOTDamageTaken": 25,
-                        "poisonDOTDamageTaken": 25,
-                        "deadlyPoisonDOTDamageTaken": 25
-                      }
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "Some",
-                            "conditions": [
-                              {
-                                "groupID": "melvorD:PoisonDOT",
-                                "character": "Enemy",
-                                "type": "CombatEffectGroup"
-                              },
-                              {
-                                "groupID": "melvorD:BleedDOT",
-                                "character": "Enemy",
-                                "type": "CombatEffectGroup"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "meleeCritChance": 5,
-                        "critMultiplier": 50
-                      }
+                      "effectID": "WTM:Shrouded"
                     }
                   ]
                 },
@@ -4056,66 +4255,57 @@
                   "id": "Daggers3",
                   "level": 3,
                   "shiny": true,
-                  "specAttack": "WTM:Blindside",
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_DAGGER3"
                   },
-                  "conditionalModifiers": [
-                    {
-                      "descriptionLang": "WTM_DAGGER3",
-                      "description": "Unlock the Death Approaches Special Attack",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "modifiers": {
-                        "WTM:fakeModifierAddTextDescToWepType": 1
+                  "specAttack": "WTM:Blindside",
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_DAGGER3",
+                        "description": "Unlocks the Blindside Special Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Daggers"
+                        },
+                        "modifiers": {
+                          "WTM:damageTaken25Stealth": -3
+                        }
                       }
-                    }
-                  ]
+                    ]
+                  }
                 },
                 {
                   "name": "Daggers4",
                   "id": "Daggers4",
                   "level": 4,
                   "shiny": false,
-                  "overwriteTypeIcons": [
-                    1
+                  "order": [
+                    "c",
+                    "m",
+                    "m"
                   ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "changeFunc": "modifySpecialAttack",
                   "uiMods": {
                     "modifiers": {
-                      "critMultiplier": 150
-                    }
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "description": "Gain +150% Crit Multiplier.",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "modifiers": {
-                        "critMultiplier": 150
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "Daggers5",
-                  "id": "Daggers5",
-                  "level": 5,
-                  "shiny": true,
-                  "uiMods": {
+                      "WTM:doubleLootChance25Stealth": 2,
+                      "dodgeChance": 5
+                    },
                     "conditionalModifiers": [
                       {
-                        "descriptionLang": "WTM_DAGGER5",
-                        "description": "Unlock the Death Approaches Special Attack",
+                        "descriptionLang": "WTM_DAGGER4",
+                        "description": "While Shrouded, +1.5% critical hit chance per 25 Stealth",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Daggers"
                         },
                         "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
+                          "WTM:critChance25Stealth": 1.5
                         }
                       }
                     ]
@@ -4123,209 +4313,75 @@
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Vulnerability",
-                            "type": "CombatEffect"
-                          }
-                        ]
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
                       },
-                      "enemyModifiers": {
-                        "halveResistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": -1
-                          }
-                        ]
+                      "modifiers": {
+                        "WTM:doubleLootChance25Stealth": 2
                       }
                     }
                   ],
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
+                  "modifiers": {
+                    "dodgeChance": 5
+                  }
+                },
+                {
+                  "name": "Daggers5",
+                  "id": "Daggers5",
+                  "level": 5,
+                  "shiny": true,
+                  "order": [
+                    "c",
+                    "m",
+                    "c"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "changeFunc": "modifySpecialAttack",
+                  "uiMods": {
+                    "modifiers": {
+                      "WTM:doubleLootChance25Stealth": 2
                     },
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_DAGGER5",
+                        "description": "While Shrouded, -0.15s Flat Attack Interval per 100 Stealth",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Daggers"
+                        },
+                        "modifiers": {
+                          "WTM:flatAttackInterval100Stealth": 2
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_DAGGER52",
+                        "description": "+50 Stealth",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Daggers"
+                        },
+                        "modifiers": {
+                          "WTM:flatAttackInterval100Stealth": 2
+                        }
+                      }
+                    ]
+                  },
+                  "modifiers": {
+                    "thievingStealth": 50
+                  },
+                  "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
                       },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
+                      "modifiers": {
+                        "dodgeChance": 15
+                      }
                     }
                   ]
                 }

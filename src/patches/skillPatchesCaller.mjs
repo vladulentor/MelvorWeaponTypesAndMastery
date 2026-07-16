@@ -13,24 +13,26 @@ const { miscCombatPatches } = await loadModule('src/patches/patches/miscCombatPa
 const { addMissingHealthMaxHit } = await loadModule('src/patches/patches/addMissingHealthMaxHit.mjs');
 
 const { patchRunePreservationCap } = await loadModule('src/patches/patches/patchRunePreservationCap.mjs');
+const { patchStealthBonuses } = await loadModule('src/patches/patches/patchStealthBonuses.mjs');
+
 
 
 const { addWeaponMasteryUI } = await loadModule('src/patches/patches/weaponMastery/weaponMasteryUI.mjs');
 
 const { patchWeaponTypeLogic } = await loadModule('src/patches/patches/weaponMastery/patchWeaponTypeLogic.mjs');
 
-const {patchAccuracyRating} = await loadModule('src/patches/patches/patchAccuracyRating.mjs');
+const { patchAccuracyRating } = await loadModule('src/patches/patches/patchAccuracyRating.mjs');
 
-const {patchDodgeChance} = await loadModule('src/patches/patches/patchDodgeChance.mjs');
-const {addPlayerBarrier} = await loadModule('src/patches/patches/addPlayerBarrier.mjs');
-const {birthOfMonk} = await loadModule('src/patches/patches/birthOfMonk.mjs');
-const {patchFearLikeExtension} = await loadModule('src/patches/patches/patchFearLikeExtension.mjs');
+const { patchDodgeChance } = await loadModule('src/patches/patches/patchDodgeChance.mjs');
+const { addPlayerBarrier } = await loadModule('src/patches/patches/addPlayerBarrier.mjs');
+const { birthOfMonk } = await loadModule('src/patches/patches/birthOfMonk.mjs');
+const { patchFearLikeExtension } = await loadModule('src/patches/patches/patchFearLikeExtension.mjs');
 
 
-const {addSummonQuickenAttack} = await loadModule('src/patches/patches/addSummonQuickenAttack.mjs');
+const { addSummonQuickenAttack } = await loadModule('src/patches/patches/addSummonQuickenAttack.mjs');
 
-const {addSlashingToCompanion} = await loadModule('src/patches/patches/addSlashingToCompanion.mjs');
-const {addRandomReductions} = await loadModule('src/patches/patches/addRandomReductions.mjs');
+const { addSlashingToCompanion } = await loadModule('src/patches/patches/addSlashingToCompanion.mjs');
+const { addRandomReductions } = await loadModule('src/patches/patches/addRandomReductions.mjs');
 
 
 
@@ -46,12 +48,13 @@ export function patchSkillsBeforeDataReg(ctx) {
         addWeaponMasteryUI(ctx);
         patchWeaponTypeLogic(ctx);
         addMissingHealthMaxHit(ctx);
-        addSlashingToCompanion(ctx);        
+        addSlashingToCompanion(ctx);
         addCombatSkillXP(ctx);
         addSummonQuickenAttack(ctx);
         miscCombatPatches(ctx);
         patchSkillNotif(ctx);
         patchAccuracyRating(ctx);
+        patchStealthBonuses(ctx);
         patchDodgeChance(ctx);
         patchRunePreservationCap(ctx);
         //addPlayerBarrier(ctx);
@@ -61,16 +64,21 @@ export function patchSkillsBeforeDataReg(ctx) {
         birthOfMonk2(ctx);
 }
 export function patchSkillsAfterDataReg(ctx) {
-        
         patchFearLikeExtension();
         addFunkyAttackCounts();
 
 
 }
 /* TO DO
-GET ALL TEXT TRANSLATED
-
-
+DAGGERS (CHECK IF SHROUDED REAPPLIES AND HOW TO DO IT, GET COOL 4 AND 5 EFFECTS)
+MAKE TYPES GOOD
+GET ALL TEXT TRANSLATED 
 MORE REWRITES FOR WEAPON TYPES (ONLY AFTER REBALANCES)
-SCREAM AT EDWIN MORE BECAUSE OF TYPES (<- Important )
+TEST TYPE ATTACK CHANCE UPGRADE
+ADD GLOVE EXTRA STAT UI
+ADD STEALTH UI DISPLAY
+
+AFTER DEV
+
+SCREAM AT EDWIN MORE BECAUSE OF TYPES (<- Important ) (<- Fixed )
 */

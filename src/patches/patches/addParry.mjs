@@ -1,11 +1,15 @@
 const typeMap = { "ranged": "rangedDefenceBonus", "melee": "meleeDefenceBonus", "magic": "magicDefenceBonus" }; // annoying names for this stuff
 
 
+const { loadModule } = mod.getContext(import.meta);
+
+const { getRielkLangString } = await loadModule('src/language/translationManager.mjs');
+
 
 function extractChances(player, target) {
-    return [player.modifiers.getValue("WTM:unlockParry", target.damageType.modQuery) ? 
-        player.equipmentStats[typeMap[target.attackType]] : 
-        0, target.monster ?target.monster.combatLevel : 0 ]
+    return [player.modifiers.getValue("WTM:unlockParry", target.damageType.modQuery) ?
+        player.equipmentStats[typeMap[target.attackType]] :
+        0, target.monster ? target.monster.combatLevel : 0]
 }
 function determineParry(player, target) {
     const [pDef, tL] = extractChances(player, target);
@@ -30,7 +34,7 @@ export function addParry({ patch }) { // unfortunately we have to put logic in t
         this.justDodged = determineParry(this, this.target);
 
         if (this.justDodged) {
-            const text = "Parry!";
+            const text = getRielkLangString("WTM_PARRY");
             this.splashManager.add({
                 source: "deflect",
                 amount: 0,
@@ -44,30 +48,48 @@ export function addParry({ patch }) { // unfortunately we have to put logic in t
 
             // We don't call orig here because we handled the splash
         } else {
-            
+
             // Fall back to the original function for a normal miss
             orig_fireMissSplash.call(this, targetImmune);
         }
     };
     patch(PlayerStatsElement, "setStats").after(function (_, player, game) {
-        if (game.modifiers.getValue("WTM:unlockParry", ModifierQuery.ANY_DAMAGETYPE)) {
-            if (!this.parryChance) {
-                const parryD = createElement('div', {});
-                parryD.innerHTML = `
-    <span>Parry Chance</span>
+
+        if (!this.parryD) {
+            this.parryD = createElement('div', {});
+            this.parryD.innerHTML = `
+    <span>${getRielkLangString("WTM_PARRY_CHANCE")}</span>
     <span>
         <span id="parry-chance-display">0%</span>
     </span>`;
-                this.accuracyRating.parentElement.after(parryD);
-                this.parryChance = parryD.querySelector('#parry-chance-display');
-            }
-            if (player.target && player.target !== player) {
-                this.parryChance.textContent = formatPercent(calculateChanceOfParryPerAttempt(player, player.target), 0);
-            }
-            else
-                this.parryChance.textContent = "-"
-
+            this.accuracyRating.parentElement.after(this.parryD);
+            this.parryChance = this.parryD.querySelector('#parry-chance-display');
         }
+        if (player.target && player.target !== player) {
+            this.parryChance.textContent = formatPercent(calculateChanceOfParryPerAttempt(player, player.target), 0);
+        }
+        else
+            this.parryChance.textContent = "-"
+
+
+        if (!this.stealthElem) {
+            this.stealthElem = createElement('div', {});
+            this.stealthElem.innerHTML = `
+    <span>${getLangString("STEALTH")}</span>
+    <span>
+        <span id="stealth-chance-display">0</span>
+    </span>`;
+            this.accuracyRating.parentElement.after(this.stealthElem);
+            this.stealthChance = this.stealthElem.querySelector('#stealth-chance-display');
+
+            this.stealthChance.textContent = player.modifiers.thievingStealth;
+
+        } else
+            this.stealthChance.textContent = player.modifiers.thievingStealth;
+
+        this.stealthElem.classList.toggle("d-none", !game.modifiers.getValue("WTM:critChance25Stealth", ModifierQuery.ANY_DAMAGETYPE));
+        this.parryD.classList.toggle("d-none", !game.modifiers.getValue("WTM:unlockParry", ModifierQuery.ANY_DAMAGETYPE));
+
     });
     //TO DO, add parry chance in thing
     /*
