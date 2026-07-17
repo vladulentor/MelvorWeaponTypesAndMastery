@@ -2,13 +2,19 @@
   "$schema": "https://melvoridle.com/assets/schema/gameData.json",
   "namespace": "rielkConstruction",
   "data": {
-    "attacks": [],
+    "attacks": [
+
+    ],
     "combatEffects": [],
     "items": [
       {
         "modifiers": {
-          "flatSlayerAreaEffectNegation": 5,
-          "doubleSlayerTaskKillChance": 5
+          "maxHitBasedOnTargetResistance": [
+            {
+              "damageTypeID": "melvorD:Normal",
+              "value": -1
+            }
+          ]
         },
         "enemyModifiers": {
           "flatRangedMaxHit": 5
@@ -16,19 +22,12 @@
         "conditionalModifiers": [
           {
             "condition": {
-              "conditions": [
-                {
-                  "type": "WeaponType",
-                  "weaponType": "WTM:HeavyBows"
-                },
-                {
-                  "type": "FightingSlayerTask"
-                }
-              ]
+              "type": "WeaponType",
+              "weaponType": "WTM:LightBows"
             },
             "modifiers": {
-              "rangedCritChance": 2.5,
-              "critMultiplier": 100
+              "WTM:multiShotExtraShot": 5,
+              "rangedLifesteal": 10
             }
           }
         ],
@@ -36,13 +35,22 @@
           {
             "condition": {
               "type": "WeaponType",
-              "weaponType": "WTM:HeavyBows"
+              "weaponType": "WTM:LightBows"
             },
             "appliesWhen": "HitWithAttack",
-            "chance": 5,
-            "effectID": "WTM:Arrowstruck"
+            "chance": 1,
+            "effectID": "WTM:RandomCondition"
+          },
+          {
+            "condition": {
+              "type": "WeaponType",
+              "weaponType": "WTM:LightBows"
+            },
+            "appliesWhen": "HitWithAttack",
+            "chance": 1,
+            "effectID": "WTM:RandomCondition"
           }
-        ],
+        ]
       }
     ]
   }

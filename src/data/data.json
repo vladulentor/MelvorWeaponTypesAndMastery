@@ -4,6 +4,26 @@
   "data": {
     "attacks": [
       {
+        "id": "MultiShot",
+        "defaultChance": 20,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 15
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackCount": 5,
+        "attackInterval": 200,
+        "lifesteal": 0,
+        "name": "Multi-Shot",
+        "description": "Loose a barrage of ${hitCount} arrows at the Enemy, each dealing ${attackDamageMaxValue0}% of your normal damage on hit.",
+        "descriptionGenerator": "Attack <hitCount> times and deal <damage>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "PowerShot",
         "defaultChance": 20,
         "damage": [
@@ -4017,7 +4037,7 @@
                   ],
                   "conditionalModifiers": [
                     {
-                      "description": "fear extendo",
+                      "description": "fearo extendo",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Greatswords"
@@ -6632,8 +6652,9 @@
                   "name": "LightBows1",
                   "id": "LightBows1",
                   "level": 1,
-                  "shiny": false,
+                  "shiny": true,
                   "overwriteTypeIcons": [
+                    1,
                     1
                   ],
                   "uiMods": {
@@ -6644,9 +6665,21 @@
                           "value": -1
                         }
                       ],
-                      "evasion": 25,
-                      "flatAttackInterval": -200
-                    }
+                      "evasion": 10,
+                      "flatMinHit": 5
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "description": "Unlock the Multi-Shot Special Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
                   },
                   "conditionalModifiers": [
                     {
@@ -6661,8 +6694,17 @@
                             "value": -1
                           }
                         ],
-                        "evasion": 25,
-                        "flatAttackInterval": -200
+                        "flatMinHit": 5,
+                        "evasion": 10
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
                       }
                     }
                   ]
@@ -6687,7 +6729,7 @@
                         "modifiers": {}
                       },
                       {
-                        "description": "Apply Vulnerability to Enemy after you Evade an Attack",
+                        "description": "50% Chance to apply DOT Vulnerability on the Enemy after you Evade an Attack",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:LightBows"
@@ -6720,7 +6762,7 @@
                     },
                     {
                       "appliesWhen": "EvadedAttack",
-                      "chance": 100,
+                      "chance": 50,
                       "effectID": "WTM:DOTVulnerability",
                       "targetOverride": "Target",
                       "condition": {
@@ -6728,99 +6770,95 @@
                         "weaponType": "WTM:LightBows"
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "poisonLifesteal": 15
+                  }
                 },
                 {
                   "name": "LightBows3",
                   "id": "LightBows3",
                   "level": 3,
-                  "shiny": true,
-                  "specAttack": "WTM:Shadowshot",
+                  "shiny": false,
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_LIGHT31"
                   },
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Adds the Shadowshot special attack",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
+                          "weaponType": "WTM:HeavyBows"
                         },
-                        "modifiers": {}
-                      }
-                    ]
-                  }
-                },
-                {
-                  "name": "LightBows4",
-                  "id": "LightBows4",
-                  "level": 4,
-                  "shiny": false,
-                  "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "description": "When Enemy is afflicted by any DoT effect, take -10% and deal +10% damage",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
-                        },
-                        "modifiers": {}
-                      },
-                      {
-                        "description": "When Enemy is afflicted by any Debuff effect, take -10% and deal +10% damage",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
-                        },
-                        "modifiers": {}
+                        "modifiers": {
+                          "flatAttackInterval": -100,
+                          "WTM:multiShotExtraShot": 5,
+                          "effectIgnoreChance": [
+                            {
+                              "effectGroupID": "melvorD:PoisonDOT",
+                              "value": 25
+                            }
+                          ]
+                        }
                       }
                     ]
                   },
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:LightBows"
-                          },
-                          {
-                            "type": "CombatEffectGroup",
-                            "groupID": "melvorD:DamageOverTime",
-                            "character": "Enemy"
-                          }
-                        ]
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "damageDealt": 10
-                      },
-                      "enemyModifiers": {
-                        "damageDealt": -10
+                        "flatAttackInterval": -100,
+                        "WTM:multiShotExtraShot": 5,
+                        "effectIgnoreChance": [
+                          {
+                            "effectGroupID": "melvorD:PoisonDOT",
+                            "value": 25
+                          }
+                        ]
                       }
+                    }
+                  ]
+                },
+                {
+                  "name": "LightBows4",
+                  "id": "LightBows4",
+                  "level": 4,
+                  "shiny": false,
+                  "uiMods": {},
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "modifiers": {
+                        "maxHit": -50,
+                        "minHitBasedOnMaxHit": 50,
+                        "endOfTurnEvasion2": 50
+                      }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 1,
+                      "tableID": "WTM:RandomCondition"
                     },
                     {
                       "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:LightBows"
-                          },
-                          {
-                            "type": "CombatEffectGroup",
-                            "groupID": "melvorD:Debuff",
-                            "character": "Enemy"
-                          }
-                        ]
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
                       },
-                      "modifiers": {
-                        "damageDealt": 10
-                      },
-                      "enemyModifiers": {
-                        "damageDealt": -10
-                      }
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 1,
+                      "tableID": "WTM:RandomCondition"
                     }
                   ]
                 },
@@ -6830,31 +6868,25 @@
                   "level": 5,
                   "shiny": true,
                   "uiMods": {
-                    "uiMods": {
-                      "conditionalModifiers": [
-                        {
-                          "description": "+10% chance to Slink Into Shadows when hit by an attack",
-                          "condition": {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:LightBows"
-                          },
-                          "modifiers": {}
+                    "conditionalModifiers": [
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
                         },
+                        "modifiers": {
+                          "WTM:multiShotExtraShot": 5,
+                          "rangedLifesteal": 10
+                        }
+                      }
+                    ],
+                    "modifiers": {
+                      "rangedMinHitBasedOnMaxHitSlayerTask": 10,
+                      "flatAdditionalPrimaryProductQuantity": [
                         {
-                          "description": "When Enemy is afflicted by any Debuff effect, gain +10% Evasion and Resistance",
-                          "condition": {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:LightBows"
-                          },
-                          "modifiers": {}
-                        },
-                        {
-                          "description": "When Enemy is afflicted by any DoT effect, gain +10% Evasion and Resistance",
-                          "condition": {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:LightBows"
-                          },
-                          "modifiers": {}
+                          "skillID": "melvorD:Fletching",
+                          "subcategoryID": "melvorF:Arrows",
+                          "value": 10
                         }
                       ]
                     }
@@ -6862,55 +6894,25 @@
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:LightBows"
-                          },
-                          {
-                            "type": "CombatEffectGroup",
-                            "groupID": "melvorD:DamageOverTime",
-                            "character": "Enemy"
-                          }
-                        ]
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
                       },
                       "modifiers": {
-                        "evasion": 10,
-                        "resistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 10
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:LightBows"
-                          },
-                          {
-                            "type": "CombatEffectGroup",
-                            "groupID": "melvorD:Debuff",
-                            "character": "Enemy"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "evasion": 10,
-                        "resistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 10
-                          }
-                        ]
+                        "WTM:multiShotExtraShot": 5,
+                        "rangedLifesteal": 10
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "rangedMinHitBasedOnMaxHitSlayerTask": 10,
+                    "flatAdditionalPrimaryProductQuantity": [
+                      {
+                        "skillID": "melvorD:Fletching",
+                        "subcategoryID": "melvorF:Arrows",
+                        "value": 10
+                      }
+                    ]
+                  }
                 }
               ]
             },

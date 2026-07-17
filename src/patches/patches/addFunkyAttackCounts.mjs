@@ -8,7 +8,7 @@ export function addFunkyAttackCounts(){
         },
     });
 
-    const ms = game.specialAttacks.getObjectByID("WTM:Multishot");
+    const ms = game.specialAttacks.getObjectByID("WTM:MultiShot");
  Object.defineProperty(ms, 'attackCount', {
         get() {
             const extrahits = game.modifiers.getValue("WTM:multiShotExtraShot", ModifierQuery.EMPTY);
