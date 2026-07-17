@@ -1,29 +1,33 @@
 export const language = {
+
     'WTM_THRUST1': "Unlock Dueling Stance",
-    'WTM_THRUST2': "",
     'WTM_THRUST3': "Unlock the Practiced Lunge Special Attack",
+    'WTM_THRUST32': "If your Shield slot is empty, double this type's bonuses.",
     'WTM_THRUST4': "If your Shield slot is empty, triple this level's bonuses and gain +10% chance to pierce enemy Resistance.",
     'WTM_THRUST5': "Chance to Parry when an enemy misses you based on defense values",
-    'WTM_THRUST52': "+10% chance (20% without a shield) to inflict Disarm to enemy on Hit",
+    'WTM_THRUST52': "+10% chance to inflict Disarm to enemy on Hit",
 
     'WTM_GREAT1': "20% Chance on Hit to inflict Intimidation",
     'WTM_GREAT2': "20% Chance on Hit to inflict Shaken",
     'WTM_GREAT3': "Unlock the Devastating Slice Special Attack",
-    'WTM_GREAT32': "Unlock the Devastating Slice Special Attack",
+    'WTM_GREAT32': "+10% chance to apply Intimidation when hitting a Shaken enemy",
 
 
     'WTM_GREAT4': "1% Chance on Hit, Being Hit, and Evading to inflict a random Fear Effect for 3 turns",
     'WTM_GREAT42': "+5% Max Hit and Total Resistance per Fear Effect on the enemy",
     'WTM_GREAT5': "At the Start of the Fight, inflict Intimidation and Shaken to the enemy for 3 turns.",
-    'WTM_GREAT52': "+1% Chance On Hit to Terrify the enemy for 3 turns",
+    'WTM_GREAT52': "+0.5% Accuracy and Max Hit per 8 Strength Skill Levels for each Fear effect on the enemy",
+
+    'WTM_POLE2': "25% Chance to gain 1 stack of Certainty when evading an attack",
+    'WTM_POLE21': "25% Chance to gain 1 stack of Swiftness when hitting with an attack",
 
     'WTM_POLE3': "Unlock the Whirling Manoeuvre Special Attack",
-    'WTM_POLE32': "Gain 5 stacks of Certainty and Swiftness at the Start of the Fight",
+    'WTM_POLE32': "Gain 5 stacks of Poise and Swiftness at the Start of the Fight",
     'WTM_POLE4': "+25 Bonus to Slash, Stab, and Block Attack",
     'WTM_POLE42': "+25 Bonus to Melee, Magic, and Ranged Defence",
 
     'WTM_BLUNT1': "",
-    'WTM_BLUNT2': "",
+    'WTM_BLUNT2': "+10% chance to apply Dazed when hitting an enemy with Broken",
     'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack",
     'WTM_BLUNT4': "+10% chance to inflict Stun when hitting an enemy with Broken",
     'WTM_BLUNT5': "If Target is currently Stunned, +30% Damage Dealt",
@@ -38,8 +42,11 @@ export const language = {
     'WTM_CURVED3': "Unlock the Mounted Strike Special Attack",
     'WTM_CURVED5': "Unlock Advantage",
 
-    'WTM_HTH1': "",
-    'WTM_HTH2': "",
+    'WTM_HTH0':"+10% Reflect Damage against ranged attacks",
+    'WTM_HTH1': "Can use certain gloves as weapons",
+    'WTM_HTH12': "+10% Reflect Damage against Ranged Attacks when unfettered",
+
+     'WTM_HTH2': "+5% Reflect Damage against Ranged Attacks",
     'WTM_HTH3': "",
     'WTM_HTH4': "",
     'WTM_HTH5': "",
@@ -128,23 +135,24 @@ export const language = {
     'MODIFIER_TOOLTIP_THRUSTING52': '<div class="text-center"><span class="text-success font-weight-bold">Disarm</span><br>When you hit with an attack, you have a 10% chance (20% without a shield) to inflict Disarm to them <br> Disarm prevents them from attacking for 1 turn.</div>',
 
 
-    'MODIFIER_TOOLTIP_GREAT1': '<div class="text-center"><span class="text-success font-weight-bold">Intimidaiton</span><br>Gives -15% Accuracy and Max Hit</div>',
-    'MODIFIER_TOOLTIP_GREAT5': '<div class="text-center"><span class="text-success font-weight-bold">Terrify</span><br>10% chance to be Stunned and have attack interrupted</div>',
+    'MODIFIER_TOOLTIP_GREAT1': '<div class="text-center"><span class="text-success font-weight-bold">Intimidation</span><br>Gives -10% Global Accuracy and Max Hit</div>',
+    'MODIFIER_TOOLTIP_GREAT4': '<div class="text-center"><span class="text-success font-weight-bold">Terrify</span><br>10% chance to be Stunned and have attack interrupted</div>',
+    'MODIFIER_TOOLTIP_GREAT5': '<div class="text-center"><span class="text-info font-weight-bold">Fear Effect</span><br>Terrify, Shaken, and Intimidate are considered Fear Effects</div>',
 
-    'MODIFIER_TOOLTIP_POLE21': '<div class="text-center"><span class="text-success font-weight-bold">Certainty</span><br>Gives +4% accuracy per stack (up to 25)</div>',
-    'MODIFIER_TOOLTIP_POLE22': '<div class="text-center"><span class="text-success font-weight-bold">Certainty</span><br>Gives +4% evasion per stack (up to 25)</div>',
+    'MODIFIER_TOOLTIP_POLE21': '<div class="text-center"><span class="text-success font-weight-bold">Poise</span><br>Gives +4% accuracy per stack (up to 25)</div>',
+    'MODIFIER_TOOLTIP_POLE22': '<div class="text-center"><span class="text-success font-weight-bold">Swiftness</span><br>Gives +4% evasion per stack (up to 25)</div>',
     'MODIFIER_TOOLTIP_BLUNTS21': '<div class="text-center"><span class="text-success font-weight-bold">Broken</span><br>Gives -50% resistance</div>',
     'MODIFIER_TOOLTIP_BLUNTS22': '<div class="text-center"><span class="text-success font-weight-bold">Dazed</span><br>Gives +10% attack interval and stops them from evading, regenerating barrier, or using special attacks</div>',
     'MODIFIER_TOOLTIP_BLUNTS4': '<div class="text-center"><span class="text-success font-weight-bold">Stun</span><br>Cannot evade, attacks against Character deal 30% increased damage, also applies Stun Immunity on Application</div>',
 
-    'MODIFIER_TOOLTIP_DAGGER2': '<div class="text-center"><span class="text-success font-weight-bold">Shrouded</span><br>Gives +50% critical hit muptiplier, lasts for 5 seconds or until the fight ends.</div>',
+    'MODIFIER_TOOLTIP_DAGGER2': '<div class="text-center"><span class="text-success font-weight-bold">Shrouded</span><br>Gives +2.5% critical hit muptiplier per 25 Stealth, lasts for 5 seconds or until the fight ends.</div>',
 
 
-    'MODIFIER_TOOLTIP_HTH1': '<div class="text-center"><span class="text-info font-weight-bold">Unfettered</span><br>You are considered unfettered if your Platebody and Shield slots are empty</div>',
+    'MODIFIER_TOOLTIP_HTH1': '<div class="text-center"><span class="text-info font-weight-bold">Unburdened</span><br>You are considered unburdened if your Platebody and Shield slots are both empty</div>',
 
 
 
-    'MODIFIER_TOOLTIP_CURVED5': '<div class="text-center"><span class="text-success font-weight-bold">Advantage</span><brAdvantage gives stacking 5% Max Hit and Attack Interval to your Familiars per stack, up to 5 stacks<br>When at max stacks, spend stacks on hit by instructing your Companions to perform two Unavoidable Attacks</div>',
+    'MODIFIER_TOOLTIP_CURVED5': '<div class="text-center"><span class="text-success font-weight-bold">Advantage</span><br>Advantage gives stacking 5% Max Hit and Attack Interval to your Familiars per stack, up to 5 stacks<br>When at max stacks, instead spend stacks on hit by instructing your Companions to perform two Unavoidable Attacks</div>',
     'MODIFIER_TOOLTIP_POLEARMS3': '<div class="text-center"><span class="text-warning font-weight-bold">Whirling Manoeuvre (15%)</span><br>Whirl your polearm around, attacking multiple times for a small portion of your normal damage each.<br> While attacking, you gain +20% Reflect Damage and +20% Dodge Chance.</div>',
     'MODIFIER_TOOLTIP_AXES2': '<div class="text-center"><span class="text-success font-weight-bold">Bleed</span><br>Deals up to 100% damage dealt over the course of 10 seconds</div>',
     'MODIFIER_TOOLTIP_AXES3': `
@@ -239,7 +247,6 @@ export const language = {
     'MENU_SETTINGS_HOVER_NOXP': "Weapons have Types but cannot be trained to receive and contribute Mastery XP",
     'MENU_SETTINGS_HOVER_NONE': "Weapons do not have Types",
 
-    'COMBAT_EFFECT_NAME_ Intimidation': "Intimidation",
     'WTM_PARRY': "Parry!",
     'WTM_PARRY_CHANCE': "Parry chance",
     'COMBAT_EFFECT_NAME_ Disarm': "Disarm",
@@ -276,7 +283,7 @@ export const language = {
     'COMBAT_EFFECT_NAME_ BloodlustEnemy': "Bloodlust",
     'COMBAT_EFFECT_NAME_ BloodlustPlayer': "Bloodlust",
     'COMBAT_EFFECT_NAME_ Hemorrhage': "Hemorrhage",
-    'COMBAT_EFFECT_NAME_ Certainty': "Certainty",
+    'COMBAT_EFFECT_NAME_ Certainty': "Poise",
     'COMBAT_EFFECT_NAME_ Swiftness': "Swiftness",
     'COMBAT_EFFECT_NAME_ Alacrity': "Alacrity",
     'COMBAT_EFFECT_NAME_ Concentration': "Concentration",
@@ -338,7 +345,7 @@ export const language = {
     'MODIFIER_TOOLTIP_HTH3': '<div class="text-center"><span class="text-warning font-weight-bold">Channeled Palm Strike (10%)</span><br>Channel your inner strength and perform an avoidable normal attack. Deals 100% of your normal damage and inflicts Stun on the enemy for 1 turn on hit.</div>',
     'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Triple-charge</span><br><span>All effect damage and modifier values are amplified by 3×</span></div>',
     'MODIFIER_TOOLTIP_THRUSTING3': '<div class="text-center"><span class="text-warning font-weight-bold">Practiced Lunge (15%)</span><br>Perform an unavoidable lunge that ignores enemy Resistance. Deals 50% Normal Damage</div>',
-    'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-warning font-weight-bold">Blindside (15%)</span><br>Exploit the enemy\'s blind spots, attacking 1 + (Stealth/50) times, dealing 75% of your Normal damage. <br> Strikes have +30% critical hit multiplier.</div>',
+    'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-warning font-weight-bold">Blindside (15%)</span><br>Exploit the enemy\'s blind spots.<br>Deal 1 + (Stealth/50) strikes, dealing 75% of your Normal damage. <br> Strikes have +30% critical hit multiplier.</div>',
 
 
     'SPECIAL_ATTACK_DESC_ DeathApproaches': "Strike your enemy's weak spot, dealing ${attackDamageMaxValue0}% of their max HP.",
@@ -394,13 +401,13 @@ export const language = {
     "WTM_WEAPON_NAME_Artefacts": "Artefacts",
     "WTM_WEAPON_NAME_Special": "Tools",
 
-    "WTM_WEAPON_FLAVORTEXT_ThrustingSwords": "Light and well-balanced for twirling around enemies",
+    "WTM_WEAPON_FLAVORTEXT_ThrustingSwords": "Light and well-balanced for flying past the opponent's guard",
     "WTM_WEAPON_FLAVORTEXT_Greatswords": "Simply brutal and brutally simple",
     "WTM_WEAPON_FLAVORTEXT_CurvedSwords": "Dancing blades that embolden your companions",
-    "WTM_WEAPON_FLAVORTEXT_Daggers": "Light yet fatal, they seem to disappear from their owner's hand until they appear in their targets' backs",
+    "WTM_WEAPON_FLAVORTEXT_Daggers": "Light and fatal, they disappear from their owner's hand and reappear in their targets' backs",
     "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, axes grow in power as the fight rages",
     "WTM_WEAPON_FLAVORTEXT_Polearms": "Designed to land mildly-dangerous strikes at a mildly-safe distance",
-    "WTM_WEAPON_FLAVORTEXT_Blunts": "Specialized in dazing their victims and breaking through defenses",
+    "WTM_WEAPON_FLAVORTEXT_Blunts": "Specialized in breaking through defenses and leaving their victims reeling",
     "WTM_WEAPON_FLAVORTEXT_HandToHand": "Without tools or heavy armor, one's own body can become a fleet and deadly weapon",
     "WTM_WEAPON_FLAVORTEXT_Crossbows": "Sacrifice speed for absolute accuracy and overwhelming strength",
     "WTM_WEAPON_FLAVORTEXT_HeavyBows": "Unerring, powerful instruments meant to find the weakness in your foes",
