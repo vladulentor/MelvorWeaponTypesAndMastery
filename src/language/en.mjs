@@ -61,7 +61,7 @@ export const language = {
     'WTM_CROSS4': "",
     'WTM_CROSS5': "",
 
-    'WTM_HBOW1': "",
+    'WTM_HBOW1': "Unlock the Power Shot Special Attack",
     'WTM_HBOW2': "",
     'WTM_HBOW3': "",
     'WTM_HBOW4': "",
@@ -172,6 +172,9 @@ export const language = {
 </div>
 `,
     'MODIFIER_TOOLTIP_AXES4': '<div class="text-center"><span class="text-success font-weight-bold">Hemorrhage</span><br>Deals up to 500% damage dealt over the course of 20 seconds</div>',
+    'MODIFIER_TOOLTIP_HEAVY1': '<div class="text-center"><span class="text-success font-weight-bold">Power Shot (20%)</span><br>Deal damage equal to 100% - 200% of Enemy DR. On hit, apply 1 stack of Arrowstruck.</div>',
+    'MODIFIER_TOOLTIP_HEAVY2': '<div class="text-center"><span class="text-success font-weight-bold">Arrowstruck</span><br>Per stack: +1% Attack Interval, +1% Damage Taken, up to 10 stacks. Lasts until end of the fight.</div>',
+    'MODIFIER_TOOLTIP_HEAVY3': '<div class="text-center"><span class="text-info font-weight-bold">Power Stance</span><br>+25% Ranged Critical Hit Chance, +100% Crit Multiplier, +50% Chance to ignore Enemy DR, and -100% Global Evasion. Modifiers decrease by 20% each time you are hit, removed after 5 times.</div>',
     'MODIFIER_TOOLTIP_HEAVY4': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>+1% increased damage taken per stack, up to 25 stacks, flat -10% Flat Resistance</div>',
     'MODIFIER_TOOLTIP_LIGHT21': '<div class="text-center"><span class="text-info font-weight-bold">Random Effects</span><br><Poison, Burn, Bleed, Slow, or Immobilize/div>',
 
@@ -209,7 +212,7 @@ export const language = {
     'MENU_TOOLTIP_INTRO3': 'You can delete stats at any point in the Mod Settings',
     'MENU_WARNING': 'Are you sure?',
     'MENU_UPGRADE_TYPE': 'Further Construct your ${fixImg}${fixName} to Unlock',
-    'MENU_TYPEPROF_TOOLTIP':'Proficiency with a Type grows as more weapons of that Type are Mastered',
+    'MENU_TYPEPROF_TOOLTIP': 'Proficiency with a Type grows as more weapons of that Type are Mastered',
     'MENU_WARNING1': 'This will delete your existing Weapon Stats',
     'MENU_WARNING15': '(E.g. Total Attacks and Enemies Killed stats)',
     'MENU_WARNING2': 'This action cannot be undone!',
@@ -231,8 +234,8 @@ export const language = {
     'MENU_SETTINGS_HOVER_TYPE': "Weapons have Types and can train and can be trained to receive and contribute Mastery XP",
     'MENU_SETTINGS_HOVER_NOXP': "Weapons have Types but cannot be trained to receive and contribute Mastery XP",
     'MENU_SETTINGS_HOVER_NONE': "Weapons do not have Types",
-    
-    
+
+
 
     'MENU_SETTINGS_TOOLTIP': 'Whether this Namespace\'s weapons should have Types or gain and contribute XP',
 

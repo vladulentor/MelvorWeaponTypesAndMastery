@@ -4,6 +4,36 @@
   "data": {
     "attacks": [
       {
+        "id": "PowerShot",
+        "defaultChance": 20,
+        "damage": [
+          {
+            "damageType": "Custom",
+            "character": "Attacker",
+            "maxRoll": "MaxHitDR",
+            "maxPercent": 200,
+            "minRoll": "MaxHitDR",
+            "minPercent": 100,
+            "roll": true
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [
+          {
+            "effectID": "WTM:Arrowstruck"
+          }
+        ],
+        "cantMiss": true,
+        "minAccuracy": 30000,
+        "attackCount": 1,
+        "attackInterval": 1500,
+        "lifesteal": 0,
+        "name": "Power Shot",
+        "description": "You take a deeply focused shot at a weak spot in the Enemy's armour, dealing damage equal to ${attackDamageMinValue0}% - ${attackDamageMaxValue0}% of their DR. If your Accuracy Rating is higher than 30,000 then this attack can't miss. On a hit, inflict 1 stack of Arrowstruck (+${onHitEffect0modValue0}% Attack Interval and +${onHitEffect0modValue1}%, max 10 stacks) Damage Taken. Lasts until the End of the Fight.",
+        "descriptionGenerator": "Attack for <damage>, <hitEffect> on hit. If Accuracy Rating higher than 30,000, <canMiss>.",
+        "usesRunesPerProc": false
+      },
+      {
         "id": "ChannelledPalmStrike",
         "defaultChance": 10,
         "damage": [
@@ -844,6 +874,71 @@
       }
     ],
     "combatEffects": [
+      {
+        "id": "PowerStance",
+        "templateID": "melvorD:NonCountingReductive",
+        "name": "Power Stance",
+        "media": "assets/combat/status/powerstance.png",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 5
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "ignoreResistanceWhenAttackingChance": [
+                {
+                  "damageTypeID": "melvorD:Normal",
+                  "value": 10
+                }
+              ],
+              "rangedCritChance": 5,
+              "critMultiplier": 20,
+              "evasion": -20
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
+        "id": "Arrowstruck",
+        "name": "Arrowstruck",
+        "media": "assets/combat/status/arrowstruck.png",
+        "templateID": "melvorD:StackingNonCountingModifier",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "initialStacks",
+            "initialValue": 1
+          },
+          {
+            "name": "stacksToAdd",
+            "initialValue": 1
+          },
+          {
+            "name": "maxStacks",
+            "initialValue": 10
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "attackInterval": 1,
+              "damageTaken": 1
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Debuff"
+        ]
+      },
       {
         "id": "WaterHeal",
         "templateID": "melvorD:Regen",
@@ -5184,7 +5279,12 @@
                     ]
                   },
                   "modifiers": {
-                    "ignoreResistanceWhenAttackingChance": 2
+                    "ignoreResistanceWhenAttackingChance": [
+                      {
+                        "damageTypeID": "melvorD:Normal",
+                        "value": 2
+                      }
+                    ]
                   },
                   "conditionalModifiers": [
                     {
@@ -6044,7 +6144,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "rangedCritChance": 2.5
+                  "critMultiplier": 50
                 }
               },
               "levels": [
@@ -6052,95 +6152,36 @@
                   "name": "HeavyBows1",
                   "id": "HeavyBows1",
                   "level": 1,
-                  "shiny": false,
-                  "overwriteTypeIcons": [
-                    1,
-                    1
-                  ],
-                  "uiMods": {
-                    "modifiers": {
-                      "rangedCritChance": 5,
-                      "flatRangedStrengthBonusPerAttackInterval": 1
-                    }
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
-                      },
-                      "modifiers": {
-                        "rangedCritChance": 5,
-                        "flatRangedStrengthBonusPerAttackInterval": 1
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "HeavyBows2",
-                  "id": "HeavyBows2",
-                  "level": 2,
-                  "shiny": false,
-                  "overwriteTypeIcons": [
-                    1,
-                    1
-                  ],
-                  "uiMods": {
-                    "modifiers": {
-                      "maxHitBasedOnTargetResistance": [
-                        {
-                          "damageTypeID": "melvorD:Normal",
-                          "value": 1
-                        }
-                      ],
-                      "damageDealtToBosses": 10
-                    }
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
-                      },
-                      "modifiers": {
-                        "maxHitBasedOnTargetResistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 1
-                          }
-                        ],
-                        "damageDealtToBosses": 10
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "HeavyBows3",
-                  "id": "HeavyBows3",
-                  "specAttack": "WTM:Barrage",
-                  "level": 3,
                   "shiny": true,
-                  "order": [
-                    "c",
-                    "m"
-                  ],
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_HEAVY2"
+                  },
                   "overwriteTypeIcons": [
+                    1,
                     1,
                     1
                   ],
                   "uiMods": {
-                    "modifiers": {
-                      "critMultiplier": 50
-                    },
                     "conditionalModifiers": [
                       {
-                        "description": "Unlock the Barrage Special Attack",
+                        "description": "Unlock the Power Shot Special Attack",
+                        "descriptionLang": "WTM_HBOW1",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HeavyBows"
                         },
                         "modifiers": {
-                          "critMultiplier": 50
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "modifiers": {
+                          "critMultiplier": 50,
+                          "rangedCritChance": 2.5
                         }
                       }
                     ]
@@ -6152,8 +6193,101 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "critMultiplier": 50
+                        "critMultiplier": 50,
+                        "rangedCritChance": 2.5
                       }
+                    },
+                    {
+                      "description": "Unlock the Power Shot Special Attack",
+                      "descriptionLang": "WTM_HEAVY3",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "modifiers": {
+                        "WTM:fakeModifierAddTextDescToWepType": 1
+                      }
+                    }
+                  ],
+                  "specAttack": "WTM:PowerShot"
+                },
+                {
+                  "name": "HeavyBows2",
+                  "id": "HeavyBows2",
+                  "level": 2,
+                  "shiny": false,
+                  "order": [
+                    "e",
+                    "m"
+                  ],
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_HEAVY2"
+                  },
+                  "overwriteTypeIcons": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "+5% Chance On Hit to apply 1 stack of Arrowstruck",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 5,
+                        "effectID": "WTM:Arrowstruck"
+                      }
+                    ],
+                    "modifiers": {
+                      "flatSlayerAreaEffectNegation": 5,
+                      "doubleSlayerTaskKillChance": 5
+                    }
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 5,
+                      "effectID": "WTM:Arrowstruck"
+                    }
+                  ],
+                  "modifiers": {
+                    "flatSlayerAreaEffectNegation": 5,
+                    "doubleSlayerTaskKillChance": 5
+                  }
+                },
+                {
+                  "name": "HeavyBows3",
+                  "id": "HeavyBows3",
+                  "level": 3,
+                  "shiny": true,
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "customDescription": "Start the fight in Power Stance: +25% Ranged Critical Hit Chance, +100% Crit Multiplier, +50% Chance to ignore Enemy DR, and -100% Global Evasion. These modifiers decrease by 20% each time you are hit; exit Power Stance after you are hit 5 times.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:PowerStance"
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:PowerStance"
                     }
                   ]
                 },
@@ -6162,60 +6296,79 @@
                   "id": "HeavyBows4",
                   "level": 4,
                   "shiny": false,
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_HEAVY4"
-                  },
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    0
+                  ],
                   "uiMods": {
-                    "combatEffects": [
+                    "conditionalModifiers": [
                       {
-                        "customDescription": "5% chance to apply Vulnerability.",
-                        "appliesWhen": "HitWithAttack",
-                        "effectID": "WTM:Vulnerability",
-                        "chance": 5,
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HeavyBows"
+                        },
+                        "modifiers": {
+                          "rangedCritChance": 2.5,
+                          "critMultiplier": 100
+                        }
+                      },
+                      {
+                        "condition": {
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:HeavyBows"
+                            },
+                            {
+                              "type": "FightingSlayerTask"
+                            }
+                          ]
+                        },
+                        "modifiers": {
+                          "rangedCritChance": 2.5,
+                          "critMultiplier": 100
                         }
                       }
-                    ]
-                  },
-                  "combatEffects": [
-                    {
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability",
-                      "chance": 5,
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
-                      }
+                    ],
+                    "modifiers": {
+                      "flatRangedAccuracyBonusPerAttackInterval": 1
                     }
-                  ],
+                  },
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "Every",
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "modifiers": {
+                        "rangedCritChance": 2.5,
+                        "critMultiplier": 100
+                      }
+                    },
+                    {
+                      "condition": {
                         "conditions": [
                           {
                             "type": "WeaponType",
                             "weaponType": "WTM:HeavyBows"
                           },
                           {
-                            "effectID": "WTM:Vulnerability",
-                            "character": "Enemy",
-                            "type": "CombatEffect"
+                            "type": "FightingSlayerTask"
                           }
                         ]
                       },
-                      "enemyModifiers": {
-                        "flatResistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": -10
-                          }
-                        ]
+                      "modifiers": {
+                        "rangedCritChance": 2.5,
+                        "critMultiplier": 100
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "flatRangedAccuracyBonusPerAttackInterval": 1
+                  }
                 },
                 {
                   "name": "HeavyBows5",
