@@ -54,6 +54,9 @@ export function addParry({ patch }) { // unfortunately we have to put logic in t
         }
     };
     patch(PlayerStatsElement, "setStats").after(function (_, player, game) {
+        this.critMultiplier.textContent = formatPercent(150 + player.modifiers.critMultiplier 
+                + (player.modifiers.getValue("WTM:critMult25Stealth", ModifierQuery.EMPTY) * Math.floor((player.modifiers.thievingStealth/25) || 0)) 
+                + (player.modifiers.getValue("WTM:critMult1000Acc", ModifierQuery.EMPTY) * Math.floor(player.stats._accuracy / 1000)));
 
         if (!this.parryD) {
             this.parryD = createElement('div', {});

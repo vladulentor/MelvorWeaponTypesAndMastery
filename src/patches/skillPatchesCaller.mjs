@@ -14,6 +14,7 @@ const { addMissingHealthMaxHit } = await loadModule('src/patches/patches/addMiss
 
 const { patchRunePreservationCap } = await loadModule('src/patches/patches/patchRunePreservationCap.mjs');
 const { patchStealthBonuses } = await loadModule('src/patches/patches/patchStealthBonuses.mjs');
+const { attackOperatingTable } = await loadModule('src/patches/patches/attackOperatingTable.mjs');
 
 
 
@@ -53,6 +54,7 @@ export function patchSkillsBeforeDataReg(ctx) {
         addSummonQuickenAttack(ctx);
         miscCombatPatches(ctx);
         patchSkillNotif(ctx);
+        attackOperatingTable(ctx);
         patchAccuracyRating(ctx);
         patchStealthBonuses(ctx);
         patchDodgeChance(ctx);

@@ -3192,6 +3192,48 @@
         ]
       },
       {
+        "id": "critDRPierce",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_critDRPierce"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "critChance1000Acc",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_critChance1000Acc"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "critMult1000Acc",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_critMult1000Acc"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "critChance25Stealth",
         "isCombat": true,
         "allowedScopes": [
@@ -4458,7 +4500,7 @@
                   "changeFunc": "modifySpecialAttack",
                   "uiMods": {
                     "modifiers": {
-                      "WTM:doubleLootChance25Stealth": 2
+                      "dodgeChance": 15
                     },
                     "conditionalModifiers": [
                       {
@@ -6525,6 +6567,7 @@
                     },
                     {
                       "condition": {
+                        "type": "Every",
                         "conditions": [
                           {
                             "type": "WeaponType",

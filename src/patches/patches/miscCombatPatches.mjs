@@ -28,6 +28,27 @@ Player.prototype.unavoidableSummonAttack = function () {
 
 const buffList = game.combatEffects.allObjects.filter(buff => buff.effectGroups.some(group => group == game.combatEffectGroups.getObjectByID("melvorD:Buff")));
 export function miscCombatPatches({ patch }) {
+
+    patch(PlayerModifierTable, 'getCritChance').after(function (ret, type) {
+        return ret + Math.floor(game.combat.player.stats._accuracy / 1000) * this.getValue("WTM:critChance1000Acc", ModifierQuery.EMPTY);
+
+    });
+
+    patch(Character, "modifyAttackDamage").replace(function (_, target, attack, damage, applyReduction = true) {
+        if (target.isBarrierActive || this.modifiers.disableAttackDamage > 0)
+            return 0; //No damage if there is a barrier or modifier.
+        // Apply Damage Modifiers
+        damage = this.applyDamageModifiers(target, damage);
+        if (attack.isDragonbreath)
+            damage *= 1 + target.modifiers.dragonBreathDamage / 100;
+        const redred = this.modifiers.getValue("WTM:critDRPierce", ModifierQuery.EMPTY) || 0 * attack.hasJustCrit;
+        // Apply Target Damage Reduction
+        damage *= 1 - Math.max(0,(target.stats.getResistance(this.damageType) - redred) / 100);
+        return Math.floor(damage);
+
+    });
+
+
     patch(Player, "attack").after(function (dam, target, attack) {
         if (rollPercentage(this.game.modifiers.getValue("WTM:blessingChance", ModifierQuery.EMPTY))) {
             for (let w = 0; w < 3; w++)
@@ -78,7 +99,7 @@ export function miscCombatPatches({ patch }) {
         if (!abysMan) {
             return this.media;
         }
-        return o();
+        return originalFn();
     });
     patch(EffectRenderer, "addEffectIcon").after(function (_, activeEffect, turnText, tooltipContent, media) {
         if (activeEffect.source.WTMSpecial) {

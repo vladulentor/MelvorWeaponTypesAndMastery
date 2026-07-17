@@ -17,10 +17,5 @@ export function patchStealthBonuses({ patch }) {
         return ret + Math.floor(this.modifiers.thievingStealth / 25) * this.modifiers.getValue("WTM:damageTaken25Stealth", ModifierQuery.EMPTY);
 
     });
-
-    patch(Player, 'getMaxHitModifier').after(function (ret) {
-        return ret + Math.floor(this.modifiers.thievingStealth / 25) * this.modifiers.getValue("WTM:damageTaken25Stealth", ModifierQuery.EMPTY);
-
-    });
   
 }
