@@ -59,7 +59,7 @@
         "attackInterval": 50,
         "lifesteal": 0,
         "name": "Channeled Palm Strike",
-        "description": "Perform an avoidable normal attack. Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the Enemy for ${onHitEffect0turns} turn(s) on hit.",
+        "description": "Channel your inner strength and perform an avoidable normal attack. Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the Enemy for ${onHitEffect0turns} turn(s) on hit.",
         "descriptionGenerator": "Make an <avoidable> normal attack. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -97,7 +97,7 @@
         "attackInterval": 50,
         "lifesteal": 0,
         "name": "Shadowshot",
-        "description": "You quickly fire a targeted arrow that deals ${attackDamageMaxValue0}% of your normal damage. On hit, inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s, and apply Immobilize (Can't Attack) for ${onHitEffect1turns} turns. Then, Slink Into Shadows and gain +${onHitEffect2modValue0}% Global Evasion, +${onHitEffect2modValue1}% Damage Reduction and -${onHitEffect2modValue2}% Attack Interval for ${onHitEffect2turns} turns. If effects are already active, perform a regular attack instead.",
+        "description": "Quickly fire a targeted arrow that deals ${attackDamageMaxValue0}% of your normal damage. On hit, inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s, and apply Immobilize (Can't Attack) for ${onHitEffect1turns} turns.<br> Then, Slink Into Shadows and gain +${onHitEffect2modValue0}% Global Evasion, +${onHitEffect2modValue1}% Damage Reduction and -${onHitEffect2modValue2}% Attack Interval for ${onHitEffect2turns} turns.<br> If effects are already active, perform a regular attack instead.",
         "descriptionGenerator": "Quickly fire an arrow, dealing <damage> and <onhitEffect>. If effects already active, perform a regular attack instead.",
         "usesRunesPerProc": false,
         "canNormalAttack": true
@@ -123,7 +123,7 @@
         "attackInterval": 100,
         "lifesteal": 0,
         "name": "Barrage",
-        "description": "Barrage the Enemy with a hail of arrows that each deal ${attackDamageMaxValue0}% of your normal damage, and have a ${onHitEffect0chance}% to apply 1 stack of Hobbled (Attack Interval is increased by 1% per stack, up to 25 stacks).",
+        "description": "Barrage the Enemy with a hail of arrows that each deal ${attackDamageMaxValue0}% of your normal damage.<br> Arrows have a ${onHitEffect0chance}% to apply 1 stack of Hobbled (Attack Interval is increased by 1% per stack, up to 25 stacks).",
         "descriptionGenerator": "An <avoidable> attack that deals <damage> <count> times. On use, <prehitEffect>.",
         "usesRunesPerProc": false
       },
@@ -142,7 +142,7 @@
         "attackInterval": 150,
         "lifesteal": 0,
         "name": "Quick Reload",
-        "description": "You take a moment to grease the track of your crossbow, gaining -${preHitEffect0modValue0}% Ranged Attack Interval for ${preHitEffect0turns} turns. If buff is already active, perform a regular attack instead.",
+        "description": "Grease the track of your crossbow, gaining -${preHitEffect0modValue0}% Ranged Attack Interval for ${preHitEffect0turns} turns.<br> If buff is already active, perform a regular attack instead.",
         "descriptionGenerator": "You grease the track of your crossbow, gaining <prehitEffect>. If buff is already active, perform a regular attack instead.",
         "usesRunesPerProc": false,
         "canNormalAttack": true
@@ -167,7 +167,7 @@
         "attackInterval": 100,
         "lifesteal": 0,
         "name": "Big Smash",
-        "description": "You smash the Enemy for ${attackDamageMaxValue0}% of your normal damage. If you hit, you gain 1 stack of Barbaric Strength, giving you for ${onHitEffect0modValue} Flat Melee Max Hit until the End of the Fight.",
+        "description": "Smash the enemy for ${attackDamageMaxValue0}% of your normal damage. If you hit, you gain Barbaric Strength, giving you ${onHitEffect0modValue} stacking Flat Melee Max Hit until the End of the Fight.",
         "descriptionGenerator": "You make an attack that deals <damage>. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -269,7 +269,7 @@
         "attackInterval": 200,
         "lifesteal": 0,
         "name": "Relentless Fury",
-        "description": "Your fists mutate into zealots of unbridled rage. Make ${hitCount} attacks, each dealing a small percentage of your Maximum Hit: 1st—${attackDamageMaxValue0}%; 2nd—${attackDamageMaxValue1}%; 3rd—${attackDamageMaxValue2}%; 4th—${attackDamageMaxValue3}%; and 5th—${attackDamageMaxValue4}%. Each hit has a ${onHitEffect0chance}% chance to decrease your Damage Reduction by ${onHitEffect0modValue}% for the rest of the fight and to inflict a 1-turn Stun on the Enemy.",
+        "description": "Make ${hitCount} attacks, each dealing a small percentage of your Maximum Hit: 1st—${attackDamageMaxValue0}%; 2nd—${attackDamageMaxValue1}%; 3rd—${attackDamageMaxValue2}%; 4th—${attackDamageMaxValue3}%; and 5th—${attackDamageMaxValue4}%. Each hit has a ${onHitEffect0chance}% chance to decrease your Damage Reduction by ${onHitEffect0modValue}% for the rest of the fight and to inflict a 1-turn Stun on the Enemy.",
         "descriptionGenerator": "Attack <hitCount> times, dealing <damage> and <hitEffect> on hit.",
         "usesRunesPerProc": false,
         "canNormalAttack": false
@@ -332,7 +332,7 @@
         "attackInterval": 250,
         "lifesteal": 0,
         "name": "Barrage of Flaming Death",
-        "description": "Your fists become humble servants of the eternal godflame, Ragnar. Make ${hitCount} attacks, each dealing a small percentage of your Maximum Hit: 1st—${attackDamageMaxValue0}%; 2nd—${attackDamageMaxValue1}%; 3rd—${attackDamageMaxValue2}%; and 4th—${attackDamageMaxValue3}%. Each hit has a ${onHitEffect0chance}% chance (doubled if the Enemy is Burning) to inflict Deadfire, a powerful Burn that deals ${onHitEffect0DamageMaxValue0}% of the Enemy's current hitpoints as damage over ${onHitEffect0duration}s.",
+        "description": "Your fists take on an aspect of the eternal flame, Ragnar. Make ${hitCount} attacks, each dealing a small percentage of your Maximum Hit: 1st—${attackDamageMaxValue0}%; 2nd—${attackDamageMaxValue1}%; 3rd—${attackDamageMaxValue2}%; and 4th—${attackDamageMaxValue3}%. Each hit has a ${onHitEffect0chance}% chance (doubled if the Enemy is Burning) to inflict Deadfire, a powerful Burn that deals ${onHitEffect0DamageMaxValue0}% of the Enemy's current hitpoints as damage over ${onHitEffect0duration}s.",
         "descriptionGenerator": "Attack <hitCount> times, dealing <damage> and <hitEffect> on hit.",
         "usesRunesPerProc": false,
         "canNormalAttack": false
@@ -352,7 +352,7 @@
         "attackInterval": 50,
         "lifesteal": 0,
         "name": "Spiked Carapace",
-        "description": "Your gloves instantly grow to five times their size and form a massive, spiky shell around your body for ${preHitEffect0turns} turn(s). While protected by this carapace, you have +${preHitEffect0modValue0}% Reflect Damage, +${preHitEffect0modValue1}% chance to ignore Slow Effects, and +${preHitEffect0modValue2}% Flat Damage Reduction. If this buff is already active, make a normal attack instead.",
+        "description": "Your gloves instantly grow to become a spiky shell around your body for ${preHitEffect0turns} turns. While protected by this carapace, you have +${preHitEffect0modValue0}% Reflect Damage, +${preHitEffect0modValue1}% chance to ignore Slow Effects, and +${preHitEffect0modValue2}% Flat Damage Reduction.<br> If this buff is already active, make a normal attack instead.",
         "descriptionGenerator": "On use, <preHitEffect>. If buff already active, make normal attack.",
         "usesRunesPerProc": false,
         "canNormalAttack": true
@@ -388,7 +388,7 @@
         "attackInterval": 1000,
         "lifesteal": 0,
         "name": "Stonewall",
-        "description": "Upon driving your fists into the rocky earth, you conjure a massive stone barrier, giving you +${preHitEffect0modValue0}% Flat Damage Reduction for ${preHitEffect0turns} turn(s). Then, you hurl the stone at the Enemy, dealing damage equal to ${attackDamageMaxValue0}%-${attackDamageMaxValue1}% of your Defence level (Unavoidable).",
+        "description": "Driving your fists into the rocky earth, you conjure a stone barrier, granting you +${preHitEffect0modValue0}% Flat Damage Reduction for ${preHitEffect0turns} turns. <br> Then hurl the stone at the Enemy, dealing damage equal to ${attackDamageMaxValue0}%-${attackDamageMaxValue1}% of your Defence level. Unavoidable.",
         "descriptionGenerator": "Puts up a wall that <prehitEffect>. Then, deal <damage>. <Avoidable>.",
         "usesRunesPerProc": false,
         "canNormalAttack": true
@@ -467,7 +467,7 @@
         "attackInterval": 300,
         "lifesteal": 0,
         "name": "Lich's Madness",
-        "description": "Engulf your body in umbral flame and coat your extremities in jet ice shards, inflicting Burn and Frostburn on yourself, then strike ${hitCount} times. On the 1st attack, deal ${attackDamageMaxValue0}% of your normal (doubled if Enemy is Burning). On the 2nd and 3rd attacks, deal damage equal tio ${attackDamageMaxValue1} + ${attackDamageMaxValue2}% of your Magic level. Each hit has a ${onHitEffect0chance}% chance to inflict Burn which deals ${onHitEffect0DamageMaxValue0}% of the Enemy's current hitpoints as damage over ${onHitEffect0duration}s, and Frostburn for ${onHitEffect2turns} turns.",
+        "description": "Engulf yourself in umbral flame while your extremities turn to jet ice shards, inflicting Burn and Frostburn on yourself, then strike ${hitCount} times.<br> On the 1st attack, deal ${attackDamageMaxValue0}% of your normal (doubled if Enemy is Burning).<br> On the 2nd and 3rd attacks, deal damage equal tio ${attackDamageMaxValue1} + ${attackDamageMaxValue2}% of your Magic level.<br> Each hit has a ${onHitEffect0chance}% chance to inflict Burn which deals ${onHitEffect0DamageMaxValue0}% of the Enemy's current hitpoints as damage over ${onHitEffect0duration}s, and Frostburn for ${onHitEffect2turns} turns.",
         "descriptionGenerator": "An <avoidable> attack that deals <damage> damage. On a hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -530,7 +530,7 @@
         "attackInterval": 200,
         "lifesteal": 0,
         "name": "Toxic Needle Flurry",
-        "description": "Fire ${hitCount} small needles from your knuckles in a flurry of jabs that deal up to ${attackDamageMaxValue0}% of your normal damage each (Avoidable). On a hit has a ${onHitEffect0chance}% chance to inflict Poison that deals ${onHitEffect0DamageMaxValue0}% of the Enemy's max hitpoints as damage over ${onHitEffect0duration}s.",
+        "description": "Fire ${hitCount} small needles from your knuckles in a flurry that deal up to ${attackDamageMaxValue0}% of your normal damage each (Avoidable).<br> On a hit has a ${onHitEffect0chance}% chance to inflict Poison that deals ${onHitEffect0DamageMaxValue0}% of the enemy's max hitpoints as damage over ${onHitEffect0duration}s.",
         "descriptionGenerator": "Fire <count> small needles that deal <damage> damage each (<Avoidable>). On a hit <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -554,7 +554,7 @@
         "attackInterval": 600,
         "lifesteal": 0,
         "name": "Cyclone Fist",
-        "description": "Surrounds you in wind for ${duration}s, while dealing ${attackDamageMaxValue0}% normal damage ${hitCount} times. Gives you +${preHitEffect0modValue0}% Global Evasion and +${preHitEffect0modValue1} Flat Reflect Damage until the end of the attack.",
+        "description": "Surround yourself in wind for ${duration}s, while dealing ${attackDamageMaxValue0}% normal damage ${hitCount} times. Grants +${preHitEffect0modValue0}% Global Evasion and +${preHitEffect0modValue1} Flat Reflect Damage until the end of the attack.",
         "descriptionGenerator": "Surrounds <attacker> in wind for <duration>, while dealing <damage> <avoidable> damage <count> times. On use, <prehitEffect>.",
         "usesRunesPerProc": false
       },
@@ -601,7 +601,7 @@
         "attackInterval": 50,
         "lifesteal": 0,
         "name": "Shatterstrikes",
-        "description": "Harnessing pure crystalline power, you make two swift strikes against the Target, each dealing ${attackDamageMaxValue0}% of their maximum hit (doubled if the Enemy is Crystallized). On hit, ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for ${onHitEffect0turns} turn(s), and ${onHitEffect1chance}% chance to apply Crystal Sanction (Target's next attack deals no damage).",
+        "description": "Harnessing crystalline power, make two swift strikes against the Target, each dealing ${attackDamageMaxValue0}% your maximum hit (doubled if the Enemy is Crystallized).<br> On hit, ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for ${onHitEffect0turns} turn(s), and ${onHitEffect1chance}% chance to apply Crystal Sanction (Target's next attack deals no damage).",
         "descriptionGenerator": "Make two <avoidable> attacks that deal <damage>. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -632,7 +632,7 @@
         "attackInterval": 2000,
         "lifesteal": 0,
         "name": "Crystal Strike",
-        "description": "You focus crystalline energy into your knuckles to make one powerful strike. On hit, deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for 1 turn.",
+        "description": "Focus crystalline energy into your knuckles to land a powerful strike.<br> On hit, deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for 1 turn.",
         "descriptionGenerator": "Make an <avoidable> attack that deals <damage>. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -667,7 +667,7 @@
         "attackInterval": 100,
         "lifesteal": 0,
         "name": "Mounted Strike",
-        "description": "Attack normally, on hit instruct your companions to attack twice undodgeably.",
+        "description": "Attack normally, on hit instruct your companions to perform an unavoidable attack each.",
         "descriptionGenerator": "Attack <hitCount> for <damage>. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -706,7 +706,7 @@
         "attackInterval": 300,
         "lifesteal": 0,
         "name": "Concussive Smash",
-        "description": "Smash into your Enemy's armour, dealing up to 100% + (Enemy DR%) Normal Hit damage (Eg. 25% DR = up to 125% normal hit damage). On a hit, inflicts Daze for 2 turns and has a ${onHitEffect1chance}% chance to inflict Broken. Avoidable.",
+        "description": "Smash into your enemy's armour, dealing up to (100 + Enemy DR)% Normal Hit damage.<br> On a hit, inflicts Daze for 2 turns and has a ${onHitEffect1chance}% chance to inflict Broken. Avoidable.",
         "descriptionGenerator": "Smash into your Enemy's armour, dealing up to 100% + (Attacker DR%) Normal Hit damage (Eg. 25% DR = up to 125% normal hit damage). On a hit, <hitEffect>. <Avoidable>.",
         "usesRunesPerProc": false
       },
@@ -737,7 +737,7 @@
         "attackInterval": 200,
         "lifesteal": 0,
         "name": "Devastating Slice",
-        "description": "Deliver your massive blade unto the Enemy with a wide, arcing slash that strikes ${hitCount} times for up to ${attackDamageMaxValue0}% of your normal damage per hit. On hit, has a ${onHitEffect0chance}% Chance to inflict Shaken (-${onHitEffect0modValue}% Global Evasion and -${onHitEffect0modValue1)%) Total Resistance on the Enemy for ${onHitEffect0turns} turns.",
+        "description": "Deliver your blade unto the Enemy with a wide, arcing slash that strikes ${hitCount} times for up to ${attackDamageMaxValue0}% of your normal damage per hit. On hit, has a ${onHitEffect0chance}% Chance to inflict Shaken (-${onHitEffect0modValue}% Global Evasion and -${onHitEffect0modValue1)%) Total Resistance on the Enemy for ${onHitEffect0turns} turns.",
         "descriptionGenerator": "Attack <hitCount> for <damage>. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
@@ -762,7 +762,7 @@
         "attackInterval": 100,
         "lifesteal": 0,
         "name": "Practiced Lunge",
-        "description": "Perform a careful, practiced lunge which ignores Enemy Resistance and cannot miss. Deals ${attackDamageMaxValue0}% normal damage.",
+        "description": "Perform an unavoidable lunge that ignores Enemy Resistance. Deals ${attackDamageMaxValue0}% normal damage.",
         "descriptionGenerator": "Perform an <avoidable> attack that ignores Enemy Resistance and deals <damage>.",
         "usesRunesPerProc": false
       },
@@ -786,7 +786,7 @@
         "attackInterval": 250,
         "lifesteal": 0,
         "name": "Whirling Manoeuvre",
-        "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each. While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect Enemy attacks for ${preHitEffect0modValue0}% of their damage.",
+        "description": "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each.<br> While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect Enemy attacks for ${preHitEffect0modValue0}% of their damage.",
         "descriptionGenerator": "Gain <preHitEffect>, and attack <hitCount> times for <damage>.",
         "usesRunesPerProc": false
       },
@@ -808,8 +808,52 @@
         "attackInterval": 500,
         "lifesteal": 0,
         "name": "Bloodlust",
-        "description": "You let out a bloodcurdling warcry, becoming filled with a lust for blood. Gain 1 stack (max 10) of Bloodlust which gives you: +${preHitEffect0modValue0}% Lifesteal, +${preHitEffect0modValue1}% Max Hit, +${preHitEffect0modValue2} Flat Damage to Bleeding targets, -${preHitEffect0modValue3}% Attack Interval, and +${preHitEffect0modValue4}% Self Damage on Hit. Each stack of Bloodlust also gives the Enemy +${preHitEffect1modValue0}% Bleed Damage Taken, -${preHitEffect1modValue1}% Max Hit, -${preHitEffect1modValue2}% Resistance, and +${preHitEffect0modValue3}% Attack Interval.",
+        "description": "Let out a bloodcurdling warcry. Gain 1 stack of Bloodlust which gives you: +${preHitEffect0modValue0}% Lifesteal, +${preHitEffect0modValue1}% Max Hit, +${preHitEffect0modValue2} Flat Damage to Bleeding targets, -${preHitEffect0modValue3}% Attack Interval, and +${preHitEffect0modValue4}% Self Damage on Hit.<br> Each stack of Bloodlust also gives the Enemy +${preHitEffect1modValue0}% Bleed Damage Taken, -${preHitEffect1modValue1}% Max Hit, -${preHitEffect1modValue2}% Resistance, and +${preHitEffect1modValue3}% Attack Interval.",
         "descriptionGenerator": "You become filled with a lust for blood. On use, <preHitEffect>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "Blindside",
+        "defaultChance": 15,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 75
+          }
+        ],
+        "prehitEffects": [
+          {
+            "effectID": "WTM:Blindsiding"
+          }
+        ],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 150,
+        "lifesteal": 0,
+        "name": "Blindside",
+        "description": "Strike from the shadows, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage each time. <br> Every Attack has +${preHitEffect0modValue0}% critical hit multiplier.",
+        "descriptionGenerator": "<Avoidable> attack for <damage>.",
+        "usesRunesPerProc": false
+      },
+      {
+        "id": "Multishot",
+        "defaultChance": 5,
+        "damage": [
+          {
+            "damageType": "Normal",
+            "amplitude": 35
+          }
+        ],
+        "prehitEffects": [],
+        "onhitEffects": [],
+        "cantMiss": false,
+        "attackCount": 1,
+        "attackInterval": 150,
+        "lifesteal": 0,
+        "name": "Blindside",
+        "description": "Strike from the shadows, making 1 + (Stealth/50) number of strikes that deal ${attackDamageMaxValue0}% of your Normal damage each. <br> Every Attack has +15% Crit chance and +200% Crit Damage.",
+        "descriptionGenerator": "<Avoidable> attack for <damage>.",
         "usesRunesPerProc": false
       },
       {
@@ -820,7 +864,7 @@
             "damageType": "Custom",
             "character": "Target",
             "maxRoll": "MaxHP",
-            "maxPercent": 33.33,
+            "maxPercent": 22.22,
             "roll": false
           }
         ],
@@ -831,7 +875,7 @@
         "attackInterval": 50,
         "lifesteal": 0,
         "name": "Death Approaches",
-        "description": "You find the most vulnerable spot to strike your opponent, dealing ${attackDamageMaxValue0}% of their max HP on hit.",
+        "description": "Strike your enemy's weak spot, dealing ${attackDamageMaxValue0}% of their max HP.",
         "descriptionGenerator": "<Avoidable> attack for <damage>.",
         "usesRunesPerProc": false
       }
@@ -1038,7 +1082,7 @@
       {
         "id": "AuraAir",
         "templateID": "melvorD:StaticSelfCountingModifier",
-        "name": "Lightning Aura",
+        "name": "Wind Aura",
         "media": "assets/combat/status/auraair.png",
         "target": "Target",
         "parameters": [
@@ -1431,6 +1475,102 @@
         ]
       },
       {
+        "id": "Shrouded",
+        "templateID": "melvorD:Proccing",
+        "name": "Shrouded",
+        "media": "assets/combat/status/shrouded.png",
+        "target": "Self",
+        "tooltipSpans": [
+          {
+            "type": "LangString",
+            "langID": "WTM_EFFECT_TOOLTIP_SHROUDED"
+          },
+          {
+            "type": "Stats",
+            "statGroupName": "theStuff"
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "theStuff",
+            "modifiers": {
+              "critMultiplier": 50
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stacks",
+            "initialValue": 1
+          },
+          {
+            "name": "procs",
+            "initialValue": 5
+          },
+          {
+            "name": "interval",
+            "initialValue": 1000
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "ModifyStats",
+            "statGroupName": "theStuff",
+            "newValue": "1",
+            "triggersOn": [
+              {
+                "type": "EffectApplied"
+              }
+            ]
+          },
+          {
+            "type": "RemoveEffect",
+            "triggersOn": [
+              {
+                "type": "EndOfFight"
+              },
+              {
+                "type": "StatsChange",
+                "statGroupName": "procs",
+                "condition": {
+                  "operator": "==",
+                  "lhValue": "p.procs",
+                  "rhValue": 0
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Blindsiding",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "Blindsiding",
+        "media": "assets/combat/status/crit_increase.png",
+        "target": "Self",
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "critMultiplier": 30
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stacks",
+            "initialValue": 1
+          },
+          {
+            "name": "turns",
+            "initialValue": 0
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
         "id": "QuickReload0",
         "templateID": "melvorD:StaticSelfCountingModifier",
         "name": "Quick Reload",
@@ -1461,8 +1601,8 @@
         "media": "assets/combat/status/crit_increase.png",
         "tooltipSpans": [
           {
-            "type": "String",
-            "value": "Next attack can't miss and is guaranteed to be a critical hit."
+            "type": "LangString",
+            "langID": "WTM_EFFECT_TOOLTIP_STRAIGHTSHOOTER"
           }
         ],
         "target": "Self",
@@ -2959,20 +3099,6 @@
         ]
       },
       {
-        "id": "increaseWeaponXPmelee",
-        "allowedScopes": [
-          {
-            "scopes": {},
-            "descriptions": [
-              {
-                "text": "",
-                "lang": "MODIFIER_DATA_increaseWeaponXPMelee"
-              }
-            ]
-          }
-        ]
-      },
-      {
         "id": "fearDurationIncreaseChance",
         "allowEnemy": true,
         "allowedScopes": [
@@ -2988,6 +3114,50 @@
         ]
       },
       {
+        "id": "multiShotExtraShot",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_multiShotExtraShot"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "blindsideextrablind",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_blindsideextrablind"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "increaseWeaponXPmelee",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_increaseWeaponXPMelee"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "increaseWeaponXPranged",
         "allowedScopes": [
           {
@@ -2996,6 +3166,114 @@
               {
                 "text": "",
                 "lang": "MODIFIER_DATA_increaseWeaponXPRanged"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "critChance25Stealth",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_critChance25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "critMult25Stealth",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_critMult25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "doubleLootChance25Stealth",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_doubleLootChance25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flatAttackInterval100Stealth",
+        "inverted": true,
+        "isCombat": true,
+        "modifyValue": "value/1000",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_flatAttackInterval100Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "maxHit25Stealth",
+        "isCombat": true,
+        "modifyValue": "value/1000",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "lang": "MODIFIER_DATA_maxHit25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "damageTaken25Stealth",
+        "inverted": true,
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_damageTaken25Stealth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dodgeChance25Stealth",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "",
+                "lang": "MODIFIER_DATA_dodgeChance25Stealth"
               }
             ]
           }
@@ -3108,7 +3386,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "dodgeChance": 5
+                  "convertMissIntoHit": 5
                 }
               },
               "levels": [
@@ -3136,9 +3414,7 @@
                           "weaponType": "WTM:ThrustingSwords"
                         },
                         "modifiers": {
-                          "dodgeChance": 5,
-                          "convertMissIntoHit": 5,
-                          "attackInterval": -5
+                          "dodgeChance": 10
                         }
                       }
                     ]
@@ -3252,7 +3528,7 @@
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_THRUST4",
-                        "description": "If your Shield slot is empty, triple the above bonuses and gain +10% chance to pierce Enemy Resistance.",
+                        "description": "If your Shield slot is empty, triple this level's bonuses and gain +10% chance to pierce Enemy Resistance.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:ThrustingSwords"
@@ -3312,6 +3588,16 @@
                   "id": "ThrustingSwords5",
                   "level": 5,
                   "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_THRUSTING5",
+                    "2": "MODIFIER_TOOLTIP_THRUSTING52"
+                  },
+                  "order": [
+                    "c",
+                    "c",
+                    "m",
+                    "m"
+                  ],
                   "uiMods": {
                     "modifiers": {
                       "dodgeChance": 5,
@@ -3319,8 +3605,8 @@
                     },
                     "conditionalModifiers": [
                       {
-                        "descriptionLang": "WTM_THRUST4",
-                        "description": "Unlocks the ability to Parry with Thrusting Swords. When an Enemy misses you with an attack, you have a chance to perform a counterattack that deals damage equal to your minimum hit on hit.",
+                        "descriptionLang": "WTM_THRUST5",
+                        "description": "Chance to Parry when an enemy misses you based on defense values",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:ThrustingSwords"
@@ -3333,14 +3619,22 @@
                             }
                           ]
                         }
-                      }
-                    ],
-                    "combatEffects": [
+                      },
                       {
-                        "customDescription": "Unlocks the ability to Disarm. When you hit with an attack, you have a 5% chance to Disarm the Enemy, preventing them from attacking for 1 turn. Chance is increased to 10% if nothing equipped in Shield Slot.",
-                        "appliesWhen": "HitWithAttack",
-                        "effectID": "WTM:Disarm",
-                        "chance": 5
+                        "descriptionLang": "WTM_THRUST52",
+                        "description": "+10% chance (20% without a shield) to apply Disarm to enemy on Hit",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:ThrustingSwords"
+                        },
+                        "modifiers": {
+                          "WTM:unlockParry": [
+                            {
+                              "value": 1,
+                              "damageTypeID": "melvorD:Normal"
+                            }
+                          ]
+                        }
                       }
                     ]
                   },
@@ -3375,18 +3669,21 @@
                       "chance": 5
                     },
                     {
-                      "conditions": [
-                        {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:ThrustingSwords"
-                        },
-                        {
-                          "type": "EmptySlot",
-                          "slotIDs": [
-                            "melvorD:Shield"
-                          ]
-                        }
-                      ],
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:ThrustingSwords"
+                          },
+                          {
+                            "type": "EmptySlot",
+                            "slotIDs": [
+                              "melvorD:Shield"
+                            ]
+                          }
+                        ]
+                      },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Disarm",
                       "chance": 5
@@ -3403,9 +3700,6 @@
               "mat": [
                 "2H_Sword"
               ],
-              "extraLangStrings": {
-                "en": {}
-              },
               "kind": "melee",
               "uniq": [
                 "Aeris_Godsword3",
@@ -3451,11 +3745,6 @@
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Greatswords"
-                        },
-                        "customDescription": "+1% Chance On Hit to inflict Intimidation (-10% Global Accuracy and Max Hit) on the Enemy for 3 turns.",
                         "appliesWhen": "HitWithAttack",
                         "chance": 1,
                         "effectID": "WTM:Intimidation"
@@ -3480,29 +3769,19 @@
                   "id": "Greatswords2",
                   "shiny": false,
                   "level": 2,
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_GREAT2"
-                  },
+                  "overwriteTypeIcons": [
+                    1,
+                    0
+                  ],
                   "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "description": "+10% of your Strength Level added as Hidden Strength Levels",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Greatswords"
-                        },
-                        "modifiers": {
-                          "flatHiddenSkillLevelBasedOnLevels": [
-                            {
-                              "skillID": "melvorD:Strength",
-                              "value": 10
-                            }
-                          ]
-                        }
-                      }
-                    ],
                     "modifiers": {
-                      "meleeStrengthBonusWith2HWeapon": 1
+                      "flatHiddenSkillLevelBasedOnLevels": [
+                        {
+                          "skillID": "melvorD:Strength",
+                          "value": 10
+                        }
+                      ],
+                      "meleeStrengthBonusWith2HWeapon": 3
                     }
                   },
                   "conditionalModifiers": [
@@ -3523,7 +3802,7 @@
                     }
                   ],
                   "modifiers": {
-                    "meleeStrengthBonusWith2HWeapon": 1
+                    "meleeStrengthBonusWith2HWeapon": 3
                   }
                 },
                 {
@@ -3535,10 +3814,26 @@
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_GREAT3"
                   },
+                  "overwriteTypeIcons": [
+                    1,
+                    1
+                  ],
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Unlock the Devastating Slice Special Attack. While the Enemy is Shaken, +1% Chance On Hit to inflict Intimidation on the Enemy for 3 turns.",
+                        "descriptionLang": "WTM_GREAT3",
+                        "description": "Unlock the Devastating Slice Special Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Greatswords"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_GREAT32",
+                        "description": "+1% chance to apply Intimidation when hitting a Shaken enemy",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Greatswords"
@@ -3576,35 +3871,21 @@
                   "id": "Greatswords4",
                   "shiny": false,
                   "level": 4,
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_GREAT42",
-                    "2": "MODIFIER_TOOLTIP_GREAT41"
-                  },
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "While the Enemy is Intimidated or Shaken, +1% Melee Accuracy and Melee Max Hit per 8 Strength Skill Levels (Floored)",
                         "condition": {
-                          "type": "Every",
+                          "type": "Some",
                           "conditions": [
                             {
-                              "type": "WeaponType",
-                              "weaponType": "WTM:Greatswords"
+                              "character": "Enemy",
+                              "effectID": "WTM:Intimidation",
+                              "type": "CombatEffect"
                             },
                             {
-                              "type": "Some",
-                              "conditions": [
-                                {
-                                  "character": "Enemy",
-                                  "effectID": "WTM:Intimidation",
-                                  "type": "CombatEffect"
-                                },
-                                {
-                                  "character": "Enemy",
-                                  "effectID": "WTM:Shaken",
-                                  "type": "CombatEffect"
-                                }
-                              ]
+                              "character": "Enemy",
+                              "effectID": "WTM:Shaken",
+                              "type": "CombatEffect"
                             }
                           ]
                         },
@@ -3668,32 +3949,37 @@
                   "id": "Greatswords5",
                   "shiny": true,
                   "level": 5,
+                  "tooltip": {
+                    "2": "MODIFIER_TOOLTIP_GREAT5"
+                  },
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1
+                  ],
+                  "order": [
+                    "c",
+                    "e",
+                    "m"
+                  ],
                   "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_GREAT5",
+                        "description": "At the Start of the Fight, apply Intimidated and Shaken to the enemy for 3 turns",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Greatswords"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ],
                     "combatEffects": [
                       {
-                        "customDescription": "At the Start of the Fight, Intimidate and Enshaken the Enemy for 3 turns.<br>+1% Chance On Hit to Terrify (10% Chance Before Attacking to instead be Stunned for 1 turn) the Enemy for 3 turns. +10% Chance to increase the duration of Fear effects inflicted by 1 turn.",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Greatswords"
-                        },
-                        "appliesWhen": "StartOfFight",
-                        "effectID": "WTM:Intimidation"
-                      },
-                      {
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Greatswords"
-                        },
-                        "appliesWhen": "StartOfFight",
-                        "effectID": "WTM:Shaken"
-                      },
-                      {
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Greatswords"
-                        },
                         "appliesWhen": "HitWithAttack",
-                        "chance": 1,
+                        "chance": 5,
                         "effectID": "WTM:Terrify"
                       }
                     ],
@@ -3725,7 +4011,7 @@
                         "weaponType": "WTM:Greatswords"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 1,
+                      "chance": 5,
                       "effectID": "WTM:Terrify"
                     }
                   ],
@@ -3792,7 +4078,6 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "+15% Slash Attack Bonus from Equipment",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
@@ -3820,7 +4105,6 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
@@ -3876,7 +4160,6 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "-10% Summoning Attack Interval, +10% Summoning Max Hit, and +10% Min Hit Based on Max Hit",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:CurvedSwords"
@@ -3899,7 +4182,7 @@
                     0
                   ],
                   "order": [
-                    "c",
+                    "e",
                     "m",
                     "m"
                   ],
@@ -3907,17 +4190,11 @@
                     "1": "MODIFIER_TOOLTIP_CURVED5"
                   },
                   "uiMods": {
-                    "conditionalModifiers": [
+                    "combatEffects": [
                       {
-                        "descriptionLang": "WTM_CURVED5",
-                        "description": "Unlock Advantage",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:CurvedSwords"
-                        },
-                        "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
-                        }
+                        "chance": 50,
+                        "appliesWhen": "HitWithAttack",
+                        "effectID": "WTM:Advantage"
                       }
                     ],
                     "modifiers": {
@@ -3967,9 +4244,19 @@
               ],
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {
-                  "meleeCritChance": 5
-                }
+                "conditionalModifiers": [
+                  {
+                    "descriptionLang": "WTM_DAGGER0",
+                    "description": "+25 Stealth",
+                    "condition": {
+                      "type": "WeaponType",
+                      "weaponType": "WTM:Daggers"
+                    },
+                    "modifiers": {
+                      "thievingStealth": 25
+                    }
+                  }
+                ]
               },
               "levels": [
                 {
@@ -3979,38 +4266,71 @@
                   "shiny": false,
                   "overwriteTypeIcons": [
                     1,
-                    1
+                    0
                   ],
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_DAGGER1"
-                  },
                   "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "descriptionLang": "WTM_DAGGER1",
-                        "description": "Inflict 1 stack of Vulnerability on Hit, or 3 stacks on Critical",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:CurvedSwords"
-                        },
-                        "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
-                        }
-                      }
-                    ],
                     "modifiers": {
-                      "meleeCritChance": 10
+                      "WTM:critChance25Stealth": 1.5,
+                      "critChance": 3
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Daggers gain +10% Crit Chance.",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Daggers"
                       },
                       "modifiers": {
-                        "meleeCritChance": 10
+                        "WTM:critChance25Stealth": 1.5
+                      }
+                    }
+                  ],
+                  "modifiers": {
+                    "critChance": 3
+                  }
+                },
+                {
+                  "name": "Daggers2",
+                  "id": "Daggers2",
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_DAGGER2"
+                  },
+                  "level": 2,
+                  "shiny": true,
+                  "order": [
+                    "c",
+                    "m"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "WTM:damageTaken25Stealth": -3
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_DAGGER2",
+                        "description": "Apply Shrouded when critically hitting with an attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Daggers"
+                        },
+                        "modifiers": {
+                          "WTM:damageTaken25Stealth": -3
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
+                      },
+                      "modifiers": {
+                        "WTM:damageTaken25Stealth": -3
                       }
                     }
                   ],
@@ -4021,78 +4341,7 @@
                         "weaponType": "WTM:Daggers"
                       },
                       "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    }
-                  ]
-                },
-                {
-                  "name": "Daggers2",
-                  "id": "Daggers2",
-                  "level": 2,
-                  "shiny": false,
-                  "conditionalModifiers": [
-                    {
-                      "descriptionLang": "WTM_DAGGER2",
-                      "description": "+25% Bleed and Poison damage. +5% Crit Chance and +50% Crit Multiplier. Double those if Enemy is Bleeding or Poisoned.",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "modifiers": {
-                        "critMultiplier": 50,
-                        "meleeCritChance": 5
-                      },
-                      "enemyModifiers": {
-                        "bleedDOTDamageTaken": 25,
-                        "poisonDOTDamageTaken": 25,
-                        "deadlyPoisonDOTDamageTaken": 25
-                      }
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "Some",
-                            "conditions": [
-                              {
-                                "groupID": "melvorD:PoisonDOT",
-                                "character": "Enemy",
-                                "type": "CombatEffectGroup"
-                              },
-                              {
-                                "groupID": "melvorD:BleedDOT",
-                                "character": "Enemy",
-                                "type": "CombatEffectGroup"
-                              }
-                            ]
-                          },
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "meleeCritChance": 5,
-                        "critMultiplier": 50
-                      }
+                      "effectID": "WTM:Shrouded"
                     }
                   ]
                 },
@@ -4101,66 +4350,57 @@
                   "id": "Daggers3",
                   "level": 3,
                   "shiny": true,
-                  "specAttack": "WTM:DeathApproaches",
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_DAGGER3"
                   },
-                  "conditionalModifiers": [
-                    {
-                      "descriptionLang": "WTM_DAGGER2",
-                      "description": "Unlock the Death Approaches Special Attack",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "modifiers": {
-                        "WTM:fakeModifierAddTextDescToWepType": 1
+                  "specAttack": "WTM:Blindside",
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_DAGGER3",
+                        "description": "Unlocks the Blindside Special Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Daggers"
+                        },
+                        "modifiers": {
+                          "WTM:damageTaken25Stealth": -3
+                        }
                       }
-                    }
-                  ]
+                    ]
+                  }
                 },
                 {
                   "name": "Daggers4",
                   "id": "Daggers4",
                   "level": 4,
                   "shiny": false,
-                  "overwriteTypeIcons": [
-                    1
+                  "order": [
+                    "c",
+                    "m",
+                    "m"
                   ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "changeFunc": "modifySpecialAttack",
                   "uiMods": {
                     "modifiers": {
-                      "critMultiplier": 150
-                    }
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "description": "Gain +150% Crit Multiplier.",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Daggers"
-                      },
-                      "modifiers": {
-                        "critMultiplier": 150
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "Daggers5",
-                  "id": "Daggers5",
-                  "level": 5,
-                  "shiny": true,
-                  "uiMods": {
+                      "WTM:doubleLootChance25Stealth": 2,
+                      "dodgeChance": 5
+                    },
                     "conditionalModifiers": [
                       {
-                        "descriptionLang": "WTM_DAGGER5",
-                        "description": "Unlock the Death Approaches Special Attack",
+                        "descriptionLang": "WTM_DAGGER4",
+                        "description": "While Shrouded, +1.5% critical hit chance per 25 Stealth",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Daggers"
                         },
                         "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
+                          "WTM:critChance25Stealth": 1.5
                         }
                       }
                     ]
@@ -4168,209 +4408,75 @@
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Vulnerability",
-                            "type": "CombatEffect"
-                          }
-                        ]
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
                       },
-                      "enemyModifiers": {
-                        "halveResistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": -1
-                          }
-                        ]
+                      "modifiers": {
+                        "WTM:doubleLootChance25Stealth": 2
                       }
                     }
                   ],
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
+                  "modifiers": {
+                    "dodgeChance": 5
+                  }
+                },
+                {
+                  "name": "Daggers5",
+                  "id": "Daggers5",
+                  "level": 5,
+                  "shiny": true,
+                  "order": [
+                    "c",
+                    "m",
+                    "c"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "changeFunc": "modifySpecialAttack",
+                  "uiMods": {
+                    "modifiers": {
+                      "WTM:doubleLootChance25Stealth": 2
                     },
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_DAGGER5",
+                        "description": "While Shrouded, -0.15s Flat Attack Interval per 100 Stealth",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Daggers"
+                        },
+                        "modifiers": {
+                          "WTM:flatAttackInterval100Stealth": 2
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_DAGGER52",
+                        "description": "+50 Stealth",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Daggers"
+                        },
+                        "modifiers": {
+                          "WTM:flatAttackInterval100Stealth": 2
+                        }
+                      }
+                    ]
+                  },
+                  "modifiers": {
+                    "thievingStealth": 50
+                  },
+                  "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Daggers"
                       },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:BleedDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Daggers"
-                          },
-                          {
-                            "character": "Enemy",
-                            "groupID": "melvorD:PoisonDOT",
-                            "type": "CombatEffectGroup"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "CritWithAttack",
-                      "effectID": "WTM:Vulnerability"
+                      "modifiers": {
+                        "dodgeChance": 15
+                      }
                     }
                   ]
                 }
@@ -4522,7 +4628,7 @@
                   "level": 4,
                   "shiny": true,
                   "tooltip": {
-                    "2": "MODIFIER_TOOLTIP_AXES4"
+                    "1": "MODIFIER_TOOLTIP_AXES4"
                   },
                   "overwriteTypeIcons": [
                     1,
@@ -4610,11 +4716,16 @@
                   "id": "Axes5",
                   "level": 5,
                   "shiny": true,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1
+                  ],
                   "uiMods": {
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_AXES5",
-                        "description": "Unlock the Bloodlust Special Attack",
+                        "description": "+10% chance for both while Enemy is bleeding",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Axes"
@@ -5175,6 +5286,11 @@
                     1,
                     1
                   ],
+                  "order": [
+                    "e",
+                    "c",
+                    "m"
+                  ],
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_BLUNTS21",
                     "2": "MODIFIER_TOOLTIP_BLUNTS22"
@@ -5197,6 +5313,23 @@
                         "effectID": "WTM:Daze"
                       }
                     ],
+                    "conditionalModifiers": [
+                      {
+                        "description": "+10% chance to apply Dazed when hitting an enemy with Broken",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Blunts"
+                        },
+                        "modifiers": {
+                          "meleeStrengthBonusPer10EnemyResistance": [
+                            {
+                              "damageTypeID": "melvorD:Normal",
+                              "value": 5
+                            }
+                          ]
+                        }
+                      }
+                    ],
                     "modifiers": {
                       "meleeStrengthBonusPer10EnemyResistance": [
                         {
@@ -5208,7 +5341,7 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "+5% Melee Strength Bonus from Equipment per 10 Enemy Resistance",
+                      "description": "+5% Melee Strength Bonus from Equipment per 10 enemy Resistance",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Blunts"
@@ -5267,7 +5400,7 @@
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_BLUNT3",
-                        "description": "Unlocks the Concussive Smash Special Attack.",
+                        "description": "Unlock the Concussive Smash Special Attack",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Blunts"
@@ -5303,28 +5436,38 @@
                   "id": "Blunts4",
                   "shiny": false,
                   "level": 4,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1
+                  ],
+                  "order": [
+                    "e",
+                    "c"
+                  ],
+                  "tooltip": {
+                    "2": "MODIFIER_TOOLTIP_BLUNTS4"
+                  },
                   "uiMods": {
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithAttack",
                         "effectID": "WTM:Daze",
-                        "chance": 5
-                      },
+                        "chance": 20
+                      }
+                    ],
+                    "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_BLUNT4",
+                        "description": "+10% chance to inflict Stun when hitting an enemy with Broken",
                         "condition": {
+                          "groupID": "melvorD:StunLike",
                           "character": "Enemy",
-                          "effectID": "WTM:Broken",
-                          "type": "CombatEffect"
+                          "type": "CombatEffectGroup"
                         },
-                        "appliesWhen": "HitWithAttack",
-                        "effectID": "melvorD:Stun",
-                        "chance": 5,
-                        "initialParams": [
-                          {
-                            "name": "turns",
-                            "value": 1
-                          }
-                        ]
+                        "modifiers": {
+                          "damageDealt": 30
+                        }
                       }
                     ]
                   },
@@ -5371,6 +5514,16 @@
                   "id": "Blunts5",
                   "level": 5,
                   "shiny": true,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1
+                  ],
+                  "order": [
+                    "c",
+                    "m",
+                    "m"
+                  ],
                   "uiMods": {
                     "modifiers": {
                       "meleeStrengthBonusPer10EnemyResistance": [
@@ -5383,6 +5536,8 @@
                     },
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_BLUNT5",
+                        "description": "If Target is currently Stunned, +30% Damage Dealt",
                         "condition": {
                           "groupID": "melvorD:StunLike",
                           "character": "Enemy",
@@ -6774,7 +6929,7 @@
                 "Ancient_Javelin3",
                 "Slingshot2"
               ],
-              "stupidFlavorText": "Random bullshit GO! 🪨🪓👟🥔🐓🛞🔨",
+              "stupidFlavorText": "Random bullshit GO! 🪨🪓👟🥔🐓🛞🔨 🛁",
               "media": "assets/thrown.svg",
               "mediaAlt": "assets/black_filled_svgs/thrown.svg",
               "mediaCol": "assets/filled_svgs/thrown.svg",
@@ -6792,19 +6947,16 @@
                   "level": 1,
                   "shiny": false,
                   "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_THROWN1"
+                    "2": "MODIFIER_TOOLTIP_THROWN1"
                   },
+                  "order": [
+                    "e",
+                    "c"
+                  ],
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "+10% chance on hit to gain Alacrity",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
-                        },
-                        "modifiers": {}
-                      },
-                      {
+                        "descriptionLang": "WTM_THROWN1",
                         "description": "Can't use Special Attacks or Preserve Ammo",
                         "condition": {
                           "type": "WeaponType",
@@ -6815,11 +6967,6 @@
                     ],
                     "combatEffects": [
                       {
-                        "description": "",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Thrown"
-                        },
                         "appliesWhen": "HitWithAttack",
                         "chance": 10,
                         "effectID": "WTM:Alacrity"
@@ -6888,7 +7035,8 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "You start each fight with a Volley",
+                        "descriptionLang": "WTM_THROWN3",
+                        "description": "Start each fight with a Volley",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:LightBows"
@@ -6921,7 +7069,8 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "During your Volley, the Enemy is Confused",
+                        "descriptionLang": "WTM_THROWN4",
+                        "description": "During Volley, the enemy is Confused",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Thrown"
@@ -6964,7 +7113,8 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "+25% Ranged Max Hit and Ranged Accuracy Rating during your Volley and the Enemy's attacks are unlucky (they roll twice and take the lowest number).",
+                        "descriptionLang": "WTM_THROWN5",
+                        "description": "+25% Ranged Max Hit and Ranged Accuracy Rating, and Enemy has -50% Global Accuracy during Volley.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Thrown"
@@ -6973,7 +7123,7 @@
                       }
                     ],
                     "enemyModifiers": {
-                      "attackRolls": -1
+                      "accuracyRating": -50
                     }
                   },
                   "conditionalModifiers": [
@@ -7795,6 +7945,7 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_WANDS3",
                         "description": "Increase rune cost reduction of magic weapons",
                         "condition": {
                           "type": "WeaponType",
@@ -7827,6 +7978,7 @@
                     },
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_WANDS4",
                         "description": "+1 All Defence Bonus per 1% of Damage Reduction",
                         "condition": {
                           "type": "WeaponType",
@@ -7840,7 +7992,6 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Increase rune cost reduction of magic weapons",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Wands"
@@ -7898,12 +8049,9 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Increase rune cost reduction of magic weapons",
                       "condition": {
-                        "type": "EmptySlot",
-                        "slotIDs": [
-                          "melvorD:Shield"
-                        ]
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Wands"
                       },
                       "modifiers": {
                         "maxHitBasedOnTargetResistance": [

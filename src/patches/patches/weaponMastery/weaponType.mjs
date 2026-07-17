@@ -35,6 +35,7 @@ class WeaponMasteryLevel extends RealmedObject {
             this.changeFunc.push("addSpecialAttack");
             this.specAttack = game.specialAttacks.getObjectByID(data.specAttack);
         }
+       
         if (data.shiny) this.shiny = data.shiny;
         if (data.order) this.order = data.order;
         this.wepModifiers = new StatObject(data, game, this._localID);
@@ -302,6 +303,7 @@ export class WeaponMastery extends RealmedObject {
         this.allWeapons.forEach(weapon => {
             game.stats.Items.add(weapon, ItemStats.TotalAttacks, 100000);
         });
+        this._curLvl = 5;
         this.computeProvidedStats(true);
 
     }

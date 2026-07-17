@@ -347,7 +347,7 @@ export function birthOfMonk2(ctx) { // Wanna see a fucking botch
     Object.defineProperty(game.emptyEquipmentItem, 'name', {
         value: notN,
     });
-    game.emptyEquipmentItem.attackSpeed = 2000;
+    game.emptyEquipmentItem.attackSpeed = 4000;
     ctx.patch(EquipmentItem, 'fitsInSlot').after(function (ret, slotID) {
         if (!ret && slotID == "melvorD:Weapon" && gloves.some(glove => glove.item == this.id))
             return true;

@@ -21,12 +21,7 @@ export function patchConditionalMod(ctx) {
     return original.call(this, data, game);
   };
 
- /* ctx.patch(ConditionalModifier, 'getDescriptionTemplate').before(function () {
-    if (this._descriptionLang?.startsWith('RIELK')) {
-      this._description = getRielkLangString(this._descriptionLang);
-      delete this._descriptionLang;
-    }
-  });*/
+
 
   ctx.patch(Character, "checkEffectApplicatorCondition").after(function (ret, condition, source) {
     if (condition instanceof WeaponTypeCondition)

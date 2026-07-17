@@ -85,21 +85,6 @@ export function patchTranslations(ctx) {
 
     }
 
-    ctx.patch(Item, 'name').get(function (patch) {
-        if (this.namespace === 'rielkConstruction')
-            return getRielkLangString(`ITEM_NAME_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(Item, 'description').get(function (patch) {
-        if (this.namespace === 'rielkConstruction' && this._customDescription !== undefined)
-            return getRielkLangString(`ITEM_DESCRIPTION_${this.localID}`);
-        return patch();
-    });
-    ctx.patch(Pet, 'name').get(function (patch) {
-        if (this.namespace === 'rielkConstruction')
-            return getRielkLangString(`PET_NAME_${this.localID}`);
-        return patch();
-    });
     ctx.patch(ModifierDescription, 'template').get(function (patch) {
         const ret = patch();
         if (this._lang !== undefined && ret.startsWith('UNDEFINED TRANSLATION')) {
@@ -112,32 +97,47 @@ export function patchTranslations(ctx) {
     });
     ctx.patch(SpecialAttack, 'description').get(function (patch) {
         const ret = patch();
-        if (this.namespace === 'rielkConstruction')
+        if (this.namespace === 'WTM')
             return getRielkLangString(`SPECIAL_ATTACK_DESC_${ret}`);
 
         return ret;
     });
     ctx.patch(SpecialAttack, 'name').get(function (patch) {
-        if (this.namespace === 'rielkConstruction')
-            return getRielkLangString(`SPECIAL_ATTACK_NAME_${this.localID}`);
+        if (this.namespace === 'WTM')
+            return getRielkLangString(`SPECIAL_ATTACK_NAME_ ${this.localID}`);
+
+        return patch();
+    });
+    ctx.patch(SpecialAttack, 'description').get(function (patch) {
+        if (this.namespace === 'WTM')
+            return templateString(getRielkLangString(`SPECIAL_ATTACK_DESC_ ${this.localID}`), this.descriptionTemplateData);
+        return patch();
+    });
+
+    ctx.patch(CombatEffect, 'name').get(function (patch) {
+        if (this.namespace === 'WTM')
+            return getRielkLangString(`COMBAT_EFFECT_NAME_ ${this.localID}`);
+
+        return patch();
+    });
+    ctx.patch(CombatEffectGroup, 'name').get(function (patch) {
+        if (this.namespace === 'WTM')
+            return getRielkLangString(`COMBAT_EFFECTGROUP_NAME_ ${this.localID}`);
 
         return patch();
     });
     ctx.patch(CombatEffectLangTTSpan, "getSpans").replace(function (patch, activeEffect) {
-        if (this.langID.startsWith("WTM")) {
-            let text = getRielkLangString(this.langID);
-            if (this.templateData !== undefined)
-                text = templateString(text, this.evalExpressionRecord(this.templateData, activeEffect));
-            return [this.createSpan(text)];
+        if (this.langID.startsWith('WTM')) {
+            return [this.createSpan(getRielkLangString(this.langID))];
+            /* Maybe need this stuff? Who knows
+                        if (this.templateData !== undefined)
+                            text = templateString(text, this.evalExpressionRecord(this.templateData, activeEffect));*/
         }
         return patch(activeEffect);
     });
 
     ctx.patch(ConditionalModifier, "getDescriptionTemplate").replace(function (patch) {
         if (this._descriptionLang?.startsWith("WTM")) {
-            console.log(this);
-            console.log(this._descriptionLang);
-            console.log(getRielkLangString(this._descriptionLang));
             return getRielkLangString(this._descriptionLang);
         }
         return patch();
