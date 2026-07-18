@@ -44,13 +44,13 @@
           }
         ],
         "cantMiss": true,
-        "minAccuracy": 30000,
+        "minAccuracy": 70000,
         "attackCount": 1,
         "attackInterval": 1500,
         "lifesteal": 0,
         "name": "Power Shot",
-        "description": "You take a deeply focused shot at a weak spot in the Enemy's armour, dealing damage equal to ${attackDamageMinValue0}% - ${attackDamageMaxValue0}% of their DR. If your Accuracy Rating is higher than 30,000 then this attack can't miss. On a hit, inflict 1 stack of Arrowstruck (+${onHitEffect0modValue0}% Attack Interval and +${onHitEffect0modValue1}%, max 10 stacks) Damage Taken. Lasts until the End of the Fight.",
-        "descriptionGenerator": "Attack for <damage>, <hitEffect> on hit. If Accuracy Rating higher than 30,000, <canMiss>.",
+        "description": "You take a deeply focused shot at a weak spot in the Enemy's armour, dealing damage equal to ${attackDamageMinValue0}% - ${attackDamageMaxValue0}% of their DR. If your Accuracy Rating is higher than ${minAccuracy} then this attack can't miss. On a hit, inflict 1 stack of Arrowstruck (+${onHitEffect0modValue0}% Attack Interval and +${onHitEffect0modValue1}%, max 10 stacks) Damage Taken. Lasts until the End of the Fight.",
+        "descriptionGenerator": "Attack for <damage>, <hitEffect> on hit. If Accuracy Rating higher than <minAccuracy>, <canMiss>.",
         "usesRunesPerProc": false
       },
       {
@@ -109,34 +109,9 @@
         "attackCount": 2,
         "attackInterval": 150,
         "lifesteal": 0,
-        "name": "Channeled Palm Strikes",
+        "name": "Echoing Palm Strikes",
         "description": "Unleash a flurry of blows with your inner energy. Strikes ${hitCount} times, or 5 times if unburdened. <br> Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the Enemy for ${onHitEffect0turns} turns on hit.",
         "descriptionGenerator": "Make an <avoidable> normal attack. On hit, <hitEffect>.",
-        "usesRunesPerProc": false
-      },
-      {
-        "id": "Barrage",
-        "defaultChance": 15,
-        "damage": [
-          {
-            "damageType": "Normal",
-            "amplitude": 20
-          }
-        ],
-        "prehitEffects": [],
-        "onhitEffects": [
-          {
-            "effectID": "WTM:Hobbled",
-            "chance": 5
-          }
-        ],
-        "cantMiss": false,
-        "attackCount": 12,
-        "attackInterval": 100,
-        "lifesteal": 0,
-        "name": "Barrage",
-        "description": "Barrage the Enemy with a hail of arrows that each deal ${attackDamageMaxValue0}% of your normal damage.<br> Arrows have a ${onHitEffect0chance}% to apply 1 stack of Hobbled (Attack Interval is increased by 1% per stack, up to 25 stacks).",
-        "descriptionGenerator": "An <avoidable> attack that deals <damage> <count> times. On use, <prehitEffect>.",
         "usesRunesPerProc": false
       },
       {
@@ -153,7 +128,7 @@
         "attackCount": 1,
         "attackInterval": 150,
         "lifesteal": 0,
-        "name": "Quick Reload",
+        "name": "Take Aim",
         "description": "Find good supports to brace your crossbow on, gaining -${preHitEffect0modValue0}% of Maximum Hit added to Minimum Hit for ${preHitEffect0turns} turns.<br> If buff is already active, perform a regular attack instead.",
         "descriptionGenerator": "You grease the track of your crossbow, gaining <prehitEffect>. If buff is already active, perform a regular attack instead.",
         "usesRunesPerProc": false,
@@ -919,7 +894,7 @@
         "parameters": [
           {
             "name": "initialStacks",
-            "initialValue": 5
+            "initialValue": 10
           }
         ],
         "statGroups": [
@@ -929,12 +904,12 @@
               "ignoreResistanceWhenAttackingChance": [
                 {
                   "damageTypeID": "melvorD:Normal",
-                  "value": 10
+                  "value": 2
                 }
               ],
-              "rangedCritChance": 5,
-              "critMultiplier": 20,
-              "evasion": -20
+              "rangedCritChance": 1,
+              "critMultiplier": 5,
+              "evasion": -5
             }
           }
         ],
@@ -6486,7 +6461,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "critMultiplier": 50
+                  "critMultiplier": 20
                 }
               },
               "levels": [
@@ -6507,7 +6482,6 @@
                     "conditionalModifiers": [
                       {
                         "description": "Unlock the Power Shot Special Attack",
-                        "descriptionLang": "WTM_HEAVY3",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HeavyBows"
@@ -6522,9 +6496,9 @@
                           "weaponType": "WTM:HeavyBows"
                         },
                         "modifiers": {
-                          "critMultiplier": 25,
-                          "WTM:critChance10000Acc": 0.005,
-                          "WTM:critMult10000Acc": 0.25
+                          "critMultiplier": 20,
+                          "WTM:critChance10000Acc": 0.5,
+                          "WTM:critMult10000Acc": 1
                         }
                       }
                     ]
@@ -6536,9 +6510,9 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "critMultiplier": 25,
-                        "WTM:critChance10000Acc": 0.005,
-                        "WTM:critMult10000Acc": 0.25
+                        "critMultiplier": 20,
+                        "WTM:critChance10000Acc": 0.5,
+                        "WTM:critMult10000Acc": 1
                       }
                     },
                     {
@@ -6618,8 +6592,8 @@
                           "weaponType": "WTM:HeavyBows"
                         },
                         "modifiers": {
-                          "WTM:critChance10000Acc": 0.005,
-                          "WTM:critMult10000Acc": 0.25
+                          "WTM:critChance10000Acc": 0.5,
+                          "WTM:critMult10000Acc": 1
                         }
                       }
                     ]
@@ -6631,8 +6605,8 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "WTM:critChance10000Acc": 0.005,
-                        "WTM:critMult10000Acc": 0.25
+                        "WTM:critChance10000Acc": 0.5,
+                        "WTM:critMult10000Acc": 1
                       }
                     }
                   ]
@@ -6657,7 +6631,7 @@
                           "weaponType": "WTM:HeavyBows"
                         },
                         "modifiers": {
-                          "critMultiplier": 50,
+                          "critMultiplier": 20,
                           "rangedCritChance": 2.5
                         }
                       },
@@ -6674,7 +6648,7 @@
                           ]
                         },
                         "modifiers": {
-                          "critMultiplier": 50,
+                          "critMultiplier": 20,
                           "rangedCritChance": 2.5
                         }
                       }
@@ -6690,7 +6664,7 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "critMultiplier": 50,
+                        "critMultiplier": 20,
                         "rangedCritChance": 2.5
                       }
                     },
@@ -6708,7 +6682,7 @@
                         ]
                       },
                       "modifiers": {
-                        "critMultiplier": 50,
+                        "critMultiplier": 20,
                         "rangedCritChance": 2.5
                       }
                     }
@@ -6746,8 +6720,8 @@
                         },
                         "modifiers": {
                           "WTM:critDRPierce": 10,
-                          "WTM:critChance10000Acc": 0.005,
-                          "WTM:critMult10000Acc": 0.25
+                          "WTM:critChance10000Acc": 0.5,
+                          "WTM:critMult10000Acc": 1
                         }
                       },
                       {
@@ -6774,8 +6748,8 @@
                         },
                         "modifiers": {
                           "WTM:critDRPierce": 10,
-                          "WTM:critChance10000Acc": 0.005,
-                          "WTM:critMult10000Acc": 0.25
+                          "WTM:critChance10000Acc": 0.5,
+                          "WTM:critMult10000Acc": 1
                         }
                       }
                     ]
@@ -6798,8 +6772,8 @@
                       },
                       "modifiers": {
                         "WTM:critDRPierce": 10,
-                        "WTM:critChance10000Acc": 0.005,
-                        "WTM:critMult10000Acc": 0.25
+                        "WTM:critChance10000Acc": 0.5,
+                        "WTM:critMult10000Acc": 1
                       }
                     },
                     {
@@ -6826,8 +6800,8 @@
                       },
                       "modifiers": {
                         "WTM:critDRPierce": 10,
-                        "WTM:critChance10000Acc": 0.005,
-                        "WTM:critMult10000Acc": 0.25
+                        "WTM:critChance10000Acc": 0.5,
+                        "WTM:critMult10000Acc": 1
                       }
                     }
                   ]
