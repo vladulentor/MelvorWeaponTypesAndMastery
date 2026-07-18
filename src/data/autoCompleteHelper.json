@@ -2,9 +2,7 @@
   "$schema": "https://melvoridle.com/assets/schema/gameData.json",
   "namespace": "rielkConstruction",
   "data": {
-    "attacks": [
-
-    ],
+    "attacks": [],
     "combatEffects": [],
     "items": [
       {
@@ -22,12 +20,30 @@
         "conditionalModifiers": [
           {
             "condition": {
-              "type": "WeaponType",
-              "weaponType": "WTM:LightBows"
+              "type": "Every",
+              "conditions": [
+                {
+                  "type": "WeaponType",
+                  "weaponType": "WTM:HeavyBows"
+                },
+                {
+                  "type": "Some",
+                  "conditions": [
+                    {
+                      "character": "Player",
+                      "type": "FightingBoss"
+                    },
+                    {
+                      "type": "FightingSlayerTask"
+                    }
+                  ]
+                }
+              ]
             },
             "modifiers": {
-              "WTM:multiShotExtraShot": 5,
-              "rangedLifesteal": 10
+              "WTM:critDRPierce": 20,
+              "WTM:critChance1000Acc": 0.1,
+              "WTM:critMult1000Acc": 10
             }
           }
         ],

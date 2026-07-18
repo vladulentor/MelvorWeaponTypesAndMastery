@@ -4785,8 +4785,9 @@
                   },
                   "combatEffects": [
                     {
-                      "appliesWhen": "HitWithFirstAttack",
+                      "appliesWhen": "StartOfFight",
                       "chance": 100,
+                      "targetOverride": "Target",
                       "effectID": "melvorD:Bleed100",
                       "condition": {
                         "type": "WeaponType",
@@ -4794,7 +4795,7 @@
                       }
                     },
                     {
-                      "appliesWhen": "HitWithFirstAttack",
+                      "appliesWhen": "StartOfFight",
                       "chance": 100,
                       "effectID": "WTM:BloodlustPlayer",
                       "condition": {
@@ -4803,7 +4804,7 @@
                       }
                     },
                     {
-                      "appliesWhen": "HitWithFirstAttack",
+                      "appliesWhen": "StartOfFight",
                       "chance": 100,
                       "effectID": "WTM:BloodlustEnemy",
                       "condition": {
@@ -6432,7 +6433,7 @@
                     "conditionalModifiers": [
                       {
                         "description": "Unlock the Power Shot Special Attack",
-                        "descriptionLang": "WTM_HBOW1",
+                        "descriptionLang": "WTM_HEAVY3",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HeavyBows"
@@ -6447,8 +6448,9 @@
                           "weaponType": "WTM:HeavyBows"
                         },
                         "modifiers": {
-                          "critMultiplier": 50,
-                          "rangedCritChance": 2.5
+                          "critMultiplier": 25,
+                          "WTM:critChance1000Acc": 0.005,
+                          "WTM:critMult1000Acc": 0.25
                         }
                       }
                     ]
@@ -6460,13 +6462,13 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "critMultiplier": 50,
-                        "rangedCritChance": 2.5
+                        "critMultiplier": 25,
+                        "WTM:critChance1000Acc": 0.005,
+                        "WTM:critMult1000Acc": 0.25
                       }
                     },
                     {
                       "description": "Unlock the Power Shot Special Attack",
-                      "descriptionLang": "WTM_HEAVY3",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:HeavyBows"
@@ -6533,28 +6535,31 @@
                   "name": "HeavyBows3",
                   "id": "HeavyBows3",
                   "level": 3,
-                  "shiny": true,
+                  "shiny": false,
                   "uiMods": {
-                    "combatEffects": [
+                    "conditionalModifiers": [
                       {
-                        "customDescription": "Start the fight in Power Stance: +25% Ranged Critical Hit Chance, +100% Crit Multiplier, +50% Chance to ignore Enemy DR, and -100% Global Evasion. These modifiers decrease by 20% each time you are hit; exit Power Stance after you are hit 5 times.",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HeavyBows"
                         },
-                        "appliesWhen": "StartOfFight",
-                        "effectID": "WTM:PowerStance"
+                        "modifiers": {
+                          "WTM:critChance1000Acc": 0.005,
+                          "WTM:critMult1000Acc": 0.25
+                        }
                       }
                     ]
                   },
-                  "combatEffects": [
+                  "conditionalModifiers": [
                     {
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:HeavyBows"
                       },
-                      "appliesWhen": "StartOfFight",
-                      "effectID": "WTM:PowerStance"
+                      "modifiers": {
+                        "WTM:critChance1000Acc": 0.005,
+                        "WTM:critMult1000Acc": 0.25
+                      }
                     }
                   ]
                 },
@@ -6578,8 +6583,8 @@
                           "weaponType": "WTM:HeavyBows"
                         },
                         "modifiers": {
-                          "rangedCritChance": 2.5,
-                          "critMultiplier": 100
+                          "critMultiplier": 50,
+                          "rangedCritChance": 2.5
                         }
                       },
                       {
@@ -6595,8 +6600,8 @@
                           ]
                         },
                         "modifiers": {
-                          "rangedCritChance": 2.5,
-                          "critMultiplier": 100
+                          "critMultiplier": 50,
+                          "rangedCritChance": 2.5
                         }
                       }
                     ],
@@ -6611,8 +6616,8 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "rangedCritChance": 2.5,
-                        "critMultiplier": 100
+                        "critMultiplier": 50,
+                        "rangedCritChance": 2.5
                       }
                     },
                     {
@@ -6629,8 +6634,8 @@
                         ]
                       },
                       "modifiers": {
-                        "rangedCritChance": 2.5,
-                        "critMultiplier": 100
+                        "critMultiplier": 50,
+                        "rangedCritChance": 2.5
                       }
                     }
                   ],
@@ -6649,22 +6654,68 @@
                     1
                   ],
                   "uiMods": {
-                    "modifiers": {
-                      "flatHiddenSkillLevelBasedOnLevels": [
-                        {
-                          "skillID": "melvorD:Ranged",
-                          "value": 33
+                    "combatEffects": [
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "appliesWhen": "StartOfFight",
+                        "effectID": "WTM:PowerStance"
+                      }
+                    ],
+                    "conditionalModifiers": [
+                      {
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HeavyBows"
+                        },
+                        "modifiers": {
+                          "WTM:critDRPierce": 10,
+                          "WTM:critChance1000Acc": 0.005,
+                          "WTM:critMult1000Acc": 0.25
                         }
-                      ],
-                      "ignoreResistanceWhenAttackingChance": [
-                        {
-                          "damageTypeID": "melvorD:Normal",
-                          "value": 5
+                      },
+                      {
+                        "condition": {
+                          "type": "Every",
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:HeavyBows"
+                            },
+                            {
+                              "type": "Some",
+                              "conditions": [
+                                {
+                                  "character": "Player",
+                                  "type": "FightingBoss"
+                                },
+                                {
+                                  "type": "FightingSlayerTask"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "modifiers": {
+                          "WTM:critDRPierce": 10,
+                          "WTM:critChance1000Acc": 0.005,
+                          "WTM:critMult1000Acc": 0.25
                         }
-                      ],
-                      "critMultiplier": 50
-                    }
+                      }
+                    ]
                   },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:PowerStance"
+                    }
+                  ],
                   "conditionalModifiers": [
                     {
                       "condition": {
@@ -6672,19 +6723,9 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "flatHiddenSkillLevelBasedOnLevels": [
-                          {
-                            "skillID": "melvorD:Ranged",
-                            "value": 33
-                          }
-                        ],
-                        "ignoreResistanceWhenAttackingChance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 5
-                          }
-                        ],
-                        "critMultiplier": 50
+                        "WTM:critDRPierce": 10,
+                        "WTM:critChance1000Acc": 0.005,
+                        "WTM:critMult1000Acc": 0.25
                       }
                     },
                     {
@@ -6696,18 +6737,23 @@
                             "weaponType": "WTM:HeavyBows"
                           },
                           {
-                            "type": "FightingBoss",
-                            "character": "Player"
+                            "type": "Some",
+                            "conditions": [
+                              {
+                                "character": "Player",
+                                "type": "FightingBoss"
+                              },
+                              {
+                                "type": "FightingSlayerTask"
+                              }
+                            ]
                           }
                         ]
                       },
                       "modifiers": {
-                        "ignoreResistanceWhenAttackingChance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": 5
-                          }
-                        ]
+                        "WTM:critDRPierce": 10,
+                        "WTM:critChance1000Acc": 0.005,
+                        "WTM:critMult1000Acc": 0.25
                       }
                     }
                   ]
