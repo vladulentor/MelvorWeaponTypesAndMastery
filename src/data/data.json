@@ -1448,7 +1448,7 @@
         "parameters": [
           {
             "name": "turns",
-            "initialValue": 1
+            "initialValue": 0
           }
         ],
         "statGroups": [
@@ -6941,7 +6941,7 @@
                       {
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:HeavyBows"
+                          "weaponType": "WTM:LightBows"
                         },
                         "modifiers": {
                           "flatAttackInterval": -100,
@@ -6960,7 +6960,7 @@
                     {
                       "condition": {
                         "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
+                        "weaponType": "WTM:LightBows"
                       },
                       "modifiers": {
                         "flatAttackInterval": -100,
@@ -6985,7 +6985,7 @@
                     {
                       "condition": {
                         "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
+                        "weaponType": "WTM:LightBows"
                       },
                       "modifiers": {
                         "maxHit": -50,
@@ -7104,8 +7104,10 @@
                   "tooltip": {
                     "2": "MODIFIER_TOOLTIP_THROWN1"
                   },
-                  "overwriteTypeIcons":[1,1
-                ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1
+                  ],
                   "order": [
                     "c",
                     "e"
@@ -7198,7 +7200,10 @@
                   "level": 3,
                   "shiny": false,
                   "changeFunc": "modifySpecialAttack",
-                  "overwriteTypeIcons":[1,1],
+                  "overwriteTypeIcons": [
+                    1,
+                    1
+                  ],
                   "uiMods": {
                     "modifiers": {
                       "attackInterval": -10
@@ -7419,7 +7424,7 @@
                         "description": "Attune to an element at the Start of the Fight",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:Thrown"
+                          "weaponType": "WTM:Staves"
                         },
                         "modifiers": {}
                       },
@@ -7427,7 +7432,7 @@
                         "description": "Attuned element's spells gain +25% Max Hit",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:Thrown"
+                          "weaponType": "WTM:Staves"
                         },
                         "modifiers": {}
                       },
@@ -7435,12 +7440,22 @@
                         "description": "10% chance to apply an effect based on element",
                         "condition": {
                           "type": "WeaponType",
-                          "weaponType": "WTM:Thrown"
+                          "weaponType": "WTM:Staves"
                         },
                         "modifiers": {}
                       }
                     ]
-                  }
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Staves"
+                      },
+                      "tableID": "WTM:RandomAttunement",
+                      "appliesWhen": "StartOfFight"
+                    }
+                  ]
                 },
                 {
                   "name": "Staves2",
