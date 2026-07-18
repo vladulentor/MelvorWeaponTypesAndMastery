@@ -54,10 +54,10 @@ export const language = {
     'WTM_AXES1': "",
     'WTM_AXES2': "",
     'WTM_AXES3': "Unlock the Bloodlust Special Attack",
-    'WTM_AXES4': "Inflict Bloodlust and Hemorrhage when hitting with an attack (once a turn)",
+    'WTM_AXES4': "Inflict Bloodlust and Hemorrhage at the start of the fight",
     'WTM_AXES42': "25% chance to inflict Hemorrhage on Hit while Target is Bleeding.",
 
-    'WTM_AXES5': "+10% chance for both while enemy is bleeding",
+    'WTM_AXES5': "+7.5% chance for both while enemy is bleeding",
 
     'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack.",
 
@@ -148,7 +148,7 @@ export const language = {
 
     'MODIFIER_TOOLTIP_GREAT1': '<div class="text-center"><span class="text-success font-weight-bold">Intimidation</span><br>Gives -10% Global Accuracy and Max Hit</div>',
     'MODIFIER_TOOLTIP_GREAT4': '<div class="text-center"><span class="text-success font-weight-bold">Terrify</span><br>10% chance to be Stunned and have attack interrupted</div>',
-    'MODIFIER_TOOLTIP_GREAT5': '<div class="text-center"><span class="text-info font-weight-bold">Fear Effect</span><br>Terrify, Shaken, and Intimidate are considered Fear Effects</div>',
+    'MODIFIER_TOOLTIP_GREAT5': '<div class="text-center"><span class="text-info font-weight-bold">Fear Effect</span><br>Fear, Terrify, Shaken, and Intimidate are considered Fear Effects</div>',
 
     'MODIFIER_TOOLTIP_POLE21': '<div class="text-center"><span class="text-success font-weight-bold">Poise</span><br>Gives +4% accuracy per stack (up to 25)</div>',
     'MODIFIER_TOOLTIP_POLE22': '<div class="text-center"><span class="text-success font-weight-bold">Swiftness</span><br>Gives +4% evasion per stack (up to 25)</div>',
@@ -418,7 +418,7 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Greatswords": "Simply brutal and brutally simple",
     "WTM_WEAPON_FLAVORTEXT_CurvedSwords": "Dancing blades that embolden your companions",
     "WTM_WEAPON_FLAVORTEXT_Daggers": "Light and fatal, they disappear from their owner's hand and reappear in their targets' backs",
-    "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, axes grow in power as the fight rages",
+    "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, axes grow in power as the battle rages",
     "WTM_WEAPON_FLAVORTEXT_Polearms": "Designed to land mildly-dangerous strikes at a mildly-safe distance",
     "WTM_WEAPON_FLAVORTEXT_Blunts": "Specialized in breaking through defenses and leaving their victims reeling",
     "WTM_WEAPON_FLAVORTEXT_HandToHand": "Without tools or heavy armor, one's own body can become a fleet and deadly weapon",

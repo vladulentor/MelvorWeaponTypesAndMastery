@@ -3856,7 +3856,7 @@
                   "flatHiddenSkillLevel": [
                     {
                       "skillID": "melvorD:Strength",
-                      "value": 6
+                      "value": 5
                     }
                   ]
                 }
@@ -4662,7 +4662,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "lifestealDamageBasedOnCurrentHitpoints": 5
+                  "lifestealDamageBasedOnCurrentHitpoints": 2.5
                 }
               },
               "levels": [
@@ -4677,9 +4677,8 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "lifesteal": 10,
-                      "WTM:maxHitBasedOnMissingHitpoints": 2,
-                      "flatMeleeMaxHit": 2
+                      "lifesteal": 15,
+                      "WTM:maxHitBasedOnMissingHitpoints": 2.5
                     }
                   },
                   "conditionalModifiers": [
@@ -4689,14 +4688,11 @@
                         "weaponType": "WTM:Axes"
                       },
                       "modifiers": {
-                        "lifesteal": 10,
-                        "WTM:maxHitBasedOnMissingHitpoints": 2
+                        "lifesteal": 15,
+                        "WTM:maxHitBasedOnMissingHitpoints": 2.5
                       }
                     }
-                  ],
-                  "modifiers": {
-                    "flatMeleeMaxHit": 2
-                  }
+                  ]
                 },
                 {
                   "name": "Axes2",
@@ -4718,13 +4714,13 @@
                   "uiMods": {
                     "modifiers": {
                       "flatTotalBleedDamage": 5,
-                      "lifesteal": 5
+                      "flatMeleeMaxHit": 2.5
                     },
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithAttack",
                         "effectID": "melvorD:Bleed100",
-                        "chance": 5
+                        "chance":7.5
                       }
                     ]
                   },
@@ -4748,11 +4744,11 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "melvorD:Bleed100",
-                      "chance": 5
+                        "chance":7.5
                     }
                   ],
                   "modifiers": {
-                    "lifesteal": 5
+                    "flatMeleeMaxHit": 2.5
                   }
                 },
                 {
@@ -4774,7 +4770,7 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "bleedLifesteal": 20
+                      "bleedLifesteal": 25
                     },
                     "conditionalModifiers": [
                       {
@@ -4797,7 +4793,7 @@
                         "weaponType": "WTM:Axes"
                       },
                       "modifiers": {
-                        "bleedLifesteal": 20
+                        "bleedLifesteal": 25
                       }
                     }
                   ]
@@ -4806,7 +4802,6 @@
                   "name": "Axes4",
                   "id": "Axes4",
                   "level": 4,
-                  "shiny": true,
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_AXES4"
                   },
@@ -4818,16 +4813,6 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "descriptionLang": "WTM_AXES4",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Axes"
-                        },
-                        "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
-                        }
-                      },
-                      {
                         "descriptionLang": "WTM_AXES42",
                         "customDescription": "25% chance to apply Hemorrhage on Hit while Target is Bleeding.",
                         "condition": {
@@ -4837,12 +4822,22 @@
                         "appliesWhen": "HitWithAttack",
                         "chance": 5,
                         "effectID": "melvorD:Bleed100"
+                      },
+                      {
+                        "descriptionLang": "WTM_AXES4",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
                       }
                     ]
                   },
                   "combatEffects": [
                     {
-                      "appliesWhen": "HitWithFirstAttack",
+                      "appliesWhen": "StartOfFight",
                       "chance": 100,
                       "effectID": "melvorD:Bleed100",
                       "condition": {
@@ -4851,7 +4846,7 @@
                       }
                     },
                     {
-                      "appliesWhen": "HitWithFirstAttack",
+                      "appliesWhen": "StartOfFight",
                       "chance": 100,
                       "effectID": "WTM:BloodlustPlayer",
                       "condition": {
@@ -4860,7 +4855,7 @@
                       }
                     },
                     {
-                      "appliesWhen": "HitWithFirstAttack",
+                      "appliesWhen": "StartOfFight",
                       "chance": 100,
                       "effectID": "WTM:BloodlustEnemy",
                       "condition": {
@@ -4897,7 +4892,14 @@
                   "overwriteTypeIcons": [
                     1,
                     1,
-                    1
+                    1,
+                    0
+                  ],
+                  "order": [
+                    "e",
+                    "e",
+                    "c",
+                    "m"
                   ],
                   "uiMods": {
                     "conditionalModifiers": [
@@ -4916,15 +4918,18 @@
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 5,
+                        "chance": 7.5,
                         "effectID": "WTM:BloodlustPlayer"
                       },
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 5,
+                        "chance": 7.5,
                         "effectID": "WTM:Hemorrhage"
                       }
-                    ]
+                    ],
+                    "modifiers": {
+                      "lifesteal": 7.5
+                    }
                   },
                   "combatEffects": [
                     {
@@ -4933,7 +4938,7 @@
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 5,
+                      "chance": 7.5,
                       "effectID": "WTM:BloodlustPlayer"
                     },
                     {
@@ -4942,7 +4947,7 @@
                         "weaponType": "WTM:Axes"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 5,
+                      "chance": 7.5,
                       "effectID": "WTM:BloodlustEnemy"
                     },
                     {
@@ -4956,7 +4961,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 5,
+                      "chance": 7.5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -4975,7 +4980,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 5,
+                      "chance": 7.5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -4994,7 +4999,7 @@
                     },
                     {
                       "appliesWhen": "HitWithAttack",
-                      "chance": 5,
+                      "chance": 7.5,
                       "condition": {
                         "type": "Every",
                         "conditions": [
@@ -5011,7 +5016,10 @@
                       },
                       "effectID": "WTM:BloodlustEnemy"
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "lifesteal": 7.5
+                  }
                 }
               ]
             },
