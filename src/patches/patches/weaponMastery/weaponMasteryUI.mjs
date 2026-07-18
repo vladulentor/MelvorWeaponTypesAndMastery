@@ -32,7 +32,7 @@ export function addWeaponMasteryUI(ctx) {
         };
     });
     ctx.patch(Player, "renderEquipment").after(function (_) {// This is where we make all the menus and stuff. I hope it can hold HP... well
-        if (!game.weaponMasteries.allObjects?.length || game.weaponMasteries.allObjects[0].levelCap == 0) return;
+        if (!game.weaponMasteries.allObjects?.length || game.weaponMasteries.allObjects.every(mast => mast.levelCap == 0 )) return;
         if (!combatMenus.weaponMastery) {
             // Top stuff
 
@@ -73,16 +73,17 @@ export function addWeaponMasteryUI(ctx) {
 
             combatTab.init(game);
             // We want our menu to be drilled up when the player sees it
-            const originalChangeCombatMenu = changeCombatMenu;
+            /*  const originalChangeCombatMenu = changeCombatMenu;
 
             changeCombatMenu = function (id) {
                 if (selectedCombatMenu === 8) {
-                    if (combatTab.lookingAtType) {
+                  if (combatTab.lookingAtType) {
                         combatTab.drillUp();
                     }
                 }
                 originalChangeCombatMenu(id);
-            };
+            }; */
+            // I don't know if it's more QoL to have this or not. Normally you'd think so but... in reality it seems kind of annoying. Idk 
         }
         let weapon = this.equippedWeapon ?? this.equipment.getItemInSlot("melvorD:Weapon");
         if (weapon) { combatMenus.weaponMastery.setWeapon(weapon) }

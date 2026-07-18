@@ -1,5 +1,19 @@
 export const language = {
 
+    'WTM_HBOW1': "Unlock the Power Shot Special Attack",
+    'WTM_HBOW2': "",
+    'WTM_HBOW3': "",
+    'WTM_HBOW4': "",
+    'WTM_HBOW5': "",
+
+
+    'WTM_STAVES1': "",
+    'WTM_STAVES2': "",
+    'WTM_STAVES3': "",
+    'WTM_STAVES4': "",
+    'WTM_STAVES5': "",
+
+
     'WTM_THRUST1': "Unlock Dueling Stance",
     'WTM_THRUST3': "Unlock the Practiced Lunge Special Attack",
     'WTM_THRUST32': "If your Shield slot is empty, double this type's bonuses.",
@@ -26,7 +40,6 @@ export const language = {
     'WTM_POLE4': "+25 Bonus to Slash, Stab, and Block Attack",
     'WTM_POLE42': "+25 Bonus to Melee, Magic, and Ranged Defence",
 
-    'WTM_BLUNT1': "",
     'WTM_BLUNT2': "+10% chance to apply Dazed when hitting an enemy with Broken",
     'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack",
     'WTM_BLUNT4': "+10% chance to inflict Stun when hitting an enemy with Broken",
@@ -42,36 +55,30 @@ export const language = {
     'WTM_CURVED3': "Unlock the Mounted Strike Special Attack",
     'WTM_CURVED5': "Unlock Advantage",
 
-    'WTM_HTH0':"+10% Reflect Damage against ranged attacks",
+    'WTM_HTH0': "+10% Reflect Damage against ranged attacks",
     'WTM_HTH1': "Can use certain gloves as weapons",
-    'WTM_HTH12': "+10% Reflect Damage against Ranged Attacks when unfettered",
+    'WTM_HTH12': "+10% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
+    'WTM_HTH3': "+20% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
+    'WTM_HTH32': 'Unlock the Channelled Palm Strike Special Attack',
+    'WTM_HTH4': "+35% Chance to ignore Slow, Stun, Freeze, and Sleep when unburdened",
+    'WTM_HTH42': "-0.20s Attack Interval when unburdened",
+    'WTM_HTH5': "Unlock the Flowing Palm Wave Special Attack",
+    'WTM_HTH52': "+50% HP Regen and -5s HP Regen Interval when unburdened",
 
-     'WTM_HTH2': "+5% Reflect Damage against Ranged Attacks",
-    'WTM_HTH3': "",
-    'WTM_HTH4': "",
-    'WTM_HTH5': "",
-
-    'WTM_AXES1': "",
-    'WTM_AXES2': "",
     'WTM_AXES3': "Unlock the Bloodlust Special Attack",
-    'WTM_AXES4': "Inflict Bloodlust and Hemorrhage when hitting with an attack (once a turn)",
+    'WTM_AXES4': "Inflict Bloodlust and Hemorrhage at the start of the fight",
     'WTM_AXES42': "25% chance to inflict Hemorrhage on Hit while Target is Bleeding.",
 
-    'WTM_AXES5': "+10% chance for both while enemy is bleeding",
+    'WTM_AXES5': "+7.5% chance for both while enemy is bleeding",
 
     'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack.",
 
-    'WTM_CROSS1': "",
-    'WTM_CROSS2': "",
-    'WTM_CROSS3': "",
-    'WTM_CROSS4': "",
-    'WTM_CROSS5': "",
 
-    'WTM_HBOW1': "Unlock the Power Shot Special Attack",
-    'WTM_HBOW2': "",
-    'WTM_HBOW3': "",
-    'WTM_HBOW4': "",
-    'WTM_HBOW5': "",
+
+    'WTM_CROSS3': "Unlock the Take Aim Special Attack",
+    'WTM_CROSS4': "Your first attack is an unavoidable critical hit",
+    'WTM_CROSS5': "+15% Accuracy Rating while fighting Melee Enemies",
+    'WTM_CROSS52': "+30% Ranged Max Hit while Enemy HP is ≥90%",
 
     'WTM_LBOW1': "",
     'WTM_LBOW2': "",
@@ -79,20 +86,22 @@ export const language = {
     'WTM_LBOW4': "",
     'WTM_LBOW5': "",
 
-    'WTM_THROWN1': "Can't use Special Attacks or Preserve Ammo",
-    'WTM_THROWN3': "Start each fight with a Volley",
-    'WTM_THROWN4': "During Volley, the enemy is Confused",
-    'WTM_THROWN5': "+25% Ranged Max Hit and Ranged Accuracy Rating, and enemy has -50% Global Accuracy during Volley.",
 
-    'WTM_STAVES1': "",
-    'WTM_STAVES2': "",
-    'WTM_STAVES3': "",
-    'WTM_STAVES4': "",
-    'WTM_STAVES5': "",
+    'WTM_THROWN1': "Cannot use Special Attacks",
+    'WTM_THROWN2': "Start each fight with a Volley",
+    'WTM_THROWN3': "+15 Max stacks for Alacrity",
+    'WTM_THROWN4': "During Volley, the enemy is Confused",
+    'WTM_THROWN5': "+25% Max Hit and Accuracy Rating during Volley",
+    'WTM_THROWN51': "Enemy has -50% Accuracy during Volley",
+    'WTM_THROWN52': "Get The Drop at the start of the fight",
 
     'WTM_WANDS3': "Increase rune cost reduction of magic weapons",
-    'WTM_WANDS4': "+1 All Defence Bonus per 1% of Damage Reduction",
+    'WTM_WANDS4': "+1 All Defence Bonus per 4% of Damage Reduction",
 
+
+
+
+    
     'WTM_EMTPY_EQUIP_NAME': 'Unarmed',
     'MODIFIER_DATA_increaseWeaponXPMelee': "${value}% Melee Weapon Mastery XP",
     'MODIFIER_DATA_increaseWeaponXPRanged': "${value}% Ranged Weapon Mastery XP",
@@ -112,12 +121,15 @@ export const language = {
     'MODIFIER_DATA_RandomRuneReduction': 'Decrease Minimum Random Rune Cost to 33%',
     'MODIFIER_DATA_RandomDamIncrease': 'Increase Maximum Random Spell Damage to 333%',
     'MODIFIER_DATA_runePreservationCap': "${value}% Rune preservation Cap",
-    'MODIFIER_DATA_maxHitBasedOnMissingHitpoints': '${value}% Max Hit for each 1% of Hitpoints missing',
+    'MODIFIER_DATA_ammoPreservationCap': "${value}% Ammo preservation Cap",
+
+
+    'MODIFIER_DATA_maxHitBasedOnMissingHitpoints': '${value}% Max Hit for each 10% of Hitpoints missing',
     'MODIFIER_DATA_fearDurationIncreaseChance': '${value}% chance to increase the length of fear effects inflicted by 1 turn',
     'MODIFIER_DATA_blessingChance': '${value}% chance to recieve three Triple-charged Buffs at the start of your turn',
     'MODIFIER_DATA_effectIgnoreChanceGlobal': '${value}% chance to ignore Negative Effects',
     'MODIFIER_DATA_ExtraPotencyEffects': 'Triple-triple-charge Pandora\'s Spark Effects',
-    'MODIFIER_DATA_multiShotExtraShot': '${value} shots for the super cool multishot',
+    'MODIFIER_DATA_multiShotExtraShot': 'Multishot has ${value} additional strikes',
     'MODIFIER_DATA_critChance25Stealth': "${value}% critical hit chance per 25 Stealth",
     'MODIFIER_DATA_doubleLootChance25Stealth': "${value}% Chance To Double Loot in Combat per 25 Stealth",
     'MODIFIER_DATA_flatAttackInterval100Stealth': "${value} Flat Attack Interval per 100 Stealth",
@@ -125,8 +137,8 @@ export const language = {
     'MODIFIER_DATA_maxHit25Stealth': "${value}% Maximum Hit per 25 Stealth",
     'MODIFIER_DATA_critMult25Stealth': "${value}% critical hit multiplier per 25 Stealth",
     'MODIFIER_DATA_critDRPierce': "${value}% of enemy Damage Reduction bypassed on critical hit",
-    'MODIFIER_DATA_critChance1000Acc': "${value}% critical hit chance per 1000 Accuracy",
-    'MODIFIER_DATA_critMult1000Acc': "${value}% critical hit multiplier per 1000 Accuracy",
+    'MODIFIER_DATA_critChance10000Acc': "${value}% critical hit chance per 10000 Accuracy",
+    'MODIFIER_DATA_critMult10000Acc': "${value}% critical hit multiplier per 10000 Accuracy",
 
 
 
@@ -137,7 +149,7 @@ export const language = {
 
     'MODIFIER_TOOLTIP_GREAT1': '<div class="text-center"><span class="text-success font-weight-bold">Intimidation</span><br>Gives -10% Global Accuracy and Max Hit</div>',
     'MODIFIER_TOOLTIP_GREAT4': '<div class="text-center"><span class="text-success font-weight-bold">Terrify</span><br>10% chance to be Stunned and have attack interrupted</div>',
-    'MODIFIER_TOOLTIP_GREAT5': '<div class="text-center"><span class="text-info font-weight-bold">Fear Effect</span><br>Terrify, Shaken, and Intimidate are considered Fear Effects</div>',
+    'MODIFIER_TOOLTIP_GREAT5': '<div class="text-center"><span class="text-info font-weight-bold">Fear Effect</span><br>Fear, Terrify, Shaken, and Intimidate are considered Fear Effects</div>',
 
     'MODIFIER_TOOLTIP_POLE21': '<div class="text-center"><span class="text-success font-weight-bold">Poise</span><br>Gives +4% accuracy per stack (up to 25)</div>',
     'MODIFIER_TOOLTIP_POLE22': '<div class="text-center"><span class="text-success font-weight-bold">Swiftness</span><br>Gives +4% evasion per stack (up to 25)</div>',
@@ -189,9 +201,10 @@ export const language = {
 
     'MODIFIER_TOOLTIP_LIGHT22': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>Take 25% DoT Damage for 3 turns/div>',
 
-    'MODIFIER_TOOLTIP_THROWN1': '<div class="text-center"><span class="text-success font-weight-bold">Alacrity</span><br>-1% Attack Interval per stack, up to 25</div>',
-    'MODIFIER_TOOLTIP_THROWN3': '<div class="text-center"><span class="text-success font-weight-bold">Volley</span><br>-50% to Attack Interval and Max Hit, and Accuracy. Lasts for 3 turns</div>',
-    'MODIFIER_TOOLTIP_THROWN4': '<div class="text-center"><span class="text-success font-weight-bold">Confused</span><br>2% of remaining HP dealt on a successful attack (once per turn, up to 10,000 damage)</div>',
+    'MODIFIER_TOOLTIP_THROWN1': '<div class="text-center"><span class="text-success font-weight-bold">Alacrity</span><br>-1% Attack Interval per stack, up to 15</div>',
+    'MODIFIER_TOOLTIP_THROWN2': '<div class="text-center"><span class="text-success font-weight-bold">Volley</span><br>-50% to Attack Interval and Max Hit, and Accuracy. Lasts for 3 turns</div>',
+    'MODIFIER_TOOLTIP_THROWN4': '<div class="text-center"><span class="text-success font-weight-bold">Confused</span><br>Take 2% of remaining HP dealt on a successful attack (once per turn, up to 10,000 damage)</div>',
+    'MODIFIER_TOOLTIP_THROWN5': '<div class="text-center"><span class="text-success font-weight-bold">The Drop</span><br>+30% Max Hit for the first turn of battle</div>',
 
     'MODIFIER_TOOLTIP_STAVES1': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Evade, Daze, Can\'t Special Attack or Evade, enemy, 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Summon Attack, Heal, 150% of Max HP over 20s <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>On Being Hit, +50% of Current DR added as DR, for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>On Hit, Burn, enemy</div>',
     'MODIFIER_TOOLTIP_STAVES2': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>-15% Attack Interval which decays on hit and lasts 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>Heal for 5% of your Current HP every 2 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>Enemy takes +15% Damage from Burn</div>',
@@ -266,7 +279,7 @@ export const language = {
     'COMBAT_EFFECT_NAME_ Volley': "Volley",
     'COMBAT_EFFECT_NAME_ SlinkIntoShadows': "Slink Into Shadows",
     'COMBAT_EFFECT_NAME_ DOTVulnerability': "DOT Vulnerability",
-    'COMBAT_EFFECT_NAME_ QuickReload0': "Quick Reload",
+    'COMBAT_EFFECT_NAME_ TakeAim0': "Take Aim",
     'COMBAT_EFFECT_NAME_ StraightShooter': "Straight Shooter",
     'COMBAT_EFFECT_NAME_ BarbaricStrength': "Barbaric Strength",
     'COMBAT_EFFECT_NAME_ Deadfire': "Deadfire",
@@ -298,6 +311,7 @@ export const language = {
     'COMBAT_EFFECT_NAME_ Immobilize': "Immobilize",
     'COMBAT_EFFECT_NAME_ Shrouded': "Shrouded",
     'COMBAT_EFFECT_NAME_ Blindsiding': "Blindsiding",
+    'COMBAT_EFFECT_NAME_ TheDrop': "The Drop",
 
 
 
@@ -311,9 +325,8 @@ export const language = {
 
 
     'SPECIAL_ATTACK_NAME_ ChannelledPalmStrike': "Channeled Palm Strike",
-    'SPECIAL_ATTACK_NAME_ Shadowshot': "Shadowshot",
     'SPECIAL_ATTACK_NAME_ Barrage': "Barrage",
-    'SPECIAL_ATTACK_NAME_ QuickReload': "Quick Reload",
+    'SPECIAL_ATTACK_NAME_ TakeAim': "Take Aim",
     'SPECIAL_ATTACK_NAME_ BigSmash': "Big Smash",
     'SPECIAL_ATTACK_NAME_ Eradication': "Eradication",
     'SPECIAL_ATTACK_NAME_ RelentlessFury': "Relentless Fury",
@@ -335,17 +348,19 @@ export const language = {
     'SPECIAL_ATTACK_NAME_ Bloodlust': "Bloodlust",
     'SPECIAL_ATTACK_NAME_ DeathApproaches': "Death Approaches",
     'SPECIAL_ATTACK_NAME_ Blindside': "Blindside",
+    'SPECIAL_ATTACK_NAME_ EchoingPalmStrike': "Flowing Palm Wave",
 
 
 
     'MODIFIER_TOOLTIP_GREAT3': '<div class="text-center"><span class="text-warning font-weight-bold">Devastating Slice (15%)</span><br>Deliver your blade unto the enemy with a wide, arching slash that strikes 2 times for up to 90% of your normal damage per hit.<br> On hit, has a 5% Chance to inflict Shaken for 5 turns.<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Shaken</span><br>-10% Global Evasion and -10% Total Resistance</div>',
     'MODIFIER_TOOLTIP_BLUNTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Concussive Smash (30%)</span><br>Smash into your enemy\'s armour, dealing up to 100 + (enemy\'s DR)% Normal damage. Avoidable. <br> Inflicts Daze for 2 turns and has a 20% chance to inflict Broken on a hit.</div>',
     'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, on hit instruct your companions to perform an unavoidable attack each</div>',
-    'MODIFIER_TOOLTIP_LIGHT31': '<div class="text-center"><span class="text-warning font-weight-bold">Shadowshot (15%)</span><br>If not under Slink Into Shadows, quickly fire a targeted arrow that deals 25% of your normal damage. On hit, inflict Bleed and Immobilize. Then Slink Into Shadows. Otherwise perform a normal attack <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Slink Into Shadows</span><br><span>Gain 40% evasion, 10% resistance and -0.2s attack interval</span></div>',
+    'MODIFIER_TOOLTIP_LIGHT3': '<div class="text-center"><span class="text-warning font-weight-bold">Take Aim (15%)</span><br>You find solid supports to brace your crossbow, gaining +25% of Maximum Hit added to Minimum Hit for 3 turns.<br> If buff is already active, perform a regular attack instead.</div>',
     'MODIFIER_TOOLTIP_HTH3': '<div class="text-center"><span class="text-warning font-weight-bold">Channeled Palm Strike (10%)</span><br>Channel your inner strength and perform an avoidable normal attack. Deals 100% of your normal damage and inflicts Stun on the enemy for 1 turn on hit.</div>',
     'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Triple-charge</span><br><span>All effect damage and modifier values are amplified by 3×</span></div>',
     'MODIFIER_TOOLTIP_THRUSTING3': '<div class="text-center"><span class="text-warning font-weight-bold">Practiced Lunge (15%)</span><br>Perform an unavoidable lunge that ignores enemy Resistance. Deals 50% Normal Damage</div>',
     'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-warning font-weight-bold">Blindside (15%)</span><br>Exploit the enemy\'s blind spots.<br>Deal 1 + (Stealth/50) strikes, dealing 75% of your Normal damage. <br> Strikes have +30% critical hit multiplier.</div>',
+    'MODIFIER_TOOLTIP_HTH5': '<div class="text-center"><span class="text-warning font-weight-bold">Flowing Palm Wave (10%)</span><br>Unleash a flurry of blows with your inner energy. Strikes 2 times, or 5 times if unburdened. <br> Deals 50% of your normal damage and has a 10% chance to Stun the Enemy for 2 turns on hit.</div>',
 
 
     'SPECIAL_ATTACK_DESC_ DeathApproaches': "Strike your enemy's weak spot, dealing ${attackDamageMaxValue0}% of their max HP.",
@@ -355,10 +370,9 @@ export const language = {
     'SPECIAL_ATTACK_DESC_ MountedStrike': "Attack normally, on hit instruct your companions to perform an unavoidable attack each.",
     'SPECIAL_ATTACK_DESC_ ConcussiveSmash': "Smash into your enemy's armour, dealing up to (100 + enemy DR)% Normal damage.<br> On a hit, inflicts Daze for 2 turns and has a ${onHitEffect1chance}% chance to inflict Broken. Avoidable.",
     'SPECIAL_ATTACK_DESC_ DevastatingSlice': "Deliver your blade unto the enemy with a wide, arching slash that strikes ${hitCount} times for up to ${attackDamageMaxValue0}% of your normal damage per hit. <br> On hit, has a ${onHitEffect0chance}% Chance to inflict Shaken (-${onHitEffect0modValue}% Global Evasion and -${onHitEffect0modValue1}% Total Resistance on the enemy for ${onHitEffect0turns} turns).",
-    'SPECIAL_ATTACK_DESC_ ChannelledPalmStrike': "Channel your inner strength and perform an avoidable normal attack. Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the enemy for ${onHitEffect0turns} turn(s) on hit.",
-    'SPECIAL_ATTACK_DESC_ Shadowshot': "Quickly fire a targeted arrow that deals ${attackDamageMaxValue0}% of your normal damage. On hit, inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s, and apply Immobilize (Can't Attack) for ${onHitEffect1turns} turns.<br> Then, Slink Into Shadows and gain +${onHitEffect2modValue0}% Global Evasion, +${onHitEffect2modValue1}% Damage Reduction and -${onHitEffect2modValue2}% Attack Interval for ${onHitEffect2turns} turns.<br> If effects are already active, perform a regular attack instead.",
+    'SPECIAL_ATTACK_DESC_ ChannelledPalmStrike': "Channel your inner strength and perform an avoidable normal attack. Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the enemy for ${onHitEffect0turns} turn on hit.",
     'SPECIAL_ATTACK_DESC_ Barrage': "Barrage the enemy with a hail of arrows that each deal ${attackDamageMaxValue0}% of your normal damage.<br> Arrows have a ${onHitEffect0chance}% to apply 1 stack of Hobbled (Attack Interval is increased by 1% per stack, up to 25 stacks).",
-    'SPECIAL_ATTACK_DESC_ QuickReload': "Grease the track of your crossbow, gaining -${preHitEffect0modValue0}% Ranged Attack Interval for ${preHitEffect0turns} turns.<br> If buff is already active, perform a regular attack instead.",
+    'SPECIAL_ATTACK_DESC_ TakeAim': "You find solid supports to brace your crossbow, gaining +${preHitEffect0modValue0}% of Maximum Hit added to Minimum Hit for ${preHitEffect0turns} turns.<br> If buff is already active, perform a regular attack instead.",
     'SPECIAL_ATTACK_DESC_ BigSmash': "Smash the enemy for ${attackDamageMaxValue0}% of your normal damage. If you hit, you gain Barbaric Strength, giving you ${onHitEffect0modValue} stacking Flat Melee Max Hit until the End of the Fight.",
     'SPECIAL_ATTACK_DESC_ Eradication': "You snuff the life force out of the enemy, dealing damage equal to ${attackDamageMaxValue0}%-${attackDamageMaxValue1}% of their current HP, and heal for ${lifesteal}% of the damage dealt.<br> Uses Prayer Points.",
     'SPECIAL_ATTACK_DESC_ RelentlessFury': "Make ${hitCount} attacks, each dealing a small percentage of your Maximum Hit: 1st—${attackDamageMaxValue0}%; 2nd—${attackDamageMaxValue1}%; 3rd—${attackDamageMaxValue2}%; 4th—${attackDamageMaxValue3}%; and 5th—${attackDamageMaxValue4}%. Each hit has a ${onHitEffect0chance}% chance to decrease your Damage Reduction by ${onHitEffect0modValue}% for the rest of the fight and to inflict a 1-turn Stun on the enemy.",
@@ -372,6 +386,7 @@ export const language = {
     'SPECIAL_ATTACK_DESC_ CrystalStrike': "Focus crystalline energy into your knuckles to land a powerful strike.<br> On hit, deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for 1 turn.",
     'SPECIAL_ATTACK_DESC_ WhirlingManoeuvre': "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each.<br> While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect enemy attacks for ${preHitEffect0modValue0}% of their damage.",
     'SPECIAL_ATTACK_DESC_ Blindside': "Exploit the enemy's blind spots, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage. <br> Strikes have +${preHitEffect0modValue0}% critical hit multiplier.",
+    'SPECIAL_ATTACK_DESC_ EchoingPalmStrike': "Unleash a flurry of blows with your inner energy. Strikes ${hitCount} times, or 5 times if unburdened. <br> Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the Enemy for ${onHitEffect0turns} turns on hit.",
 
     'MENU_SETTINGS_TOOLTIP': 'Whether this Namespace\'s weapons should have Types or gain and contribute XP',
 
@@ -405,10 +420,10 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Greatswords": "Simply brutal and brutally simple",
     "WTM_WEAPON_FLAVORTEXT_CurvedSwords": "Dancing blades that embolden your companions",
     "WTM_WEAPON_FLAVORTEXT_Daggers": "Light and fatal, they disappear from their owner's hand and reappear in their targets' backs",
-    "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, axes grow in power as the fight rages",
+    "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, axes grow in power as the battle rages",
     "WTM_WEAPON_FLAVORTEXT_Polearms": "Designed to land mildly-dangerous strikes at a mildly-safe distance",
     "WTM_WEAPON_FLAVORTEXT_Blunts": "Specialized in breaking through defenses and leaving their victims reeling",
-    "WTM_WEAPON_FLAVORTEXT_HandToHand": "Without tools or heavy armor, one's own body can become a fleet and deadly weapon",
+    "WTM_WEAPON_FLAVORTEXT_HandToHand": "Free from weapons or heavy armor, one's own body becomes a fleet and deadly weapon",
     "WTM_WEAPON_FLAVORTEXT_Crossbows": "Sacrifice speed for absolute accuracy and overwhelming strength",
     "WTM_WEAPON_FLAVORTEXT_HeavyBows": "Unerring, powerful instruments meant to find the weakness in your foes",
     "WTM_WEAPON_FLAVORTEXT_LightBows": "Evasive bows meant to pelt attackers with arrows while staying out of harm's way",
@@ -416,6 +431,6 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Staves": "Elementally-attuned kaleidoscopic tools of the arcane",
     "WTM_WEAPON_FLAVORTEXT_Wands": "Defensive, general magical implements for the wary wizard",
     "WTM_WEAPON_FLAVORTEXT_Artefacts": "Instruments representing Magic at its ficklest, to be used with great care and greater caution",
-    "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, it's debatable whether these are even weapons... But nothing is stopping you",
+    "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, it's debatable whether these are even weapons",
     "WTM_MAX": "MAX"
 }    

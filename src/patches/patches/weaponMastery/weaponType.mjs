@@ -128,12 +128,12 @@ export class WeaponMastery extends RealmedObject {
 
     }
     applyDataModification(data, game) {
-        if (data.kind)
+        if (data.kind) // Note this first one may blow us up the bomb
             this.kind.push(data.kind);
         if (data.mat)
-            this.mat.push(data.mat);
+            this.mat.push(...data.mat);
         if (data.uniq)
-            this.uniq.push(data.uniq);
+            this.uniq.push(...data.uniq);
         if (data.killMe)
             this.shouldDie = 1;
     }

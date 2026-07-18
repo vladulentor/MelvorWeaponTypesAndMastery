@@ -22,27 +22,27 @@ const gloves = [
     },
     {
         item: "melvorD:Bronze_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 10 }, { key: 'stabAttackBonus', value: 10 }, { key: 'slashAttackBonus', value: 10 }, { key: 'blockAttackBonus', value: 10 }, { key: 'meleeDefenceBonus', value: 10 }, { key: 'rangedDefenceBonus', value: 13 }, { key: 'magicDefenceBonus', value: 8 }, { key: 'damageReduction', value: 1 },]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 10 }, { key: 'stabAttackBonus', value: 10 }, { key: 'slashAttackBonus', value: 10 }, { key: 'blockAttackBonus', value: 10 }, { key: 'meleeDefenceBonus', value: 10 }, { key: 'rangedDefenceBonus', value: 13 }, { key: 'magicDefenceBonus', value: 8 }, { key: 'resistance', value: 1 },]
     },
     {
         item: "melvorD:Iron_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 11 }, { key: 'stabAttackBonus', value: 11 }, { key: 'slashAttackBonus', value: 11 }, { key: 'blockAttackBonus', value: 11 }, { key: 'meleeDefenceBonus', value: 11 }, { key: 'rangedDefenceBonus', value: 14 }, { key: 'magicDefenceBonus', value: 8 }, { key: 'damageReduction', value: 2 },]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 11 }, { key: 'stabAttackBonus', value: 11 }, { key: 'slashAttackBonus', value: 11 }, { key: 'blockAttackBonus', value: 11 }, { key: 'meleeDefenceBonus', value: 11 }, { key: 'rangedDefenceBonus', value: 14 }, { key: 'magicDefenceBonus', value: 8 }, { key: 'resistance', value: 2 },]
     },
     {
         item: "melvorD:Steel_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 13 }, { key: 'stabAttackBonus', value: 13 }, { key: 'slashAttackBonus', value: 13 }, { key: 'blockAttackBonus', value: 13 }, { key: 'meleeDefenceBonus', value: 13 }, { key: 'rangedDefenceBonus', value: 16 }, { key: 'magicDefenceBonus', value: 10 }, { key: 'damageReduction', value: 3 },]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 13 }, { key: 'stabAttackBonus', value: 13 }, { key: 'slashAttackBonus', value: 13 }, { key: 'blockAttackBonus', value: 13 }, { key: 'meleeDefenceBonus', value: 13 }, { key: 'rangedDefenceBonus', value: 16 }, { key: 'magicDefenceBonus', value: 10 }, { key: 'resistance', value: 3 },]
     },
     {
         item: "melvorAoD:Crystal_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 17 }, { key: 'stabAttackBonus', value: 17 }, { key: 'slashAttackBonus', value: 17 }, { key: 'blockAttackBonus', value: 17 }, { key: 'meleeDefenceBonus', value: 17 }, { key: 'rangedDefenceBonus', value: 21 }, { key: 'magicDefenceBonus', value: 13 }, { key: 'damageReduction', value: 4 },], specialAttacks: ["WTM:CrystalStrike"]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 17 }, { key: 'stabAttackBonus', value: 17 }, { key: 'slashAttackBonus', value: 17 }, { key: 'blockAttackBonus', value: 17 }, { key: 'meleeDefenceBonus', value: 17 }, { key: 'rangedDefenceBonus', value: 21 }, { key: 'magicDefenceBonus', value: 13 }, { key: 'resistance', value: 4 },], specialAttacks: ["WTM:CrystalStrike"]
     },
     {
         item: "melvorD:Mithril_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 17 }, { key: 'stabAttackBonus', value: 17 }, { key: 'slashAttackBonus', value: 17 }, { key: 'blockAttackBonus', value: 17 }, { key: 'meleeDefenceBonus', value: 17 }, { key: 'rangedDefenceBonus', value: 21 }, { key: 'magicDefenceBonus', value: 13 }, { key: 'damageReduction', value: 4 },]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 17 }, { key: 'stabAttackBonus', value: 17 }, { key: 'slashAttackBonus', value: 17 }, { key: 'blockAttackBonus', value: 17 }, { key: 'meleeDefenceBonus', value: 17 }, { key: 'rangedDefenceBonus', value: 21 }, { key: 'magicDefenceBonus', value: 13 }, { key: 'resistance', value: 4 },]
     },
     {
         item: "melvorF:Desert_Wrappings", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 17 }, { key: 'stabAttackBonus', value: 17 }, { key: 'slashAttackBonus', value: 17 }, { key: 'blockAttackBonus', value: 17 }, { key: 'meleeDefenceBonus', value: 17 }, { key: 'rangedDefenceBonus', value: 21 }, { key: 'magicDefenceBonus', value: 13 }, { key: 'damageReduction', value: 4 },], modifiers: {
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 17 }, { key: 'stabAttackBonus', value: 17 }, { key: 'slashAttackBonus', value: 17 }, { key: 'blockAttackBonus', value: 17 }, { key: 'meleeDefenceBonus', value: 17 }, { key: 'rangedDefenceBonus', value: 21 }, { key: 'magicDefenceBonus', value: 13 }, { key: 'resistance', value: 4 },], modifiers: {
                 "autoEatEfficiency": 30,
                 "hitpointRegeneration": 100
             }
@@ -50,7 +50,7 @@ const gloves = [
     },
     {
         item: "melvorF:Elementalist_Gloves", attackType: "magic", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'magicDamageBonus', value: 20 }, { key: 'magicAttackBonus', value: 20 }, { key: 'magicDefenceBonus', value: 20 }, { key: 'damageReduction', value: 4 },], combatEffects: [
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'magicDamageBonus', value: 20 }, { key: 'magicAttackBonus', value: 20 }, { key: 'magicDefenceBonus', value: 20 }, { key: 'resistance', value: 4 },], combatEffects: [
                 {
                     "appliesWhen": "HitByAttack",
                     "chance": 3.3,
@@ -70,19 +70,19 @@ const gloves = [
     },
     {
         item: "melvorD:Adamant_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 24 }, { key: 'stabAttackBonus', value: 24 }, { key: 'slashAttackBonus', value: 24 }, { key: 'blockAttackBonus', value: 24 }, { key: 'meleeDefenceBonus', value: 24 }, { key: 'rangedDefenceBonus', value: 30 }, { key: 'magicDefenceBonus', value: 18 }, { key: 'damageReduction', value: 5 },]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 24 }, { key: 'stabAttackBonus', value: 24 }, { key: 'slashAttackBonus', value: 24 }, { key: 'blockAttackBonus', value: 24 }, { key: 'meleeDefenceBonus', value: 24 }, { key: 'rangedDefenceBonus', value: 30 }, { key: 'magicDefenceBonus', value: 18 }, { key: 'resistance', value: 5 },]
     },
     {
         item: "melvorAoD:Biting_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 28 }, { key: 'stabAttackBonus', value: 28 }, { key: 'slashAttackBonus', value: 28 }, { key: 'blockAttackBonus', value: 28 }, { key: 'meleeDefenceBonus', value: 28 }, { key: 'rangedDefenceBonus', value: 34 }, { key: 'magicDefenceBonus', value: 20 }, { key: 'damageReduction', value: 5 },], specialAttacks: ["melvorAoD:BleedingBite "]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 28 }, { key: 'stabAttackBonus', value: 28 }, { key: 'slashAttackBonus', value: 28 }, { key: 'blockAttackBonus', value: 28 }, { key: 'meleeDefenceBonus', value: 28 }, { key: 'rangedDefenceBonus', value: 34 }, { key: 'magicDefenceBonus', value: 20 }, { key: 'resistance', value: 5 },], specialAttacks: ["melvorAoD:BleedingBite "]
     },
     {
         item: "melvorD:Rune_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 36 }, { key: 'stabAttackBonus', value: 36 }, { key: 'slashAttackBonus', value: 36 }, { key: 'blockAttackBonus', value: 36 }, { key: 'meleeDefenceBonus', value: 36 }, { key: 'rangedDefenceBonus', value: 45 }, { key: 'magicDefenceBonus', value: 27 }, { key: 'damageReduction', value: 6 },]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 36 }, { key: 'stabAttackBonus', value: 36 }, { key: 'slashAttackBonus', value: 36 }, { key: 'blockAttackBonus', value: 36 }, { key: 'meleeDefenceBonus', value: 36 }, { key: 'rangedDefenceBonus', value: 45 }, { key: 'magicDefenceBonus', value: 27 }, { key: 'resistance', value: 6 },]
     },
     {
         item: "melvorF:Paladin_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 43 }, { key: 'stabAttackBonus', value: 43 }, { key: 'slashAttackBonus', value: 43 }, { key: 'blockAttackBonus', value: 43 }, { key: 'meleeDefenceBonus', value: 43 }, { key: 'rangedDefenceBonus', value: 54 }, { key: 'magicDefenceBonus', value: 32 }, { key: 'damageReduction', value: 6 },], modifiers: {
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 43 }, { key: 'stabAttackBonus', value: 43 }, { key: 'slashAttackBonus', value: 43 }, { key: 'blockAttackBonus', value: 43 }, { key: 'meleeDefenceBonus', value: 43 }, { key: 'rangedDefenceBonus', value: 54 }, { key: 'magicDefenceBonus', value: 32 }, { key: 'resistance', value: 6 },], modifiers: {
 
                 "flatResistanceWithActivePrayer": [
                     {
@@ -101,64 +101,64 @@ const gloves = [
     },
     {
         item: "melvorD:Dragon_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 58 }, { key: 'stabAttackBonus', value: 58 }, { key: 'slashAttackBonus', value: 58 }, { key: 'blockAttackBonus', value: 58 }, { key: 'meleeDefenceBonus', value: 58 }, { key: 'rangedDefenceBonus', value: 73 }, { key: 'magicDefenceBonus', value: 44 }, { key: 'damageReduction', value: 7 },]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 58 }, { key: 'stabAttackBonus', value: 58 }, { key: 'slashAttackBonus', value: 58 }, { key: 'blockAttackBonus', value: 58 }, { key: 'meleeDefenceBonus', value: 58 }, { key: 'rangedDefenceBonus', value: 73 }, { key: 'magicDefenceBonus', value: 44 }, { key: 'resistance', value: 7 },]
     },
     {
         item: "melvorAoD:Pure_Crystal_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 58 }, { key: 'stabAttackBonus', value: 58 }, { key: 'slashAttackBonus', value: 58 }, { key: 'blockAttackBonus', value: 58 }, { key: 'meleeDefenceBonus', value: 58 }, { key: 'rangedDefenceBonus', value: 73 }, { key: 'magicDefenceBonus', value: 44 }, { key: 'damageReduction', value: 7 },], specialAttacks: ["WTM:Shatterstrikes"]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 58 }, { key: 'stabAttackBonus', value: 58 }, { key: 'slashAttackBonus', value: 58 }, { key: 'blockAttackBonus', value: 58 }, { key: 'meleeDefenceBonus', value: 58 }, { key: 'rangedDefenceBonus', value: 73 }, { key: 'magicDefenceBonus', value: 44 }, { key: 'resistance', value: 7 },], specialAttacks: ["WTM:Shatterstrikes"]
     },
 
     {
         item: "melvorF:Aeris_God_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2100 }, { key: 'meleeStrengthBonus', value: 75 }, { key: 'stabAttackBonus', value: 75 }, { key: 'slashAttackBonus', value: 75 }, { key: 'blockAttackBonus', value: 75 }, { key: 'meleeDefenceBonus', value: 60 }, { key: 'rangedDefenceBonus', value: 80 }, { key: 'magicDefenceBonus', value: 100 }, { key: 'damageReduction', value: 11 },], specialAttacks: ["WTM:CycloneFist"]
+            [{ key: 'attackSpeed', value: 2100 }, { key: 'meleeStrengthBonus', value: 75 }, { key: 'stabAttackBonus', value: 75 }, { key: 'slashAttackBonus', value: 75 }, { key: 'blockAttackBonus', value: 75 }, { key: 'meleeDefenceBonus', value: 60 }, { key: 'rangedDefenceBonus', value: 80 }, { key: 'magicDefenceBonus', value: 100 }, { key: 'resistance', value: 11 },], specialAttacks: ["WTM:CycloneFist"]
     },
     {
         item: "melvorF:Poison_Virulence_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2100 }, { key: 'meleeStrengthBonus', value: 82 }, { key: 'stabAttackBonus', value: 82 }, { key: 'slashAttackBonus', value: 82 }, { key: 'blockAttackBonus', value: 82 }, { key: 'meleeDefenceBonus', value: 66 }, { key: 'rangedDefenceBonus', value: 88 }, { key: 'magicDefenceBonus', value: 110 }, { key: 'damageReduction', value: 12 },], specialAttacks: ["WTM:ToxicNeedleFlurry"]
+            [{ key: 'attackSpeed', value: 2100 }, { key: 'meleeStrengthBonus', value: 82 }, { key: 'stabAttackBonus', value: 82 }, { key: 'slashAttackBonus', value: 82 }, { key: 'blockAttackBonus', value: 82 }, { key: 'meleeDefenceBonus', value: 66 }, { key: 'rangedDefenceBonus', value: 88 }, { key: 'magicDefenceBonus', value: 110 }, { key: 'resistance', value: 12 },], specialAttacks: ["WTM:ToxicNeedleFlurry"]
     },
     {
         item: "melvorF:Glacia_God_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 75 }, { key: 'stabAttackBonus', value: 75 }, { key: 'slashAttackBonus', value: 75 }, { key: 'blockAttackBonus', value: 75 }, { key: 'meleeDefenceBonus', value: 100 }, { key: 'rangedDefenceBonus', value: 60 }, { key: 'magicDefenceBonus', value: 80 }, { key: 'damageReduction', value: 11 },], specialAttacks: ["WTM:FistOfTheWinterWinds"]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 75 }, { key: 'stabAttackBonus', value: 75 }, { key: 'slashAttackBonus', value: 75 }, { key: 'blockAttackBonus', value: 75 }, { key: 'meleeDefenceBonus', value: 100 }, { key: 'rangedDefenceBonus', value: 60 }, { key: 'magicDefenceBonus', value: 80 }, { key: 'resistance', value: 11 },], specialAttacks: ["WTM:FistOfTheWinterWinds"]
     },
     {
         item: "melvorF:Burning_Madness_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 82 }, { key: 'stabAttackBonus', value: 82 }, { key: 'slashAttackBonus', value: 82 }, { key: 'blockAttackBonus', value: 82 }, { key: 'meleeDefenceBonus', value: 110 }, { key: 'rangedDefenceBonus', value: 66 }, { key: 'magicDefenceBonus', value: 88 }, { key: 'damageReduction', value: 12 },], specialAttacks: ["WTM:LichsMadness"]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 82 }, { key: 'stabAttackBonus', value: 82 }, { key: 'slashAttackBonus', value: 82 }, { key: 'blockAttackBonus', value: 82 }, { key: 'meleeDefenceBonus', value: 110 }, { key: 'rangedDefenceBonus', value: 66 }, { key: 'magicDefenceBonus', value: 88 }, { key: 'resistance', value: 12 },], specialAttacks: ["WTM:LichsMadness"]
     },
     {
         item: "melvorF:Terran_God_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2300 }, { key: 'meleeStrengthBonus', value: 85 }, { key: 'stabAttackBonus', value: 85 }, { key: 'slashAttackBonus', value: 85 }, { key: 'blockAttackBonus', value: 85 }, { key: 'meleeDefenceBonus', value: 105 }, { key: 'rangedDefenceBonus', value: 125 }, { key: 'magicDefenceBonus', value: 65 }, { key: 'damageReduction', value: 13 },], specialAttacks: ["WTM:Stonewall"]
+            [{ key: 'attackSpeed', value: 2300 }, { key: 'meleeStrengthBonus', value: 85 }, { key: 'stabAttackBonus', value: 85 }, { key: 'slashAttackBonus', value: 85 }, { key: 'blockAttackBonus', value: 85 }, { key: 'meleeDefenceBonus', value: 105 }, { key: 'rangedDefenceBonus', value: 125 }, { key: 'magicDefenceBonus', value: 65 }, { key: 'resistance', value: 13 },], specialAttacks: ["WTM:Stonewall"]
     },
     {
         item: "melvorF:Spiked_Shell_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2300 }, { key: 'meleeStrengthBonus', value: 89 }, { key: 'stabAttackBonus', value: 89 }, { key: 'slashAttackBonus', value: 89 }, { key: 'blockAttackBonus', value: 89 }, { key: 'meleeDefenceBonus', value: 115 }, { key: 'rangedDefenceBonus', value: 137 }, { key: 'magicDefenceBonus', value: 71 }, { key: 'damageReduction', value: 14 },], specialAttacks: ["WTM:SpikedCarapace"]
+            [{ key: 'attackSpeed', value: 2300 }, { key: 'meleeStrengthBonus', value: 89 }, { key: 'stabAttackBonus', value: 89 }, { key: 'slashAttackBonus', value: 89 }, { key: 'blockAttackBonus', value: 89 }, { key: 'meleeDefenceBonus', value: 115 }, { key: 'rangedDefenceBonus', value: 137 }, { key: 'magicDefenceBonus', value: 71 }, { key: 'resistance', value: 14 },], specialAttacks: ["WTM:SpikedCarapace"]
     },
     {
         item: "melvorF:Ragnar_God_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 97 }, { key: 'stabAttackBonus', value: 97 }, { key: 'slashAttackBonus', value: 97 }, { key: 'blockAttackBonus', value: 97 }, { key: 'meleeDefenceBonus', value: 100 }, { key: 'rangedDefenceBonus', value: 110 }, { key: 'magicDefenceBonus', value: 50 }, { key: 'damageReduction', value: 10 },], specialAttacks: ["WTM:BarrageOfFlamingDeath"]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 97 }, { key: 'stabAttackBonus', value: 97 }, { key: 'slashAttackBonus', value: 97 }, { key: 'blockAttackBonus', value: 97 }, { key: 'meleeDefenceBonus', value: 100 }, { key: 'rangedDefenceBonus', value: 110 }, { key: 'magicDefenceBonus', value: 50 }, { key: 'resistance', value: 10 },], specialAttacks: ["WTM:BarrageOfFlamingDeath"]
     },
     {
         item: "melvorF:Relentless_Fury_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 106 }, { key: 'stabAttackBonus', value: 106 }, { key: 'slashAttackBonus', value: 106 }, { key: 'blockAttackBonus', value: 106 }, { key: 'meleeDefenceBonus', value: 110 }, { key: 'rangedDefenceBonus', value: 120 }, { key: 'magicDefenceBonus', value: 55 }, { key: 'damageReduction', value: 11 },], specialAttacks: ["WTM:RelentlessFury"]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 106 }, { key: 'stabAttackBonus', value: 106 }, { key: 'slashAttackBonus', value: 106 }, { key: 'blockAttackBonus', value: 106 }, { key: 'meleeDefenceBonus', value: 110 }, { key: 'rangedDefenceBonus', value: 120 }, { key: 'magicDefenceBonus', value: 55 }, { key: 'resistance', value: 11 },], specialAttacks: ["WTM:RelentlessFury"]
     },
     {
         item: "melvorAoD:Eradicating_Gloves", attackType: "magic", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 101 }, { key: 'stabAttackBonus', value: 101 }, { key: 'slashAttackBonus', value: 101 }, { key: 'blockAttackBonus', value: 101 }, { key: 'meleeDefenceBonus', value: 121 }, { key: 'rangedDefenceBonus', value: 132 }, { key: 'magicDefenceBonus', value: 72 }, { key: 'damageReduction', value: 12 },], specialAttacks: ["WTM:Eradication"]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 101 }, { key: 'stabAttackBonus', value: 101 }, { key: 'slashAttackBonus', value: 101 }, { key: 'blockAttackBonus', value: 101 }, { key: 'meleeDefenceBonus', value: 121 }, { key: 'rangedDefenceBonus', value: 132 }, { key: 'magicDefenceBonus', value: 72 }, { key: 'resistance', value: 12 },], specialAttacks: ["WTM:Eradication"]
     },
     {
         item: "melvorTotH:Corundum_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 93 }, { key: 'stabAttackBonus', value: 93 }, { key: 'slashAttackBonus', value: 93 }, { key: 'blockAttackBonus', value: 93 }, { key: 'meleeDefenceBonus', value: 95 }, { key: 'rangedDefenceBonus', value: 100 }, { key: 'magicDefenceBonus', value: 47 }, { key: 'damageReduction', value: 13 },], specialAttacks: ["melvorTotH:CorundumWounds"], overrideSpecialChances: [20]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 93 }, { key: 'stabAttackBonus', value: 93 }, { key: 'slashAttackBonus', value: 93 }, { key: 'blockAttackBonus', value: 93 }, { key: 'meleeDefenceBonus', value: 95 }, { key: 'rangedDefenceBonus', value: 100 }, { key: 'magicDefenceBonus', value: 47 }, { key: 'resistance', value: 13 },], specialAttacks: ["melvorTotH:CorundumWounds"], overrideSpecialChances: [20]
     },
     {
         item: "melvorTotH:Augite_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 102 }, { key: 'stabAttackBonus', value: 102 }, { key: 'slashAttackBonus', value: 102 }, { key: 'blockAttackBonus', value: 102 }, { key: 'meleeDefenceBonus', value: 104 }, { key: 'rangedDefenceBonus', value: 110 }, { key: 'magicDefenceBonus', value: 51 }, { key: 'damageReduction', value: 14 },], specialAttacks: ["melvorTotH:AugiteCrystallization"], overrideSpecialChances: [20]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 102 }, { key: 'stabAttackBonus', value: 102 }, { key: 'slashAttackBonus', value: 102 }, { key: 'blockAttackBonus', value: 102 }, { key: 'meleeDefenceBonus', value: 104 }, { key: 'rangedDefenceBonus', value: 110 }, { key: 'magicDefenceBonus', value: 51 }, { key: 'resistance', value: 14 },], specialAttacks: ["melvorTotH:AugiteCrystallization"], overrideSpecialChances: [20]
     },
     {
         item: "melvorTotH:Divinite_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 112 }, { key: 'stabAttackBonus', value: 112 }, { key: 'slashAttackBonus', value: 112 }, { key: 'blockAttackBonus', value: 112 }, { key: 'meleeDefenceBonus', value: 124 }, { key: 'rangedDefenceBonus', value: 121 }, { key: 'magicDefenceBonus', value: 56 }, { key: 'damageReduction', value: 15 },], specialAttacks: ["melvorTotH:DivineBreaker"], overrideSpecialChances: [20]
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 112 }, { key: 'stabAttackBonus', value: 112 }, { key: 'slashAttackBonus', value: 112 }, { key: 'blockAttackBonus', value: 112 }, { key: 'meleeDefenceBonus', value: 124 }, { key: 'rangedDefenceBonus', value: 121 }, { key: 'magicDefenceBonus', value: 56 }, { key: 'resistance', value: 15 },], specialAttacks: ["melvorTotH:DivineBreaker"], overrideSpecialChances: [20]
     },
     {
         item: "melvorTotH:Gauntlets_of_Rage", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 105 }, { key: 'stabAttackBonus', value: 105 }, { key: 'slashAttackBonus', value: 105 }, { key: 'blockAttackBonus', value: 180 }, { key: 'meleeDefenceBonus', value: 75 }, { key: 'rangedDefenceBonus', value: 90 }, { key: 'magicDefenceBonus', value: 40 }, { key: 'damageReduction', value: 13 },], modifiers: {
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 105 }, { key: 'stabAttackBonus', value: 105 }, { key: 'slashAttackBonus', value: 105 }, { key: 'blockAttackBonus', value: 180 }, { key: 'meleeDefenceBonus', value: 75 }, { key: 'rangedDefenceBonus', value: 90 }, { key: 'magicDefenceBonus', value: 40 }, { key: 'resistance', value: 13 },], modifiers: {
 
                 "WTM:maxHitBasedOnMissingHitpoints": 1,
                 "WTM:critChanceBasedOnMissingHitpoints": 1
@@ -168,7 +168,7 @@ const gloves = [
     },
     {
         item: "melvorTotH:Vorloran_Protector_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 150 }, { key: 'stabAttackBonus', value: 150 }, { key: 'slashAttackBonus', value: 150 }, { key: 'blockAttackBonus', value: 150 }, { key: 'meleeDefenceBonus', value: 150 }, { key: 'rangedDefenceBonus', value: 200 }, { key: 'magicDefenceBonus', value: 100 }, { key: 'damageReduction', value: 16 },], modifiers: {
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 150 }, { key: 'stabAttackBonus', value: 150 }, { key: 'slashAttackBonus', value: 150 }, { key: 'blockAttackBonus', value: 150 }, { key: 'meleeDefenceBonus', value: 150 }, { key: 'rangedDefenceBonus', value: 200 }, { key: 'magicDefenceBonus', value: 100 }, { key: 'resistance', value: 16 },], modifiers: {
                 "lifesteal": 15,
                 "bleedLifesteal": 50,
                 "effectIgnoreChance": [
@@ -196,7 +196,7 @@ const gloves = [
     },
     {
         item: "melvorTotH:Vorloran_Devastator_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 150 }, { key: 'stabAttackBonus', value: 150 }, { key: 'slashAttackBonus', value: 150 }, { key: 'blockAttackBonus', value: 150 }, { key: 'meleeDefenceBonus', value: 200 }, { key: 'rangedDefenceBonus', value: 100 }, { key: 'magicDefenceBonus', value: 150 }, { key: 'damageReduction', value: 16 }], modifiers: {
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 150 }, { key: 'stabAttackBonus', value: 150 }, { key: 'slashAttackBonus', value: 150 }, { key: 'blockAttackBonus', value: 150 }, { key: 'meleeDefenceBonus', value: 200 }, { key: 'rangedDefenceBonus', value: 100 }, { key: 'magicDefenceBonus', value: 150 }, { key: 'resistance', value: 16 }], modifiers: {
                 "lifesteal": 25,
                 "burnLifesteal": 250,
                 "effectIgnoreChance": [
@@ -230,7 +230,7 @@ const gloves = [
     },
     {
         item: "melvorTotH:Vorloran_Watcher_Gloves", attackType: "melee", wepStats:
-            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 150 }, { key: 'stabAttackBonus', value: 150 }, { key: 'slashAttackBonus', value: 150 }, { key: 'blockAttackBonus', value: 150 }, { key: 'meleeDefenceBonus', value: 100 }, { key: 'rangedDefenceBonus', value: 150 }, { key: 'magicDefenceBonus', value: 200 }, { key: 'damageReduction', value: 16 },], modifiers: {
+            [{ key: 'attackSpeed', value: 2200 }, { key: 'meleeStrengthBonus', value: 150 }, { key: 'stabAttackBonus', value: 150 }, { key: 'slashAttackBonus', value: 150 }, { key: 'blockAttackBonus', value: 150 }, { key: 'meleeDefenceBonus', value: 100 }, { key: 'rangedDefenceBonus', value: 150 }, { key: 'magicDefenceBonus', value: 200 }, { key: 'resistance', value: 16 },], modifiers: {
                 "lifesteal": 25,
                 "poisonLifesteal": 250,
                 "effectIgnoreChance": [

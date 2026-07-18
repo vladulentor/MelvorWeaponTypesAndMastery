@@ -64,6 +64,9 @@ class Setup {
     }
 
     async applyPatches() {
+        game._events.on('offlineLoopEntered', () => game.weaponMasteries.notifs = false);
+        game._events.on('offlineLoopExited', () => game.weaponMasteries.notifs = true);
+
         patchTranslations(this.ctx);
         patchSkillsBeforeDataReg(this.ctx);
     }
@@ -73,8 +76,7 @@ class Setup {
     async loadData() {
         await this.ctx.gameData.addPackage('src/data/data_preentry.json');
         await this.ctx.gameData.addPackage('src/data/data.json');
-        if(cloudManager.hasAoDEntitlementAndIsEnabled)
-        {await this.ctx.gameData.addPackage('src/data/data_AoD.json')}
+        if (cloudManager.hasAoDEntitlementAndIsEnabled) { await this.ctx.gameData.addPackage('src/data/data_AoD.json') }
     }
     async modCompatibility(ctx) {
         this.ctx.onModsLoaded(() => {

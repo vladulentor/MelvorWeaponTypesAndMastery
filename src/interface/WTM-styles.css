@@ -296,12 +296,12 @@ body.darkMode .table-type-image {
 }
 
 .mastery-weapon-xp-overfill {
-  background-color: #ffc881;
+  background-color: #ffc881 !important;
   z-index: 1;
 }
 
 .mastery-weapon-xp-fill {
-  background-color: #fca32f;
+  background-color: #fca32f !important;
   z-index: 2;
 }
 
