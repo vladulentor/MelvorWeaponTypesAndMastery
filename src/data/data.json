@@ -3223,7 +3223,7 @@
             "descriptions": [
               {
                 "text": "",
-                "lang": "MODIFIER_DATA_critChance1000Acc"
+                "lang": "MODIFIER_DATA_critChance10000Acc"
               }
             ]
           }
@@ -3237,7 +3237,7 @@
             "descriptions": [
               {
                 "text": "",
-                "lang": "MODIFIER_DATA_critMult1000Acc"
+                "lang": "MODIFIER_DATA_critMult10000Acc"
               }
             ]
           }
@@ -6194,7 +6194,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                      "ammoPreservationChance": 10
+                  "ammoPreservationChance": 10
                 }
               },
               "levels": [
@@ -6279,7 +6279,7 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "descriptionLang": "WTM_LBOW3",
+                        "descriptionLang": "WTM_CROSS3",
                         "description": "Unlock the Take Aim Special Attack",
                         "condition": {
                           "type": "WeaponType",
@@ -6324,7 +6324,7 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "descriptionLang": "WTM_LBOW4",
+                        "descriptionLang": "WTM_CROSS4",
                         "description": "Your first attack is an unavoidable critical hit",
                         "condition": {
                           "type": "WeaponType",
@@ -6387,6 +6387,7 @@
                     },
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_CROSS5",
                         "description": "+15% Accuracy Rating while fighting Melee Enemies",
                         "condition": {
                           "type": "WeaponType",
@@ -6395,6 +6396,7 @@
                         "modifiers": {}
                       },
                       {
+                        "descriptionLang": "WTM_CROSS52",
                         "description": "+30% Ranged Max Hit while Enemy HP is ≥90%",
                         "condition": {
                           "type": "WeaponType",

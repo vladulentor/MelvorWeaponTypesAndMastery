@@ -40,7 +40,6 @@ export const language = {
     'WTM_POLE4': "+25 Bonus to Slash, Stab, and Block Attack",
     'WTM_POLE42': "+25 Bonus to Melee, Magic, and Ranged Defence",
 
-    'WTM_BLUNT1': "",
     'WTM_BLUNT2': "+10% chance to apply Dazed when hitting an enemy with Broken",
     'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack",
     'WTM_BLUNT4': "+10% chance to inflict Stun when hitting an enemy with Broken",
@@ -66,8 +65,6 @@ export const language = {
     'WTM_HTH5': "Unlock the Flowing Palm Wave Special Attack",
     'WTM_HTH52': "+50% HP Regen and -5s HP Regen Interval when unburdened",
 
-    'WTM_AXES1': "",
-    'WTM_AXES2': "",
     'WTM_AXES3': "Unlock the Bloodlust Special Attack",
     'WTM_AXES4': "Inflict Bloodlust and Hemorrhage at the start of the fight",
     'WTM_AXES42': "25% chance to inflict Hemorrhage on Hit while Target is Bleeding.",
@@ -76,36 +73,35 @@ export const language = {
 
     'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack.",
 
-    'WTM_CROSS1': "",
-    'WTM_CROSS2': "",
-    'WTM_CROSS3': "",
-    'WTM_CROSS4': "",
-    'WTM_CROSS5': "",
 
+
+    'WTM_CROSS3': "Unlock the Take Aim Special Attack",
+    'WTM_CROSS4': "Your first attack is an unavoidable critical hit",
+    'WTM_CROSS5': "+15% Accuracy Rating while fighting Melee Enemies",
+    'WTM_CROSS52': "+30% Ranged Max Hit while Enemy HP is ≥90%",
 
     'WTM_LBOW1': "",
     'WTM_LBOW2': "",
-    'WTM_LBOW3': "Unlock the Take Aim Special Attack",
-    'WTM_LBOW4': "Your first attack is an unavoidable critical hit",
+    'WTM_LBOW3': "",
+    'WTM_LBOW4': "",
     'WTM_LBOW5': "",
+
 
     'WTM_THROWN1': "Cannot use Special Attacks",
     'WTM_THROWN2': "Start each fight with a Volley",
     'WTM_THROWN3': "+15 Max stacks for Alacrity",
-
-
     'WTM_THROWN4': "During Volley, the enemy is Confused",
     'WTM_THROWN5': "+25% Max Hit and Accuracy Rating during Volley",
-
     'WTM_THROWN51': "Enemy has -50% Accuracy during Volley",
-
     'WTM_THROWN52': "Get The Drop at the start of the fight",
-
-
 
     'WTM_WANDS3': "Increase rune cost reduction of magic weapons",
     'WTM_WANDS4': "+1 All Defence Bonus per 4% of Damage Reduction",
 
+
+
+
+    
     'WTM_EMTPY_EQUIP_NAME': 'Unarmed',
     'MODIFIER_DATA_increaseWeaponXPMelee': "${value}% Melee Weapon Mastery XP",
     'MODIFIER_DATA_increaseWeaponXPRanged': "${value}% Ranged Weapon Mastery XP",
@@ -141,8 +137,8 @@ export const language = {
     'MODIFIER_DATA_maxHit25Stealth': "${value}% Maximum Hit per 25 Stealth",
     'MODIFIER_DATA_critMult25Stealth': "${value}% critical hit multiplier per 25 Stealth",
     'MODIFIER_DATA_critDRPierce': "${value}% of enemy Damage Reduction bypassed on critical hit",
-    'MODIFIER_DATA_critChance1000Acc': "${value}% critical hit chance per 10000 Accuracy",
-    'MODIFIER_DATA_critMult1000Acc': "${value}% critical hit multiplier per 10000 Accuracy",
+    'MODIFIER_DATA_critChance10000Acc': "${value}% critical hit chance per 10000 Accuracy",
+    'MODIFIER_DATA_critMult10000Acc': "${value}% critical hit multiplier per 10000 Accuracy",
 
 
 
