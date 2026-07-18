@@ -84,43 +84,35 @@
         "usesRunesPerProc": false
       },
       {
-        "id": "Shadowshot",
-        "defaultChance": 15,
+        "id": "EchoingPalmStrike",
+        "defaultChance": 10,
         "damage": [
           {
             "damageType": "Normal",
-            "amplitude": 25
+            "amplitude": 50
           }
         ],
         "prehitEffects": [],
         "onhitEffects": [
           {
-            "effectID": "melvorD:Bleed100"
-          },
-          {
-            "effectID": "WTM:Immobilize",
-            "targetOverride": "Target",
+            "effectID": "melvorD:Stun",
+            "chance": 10,
             "initialParams": [
               {
                 "name": "turns",
                 "value": 2
               }
             ]
-          },
-          {
-            "effectID": "WTM:SlinkIntoShadows",
-            "targetOverride": "Self"
           }
         ],
         "cantMiss": false,
-        "attackCount": 1,
-        "attackInterval": 50,
+        "attackCount": 2,
+        "attackInterval": 150,
         "lifesteal": 0,
-        "name": "Shadowshot",
-        "description": "Quickly fire a targeted arrow that deals ${attackDamageMaxValue0}% of your normal damage. On hit, inflict Bleed that deals ${onHitEffect0DamageMaxValue0} damage over ${onHitEffect0duration}s, and apply Immobilize (Can't Attack) for ${onHitEffect1turns} turns.<br> Then, Slink Into Shadows and gain +${onHitEffect2modValue0}% Global Evasion, +${onHitEffect2modValue1}% Damage Reduction and -${onHitEffect2modValue2}% Attack Interval for ${onHitEffect2turns} turns.<br> If effects are already active, perform a regular attack instead.",
-        "descriptionGenerator": "Quickly fire an arrow, dealing <damage> and <onhitEffect>. If effects already active, perform a regular attack instead.",
-        "usesRunesPerProc": false,
-        "canNormalAttack": true
+        "name": "Channeled Palm Strikes",
+        "description": "Unleash a flurry of blows with your inner energy. Strikes ${hitCount} times, or 5 times if unburdened. <br> Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the Enemy for ${onHitEffect0turns} turns on hit.",
+        "descriptionGenerator": "Make an <avoidable> normal attack. On hit, <hitEffect>.",
+        "usesRunesPerProc": false
       },
       {
         "id": "Barrage",
@@ -148,12 +140,12 @@
         "usesRunesPerProc": false
       },
       {
-        "id": "QuickReload",
+        "id": "TakeAim",
         "defaultChance": 15,
         "damage": [],
         "prehitEffects": [
           {
-            "effectID": "WTM:QuickReload0"
+            "effectID": "WTM:TakeAim0"
           }
         ],
         "onhitEffects": [],
@@ -162,7 +154,7 @@
         "attackInterval": 150,
         "lifesteal": 0,
         "name": "Quick Reload",
-        "description": "Grease the track of your crossbow, gaining -${preHitEffect0modValue0}% Ranged Attack Interval for ${preHitEffect0turns} turns.<br> If buff is already active, perform a regular attack instead.",
+        "description": "Find good supports to brace your crossbow on, gaining -${preHitEffect0modValue0}% of Maximum Hit added to Minimum Hit for ${preHitEffect0turns} turns.<br> If buff is already active, perform a regular attack instead.",
         "descriptionGenerator": "You grease the track of your crossbow, gaining <prehitEffect>. If buff is already active, perform a regular attack instead.",
         "usesRunesPerProc": false,
         "canNormalAttack": true
@@ -853,26 +845,6 @@
         "lifesteal": 0,
         "name": "Blindside",
         "description": "Strike from the shadows, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage each time. <br> Every Attack has +${preHitEffect0modValue0}% critical hit multiplier.",
-        "descriptionGenerator": "<Avoidable> attack for <damage>.",
-        "usesRunesPerProc": false
-      },
-      {
-        "id": "Multishot",
-        "defaultChance": 5,
-        "damage": [
-          {
-            "damageType": "Normal",
-            "amplitude": 35
-          }
-        ],
-        "prehitEffects": [],
-        "onhitEffects": [],
-        "cantMiss": false,
-        "attackCount": 1,
-        "attackInterval": 150,
-        "lifesteal": 0,
-        "name": "Blindside",
-        "description": "Strike from the shadows, making 1 + (Stealth/50) number of strikes that deal ${attackDamageMaxValue0}% of your Normal damage each. <br> Every Attack has +15% Crit chance and +200% Crit Damage.",
         "descriptionGenerator": "<Avoidable> attack for <damage>.",
         "usesRunesPerProc": false
       },
@@ -1615,7 +1587,7 @@
         ]
       },
       {
-        "id": "QuickReload0",
+        "id": "TakeAim0",
         "templateID": "melvorD:StaticSelfCountingModifier",
         "name": "Quick Reload",
         "media": "assets/combat/status/speedup.svg",
@@ -1630,7 +1602,7 @@
           {
             "name": "stacks",
             "modifiers": {
-              "attackInterval": -10
+              "minHitBasedOnMaxHit": 25
             }
           }
         ],
@@ -3380,6 +3352,20 @@
         ]
       },
       {
+        "id": "superDirtyUnburdenCheck",
+        "isCombat": true,
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "Fake modifier hehe"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "increaseWeaponXPmagic",
         "allowedScopes": [
           {
@@ -4720,7 +4706,7 @@
                       {
                         "appliesWhen": "HitWithAttack",
                         "effectID": "melvorD:Bleed100",
-                        "chance":7.5
+                        "chance": 7.5
                       }
                     ]
                   },
@@ -4744,7 +4730,7 @@
                       },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "melvorD:Bleed100",
-                        "chance":7.5
+                      "chance": 7.5
                     }
                   ],
                   "modifiers": {
@@ -5759,7 +5745,7 @@
               "type": "melee",
               "kind": "melee",
               "uniq": [
-                "Empty_Equipment4",
+                "Empty_Equipment6",
                 "Void_Vortex_Whip2",
                 "Ancient_Claw2",
                 "Blighted_Claw2",
@@ -5807,17 +5793,17 @@
                   "id": "HandToHand1",
                   "level": 1,
                   "overwriteTypeIcons": [
-                    0,
-                    1
+                    1,
+                    0
                   ],
                   "tooltip": {
-                    "2": "MODIFIER_TOOLTIP_HTH1"
+                    "1": "MODIFIER_TOOLTIP_HTH1"
                   },
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "descriptionLang": "WTM_HTH1",
-                        "description": "Can use certain gloves as weapons",
+                        "descriptionLang": "WTM_HTH12",
+                        "description": "+10% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
                         "condition": {
                           "type": "EmptySlot",
                           "slotIDs": [
@@ -5829,8 +5815,8 @@
                         }
                       },
                       {
-                        "descriptionLang": "WTM_HTH12",
-                        "description": "+30% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
+                        "descriptionLang": "WTM_HTH1",
+                        "description": "Can use certain gloves as weapons",
                         "condition": {
                           "type": "EmptySlot",
                           "slotIDs": [
@@ -5866,13 +5852,13 @@
                         "flatHiddenSkillLevelBasedOnLevels": [
                           {
                             "skillID": "melvorD:Defence",
-                            "value": 30
+                            "value": 10
                           }
                         ],
                         "resistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 30
+                            "value": 10
                           }
                         ]
                       }
@@ -5889,7 +5875,7 @@
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "flatAttackInterval": -100,
+                      "flatAttackInterval": -200,
                       "reflectDamage": 3
                     }
                   },
@@ -5900,7 +5886,7 @@
                         "weaponType": "WTM:HandToHand"
                       },
                       "modifiers": {
-                        "flatAttackInterval": -100
+                        "flatAttackInterval": -200
                       }
                     },
                     {
@@ -5952,6 +5938,7 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_HTH32",
                         "description": "Unlock the Channelled Palm Strike Special Attack",
                         "condition": {
                           "type": "WeaponType",
@@ -5962,7 +5949,8 @@
                         }
                       },
                       {
-                        "description": "+5% Hidden Defence Levels and Total Resistance when unfettered",
+                        "descriptionLang": "WTM_HTH3",
+                        "description": "+20% Hidden Defence Levels and Total Resistance when unfettered",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
@@ -5995,13 +5983,13 @@
                         "flatHiddenSkillLevelBasedOnLevels": [
                           {
                             "skillID": "melvorD:Defence",
-                            "value": 5
+                            "value": 20
                           }
                         ],
                         "resistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 5
+                            "value": 20
                           }
                         ]
                       }
@@ -6013,24 +6001,26 @@
                   "id": "HandToHand4",
                   "level": 4,
                   "shiny": false,
-                  "order": [
-                    "c",
-                    "m",
-                    "m"
-                  ],
                   "overwriteTypeIcons": [
-                    1,
                     1,
                     0
                   ],
                   "uiMods": {
-                    "modifiers": {
-                      "maxHit": 10,
-                      "flatAttackInterval": -100
-                    },
                     "conditionalModifiers": [
                       {
-                        "description": "+25% Chance to ignore Slow, Stun, and Sleep when unfettered",
+                        "descriptionLang": "WTM_HTH4",
+                        "description": "+35% Chance to ignore Slow, Stun, Freeze, and Sleep when unburdened",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HandToHand"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_HTH42",
+                        "description": "-0.20s Attack Interval when unburdened",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
@@ -6044,12 +6034,15 @@
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HandToHand"
+                        "type": "EmptySlot",
+                        "slotIDs": [
+                          "melvorD:Platebody",
+                          "melvorD:Shield"
+                        ]
                       },
                       "modifiers": {
-                        "maxHit": 5,
-                        "flatAttackInterval": -100
+                        "flatAttackInterval": -200,
+                        "WTM:superDirtyUnburdenCheck": 3
                       }
                     },
                     {
@@ -6072,35 +6065,19 @@
                       "effectIgnoreChance": [
                         {
                           "effectGroupID": "melvorD:Slow",
-                          "value": 25
+                          "value": 35
                         },
                         {
                           "effectGroupID": "melvorD:Stun",
-                          "value": 25
+                          "value": 35
                         },
                         {
                           "effectGroupID": "melvorD:Sleep",
-                          "value": 25
+                          "value": 35
                         }
                       ]
                     }
-                  ],
-                  "modifiers": {
-                    "effectIgnoreChance": [
-                      {
-                        "effectGroupID": "melvorD:Slow",
-                        "value": 2.5
-                      },
-                      {
-                        "effectGroupID": "melvorD:Stun",
-                        "value": 2.5
-                      },
-                      {
-                        "effectGroupID": "melvorD:Sleep",
-                        "value": 2.5
-                      }
-                    ]
-                  }
+                  ]
                 },
                 {
                   "name": "HandToHand5",
@@ -6109,7 +6086,7 @@
                   "shiny": true,
                   "order": [
                     "c",
-                    "m",
+                    "c",
                     "m"
                   ],
                   "overwriteTypeIcons": [
@@ -6117,21 +6094,35 @@
                     1,
                     1
                   ],
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_HTH5"
+                  },
+                  "specAttack": "WTM:EchoingPalmStrike",
                   "uiMods": {
                     "modifiers": {
-                      "stunDurationIncreaseChance": 50,
                       "decreaseEnemyEvasionOnStun": 50
                     },
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_HTH5",
+                        "description": "Unlock the Echoing Palm Wave Special Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:HandToHand"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_HTH52",
                         "description": "+50% HP Regen and -5s HP Regen Interval when unburdened",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
                         },
                         "modifiers": {
-                          "stunDurationIncreaseChance": 50,
-                          "decreaseEnemyEvasionOnStun": 50
+                          "WTM:fakeModifierAddTextDescToWepType": 1
                         }
                       }
                     ]
@@ -6143,8 +6134,7 @@
                         "weaponType": "WTM:HandToHand"
                       },
                       "modifiers": {
-                        "stunDurationIncreaseChance": 50,
-                        "decreaseEnemyEvasionOnStun": 50
+                        "decreaseEnemyEvasionOnStun": 1
                       }
                     },
                     {
@@ -6204,7 +6194,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "rangedAccuracyRating": 10
+                      "ammoPreservationChance": 10
                 }
               },
               "levels": [
@@ -6231,7 +6221,7 @@
                       },
                       "modifiers": {
                         "attackInterval": 10,
-                        "rangedAccuracyRating": 20
+                        "rangedAccuracyRating": 30
                       }
                     }
                   ]
@@ -6243,12 +6233,12 @@
                   "shiny": false,
                   "overwriteTypeIcons": [
                     1,
-                    1
+                    0
                   ],
                   "uiMods": {
                     "modifiers": {
                       "attackRolls": 1,
-                      "ammoPreservationChance": 20
+                      "minHitBasedOnMaxHit": 5
                     }
                   },
                   "conditionalModifiers": [
@@ -6258,19 +6248,18 @@
                         "weaponType": "WTM:Crossbows"
                       },
                       "modifiers": {
-                        "attackRolls": 1,
-                        "ammoPreservationChance": 20
+                        "attackRolls": 1
                       }
                     }
                   ],
                   "modifiers": {
-                    "ammoPreservationChance": 5
+                    "minHitBasedOnMaxHit": 5
                   }
                 },
                 {
                   "name": "Crossbows3",
                   "id": "Crossbows3",
-                  "specAttack": "WTM:QuickReload",
+                  "specAttack": "WTM:TakeAim",
                   "level": 3,
                   "shiny": true,
                   "order": [
@@ -6284,10 +6273,14 @@
                     1,
                     1
                   ],
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_LIGHT3"
+                  },
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Unlock the Quick Reload Special Attack",
+                        "descriptionLang": "WTM_LBOW3",
+                        "description": "Unlock the Take Aim Special Attack",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Crossbows"
@@ -6298,7 +6291,7 @@
                       }
                     ],
                     "modifiers": {
-                      "rangedAccuracyRating": 10
+                      "ammoPreservationChance": 20
                     }
                   },
                   "conditionalModifiers": [
@@ -6308,7 +6301,7 @@
                         "weaponType": "WTM:Crossbows"
                       },
                       "modifiers": {
-                        "rangedAccuracyRating": 10
+                        "ammoPreservationChance": 20
                       }
                     }
                   ]
@@ -6319,22 +6312,45 @@
                   "level": 4,
                   "shiny": false,
                   "overwriteTypeIcons": [
-                    1
+                    1,
+                    1,
+                    0
+                  ],
+                  "order": [
+                    "c",
+                    "m",
+                    "m"
                   ],
                   "uiMods": {
-                    "combatEffects": [
+                    "conditionalModifiers": [
                       {
-                        "customDescription": "Your first attack is an unavoidable Critical Hit",
-                        "appliesWhen": "StartOfFight",
-                        "applyEffectWhenMerged": true,
-                        "effectID": "WTM:StraightShooter",
+                        "descriptionLang": "WTM_LBOW4",
+                        "description": "Your first attack is an unavoidable critical hit",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Crossbows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
                         }
                       }
-                    ]
+                    ],
+                    "modifiers": {
+                      "rangedAccuracyRating": 5,
+                      "minHitBasedOnMaxHit": 10
+                    }
                   },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Crossbows"
+                      },
+                      "modifiers": {
+                        "minHitBasedOnMaxHit": 10
+                      }
+                    }
+                  ],
                   "combatEffects": [
                     {
                       "appliesWhen": "StartOfFight",
@@ -6347,7 +6363,7 @@
                     }
                   ],
                   "modifiers": {
-                    "rangedCritChance": 2
+                    "rangedAccuracyRating": 5
                   }
                 },
                 {
@@ -6358,23 +6374,20 @@
                   "overwriteTypeIcons": [
                     1,
                     1,
-                    1,
                     0
                   ],
                   "order": [
-                    "m",
                     "c",
                     "c",
                     "m"
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "rangedAttackInterval": -5,
                       "WTM:ammoPreservationCap": 5
                     },
                     "conditionalModifiers": [
                       {
-                        "description": "+15% Max Hit while fighting Melee Enemies",
+                        "description": "+15% Accuracy Rating while fighting Melee Enemies",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Crossbows"
@@ -6382,7 +6395,7 @@
                         "modifiers": {}
                       },
                       {
-                        "description": "+30% Ranged Accuracy Rating while Enemy HP is ≥90%",
+                        "description": "+30% Ranged Max Hit while Enemy HP is ≥90%",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Crossbows"
@@ -6392,15 +6405,6 @@
                     ]
                   },
                   "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Crossbows"
-                      },
-                      "modifiers": {
-                        "rangedAttackInterval": -5
-                      }
-                    },
                     {
                       "condition": {
                         "type": "Every",
@@ -6418,7 +6422,7 @@
                         ]
                       },
                       "modifiers": {
-                        "rangedAccuracyRating": 30
+                        "rangedMaxHit": 30
                       }
                     },
                     {
@@ -6437,7 +6441,7 @@
                         ]
                       },
                       "modifiers": {
-                        "rangedMaxHit": 15
+                        "rangedAccuracyRating": 15
                       }
                     }
                   ],
@@ -6818,6 +6822,7 @@
                     1,
                     1
                   ],
+                  "specAttack": "WTM:MultiShot",
                   "uiMods": {
                     "modifiers": {
                       "maxHitBasedOnTargetResistance": [

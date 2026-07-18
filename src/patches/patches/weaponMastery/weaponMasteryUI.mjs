@@ -73,16 +73,17 @@ export function addWeaponMasteryUI(ctx) {
 
             combatTab.init(game);
             // We want our menu to be drilled up when the player sees it
-            const originalChangeCombatMenu = changeCombatMenu;
+            /*  const originalChangeCombatMenu = changeCombatMenu;
 
             changeCombatMenu = function (id) {
                 if (selectedCombatMenu === 8) {
-                    if (combatTab.lookingAtType) {
+                  if (combatTab.lookingAtType) {
                         combatTab.drillUp();
                     }
                 }
                 originalChangeCombatMenu(id);
-            };
+            }; */
+            // I don't know if it's more QoL to have this or not. Normally you'd think so but... in reality it seems kind of annoying. Idk 
         }
         let weapon = this.equippedWeapon ?? this.equipment.getItemInSlot("melvorD:Weapon");
         if (weapon) { combatMenus.weaponMastery.setWeapon(weapon) }

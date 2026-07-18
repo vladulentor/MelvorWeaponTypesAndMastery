@@ -16,5 +16,12 @@ export function addFunkyAttackCounts(){
         },
     });
 
-    
+       const ds = game.specialAttacks.getObjectByID("WTM:EchoingPalmStrike");
+    Object.defineProperty(ds, 'attackCount', {
+        get() {
+            const extrahits = game.modifiers.getValue("WTM:superDirtyUnburdenCheck", ModifierQuery.EMPTY);
+            return 2 + extrahits;
+        },
+    });
+
 }
