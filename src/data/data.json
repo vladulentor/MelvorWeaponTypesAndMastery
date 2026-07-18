@@ -1440,6 +1440,30 @@
         ]
       },
       {
+        "id": "TheDrop",
+        "templateID": "melvorD:StaticSelfCountingModifier",
+        "name": "The Drop",
+        "media": "assets/combat/status/crit_increase.png",
+        "target": "Self",
+        "parameters": [
+          {
+            "name": "turns",
+            "initialValue": 1
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "stacks",
+            "modifiers": {
+              "maxHit": 30
+            }
+          }
+        ],
+        "effectGroups": [
+          "melvorD:Buff"
+        ]
+      },
+      {
         "id": "SlinkIntoShadows",
         "templateID": "melvorD:StaticSelfCountingModifier",
         "name": "Slink Into Shadows",
@@ -2218,7 +2242,7 @@
           },
           {
             "name": "maxStacks",
-            "initialValue": 25
+            "initialValue": 15
           }
         ],
         "statGroups": [
@@ -3085,6 +3109,20 @@
               {
                 "text": "Text",
                 "lang": "MODIFIER_DATA_spoofIncreaseSkillXP"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ammoPreservationCap",
+        "allowedScopes": [
+          {
+            "scopes": {},
+            "descriptions": [
+              {
+                "text": "Raises or lowers ammo Preservation Cap",
+                "lang": "MODIFIER_DATA_ammoPreservationCap"
               }
             ]
           }
@@ -4269,9 +4307,6 @@
                   "level": 4,
                   "overwriteTypeIcons": [
                     1,
-                    1,
-                    1,
-                    1,
                     1
                   ],
                   "uiMods": {
@@ -4637,24 +4672,25 @@
                   "level": 1,
                   "overwriteTypeIcons": [
                     1,
-                    2
+                    1,
+                    0
                   ],
                   "uiMods": {
                     "modifiers": {
                       "lifesteal": 10,
-                      "WTM:maxHitBasedOnMissingHitpoints": 0.1
+                      "WTM:maxHitBasedOnMissingHitpoints": 2,
+                      "flatMeleeMaxHit": 2
                     }
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "+10% Lifesteal and +1% Max Hit for every 10% of Enemy HP missing",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
                       },
                       "modifiers": {
                         "lifesteal": 10,
-                        "WTM:maxHitBasedOnMissingHitpoints": 0.1
+                        "WTM:maxHitBasedOnMissingHitpoints": 2
                       }
                     }
                   ],
@@ -4669,7 +4705,7 @@
                   "overwriteTypeIcons": [
                     1,
                     1,
-                    1
+                    0
                   ],
                   "order": [
                     "e",
@@ -4681,8 +4717,8 @@
                   },
                   "uiMods": {
                     "modifiers": {
-                      "bleedLifesteal": 20,
-                      "flatTotalBleedDamage": 5
+                      "flatTotalBleedDamage": 5,
+                      "lifesteal": 5
                     },
                     "combatEffects": [
                       {
@@ -4694,13 +4730,11 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "+20% Bleed Lifesteal and +50 total damage to Bleed-inflicted",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
                       },
                       "modifiers": {
-                        "bleedLifesteal": 20,
                         "flatTotalBleedDamage": 5
                       }
                     }
@@ -4716,7 +4750,10 @@
                       "effectID": "melvorD:Bleed100",
                       "chance": 5
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "lifesteal": 5
+                  }
                 },
                 {
                   "name": "Axes3",
@@ -4727,22 +4764,43 @@
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_AXES3"
                   },
+                  "overwriteTypeIcons": [
+                    1,
+                    1
+                  ],
+                  "order": [
+                    "c",
+                    "m"
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "bleedLifesteal": 20
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_AXES3",
+                        "description": "Unlock the Bloodlust Special Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Axes"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
+                  },
                   "conditionalModifiers": [
                     {
-                      "descriptionLang": "WTM_AXES3",
-                      "description": "Unlock the Bloodlust Special Attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Axes"
                       },
                       "modifiers": {
-                        "WTM:fakeModifierAddTextDescToWepType": 1
+                        "bleedLifesteal": 20
                       }
                     }
-                  ],
-                  "modifiers": {
-                    "lifesteal": 5
-                  }
+                  ]
                 },
                 {
                   "name": "Axes4",
@@ -4761,7 +4819,6 @@
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_AXES4",
-                        "description": "",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Axes"
@@ -4828,8 +4885,7 @@
                           }
                         ]
                       },
-                      "effectID": "WTM:Hemorrhage",
-                      "customDescription": ""
+                      "effectID": "WTM:Hemorrhage"
                     }
                   ]
                 },
@@ -5062,8 +5118,6 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "descriptionLang": "WTM_POLE3",
-                      "description": "Unlock the Whirling Manoeuvre Special Attack",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Polearms"
@@ -6296,16 +6350,19 @@
                   "overwriteTypeIcons": [
                     1,
                     1,
-                    1
+                    1,
+                    0
                   ],
                   "order": [
                     "m",
                     "c",
-                    "c"
+                    "c",
+                    "m"
                   ],
                   "uiMods": {
                     "modifiers": {
-                      "rangedAttackInterval": -5
+                      "rangedAttackInterval": -5,
+                      "WTM:ammoPreservationCap": 5
                     },
                     "conditionalModifiers": [
                       {
@@ -6375,7 +6432,10 @@
                         "rangedMaxHit": 15
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "WTM:ammoPreservationCap": 5
+                  }
                 }
               ]
             },
@@ -7040,19 +7100,21 @@
                   "name": "Thrown1",
                   "id": "Thrown1",
                   "level": 1,
-                  "shiny": false,
+                  "shiny": true,
                   "tooltip": {
                     "2": "MODIFIER_TOOLTIP_THROWN1"
                   },
+                  "overwriteTypeIcons":[1,1
+                ],
                   "order": [
-                    "e",
-                    "c"
+                    "c",
+                    "e"
                   ],
                   "uiMods": {
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_THROWN1",
-                        "description": "Can't use Special Attacks or Preserve Ammo",
+                        "description": "Cannot use Special Attacks",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:LightBows"
@@ -7063,20 +7125,19 @@
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 10,
+                        "chance": 25,
                         "effectID": "WTM:Alacrity"
                       }
                     ]
                   },
                   "combatEffects": [
                     {
-                      "description": "+10% chance on hit to gain 1 stack of Alacrity (-1% Attack Interval, max 25 stacks)",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Thrown"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 25,
                       "effectID": "WTM:Alacrity"
                     }
                   ],
@@ -7088,8 +7149,7 @@
                       },
                       "isNegative": true,
                       "modifiers": {
-                        "cantSpecialAttack": 1,
-                        "ammoPreservationChance": -999999
+                        "cantSpecialAttack": 1
                       }
                     }
                   ]
@@ -7098,39 +7158,18 @@
                   "name": "Thrown2",
                   "id": "Thrown2",
                   "level": 2,
-                  "shiny": false,
+                  "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_THROWN2"
+                  },
                   "overwriteTypeIcons": [
+                    1,
                     1
                   ],
                   "uiMods": {
-                    "modifiers": {
-                      "rangedAttackInterval": -10
-                    }
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:Thrown"
-                      },
-                      "modifiers": {
-                        "rangedAttackInterval": -10
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "Thrown3",
-                  "id": "Thrown3",
-                  "level": 3,
-                  "shiny": true,
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_THROWN3"
-                  },
-                  "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "descriptionLang": "WTM_THROWN3",
+                        "descriptionLang": "WTM_THROWN2",
                         "description": "Start each fight with a Volley",
                         "condition": {
                           "type": "WeaponType",
@@ -7154,6 +7193,43 @@
                   ]
                 },
                 {
+                  "name": "Thrown3",
+                  "id": "Thrown3",
+                  "level": 3,
+                  "shiny": false,
+                  "changeFunc": "modifySpecialAttack",
+                  "overwriteTypeIcons":[1,1],
+                  "uiMods": {
+                    "modifiers": {
+                      "attackInterval": -10
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_THROWN3",
+                        "description": "+15 Max stacks for Alacrity",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:Thrown"
+                      },
+                      "modifiers": {
+                        "attackInterval": -10
+                      }
+                    }
+                  ]
+                },
+                {
                   "name": "Thrown4",
                   "id": "Thrown4",
                   "level": 4,
@@ -7161,11 +7237,84 @@
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_THROWN4"
                   },
+                  "order": [
+                    "c",
+                    "m"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    0
+                  ],
                   "uiMods": {
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_THROWN4",
                         "description": "During Volley, the enemy is Confused",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {
+                          "rangedAttackInterval": -3
+                        }
+                      }
+                    ],
+                    "modifiers": {
+                      "rangedAttackInterval": -3
+                    }
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Player",
+                        "effectID": "WTM:Volley"
+                      },
+                      "enemyModifiers": {
+                        "currentHPDamageTakenOnAttack": 2
+                      }
+                    }
+                  ],
+                  "modifiers": {
+                    "rangedAttackInterval": -3
+                  }
+                },
+                {
+                  "name": "Thrown5",
+                  "id": "Thrown5",
+                  "level": 5,
+                  "shiny": true,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "tooltip": {
+                    "3": "MODIFIER_TOOLTIP_THROWN5"
+                  },
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_THROWN5",
+                        "description": "+25% Accuracy and Max Hit during Volley, during Volley.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {}
+                      },
+                      {
+                        "descriptionLang": "WTM_THROWN51",
+                        "description": "Enemy has -50% Accuracy during Volley.",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Thrown"
+                        },
+                        "modifiers": {}
+                      },
+                      {
+                        "descriptionLang": "WTM_THROWN52",
+                        "description": "Get The Drop at the start of the fight",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Thrown"
@@ -7190,60 +7339,21 @@
                           }
                         ]
                       },
-                      "enemyModifiers": {
-                        "currentHPDamageTakenOnAttack": 2
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "Thrown5",
-                  "id": "Thrown5",
-                  "level": 5,
-                  "shiny": true,
-                  "overwriteTypeIcons": [
-                    1,
-                    1
-                  ],
-                  "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "descriptionLang": "WTM_THROWN5",
-                        "description": "+25% Ranged Max Hit and Ranged Accuracy Rating, and Enemy has -50% Global Accuracy during Volley.",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Thrown"
-                        },
-                        "modifiers": {}
-                      }
-                    ],
-                    "enemyModifiers": {
-                      "accuracyRating": -50
-                    }
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Thrown"
-                          },
-                          {
-                            "type": "CombatEffect",
-                            "character": "Player",
-                            "effectID": "WTM:Volley"
-                          }
-                        ]
-                      },
                       "modifiers": {
                         "rangedAccuracyRating": 25,
                         "rangedMaxHit": 25
                       },
                       "enemyModifiers": {
-                        "attackRolls": -1
+                        "accuracyRating": -50
                       }
+                    }
+                  ],
+                  "combatEffects": [
+                    {
+                      "appliesWhen": "StartOfFight",
+                      "applyEffectWhenMerged": true,
+                      "chance": 100,
+                      "effectID": "WTM:TheDrop"
                     }
                   ]
                 }
@@ -7988,7 +8098,6 @@
                   },
                   "conditionalModifiers": [
                     {
-                      "description": "Increase rune cost reduction of magic weapons",
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:Wands"
@@ -8062,6 +8171,10 @@
                     1,
                     0
                   ],
+                  "order": [
+                    "m",
+                    "c"
+                  ],
                   "uiMods": {
                     "modifiers": {
                       "healingOnHitBasedOnTargetResistance": [
@@ -8074,7 +8187,7 @@
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_WANDS4",
-                        "description": "+1 All Defence Bonus per 1% of Damage Reduction",
+                        "description": "+1 All Defence Bonus per 4% of Damage Reduction",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Wands"
@@ -8105,19 +8218,19 @@
                     "flatRangedDefenceBonusBasedOnResistance": [
                       {
                         "damageTypeID": "melvorD:Normal",
-                        "value": 1
+                        "value": 0.25
                       }
                     ],
                     "flatMeleeDefenceBonusBasedOnResistance": [
                       {
                         "damageTypeID": "melvorD:Normal",
-                        "value": 1
+                        "value": 0.25
                       }
                     ],
                     "flatMagicDefenceBonusBasedOnResistance": [
                       {
                         "damageTypeID": "melvorD:Normal",
-                        "value": 1
+                        "value": 0.25
                       }
                     ]
                   }
@@ -8200,8 +8313,8 @@
               "wepModShiny": true,
               "wepModifiers": {
                 "modifiers": {
-                  "masteryXP": 0.25,
-                  "skillXP": 0.5
+                  "masteryXP": 0.1,
+                  "skillXP": 0.25
                 }
               },
               "levels": [
@@ -8219,8 +8332,8 @@
                   "id": "Special2",
                   "level": 2,
                   "modifiers": {
-                    "WTM:increaseWeaponXP": 10,
-                    "WTM:combatSkillXP": 10
+                    "WTM:increaseWeaponXP": 5,
+                    "WTM:combatSkillXP": 5
                   }
                 },
                 {
@@ -8230,7 +8343,7 @@
                   "shiny": true,
                   "modifiers": {
                     "xpFromMasteryTokens": 0.05,
-                    "masteryPoolCap": 25
+                    "masteryPoolCap": 15
                   }
                 },
                 {
@@ -8251,7 +8364,6 @@
                   "changeFunc": "makeWeaponsOffhand",
                   "order": [
                     "c",
-                    "m",
                     "m"
                   ],
                   "uiMods": {
@@ -8270,11 +8382,11 @@
                       }
                     ],
                     "modifiers": {
-                      "masteryPoolProgress": 15
+                      "WTM:increaseWeaponXP": 10
                     }
                   },
                   "modifiers": {
-                    "masteryPoolProgress": 15
+                    "WTM:increaseWeaponXP": 10
                   }
                 }
               ]

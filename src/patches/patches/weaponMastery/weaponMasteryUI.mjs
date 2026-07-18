@@ -32,7 +32,7 @@ export function addWeaponMasteryUI(ctx) {
         };
     });
     ctx.patch(Player, "renderEquipment").after(function (_) {// This is where we make all the menus and stuff. I hope it can hold HP... well
-        if (!game.weaponMasteries.allObjects?.length || game.weaponMasteries.allObjects[0].levelCap == 0) return;
+        if (!game.weaponMasteries.allObjects?.length || game.weaponMasteries.allObjects.every(mast => mast.levelCap == 0 )) return;
         if (!combatMenus.weaponMastery) {
             // Top stuff
 

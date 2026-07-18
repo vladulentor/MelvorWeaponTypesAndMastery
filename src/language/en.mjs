@@ -42,11 +42,11 @@ export const language = {
     'WTM_CURVED3': "Unlock the Mounted Strike Special Attack",
     'WTM_CURVED5': "Unlock Advantage",
 
-    'WTM_HTH0':"+10% Reflect Damage against ranged attacks",
+    'WTM_HTH0': "+10% Reflect Damage against ranged attacks",
     'WTM_HTH1': "Can use certain gloves as weapons",
     'WTM_HTH12': "+10% Reflect Damage against Ranged Attacks when unfettered",
 
-     'WTM_HTH2': "+5% Reflect Damage against Ranged Attacks",
+    'WTM_HTH2': "+5% Reflect Damage against Ranged Attacks",
     'WTM_HTH3': "",
     'WTM_HTH4': "",
     'WTM_HTH5': "",
@@ -79,10 +79,18 @@ export const language = {
     'WTM_LBOW4': "",
     'WTM_LBOW5': "",
 
-    'WTM_THROWN1': "Can't use Special Attacks or Preserve Ammo",
-    'WTM_THROWN3': "Start each fight with a Volley",
+    'WTM_THROWN1': "Cannot use Special Attacks",
+    'WTM_THROWN2': "Start each fight with a Volley",
+    'WTM_THROWN3': "+15 Max stacks for Alacrity",
+
+    
     'WTM_THROWN4': "During Volley, the enemy is Confused",
-    'WTM_THROWN5': "+25% Ranged Max Hit and Ranged Accuracy Rating, and enemy has -50% Global Accuracy during Volley.",
+    'WTM_THROWN5': "+25% Max Hit and Accuracy Rating during Volley",
+
+    'WTM_THROWN51': "Enemy has -50% Accuracy during Volley",
+
+    'WTM_THROWN52': "Get The Drop at the start of the fight",
+
 
     'WTM_STAVES1': "",
     'WTM_STAVES2': "",
@@ -91,7 +99,7 @@ export const language = {
     'WTM_STAVES5': "",
 
     'WTM_WANDS3': "Increase rune cost reduction of magic weapons",
-    'WTM_WANDS4': "+1 All Defence Bonus per 1% of Damage Reduction",
+    'WTM_WANDS4': "+1 All Defence Bonus per 4% of Damage Reduction",
 
     'WTM_EMTPY_EQUIP_NAME': 'Unarmed',
     'MODIFIER_DATA_increaseWeaponXPMelee': "${value}% Melee Weapon Mastery XP",
@@ -112,7 +120,10 @@ export const language = {
     'MODIFIER_DATA_RandomRuneReduction': 'Decrease Minimum Random Rune Cost to 33%',
     'MODIFIER_DATA_RandomDamIncrease': 'Increase Maximum Random Spell Damage to 333%',
     'MODIFIER_DATA_runePreservationCap': "${value}% Rune preservation Cap",
-    'MODIFIER_DATA_maxHitBasedOnMissingHitpoints': '${value}% Max Hit for each 1% of Hitpoints missing',
+    'MODIFIER_DATA_ammoPreservationCap': "${value}% Ammo preservation Cap",
+
+
+    'MODIFIER_DATA_maxHitBasedOnMissingHitpoints': '${value}% Max Hit for each 10% of Hitpoints missing',
     'MODIFIER_DATA_fearDurationIncreaseChance': '${value}% chance to increase the length of fear effects inflicted by 1 turn',
     'MODIFIER_DATA_blessingChance': '${value}% chance to recieve three Triple-charged Buffs at the start of your turn',
     'MODIFIER_DATA_effectIgnoreChanceGlobal': '${value}% chance to ignore Negative Effects',
@@ -189,9 +200,10 @@ export const language = {
 
     'MODIFIER_TOOLTIP_LIGHT22': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>Take 25% DoT Damage for 3 turns/div>',
 
-    'MODIFIER_TOOLTIP_THROWN1': '<div class="text-center"><span class="text-success font-weight-bold">Alacrity</span><br>-1% Attack Interval per stack, up to 25</div>',
-    'MODIFIER_TOOLTIP_THROWN3': '<div class="text-center"><span class="text-success font-weight-bold">Volley</span><br>-50% to Attack Interval and Max Hit, and Accuracy. Lasts for 3 turns</div>',
-    'MODIFIER_TOOLTIP_THROWN4': '<div class="text-center"><span class="text-success font-weight-bold">Confused</span><br>2% of remaining HP dealt on a successful attack (once per turn, up to 10,000 damage)</div>',
+    'MODIFIER_TOOLTIP_THROWN1': '<div class="text-center"><span class="text-success font-weight-bold">Alacrity</span><br>-1% Attack Interval per stack, up to 15</div>',
+    'MODIFIER_TOOLTIP_THROWN2': '<div class="text-center"><span class="text-success font-weight-bold">Volley</span><br>-50% to Attack Interval and Max Hit, and Accuracy. Lasts for 3 turns</div>',
+    'MODIFIER_TOOLTIP_THROWN4': '<div class="text-center"><span class="text-success font-weight-bold">Confused</span><br>Take 2% of remaining HP dealt on a successful attack (once per turn, up to 10,000 damage)</div>',
+    'MODIFIER_TOOLTIP_THROWN5': '<div class="text-center"><span class="text-success font-weight-bold">The Drop</span><br>+30% Max Hit for the first turn of battle</div>',
 
     'MODIFIER_TOOLTIP_STAVES1': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Evade, Daze, Can\'t Special Attack or Evade, enemy, 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Summon Attack, Heal, 150% of Max HP over 20s <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>On Being Hit, +50% of Current DR added as DR, for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>On Hit, Burn, enemy</div>',
     'MODIFIER_TOOLTIP_STAVES2': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>-15% Attack Interval which decays on hit and lasts 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>Heal for 5% of your Current HP every 2 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>Enemy takes +15% Damage from Burn</div>',
@@ -298,6 +310,7 @@ export const language = {
     'COMBAT_EFFECT_NAME_ Immobilize': "Immobilize",
     'COMBAT_EFFECT_NAME_ Shrouded': "Shrouded",
     'COMBAT_EFFECT_NAME_ Blindsiding': "Blindsiding",
+    'COMBAT_EFFECT_NAME_ TheDrop': "The Drop",
 
 
 
@@ -416,6 +429,6 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Staves": "Elementally-attuned kaleidoscopic tools of the arcane",
     "WTM_WEAPON_FLAVORTEXT_Wands": "Defensive, general magical implements for the wary wizard",
     "WTM_WEAPON_FLAVORTEXT_Artefacts": "Instruments representing Magic at its ficklest, to be used with great care and greater caution",
-    "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, it's debatable whether these are even weapons... But nothing is stopping you",
+    "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, it's debatable whether these are even weapons",
     "WTM_MAX": "MAX"
 }    
