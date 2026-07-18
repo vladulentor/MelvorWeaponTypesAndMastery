@@ -6523,8 +6523,8 @@
                         },
                         "modifiers": {
                           "critMultiplier": 25,
-                          "WTM:critChance1000Acc": 0.005,
-                          "WTM:critMult1000Acc": 0.25
+                          "WTM:critChance10000Acc": 0.005,
+                          "WTM:critMult10000Acc": 0.25
                         }
                       }
                     ]
@@ -6537,8 +6537,8 @@
                       },
                       "modifiers": {
                         "critMultiplier": 25,
-                        "WTM:critChance1000Acc": 0.005,
-                        "WTM:critMult1000Acc": 0.25
+                        "WTM:critChance10000Acc": 0.005,
+                        "WTM:critMult10000Acc": 0.25
                       }
                     },
                     {
@@ -6618,8 +6618,8 @@
                           "weaponType": "WTM:HeavyBows"
                         },
                         "modifiers": {
-                          "WTM:critChance1000Acc": 0.005,
-                          "WTM:critMult1000Acc": 0.25
+                          "WTM:critChance10000Acc": 0.005,
+                          "WTM:critMult10000Acc": 0.25
                         }
                       }
                     ]
@@ -6631,8 +6631,8 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "WTM:critChance1000Acc": 0.005,
-                        "WTM:critMult1000Acc": 0.25
+                        "WTM:critChance10000Acc": 0.005,
+                        "WTM:critMult10000Acc": 0.25
                       }
                     }
                   ]
@@ -6746,8 +6746,8 @@
                         },
                         "modifiers": {
                           "WTM:critDRPierce": 10,
-                          "WTM:critChance1000Acc": 0.005,
-                          "WTM:critMult1000Acc": 0.25
+                          "WTM:critChance10000Acc": 0.005,
+                          "WTM:critMult10000Acc": 0.25
                         }
                       },
                       {
@@ -6774,8 +6774,8 @@
                         },
                         "modifiers": {
                           "WTM:critDRPierce": 10,
-                          "WTM:critChance1000Acc": 0.005,
-                          "WTM:critMult1000Acc": 0.25
+                          "WTM:critChance10000Acc": 0.005,
+                          "WTM:critMult10000Acc": 0.25
                         }
                       }
                     ]
@@ -6798,8 +6798,8 @@
                       },
                       "modifiers": {
                         "WTM:critDRPierce": 10,
-                        "WTM:critChance1000Acc": 0.005,
-                        "WTM:critMult1000Acc": 0.25
+                        "WTM:critChance10000Acc": 0.005,
+                        "WTM:critMult10000Acc": 0.25
                       }
                     },
                     {
@@ -6826,8 +6826,8 @@
                       },
                       "modifiers": {
                         "WTM:critDRPierce": 10,
-                        "WTM:critChance1000Acc": 0.005,
-                        "WTM:critMult1000Acc": 0.25
+                        "WTM:critChance10000Acc": 0.005,
+                        "WTM:critMult10000Acc": 0.25
                       }
                     }
                   ]
