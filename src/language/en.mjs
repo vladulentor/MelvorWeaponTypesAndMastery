@@ -141,8 +141,8 @@ export const language = {
     'MODIFIER_DATA_maxHit25Stealth': "${value}% Maximum Hit per 25 Stealth",
     'MODIFIER_DATA_critMult25Stealth': "${value}% critical hit multiplier per 25 Stealth",
     'MODIFIER_DATA_critDRPierce': "${value}% of enemy Damage Reduction bypassed on critical hit",
-    'MODIFIER_DATA_critChance1000Acc': "${value}% critical hit chance per 1000 Accuracy",
-    'MODIFIER_DATA_critMult1000Acc': "${value}% critical hit multiplier per 1000 Accuracy",
+    'MODIFIER_DATA_critChance1000Acc': "${value}% critical hit chance per 10000 Accuracy",
+    'MODIFIER_DATA_critMult1000Acc': "${value}% critical hit multiplier per 10000 Accuracy",
 
 
 

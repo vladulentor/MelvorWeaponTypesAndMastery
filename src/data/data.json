@@ -3216,7 +3216,7 @@
         ]
       },
       {
-        "id": "critChance1000Acc",
+        "id": "critChance10000Acc",
         "allowedScopes": [
           {
             "scopes": {},
@@ -3230,7 +3230,7 @@
         ]
       },
       {
-        "id": "critMult1000Acc",
+        "id": "critMult10000Acc",
         "allowedScopes": [
           {
             "scopes": {},

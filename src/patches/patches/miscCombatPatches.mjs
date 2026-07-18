@@ -36,7 +36,7 @@ export function miscCombatPatches({ patch }) {
         return clampValue(chance, 0, maxPreserve);
     })
     patch(PlayerModifierTable, 'getCritChance').after(function (ret, type) {
-        return ret + Math.floor(game.combat.player.stats._accuracy / 1000) * this.getValue("WTM:critChance1000Acc", ModifierQuery.EMPTY) + Math.floor(this.thievingStealth / 25) * this.getValue("WTM:critChance25Stealth", ModifierQuery.EMPTY);
+        return ret + Math.floor(game.combat.player.stats._accuracy / 10000) * this.getValue("WTM:critChance10000Acc", ModifierQuery.EMPTY) + Math.floor(this.thievingStealth / 25) * this.getValue("WTM:critChance25Stealth", ModifierQuery.EMPTY);
     });
 
     patch(Character, "modifyAttackDamage").replace(function (_, target, attack, damage, applyReduction = true) {
