@@ -129,7 +129,7 @@ export const language = {
     'MODIFIER_DATA_blessingChance': '${value}% chance to recieve three Triple-charged Buffs at the start of your turn',
     'MODIFIER_DATA_effectIgnoreChanceGlobal': '${value}% chance to ignore Negative Effects',
     'MODIFIER_DATA_ExtraPotencyEffects': 'Triple-triple-charge Pandora\'s Spark Effects',
-    'MODIFIER_DATA_multiShotExtraShot': 'Multishot has ${value} additional strikes',
+    'MODIFIER_DATA_multiShotExtraShot': 'Hail of Arrows fires ${value} additional strikes',
     'MODIFIER_DATA_critChance25Stealth': "${value}% critical hit chance per 25 Stealth",
     'MODIFIER_DATA_doubleLootChance25Stealth': "${value}% Chance To Double Loot in Combat per 25 Stealth",
     'MODIFIER_DATA_flatAttackInterval100Stealth': "${value} Flat Attack Interval per 100 Stealth",
@@ -200,6 +200,7 @@ export const language = {
     'MODIFIER_TOOLTIP_LIGHT21': '<div class="text-center"><span class="text-info font-weight-bold">Random Effects</span><br><Poison, Burn, Bleed, Slow, or Immobilize/div>',
 
     'MODIFIER_TOOLTIP_LIGHT22': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>Take 25% DoT Damage for 3 turns/div>',
+
 
     'MODIFIER_TOOLTIP_THROWN1': '<div class="text-center"><span class="text-success font-weight-bold">Alacrity</span><br>-1% Attack Interval per stack, up to 15</div>',
     'MODIFIER_TOOLTIP_THROWN2': '<div class="text-center"><span class="text-success font-weight-bold">Volley</span><br>-50% to Attack Interval and Max Hit, and Accuracy. Lasts for 3 turns</div>',
@@ -322,6 +323,7 @@ export const language = {
     'COMBAT_EFFECTGROUP_NAME_ Intimidation': "Intimidation",
     'COMBAT_EFFECTGROUP_NAME_ Terrify': "Terrify",
     'COMBAT_EFFECTGROUP_NAME_ Daze': "Daze",
+    'COMBAT_EFFECTGROUP_NAME_ LBowDebuffs': "Light Bow Debuffed",
 
 
     'SPECIAL_ATTACK_NAME_ ChannelledPalmStrike': "Channeled Palm Strike",
@@ -349,6 +351,7 @@ export const language = {
     'SPECIAL_ATTACK_NAME_ DeathApproaches': "Death Approaches",
     'SPECIAL_ATTACK_NAME_ Blindside': "Blindside",
     'SPECIAL_ATTACK_NAME_ EchoingPalmStrike': "Flowing Palm Wave",
+    'SPECIAL_ATTACK_NAME_ MultiShot': "Hail of Arrows",
 
 
 
@@ -361,6 +364,7 @@ export const language = {
     'MODIFIER_TOOLTIP_THRUSTING3': '<div class="text-center"><span class="text-warning font-weight-bold">Practiced Lunge (15%)</span><br>Perform an unavoidable lunge that ignores enemy Resistance. Deals 50% Normal Damage</div>',
     'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-warning font-weight-bold">Blindside (15%)</span><br>Exploit the enemy\'s blind spots.<br>Deal 1 + (Stealth/50) strikes, dealing 75% of your Normal damage. <br> Strikes have +30% critical hit multiplier.</div>',
     'MODIFIER_TOOLTIP_HTH5': '<div class="text-center"><span class="text-warning font-weight-bold">Flowing Palm Wave (10%)</span><br>Unleash a flurry of blows with your inner energy. Strikes 2 times, or 5 times if unburdened. <br> Deals 50% of your normal damage and has a 10% chance to Stun the Enemy for 2 turns on hit.</div>',
+    'MODIFIER_TOOLTIP_LIGHT1': '<div class="text-center"><span class="text-warning font-weight-bold">Hail of Arrows (25%)</span><br>Let loose a hail of 5 arrows aimed around the Enemy, each dealing 10% of your normal damage on hit.</div>',
 
 
     'SPECIAL_ATTACK_DESC_ DeathApproaches': "Strike your enemy's weak spot, dealing ${attackDamageMaxValue0}% of their max HP.",
@@ -387,6 +391,7 @@ export const language = {
     'SPECIAL_ATTACK_DESC_ WhirlingManoeuvre': "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each.<br> While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect enemy attacks for ${preHitEffect0modValue0}% of their damage.",
     'SPECIAL_ATTACK_DESC_ Blindside': "Exploit the enemy's blind spots, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage. <br> Strikes have +${preHitEffect0modValue0}% critical hit multiplier.",
     'SPECIAL_ATTACK_DESC_ EchoingPalmStrike': "Unleash a flurry of blows with your inner energy. Strikes ${hitCount} times, or 5 times if unburdened. <br> Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the Enemy for ${onHitEffect0turns} turns on hit.",
+    'SPECIAL_ATTACK_DESC_ MultiShot': "Let loose a hail of ${hitCount} arrows aimed around the Enemy, each dealing ${attackDamageMaxValue0}% of your normal damage on hit.",
 
     'MENU_SETTINGS_TOOLTIP': 'Whether this Namespace\'s weapons should have Types or gain and contribute XP',
 

@@ -91,7 +91,7 @@ export function miscCombatPatches({ patch }) {
     patch(Character, "removeCombatEffect").before(function (effect) {
         const activeEffect = this.activeEffects.get(effect);
 
-        if (activeEffect.WTMmutated) {
+        if (activeEffect?.WTMmutated) { //Edwin crashed here so more defensive coding 
             changeEffectPotency(activeEffect, false)
             activeEffect.WTMmutated = undefined;
         }

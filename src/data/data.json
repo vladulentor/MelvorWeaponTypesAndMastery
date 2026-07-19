@@ -5,11 +5,11 @@
     "attacks": [
       {
         "id": "MultiShot",
-        "defaultChance": 20,
+        "defaultChance": 25,
         "damage": [
           {
             "damageType": "Normal",
-            "amplitude": 15
+            "amplitude": 10
           }
         ],
         "prehitEffects": [],
@@ -18,8 +18,8 @@
         "attackCount": 5,
         "attackInterval": 200,
         "lifesteal": 0,
-        "name": "Multi-Shot",
-        "description": "Loose a barrage of ${hitCount} arrows at the Enemy, each dealing ${attackDamageMaxValue0}% of your normal damage on hit.",
+        "name": "Hail of Arrows",
+        "description": "Let loose a hail of ${hitCount} arrows aimed around the Enemy, each dealing ${attackDamageMaxValue0}% of your normal damage on hit.",
         "descriptionGenerator": "Attack <hitCount> times and deal <damage>.",
         "usesRunesPerProc": false
       },
@@ -882,6 +882,11 @@
         "id": "Daze",
         "name": "Daze",
         "adjective": "Dazed"
+      },
+      {
+        "id": "LBowDebuffs",
+        "name": "LBowDebuffs",
+        "adjective": "Light Bow Debuffed"
       }
     ],
     "combatEffects": [
@@ -2560,28 +2565,128 @@
         ]
       },
       {
-        "id": "Immobilize",
-        "name": "Immobilized",
+        "id": "TranqArrow",
+        "name": "Tranquilizer Arrow",
         "media": "assets/combat/status/null.svg",
-        "templateID": "melvorD:StaticSelfCountingModifier",
+        "templateID": "melvorD:Slow",
         "target": "Target",
         "parameters": [
           {
             "name": "turns",
-            "initialValue": 1
-          }
-        ],
-        "statGroups": [
+            "initialValue": 2
+          },
           {
-            "name": "stacks",
-            "modifiers": {
-              "cantAttack": 1
-            }
+            "name": "magnitude",
+            "initialValue": 20
           }
         ],
         "effectGroups": [
-          "melvorD:Debuff",
-          "melvorD:Slow"
+          "WTM:LBowDebuffs"
+        ]
+      },
+      {
+        "id": "FlameArrow",
+        "name": "Flame Arrow",
+        "media": "assets/combat/status/null.svg",
+        "templateID": "melvorD:BurnDOT",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 10
+          },
+          {
+            "name": "interval",
+            "initialValue": 500
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Target",
+                "roll": false,
+                "maxRoll": "CurrentHP",
+                "maxPercent": 6
+              }
+            ],
+            "applyDamageModifiers": true,
+            "applyTypeModifiers": "Burn",
+            "applyResistance": true,
+            "damageCap": 150
+          }
+        ],
+        "effectGroups": [
+          "WTM:LBowDebuffs"
+        ]
+      },
+      {
+        "id": "PoisonArrow",
+        "name": "Poison Arrow",
+        "media": "assets/combat/status/null.svg",
+        "templateID": "melvorD:PoisonDOT",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 4
+          },
+          {
+            "name": "interval",
+            "initialValue": 1250
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Target",
+                "roll": false,
+                "maxRoll": "MaxHP",
+                "maxPercent": 4
+              }
+            ],
+            "applyDamageModifiers": true,
+            "applyTypeModifiers": "Poison",
+            "applyResistance": true,
+            "damageCap": 1000
+          }
+        ],
+        "effectGroups": [
+          "WTM:LBowDebuffs"
+        ]
+      },
+      {
+        "id": "BarbedArrow",
+        "name": "Barbed Arrow",
+        "media": "assets/combat/status/null.svg",
+        "templateID": "melvorD:BleedDOT",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 20
+          },
+          {
+            "name": "interval",
+            "initialValue": 250
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Attacker",
+                "maxRoll": "DamageDealt",
+                "maxPercent": 150,
+                "roll": false
+              }
+            ],
+            "applyDamageModifiers": true,
+            "applyTypeModifiers": "Bleed",
+            "applyResistance": true
+          }
         ]
       }
     ],
@@ -2611,34 +2716,24 @@
         "id": "RandomCondition",
         "table": [
           {
-            "effectID": "melvorD:Poison",
+            "effectID": "WTM:FlameArrow",
             "weight": 1
           },
           {
-            "effectID": "melvorD:Bleed100",
+            "effectID": "WTM:PoisonArrow",
             "weight": 1
           },
           {
-            "effectID": "melvorD:Burn",
+            "effectID": "WTM:TranqArrow",
             "weight": 1
           },
           {
-            "effectID": "WTM:Immobilize",
-            "weight": 1,
+            "effectID": "WTM:PoisonArrow",
+            "weight": 1
+          },
+          {
+            "effectID": "WTM:TranqArrow",
             "initialParams": [
-              {
-                "name": "turns",
-                "value": 2
-              }
-            ]
-          },
-          {
-            "effectID": "melvorD:Slow",
-            "initialParams": [
-              {
-                "name": "turns",
-                "value": 2
-              },
               {
                 "name": "magnitude",
                 "value": 20
@@ -6840,21 +6935,21 @@
                   "id": "LightBows1",
                   "level": 1,
                   "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_LIGHT1"
+                  },
                   "overwriteTypeIcons": [
                     1,
                     1
                   ],
+                  "order": [
+                    "c",
+                    "m"
+                  ],
                   "specAttack": "WTM:MultiShot",
                   "uiMods": {
                     "modifiers": {
-                      "maxHitBasedOnTargetResistance": [
-                        {
-                          "damageTypeID": "melvorD:Normal",
-                          "value": -1
-                        }
-                      ],
-                      "evasion": 10,
-                      "flatMinHit": 5
+                      "evasion": 10
                     },
                     "conditionalModifiers": [
                       {
@@ -6876,23 +6971,7 @@
                         "weaponType": "WTM:LightBows"
                       },
                       "modifiers": {
-                        "maxHitBasedOnTargetResistance": [
-                          {
-                            "damageTypeID": "melvorD:Normal",
-                            "value": -1
-                          }
-                        ],
-                        "flatMinHit": 5,
                         "evasion": 10
-                      }
-                    },
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:LightBows"
-                      },
-                      "modifiers": {
-                        "WTM:fakeModifierAddTextDescToWepType": 1
                       }
                     }
                   ]
@@ -6905,7 +6984,7 @@
                     "1": "MODIFIER_TOOLTIP_LIGHT21",
                     "2": "MODIFIER_TOOLTIP_LIGHT22"
                   },
-                  "shiny": false,
+                  "shiny": true,
                   "uiMods": {
                     "conditionalModifiers": [
                       {
@@ -6927,13 +7006,31 @@
                     ],
                     "combatEffects": [
                       {
-                        "description": ". .",
                         "appliesWhen": "HitWithAttack",
-                        "chance": 1,
+                        "chance": 5,
                         "tableID": "WTM:RandomCondition",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:LightBows"
+                        }
+                      },
+                      {
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 1,
+                        "tableID": "WTM:RandomCondition",
+                        "condition": {
+                          "type": "Every",
+                          "conditions": [
+                            {
+                              "type": "WeaponType",
+                              "weaponType": "WTM:LightBows"
+                            },
+                            {
+                              "type": "CombatEffectGroup",
+                              "target": "Target",
+                              "groupID": "melvorD:Slow"
+                            }
+                          ]
                         }
                       }
                     ]
@@ -7045,7 +7142,7 @@
                         "weaponType": "WTM:LightBows"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 1,
+                      "chance": 10,
                       "tableID": "WTM:RandomCondition"
                     }
                   ]
