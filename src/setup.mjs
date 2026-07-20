@@ -41,8 +41,8 @@ export async function setup(ctx) {
     })
     ctx.onInterfaceReady(async (ctx) => {
         const popupS = ctx.characterStorage.getItem('popupSeen');
-        if (!popupS && 0) // REMOVE THIS WHEN PUBLISHING DO NOT FORGET
-            firstTimePopup(ctx);
+        if (!popupS && game.tutorial.complete) // REMOVE THIS WHEN PUBLISHING DO NOT FORGET
+            firstTimePopup(ctx);                     // I rembered
         ctx.characterStorage.setItem('popupSeen', true);
     })
 }
