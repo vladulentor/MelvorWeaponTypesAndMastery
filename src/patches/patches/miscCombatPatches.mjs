@@ -28,6 +28,11 @@ Player.prototype.unavoidableSummonAttack = function () {
 
 const buffList = game.combatEffects.allObjects.filter(buff => buff.effectGroups.some(group => group == game.combatEffectGroups.getObjectByID("melvorD:Buff")));
 export function miscCombatPatches({ patch }) {
+    patch(Player, 'getSlotAttacks').replace(function (_, slot) { // HYPER grimy patch just to get this fucking mod out the door
+        if (slot.item.SpecWeaponStats && slot.slot._localID == "Gloves")
+            return []
+        return slot.item.specialAttacks;
+    })
 
     patch(PlayerModifierTable, 'getAmmoPreservationChance').replace(function () {
         let chance = this.bypassAmmoPreservationChance;
@@ -36,7 +41,14 @@ export function miscCombatPatches({ patch }) {
         return clampValue(chance, 0, maxPreserve);
     })
     patch(PlayerModifierTable, 'getCritChance').after(function (ret, type) {
-        return ret + Math.floor(game.combat.player.stats._accuracy / 10000) * this.getValue("WTM:critChance10000Acc", ModifierQuery.EMPTY) + Math.floor(this.thievingStealth / 25) * this.getValue("WTM:critChance25Stealth", ModifierQuery.EMPTY);
+        let r2 = ret;
+        let mod1 = this.getValue("WTM:critChance10000Acc", ModifierQuery.EMPTY);
+        let mod2 = this.getValue("WTM:critChance25Stealth", ModifierQuery.EMPTY);
+        if (mod1)
+            r2 += mod1 * Math.floor(game.combat.player.stats._accuracy / 10000);
+        if (mod2)
+            r2 += mod2 * Math.floor(this.thievingStealth / 25)
+        return r2
     });
 
     patch(Character, "modifyAttackDamage").replace(function (_, target, attack, damage, applyReduction = true) {

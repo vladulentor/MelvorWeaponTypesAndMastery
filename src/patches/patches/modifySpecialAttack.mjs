@@ -17,8 +17,8 @@ export function modifySpecialAttack() {
         );
         game.combatEffects.getObjectByID("WTM:Shrouded").statGroups.theStuff.modifiers.push(dodge);
     }
-    if(this._localID == "Thrown3"){
-                game.combatEffects.getObjectByID("WTM:Alacrity").parameters.maxStacks += 15;
+    if (this._localID == "Thrown3") {
+        game.combatEffects.getObjectByID("WTM:Alacrity").parameters.maxStacks += 15;
 
     }
 }

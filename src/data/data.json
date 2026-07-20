@@ -703,12 +703,12 @@
         "damage": [
           {
             "damageType": "Normal",
-            "amplitude": 90,
+            "amplitude": 75,
             "attackCount": 0
           },
           {
             "damageType": "Normal",
-            "amplitude": 90,
+            "amplitude": 75,
             "attackCount": 1
           }
         ],
@@ -1921,11 +1921,11 @@
           {
             "name": "stacks",
             "modifiers": {
-              "evasion": -10,
+              "evasion": -5,
               "resistance": [
                 {
                   "damageTypeID": "melvorD:Normal",
-                  "value": -10
+                  "value": -5
                 }
               ]
             }
@@ -3930,7 +3930,7 @@
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 5,
+                        "chance": 2.5,
                         "effectID": "WTM:Intimidation"
                       }
                     ]
@@ -3942,7 +3942,7 @@
                         "weaponType": "WTM:Greatswords"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 5,
+                      "chance": 2.5,
                       "effectID": "WTM:Intimidation"
                     }
                   ]
@@ -4015,7 +4015,7 @@
                       },
                       {
                         "descriptionLang": "WTM_GREAT32",
-                        "description": "+10% chance to apply Intimidation when hitting a Shaken enemy",
+                        "description": "+5% chance to apply Intimidation when hitting a Shaken enemy",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Greatswords"
@@ -4043,7 +4043,7 @@
                         ]
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 5,
                       "effectID": "WTM:Intimidation"
                     }
                   ]
@@ -4068,7 +4068,7 @@
                     "combatEffects": [
                       {
                         "appliesWhen": "HitWithAttack",
-                        "chance": 5,
+                        "chance": 2.5,
                         "effectID": "WTM:Terrify"
                       }
                     ],
@@ -4076,7 +4076,7 @@
                       "effectIgnoreChance": [
                         {
                           "effectGroupID": "melvorD:Fear",
-                          "value": 10
+                          "value": 15
                         }
                       ]
                     }
@@ -4088,7 +4088,7 @@
                         "weaponType": "WTM:Greatswords"
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 5,
+                      "chance": 2.5,
                       "effectID": "WTM:Terrify"
                     }
                   ],
@@ -4096,7 +4096,7 @@
                     "effectIgnoreChance": [
                       {
                         "effectGroupID": "melvorD:Fear",
-                        "value": 10
+                        "value": 15
                       }
                     ]
                   }
@@ -4124,17 +4124,6 @@
                       {
                         "descriptionLang": "WTM_GREAT5",
                         "description": "At the Start of the Fight, apply Intimidated, Shaken, and Terrify to the enemy for 3 turns",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Greatswords"
-                        },
-                        "modifiers": {
-                          "WTM:fakeModifierAddTextDescToWepType": 1
-                        }
-                      },
-                      {
-                        "descriptionLang": "WTM_GREAT52",
-                        "description": "+0.5% Accuracy and Max Hit per 8 Strength Skill Levels for each Fear effect on the enemy",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Greatswords"
@@ -4183,63 +4172,6 @@
                       },
                       "modifiers": {
                         "WTM:fearDurationIncreaseChance": 10
-                      }
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Greatswords"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Intimidation",
-                            "type": "CombatEffect"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "meleeAccuracyMaxHitPer8Strength": 0.5
-                      }
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Greatswords"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Shaken",
-                            "type": "CombatEffect"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "meleeAccuracyMaxHitPer8Strength": 0.5
-                      }
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Greatswords"
-                          },
-                          {
-                            "character": "Enemy",
-                            "effectID": "WTM:Terrify",
-                            "type": "CombatEffect"
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "meleeAccuracyMaxHitPer8Strength": 0.5
                       }
                     }
                   ]
@@ -5874,7 +5806,7 @@
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_HTH12",
-                        "description": "+10% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
+                        "description": "+15% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
                         "condition": {
                           "type": "EmptySlot",
                           "slotIDs": [
@@ -5923,13 +5855,13 @@
                         "flatHiddenSkillLevelBasedOnLevels": [
                           {
                             "skillID": "melvorD:Defence",
-                            "value": 10
+                            "value": 15
                           }
                         ],
                         "resistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
-                            "value": 10
+                            "value": 15
                           }
                         ]
                       }
@@ -6091,7 +6023,7 @@
                       },
                       {
                         "descriptionLang": "WTM_HTH42",
-                        "description": "-0.20s Attack Interval when unburdened",
+                        "description": "-0.40s Attack Interval when unburdened",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HandToHand"
@@ -6112,7 +6044,7 @@
                         ]
                       },
                       "modifiers": {
-                        "flatAttackInterval": -200,
+                        "flatAttackInterval": -400,
                         "WTM:superDirtyUnburdenCheck": 3
                       }
                     },
@@ -6608,16 +6540,6 @@
                         "critMultiplier": 20,
                         "WTM:critChance10000Acc": 0.5,
                         "WTM:critMult10000Acc": 1
-                      }
-                    },
-                    {
-                      "description": "Unlock the Power Shot Special Attack",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
-                      },
-                      "modifiers": {
-                        "WTM:fakeModifierAddTextDescToWepType": 1
                       }
                     }
                   ],

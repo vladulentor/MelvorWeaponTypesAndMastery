@@ -24,7 +24,7 @@ export const language = {
     'WTM_GREAT1': "20% Chance on Hit to inflict Intimidation",
     'WTM_GREAT2': "20% Chance on Hit to inflict Shaken",
     'WTM_GREAT3': "Unlock the Devastating Slice Special Attack",
-    'WTM_GREAT32': "+10% chance to apply Intimidation when hitting a Shaken enemy",
+    'WTM_GREAT32': "+5% chance to apply Intimidation when hitting a Shaken enemy",
 
 
     'WTM_GREAT4': "1% Chance on Hit, Being Hit, and Evading to inflict a random Fear Effect for 3 turns",
@@ -57,11 +57,11 @@ export const language = {
 
     'WTM_HTH0': "+10% Reflect Damage against ranged attacks",
     'WTM_HTH1': "Can use certain gloves as weapons",
-    'WTM_HTH12': "+10% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
+    'WTM_HTH12': "+15% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
     'WTM_HTH3': "+20% Defence Level added as Flat Hidden Defence Levels and Total Resistance while unburdened",
     'WTM_HTH32': 'Unlock the Channelled Palm Strike Special Attack',
     'WTM_HTH4': "+35% Chance to ignore Slow, Stun, Freeze, and Sleep when unburdened",
-    'WTM_HTH42': "-0.20s Attack Interval when unburdened",
+    'WTM_HTH42': "-0.40s Attack Interval when unburdened",
     'WTM_HTH5': "Unlock the Flowing Palm Wave Special Attack",
     'WTM_HTH52': "+50% HP Regen and -5s HP Regen Interval when unburdened",
 
@@ -355,7 +355,7 @@ export const language = {
 
 
 
-    'MODIFIER_TOOLTIP_GREAT3': '<div class="text-center"><span class="text-warning font-weight-bold">Devastating Slice (15%)</span><br>Deliver your blade unto the enemy with a wide, arching slash that strikes 2 times for up to 90% of your normal damage per hit.<br> On hit, has a 5% Chance to inflict Shaken for 5 turns.<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Shaken</span><br>-10% Global Evasion and -10% Total Resistance</div>',
+    'MODIFIER_TOOLTIP_GREAT3': '<div class="text-center"><span class="text-warning font-weight-bold">Devastating Slice (15%)</span><br>Deliver your blade unto the enemy with a wide, arching slash that strikes 2 times for up to 75% of your normal damage per hit.<br> On hit, has a 5% Chance to inflict Shaken for 5 turns.<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Shaken</span><br>-5% Global Evasion and Resistance</div>',
     'MODIFIER_TOOLTIP_BLUNTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Concussive Smash (30%)</span><br>Smash into your enemy\'s armour, dealing up to 100 + (enemy\'s DR)% Normal damage. Avoidable. <br> Inflicts Daze for 2 turns and has a 20% chance to inflict Broken on a hit.</div>',
     'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, on hit instruct your companions to perform an unavoidable attack each</div>',
     'MODIFIER_TOOLTIP_LIGHT3': '<div class="text-center"><span class="text-warning font-weight-bold">Take Aim (15%)</span><br>You find solid supports to brace your crossbow, gaining +25% of Maximum Hit added to Minimum Hit for 3 turns.<br> If buff is already active, perform a regular attack instead.</div>',
@@ -423,14 +423,14 @@ export const language = {
 
     "WTM_WEAPON_FLAVORTEXT_ThrustingSwords": "Light and well-balanced for flying past the opponent's guard",
     "WTM_WEAPON_FLAVORTEXT_Greatswords": "Simply brutal and brutally simple",
-    "WTM_WEAPON_FLAVORTEXT_CurvedSwords": "Dancing blades that embolden your companions",
+    "WTM_WEAPON_FLAVORTEXT_CurvedSwords": "Dancing blades that embolden one's allies",
     "WTM_WEAPON_FLAVORTEXT_Daggers": "Light and fatal, they disappear from their owner's hand and reappear in their targets' backs",
     "WTM_WEAPON_FLAVORTEXT_Axes": "Violent and with a thirst for blood, axes grow in power as the battle rages",
     "WTM_WEAPON_FLAVORTEXT_Polearms": "Designed to land mildly-dangerous strikes at a mildly-safe distance",
     "WTM_WEAPON_FLAVORTEXT_Blunts": "Specialized in breaking through defenses and leaving their victims reeling",
     "WTM_WEAPON_FLAVORTEXT_HandToHand": "Free from weapons or heavy armor, one's own body becomes a fleet and deadly weapon",
     "WTM_WEAPON_FLAVORTEXT_Crossbows": "Sacrifice speed for absolute accuracy and overwhelming strength",
-    "WTM_WEAPON_FLAVORTEXT_HeavyBows": "Unerring, powerful instruments meant to find the weakness in your foes",
+    "WTM_WEAPON_FLAVORTEXT_HeavyBows": "Unerring, powerful instruments meant to find the weakness in their foes",
     "WTM_WEAPON_FLAVORTEXT_LightBows": "Evasive bows meant to pelt attackers with arrows while staying out of harm's way",
     "WTM_WEAPON_FLAVORTEXT_Thrown": "If the first one misses, the next five won't",
     "WTM_WEAPON_FLAVORTEXT_Staves": "Elementally-attuned kaleidoscopic tools of the arcane",
