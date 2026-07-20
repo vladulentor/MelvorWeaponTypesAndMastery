@@ -2,6 +2,55 @@
     "$schema": "https://melvoridle.com/assets/schema/gameData.json",
     "namespace": "rielkConstruction",
     "data": {
+        "attacks": [
+            {
+                "id": "Shatterstrikes",
+                "defaultChance": 30,
+                "damage": [
+                    {
+                        "damageType": "Custom",
+                        "character": "Target",
+                        "maxRoll": "Crystallize",
+                        "maxPercent": 15,
+                        "roll": false,
+                        "attackCount": 0
+                    },
+                    {
+                        "damageType": "Custom",
+                        "character": "Target",
+                        "maxRoll": "Crystallize",
+                        "maxPercent": 15,
+                        "roll": false,
+                        "attackCount": 1
+                    }
+                ],
+                "prehitEffects": [],
+                "onhitEffects": [
+                    {
+                        "chance": 2,
+                        "effectID": "melvorD:Crystallize",
+                        "initialParams": [
+                            {
+                                "name": "turns",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    {
+                        "chance": 2,
+                        "effectID": "melvorAoD:CrystalSanction"
+                    }
+                ],
+                "cantMiss": false,
+                "attackCount": 2,
+                "attackInterval": 50,
+                "lifesteal": 0,
+                "name": "Shatterstrikes",
+                "description": "Harnessing crystalline power, make two swift strikes against the Target, each dealing ${attackDamageMaxValue0}% your maximum hit (doubled if the Enemy is Crystallized).<br> On hit, ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for ${onHitEffect0turns} turn(s), and ${onHitEffect1chance}% chance to apply Crystal Sanction (Target's next attack deals no damage).",
+                "descriptionGenerator": "Make two <avoidable> attacks that deal <damage>. On hit, <hitEffect>.",
+                "usesRunesPerProc": false
+            }
+        ],
         "skillData": [
             {
                 "skillID": "melvorD:Agility",
@@ -186,7 +235,7 @@
                                     "uiMods": {
                                         "conditionalModifiers": [
                                             {
-                                                "descriptionLang":"WTM_ARTF3",
+                                                "descriptionLang": "WTM_ARTF3",
                                                 "description": "Unlock the Pandora's Spark Special Attack",
                                                 "condition": {
                                                     "type": "WeaponType",
