@@ -46,27 +46,33 @@ function fuckassResetFunc(attack) {
 }
 
 export function addSpecialAttack() {
-    if(this.specAttack)
-        addEffecttoWeaponList({weapons:this.type.allWeapons, attack:this.specAttack})
+    if (this.specAttack)
+        addEffecttoWeaponList({ weapons: this.type.allWeapons, attack: this.specAttack })
 
 }
 
 
-const SPECIAL_MOD3_VALUE = 5;
 
 
 
 export function increaseSpecialAttackChance() {
-    let toadd = 0;
 
-    const ourAttacks = game.weaponMasteries.allObjects.flatMap(w => w.levels.filter(t=> t.specAttack).map(t=>t.specAttack));
+    if (this._localID == "HeavyBows4") {
+        const ps = game.specialAttacks.getObjectByID("WTM:PowerShot")
+        ps.defaultChance += 10;
+        fuckassResetFunc(ps)
 
-    if (this._localID == "Special4") {
-        toadd += SPECIAL_MOD3_VALUE;
     }
-    for (let attack of ourAttacks.values()) {
-        attack.defaultChance += toadd;
-        fuckassResetFunc(attack);
+    
+    if (this._localID == "Special4") {
+        const ourAttacks = game.weaponMasteries.allObjects.flatMap(w => w.levels.filter(t => t.specAttack).map(t => t.specAttack));
+
+        const toadd = 5;
+        for (let attack of ourAttacks.values()) {
+            attack.defaultChance += toadd;
+            fuckassResetFunc(attack);
+        }
+
     }
 
 }

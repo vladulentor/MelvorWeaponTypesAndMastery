@@ -21,4 +21,5 @@ export function modifySpecialAttack() {
         game.combatEffects.getObjectByID("WTM:Alacrity").parameters.maxStacks += 15;
 
     }
+ 
 }

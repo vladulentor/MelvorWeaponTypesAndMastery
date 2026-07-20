@@ -9,13 +9,13 @@
         "damage": [
           {
             "damageType": "Normal",
-            "amplitude": 10
+            "amplitude": 15
           }
         ],
         "prehitEffects": [],
         "onhitEffects": [],
         "cantMiss": false,
-        "attackCount": 5,
+        "attackCount": 10,
         "attackInterval": 200,
         "lifesteal": 0,
         "name": "Hail of Arrows",
@@ -25,7 +25,7 @@
       },
       {
         "id": "PowerShot",
-        "defaultChance": 20,
+        "defaultChance": 15,
         "damage": [
           {
             "damageType": "Custom",
@@ -48,8 +48,8 @@
         "attackCount": 1,
         "attackInterval": 1500,
         "lifesteal": 0,
-        "name": "Power Shot",
-        "description": "You take a deeply focused shot at a weak spot in the Enemy's armour, dealing damage equal to ${attackDamageMinValue0}% - ${attackDamageMaxValue0}% of their DR. If your Accuracy Rating is higher than ${minAccuracy} then this attack can't miss. On a hit, inflict 1 stack of Arrowstruck (+${onHitEffect0modValue0}% Attack Interval and +${onHitEffect0modValue1}%, max 10 stacks) Damage Taken. Lasts until the End of the Fight.",
+        "name": "Killshot",
+        "description": "You loose a single fatal arrow with absolute certainty, dealing damage equal to ${attackDamageMinValue0}% - ${attackDamageMaxValue0}% of their DR. If your Accuracy Rating is higher than ${minAccuracy} then this attack can't miss. On a hit, inflict 1 stack of Pinned (+${onHitEffect0modValue0}% Attack Interval and +${onHitEffect0modValue1}%, max 10 stacks) Damage Taken. Lasts until the End of the Fight.",
         "descriptionGenerator": "Attack for <damage>, <hitEffect> on hit. If Accuracy Rating higher than <minAccuracy>, <canMiss>.",
         "usesRunesPerProc": false
       },
@@ -893,13 +893,13 @@
       {
         "id": "PowerStance",
         "templateID": "melvorD:NonCountingReductive",
-        "name": "Power Stance",
+        "name": "Hunter Stance",
         "media": "assets/combat/status/powerstance.png",
         "target": "Self",
         "parameters": [
           {
             "name": "initialStacks",
-            "initialValue": 10
+            "initialValue": 5
           }
         ],
         "statGroups": [
@@ -909,12 +909,11 @@
               "ignoreResistanceWhenAttackingChance": [
                 {
                   "damageTypeID": "melvorD:Normal",
-                  "value": 2
+                  "value": 4
                 }
               ],
-              "rangedCritChance": 1,
-              "critMultiplier": 5,
-              "evasion": -5
+              "rangedCritChance": 2,
+              "critMultiplier": 10
             }
           }
         ],
@@ -924,7 +923,7 @@
       },
       {
         "id": "Arrowstruck",
-        "name": "Arrowstruck",
+        "name": "Pinned",
         "media": "assets/combat/status/arrowstruck.png",
         "templateID": "melvorD:StackingNonCountingModifier",
         "target": "Target",
@@ -1069,7 +1068,7 @@
             "combatEffects": [
               {
                 "appliesWhen": "HitByAttack",
-                "chance": 100,
+                "chance": 50,
                 "effectID": "melvorD:Stun",
                 "initialParams": [
                   {
@@ -1449,7 +1448,7 @@
       {
         "id": "DOTVulnerability",
         "templateID": "melvorD:StaticSelfCountingModifier",
-        "name": "DOT Vulnerability",
+        "name": "Overextended",
         "media": "assets/combat/status/vulnerability.png",
         "target": "Target",
         "statGroups": [
@@ -1486,14 +1485,6 @@
             "statGroupName": "theStuff"
           }
         ],
-        "statGroups": [
-          {
-            "name": "theStuff",
-            "modifiers": {
-              "WTM:critMult25Stealth": 2.5
-            }
-          }
-        ],
         "parameters": [
           {
             "name": "stacks",
@@ -1506,6 +1497,14 @@
           {
             "name": "interval",
             "initialValue": 1000
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "theStuff",
+            "modifiers": {
+              "WTM:critMult25Stealth": 2.5
+            }
           }
         ],
         "behaviours": [
@@ -1569,7 +1568,7 @@
       {
         "id": "TakeAim0",
         "templateID": "melvorD:StaticSelfCountingModifier",
-        "name": "Quick Reload",
+        "name": "Take Aim",
         "media": "assets/combat/status/speedup.svg",
         "target": "Self",
         "parameters": [
@@ -1582,7 +1581,7 @@
           {
             "name": "stacks",
             "modifiers": {
-              "minHitBasedOnMaxHit": 25
+              "minHitBasedOnMaxHit": 15
             }
           }
         ],
@@ -1773,7 +1772,7 @@
               "cantEvade": 1,
               "cantSpecialAttack": 1,
               "cantRegenBarrier": 1,
-              "attackInterval": 10
+              "attackInterval": 30
             }
           }
         ],
@@ -2567,36 +2566,36 @@
       {
         "id": "TranqArrow",
         "name": "Tranquilizer Arrow",
-        "media": "assets/combat/status/null.svg",
-        "templateID": "melvorD:Slow",
-        "target": "Target",
-        "parameters": [
-          {
-            "name": "turns",
-            "initialValue": 2
-          },
-          {
-            "name": "magnitude",
-            "initialValue": 20
-          }
-        ],
-        "effectGroups": [
-          "WTM:LBowDebuffs"
-        ]
-      },
-      {
-        "id": "FlameArrow",
-        "name": "Flame Arrow",
-        "media": "assets/combat/status/null.svg",
-        "templateID": "melvorD:BurnDOT",
+        "media": "assets/combat/status/tranqarrow.webp",
+        "templateID": "melvorD:DOT",
         "parameters": [
           {
             "name": "procs",
-            "initialValue": 10
+            "initialValue": 5
           },
           {
             "name": "interval",
-            "initialValue": 500
+            "initialValue": 1000
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "theStuff",
+            "modifiers": {
+              "attackInterval": 65
+            }
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "ModifyStats",
+            "statGroupName": "theStuff",
+            "newValue": "1",
+            "triggersOn": [
+              {
+                "type": "EffectApplied"
+              }
+            ]
           }
         ],
         "damageGroups": [
@@ -2607,13 +2606,12 @@
                 "character": "Target",
                 "roll": false,
                 "maxRoll": "CurrentHP",
-                "maxPercent": 6
+                "maxPercent": 5
               }
             ],
             "applyDamageModifiers": true,
-            "applyTypeModifiers": "Burn",
             "applyResistance": true,
-            "damageCap": 150
+            "damageCap": 1500
           }
         ],
         "effectGroups": [
@@ -2621,19 +2619,30 @@
         ]
       },
       {
-        "id": "PoisonArrow",
-        "name": "Poison Arrow",
-        "media": "assets/combat/status/null.svg",
-        "templateID": "melvorD:PoisonDOT",
-        "target": "Target",
+        "id": "FlameArrow",
+        "name": "Flame Arrow",
+        "media": "assets/combat/status/flamearrow.webp",
+        "templateID": "melvorD:DOT",
         "parameters": [
           {
             "name": "procs",
-            "initialValue": 4
+            "initialValue": 5
           },
           {
             "name": "interval",
-            "initialValue": 1250
+            "initialValue": 1000
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "DamageCharacter",
+            "value": "p.damagePerProc",
+            "triggersOn": [
+              {
+                "type": "TimerFired",
+                "timerName": "proc"
+              }
+            ]
           }
         ],
         "damageGroups": [
@@ -2644,13 +2653,204 @@
                 "character": "Target",
                 "roll": false,
                 "maxRoll": "MaxHP",
+                "minRoll": "MaxHP",
+                "maxPercent": 6
+              }
+            ],
+            "applyDamageModifiers": true,
+            "applyTypeModifiers": "Burn",
+            "applyResistance": true,
+            "damageCap": 500
+          }
+        ],
+        "effectGroups": [
+          "WTM:LBowDebuffs"
+        ]
+      },
+      {
+        "id": "SmokeArrow",
+        "name": "Toxic Smoke Arrow",
+        "media": "assets/combat/status/smokearrow.webp",
+        "templateID": "melvorD:DOT",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 5
+          },
+          {
+            "name": "interval",
+            "initialValue": 1000
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "theStuff",
+            "modifiers": {
+              "accuracyRating": -25,
+              "damageDealt": -25
+            }
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "DamageCharacter",
+            "damageType": "Poison",
+            "value": "p.damagePerProc",
+            "triggersOn": [
+              {
+                "type": "TimerFired",
+                "timerName": "proc"
+              }
+            ]
+          },
+          {
+            "type": "ModifyStats",
+            "statGroupName": "theStuff",
+            "newValue": "1",
+            "triggersOn": [
+              {
+                "type": "EffectApplied"
+              }
+            ]
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Target",
+                "roll": false,
+                "maxRoll": "MaxHP",
+                "minRoll": "MaxHP",
+                "maxPercent": 5
+              }
+            ],
+            "applyDamageModifiers": true,
+            "applyResistance": true,
+            "damageCap": 1500
+          }
+        ],
+        "effectGroups": [
+          "WTM:LBowDebuffs"
+        ]
+      },
+      {
+        "id": "NullArrow",
+        "name": "Null Arrow",
+        "media": "assets/combat/status/nullarrow.webp",
+        "templateID": "melvorD:DOT",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 5
+          },
+          {
+            "name": "interval",
+            "initialValue": 1000
+          }
+        ],
+        "statGroups": [
+          {
+            "name": "theStuff",
+            "modifiers": {
+              "effectImmunity": [
+                {
+                  "effectGroupID": "melvorD:Buff",
+                  "value": 1
+                }
+              ],
+              "damageTaken": 35
+            }
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Target",
+                "roll": false,
+                "maxRoll": "MaxHP",
+                "minRoll": "MaxHP",
+                "maxPercent": 4
+              }
+            ],
+            "applyDamageModifiers": true,
+            "damageCap": 1500
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "DamageCharacter",
+            "value": "p.damagePerProc",
+            "triggersOn": [
+              {
+                "type": "TimerFired",
+                "timerName": "proc"
+              }
+            ]
+          },
+          {
+            "type": "ModifyStats",
+            "statGroupName": "theStuff",
+            "newValue": "1",
+            "triggersOn": [
+              {
+                "type": "EffectApplied"
+              }
+            ]
+          }
+        ],
+        "effectGroups": [
+          "WTM:LBowDebuffs"
+        ]
+      },
+      {
+        "id": "PoisonArrow",
+        "name": "Poison Arrow",
+        "media": "assets/combat/status/poisonarrow.webp",
+        "templateID": "melvorD:DOT",
+        "target": "Target",
+        "parameters": [
+          {
+            "name": "procs",
+            "initialValue": 5
+          },
+          {
+            "name": "interval",
+            "initialValue": 1000
+          }
+        ],
+        "damageGroups": [
+          {
+            "name": "total",
+            "damage": [
+              {
+                "character": "Target",
+                "roll": false,
+                "minRoll": "MaxHP",
+                "maxRoll": "MaxHP",
                 "maxPercent": 4
               }
             ],
             "applyDamageModifiers": true,
             "applyTypeModifiers": "Poison",
             "applyResistance": true,
-            "damageCap": 1000
+            "damageCap": 500
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "DamageCharacter",
+            "damageType": "Poison",
+            "value": "p.damagePerProc",
+            "triggersOn": [
+              {
+                "type": "TimerFired",
+                "timerName": "proc"
+              }
+            ]
           }
         ],
         "effectGroups": [
@@ -2659,17 +2859,30 @@
       },
       {
         "id": "BarbedArrow",
-        "name": "Barbed Arrow",
-        "media": "assets/combat/status/null.svg",
-        "templateID": "melvorD:BleedDOT",
+        "name": "Rupture Arrow",
+        "media": "assets/combat/status/bleedarrow.webp",
+        "templateID": "melvorD:DOT",
         "parameters": [
           {
             "name": "procs",
-            "initialValue": 20
+            "initialValue": 5
           },
           {
             "name": "interval",
-            "initialValue": 250
+            "initialValue": 1000
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "DamageCharacter",
+            "damageType": "Bleed",
+            "value": "p.damagePerProc",
+            "triggersOn": [
+              {
+                "type": "TimerFired",
+                "timerName": "proc"
+              }
+            ]
           }
         ],
         "damageGroups": [
@@ -2679,14 +2892,18 @@
               {
                 "character": "Attacker",
                 "maxRoll": "DamageDealt",
-                "maxPercent": 150,
+                "maxPercent": 200,
                 "roll": false
               }
             ],
             "applyDamageModifiers": true,
             "applyTypeModifiers": "Bleed",
+            "damageCap": 500,
             "applyResistance": true
           }
+        ],
+        "effectGroups": [
+          "WTM:LBowDebuffs"
         ]
       }
     ],
@@ -2728,17 +2945,20 @@
             "weight": 1
           },
           {
-            "effectID": "WTM:PoisonArrow",
+            "effectID": "WTM:BarbedArrow",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "id": "RandomConditionExtras",
+        "table": [
+          {
+            "effectID": "WTM:SmokeArrow",
             "weight": 1
           },
           {
-            "effectID": "WTM:TranqArrow",
-            "initialParams": [
-              {
-                "name": "magnitude",
-                "value": 20
-              }
-            ],
+            "effectID": "WTM:NullArrow",
             "weight": 1
           }
         ]
@@ -4108,14 +4328,9 @@
                   "level": 5,
                   "overwriteTypeIcons": [
                     1,
-                    1,
                     1
                   ],
-                  "tooltip": {
-                    "2": "MODIFIER_TOOLTIP_GREAT5"
-                  },
                   "order": [
-                    "c",
                     "c",
                     "m"
                   ],
@@ -5061,7 +5276,7 @@
                   "uiMods": {
                     "modifiers": {
                       "WTM:accuracyRatingPer10000Evasion": 5,
-                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.25
+                      "WTM:dodgeChancePer10000EnemyAccuracyRating": 1.5
                     }
                   },
                   "conditionalModifiers": [
@@ -5072,7 +5287,7 @@
                       },
                       "modifiers": {
                         "WTM:accuracyRatingPer10000Evasion": 5,
-                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 0.25
+                        "WTM:dodgeChancePer10000EnemyAccuracyRating": 1.5
                       }
                     }
                   ]
@@ -5473,7 +5688,7 @@
                     "conditionalModifiers": [
                       {
                         "descriptionLang": "WTM_BLUNT2",
-                        "description": "+10% chance to apply Dazed when hitting an enemy with Broken",
+                        "description": "+25% chance to apply Dazed when hitting an enemy with Broken",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Blunts"
@@ -5526,7 +5741,7 @@
                         ]
                       },
                       "appliesWhen": "HitWithAttack",
-                      "chance": 10,
+                      "chance": 25,
                       "effectID": "WTM:Daze"
                     }
                   ]
@@ -6213,7 +6428,7 @@
                   "uiMods": {
                     "modifiers": {
                       "attackInterval": 10,
-                      "rangedAccuracyRating": 20
+                      "rangedAccuracyRating": 15
                     }
                   },
                   "conditionalModifiers": [
@@ -6224,7 +6439,7 @@
                       },
                       "modifiers": {
                         "attackInterval": 10,
-                        "rangedAccuracyRating": 30
+                        "rangedAccuracyRating": 15
                       }
                     }
                   ]
@@ -6277,7 +6492,7 @@
                     1
                   ],
                   "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_LIGHT3"
+                    "1": "MODIFIER_TOOLTIP_CROSS3"
                   },
                   "uiMods": {
                     "conditionalModifiers": [
@@ -6488,9 +6703,19 @@
               "type": "ranged",
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {
-                  "critMultiplier": 20
-                }
+                "conditionalModifiers": [
+                  {
+                    "descriptionLang": "WTM_HBOW0",
+                    "description": "+20% critical hit multiplier",
+                    "condition": {
+                      "type": "WeaponType",
+                      "weaponType": "WTM:HeavyBows"
+                    },
+                    "modifiers": {
+                      "critMultiplier": 20
+                    }
+                  }
+                ]
               },
               "levels": [
                 {
@@ -6498,18 +6723,56 @@
                   "id": "HeavyBows1",
                   "level": 1,
                   "shiny": true,
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_HEAVY2"
-                  },
+                  "order": [
+                    "c",
+                    "m",
+                    "m"
+                  ],
                   "overwriteTypeIcons": [
                     1,
                     1,
                     1
                   ],
                   "uiMods": {
+                    "modifiers": {
+                      "WTM:critChance10000Acc": 2,
+                      "WTM:critMult10000Acc": 4
+                    }
+                  },
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "modifiers": {
+                        "WTM:critChance10000Acc": 1,
+                        "WTM:critMult10000Acc": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "HeavyBows2",
+                  "id": "HeavyBows2",
+                  "level": 2,
+                  "shiny": true,
+                  "specAttack": "WTM:PowerShot",
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_HEAVY2"
+                  },
+                  "order": [
+                    "c",
+                    "m"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    0
+                  ],
+                  "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Unlock the Power Shot Special Attack",
+                        "description": "Unlock the Killshot Special Attack",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:HeavyBows"
@@ -6517,84 +6780,14 @@
                         "modifiers": {
                           "WTM:fakeModifierAddTextDescToWepType": 1
                         }
-                      },
-                      {
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:HeavyBows"
-                        },
-                        "modifiers": {
-                          "critMultiplier": 20,
-                          "WTM:critChance10000Acc": 0.5,
-                          "WTM:critMult10000Acc": 1
-                        }
-                      }
-                    ]
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
-                      },
-                      "modifiers": {
-                        "critMultiplier": 20,
-                        "WTM:critChance10000Acc": 0.5,
-                        "WTM:critMult10000Acc": 1
-                      }
-                    }
-                  ],
-                  "specAttack": "WTM:PowerShot"
-                },
-                {
-                  "name": "HeavyBows2",
-                  "id": "HeavyBows2",
-                  "level": 2,
-                  "shiny": false,
-                  "order": [
-                    "e",
-                    "m"
-                  ],
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_HEAVY2"
-                  },
-                  "overwriteTypeIcons": [
-                    1,
-                    0,
-                    0
-                  ],
-                  "uiMods": {
-                    "combatEffects": [
-                      {
-                        "customDescription": "+5% Chance On Hit to apply 1 stack of Arrowstruck",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:HeavyBows"
-                        },
-                        "appliesWhen": "HitWithAttack",
-                        "chance": 5,
-                        "effectID": "WTM:Arrowstruck"
                       }
                     ],
                     "modifiers": {
-                      "flatSlayerAreaEffectNegation": 5,
-                      "doubleSlayerTaskKillChance": 5
+                      "critMultiplier": 15
                     }
                   },
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "chance": 5,
-                      "effectID": "WTM:Arrowstruck"
-                    }
-                  ],
                   "modifiers": {
-                    "flatSlayerAreaEffectNegation": 5,
-                    "doubleSlayerTaskKillChance": 5
+                    "critMultiplier": 15
                   }
                 },
                 {
@@ -6602,90 +6795,39 @@
                   "id": "HeavyBows3",
                   "level": 3,
                   "shiny": false,
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "order": [
+                    "m",
+                    "c",
+                    "m"
+                  ],
                   "uiMods": {
+                    "modifiers": {
+                      "currencyGain": [
+                        {
+                          "currencyID": "melvorD:SlayerCoins",
+                          "value": 5
+                        }
+                      ],
+                      "flatSlayerAreaEffectNegation": 5
+                    },
                     "conditionalModifiers": [
                       {
+                        "description": "+5% Chance To Double Loot in Combat when fighting Slayer Task monsters",
                         "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:HeavyBows"
+                          "type": "FightingSlayerTask"
                         },
                         "modifiers": {
-                          "WTM:critChance10000Acc": 0.5,
-                          "WTM:critMult10000Acc": 1
+                          "combatLootDoublingChance": 5
                         }
                       }
                     ]
                   },
                   "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
-                      },
-                      "modifiers": {
-                        "WTM:critChance10000Acc": 0.5,
-                        "WTM:critMult10000Acc": 1
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "HeavyBows4",
-                  "id": "HeavyBows4",
-                  "level": 4,
-                  "shiny": false,
-                  "overwriteTypeIcons": [
-                    1,
-                    1,
-                    1,
-                    1,
-                    0
-                  ],
-                  "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:HeavyBows"
-                        },
-                        "modifiers": {
-                          "critMultiplier": 20,
-                          "rangedCritChance": 2.5
-                        }
-                      },
-                      {
-                        "condition": {
-                          "conditions": [
-                            {
-                              "type": "WeaponType",
-                              "weaponType": "WTM:HeavyBows"
-                            },
-                            {
-                              "type": "FightingSlayerTask"
-                            }
-                          ]
-                        },
-                        "modifiers": {
-                          "critMultiplier": 20,
-                          "rangedCritChance": 2.5
-                        }
-                      }
-                    ],
-                    "modifiers": {
-                      "flatRangedAccuracyBonusPerAttackInterval": 1
-                    }
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:HeavyBows"
-                      },
-                      "modifiers": {
-                        "critMultiplier": 20,
-                        "rangedCritChance": 2.5
-                      }
-                    },
                     {
                       "condition": {
                         "type": "Every",
@@ -6700,77 +6842,122 @@
                         ]
                       },
                       "modifiers": {
-                        "critMultiplier": 20,
-                        "rangedCritChance": 2.5
+                        "currencyGain": [
+                          {
+                            "currencyID": "melvorD:SlayerCoins",
+                            "value": 5
+                          }
+                        ],
+                        "combatLootDoublingChance": 5
                       }
                     }
                   ],
                   "modifiers": {
-                    "flatRangedAccuracyBonusPerAttackInterval": 1
+                    "flatSlayerAreaEffectNegation": 5
                   }
+                },
+                {
+                  "name": "HeavyBows4",
+                  "id": "HeavyBows4",
+                  "level": 4,
+                  "shiny": false,
+                  "changeFunc": "increaseSpecialAttackChance",
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    1
+                  ],
+                  "order": [
+                    "c",
+                    "e",
+                    "c"
+                  ],
+                  "uiMods": {
+                    "combatEffects": [
+                      {
+                        "appliesWhen": "HitWithAttack",
+                        "chance": 5,
+                        "effectID": "WTM:Arrowstruck"
+                      }
+                    ],
+                    "conditionalModifiers": [
+                      {
+                        "description": "+10% chance to trigger Killshot",
+                        "condition": {
+                          "type": "FightingSlayerTask"
+                        },
+                        "modifiers": {
+                          "critMultiplier": 35
+                        }
+                      },
+                      {
+                        "description": "+25% critical hit multiplier when fighting Slayer Task monsters",
+                        "condition": {
+                          "type": "FightingSlayerTask"
+                        },
+                        "modifiers": {
+                          "critMultiplier": 35
+                        }
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:HeavyBows"
+                      },
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 5,
+                      "effectID": "WTM:Arrowstruck"
+                    }
+                  ],
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:HeavyBows"
+                          },
+                          {
+                            "type": "FightingSlayerTask"
+                          }
+                        ]
+                      },
+                      "modifiers": {
+                        "critMultiplier": 25
+                      }
+                    }
+                  ]
                 },
                 {
                   "name": "HeavyBows5",
                   "id": "HeavyBows5",
                   "level": 5,
                   "shiny": true,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_HEAVY5"
+                  },
+                  "order": [
+                    "e",
+                    "m"
+                  ],
                   "overwriteTypeIcons": [
-                    1,
                     1,
                     1
                   ],
                   "uiMods": {
                     "combatEffects": [
                       {
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:HeavyBows"
-                        },
                         "appliesWhen": "StartOfFight",
                         "effectID": "WTM:PowerStance"
                       }
                     ],
-                    "conditionalModifiers": [
-                      {
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:HeavyBows"
-                        },
-                        "modifiers": {
-                          "WTM:critDRPierce": 10,
-                          "WTM:critChance10000Acc": 0.5,
-                          "WTM:critMult10000Acc": 1
-                        }
-                      },
-                      {
-                        "condition": {
-                          "type": "Every",
-                          "conditions": [
-                            {
-                              "type": "WeaponType",
-                              "weaponType": "WTM:HeavyBows"
-                            },
-                            {
-                              "type": "Some",
-                              "conditions": [
-                                {
-                                  "character": "Player",
-                                  "type": "FightingBoss"
-                                },
-                                {
-                                  "type": "FightingSlayerTask"
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        "modifiers": {
-                          "WTM:critDRPierce": 10,
-                          "WTM:critChance10000Acc": 0.5,
-                          "WTM:critMult10000Acc": 1
-                        }
-                      }
-                    ]
+                    "modifiers": {
+                      "WTM:critDRPierce": 20
+                    }
                   },
                   "combatEffects": [
                     {
@@ -6789,37 +6976,7 @@
                         "weaponType": "WTM:HeavyBows"
                       },
                       "modifiers": {
-                        "WTM:critDRPierce": 10,
-                        "WTM:critChance10000Acc": 0.5,
-                        "WTM:critMult10000Acc": 1
-                      }
-                    },
-                    {
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:HeavyBows"
-                          },
-                          {
-                            "type": "Some",
-                            "conditions": [
-                              {
-                                "character": "Player",
-                                "type": "FightingBoss"
-                              },
-                              {
-                                "type": "FightingSlayerTask"
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      "modifiers": {
-                        "WTM:critDRPierce": 10,
-                        "WTM:critChance10000Acc": 0.5,
-                        "WTM:critMult10000Acc": 1
+                        "WTM:critDRPierce": 20
                       }
                     }
                   ]
@@ -6848,8 +7005,7 @@
               "isPerWepMod": true,
               "wepModifiers": {
                 "modifiers": {
-                  "evasion": 10,
-                  "rangedAttackInterval": -5
+                  "evasion": 10
                 }
               },
               "levels": [
@@ -6869,14 +7025,137 @@
                     "c",
                     "m"
                   ],
-                  "specAttack": "WTM:MultiShot",
                   "uiMods": {
                     "modifiers": {
                       "evasion": 10
                     },
                     "conditionalModifiers": [
                       {
-                        "description": "Unlock the Multi-Shot Special Attack",
+                        "descriptionLang": "WTM_LBOW1",
+                        "description": "+5% chance on hit to shoot an infused arrow on the enemy",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      },
+                      {
+                        "descriptionLang": "WTM_LBOW12",
+                        "description": "While the enemy is afflicted by an infused arrow, +10% evasion chance",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {}
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "appliesWhen": "HitWithAttack",
+                      "chance": 5,
+                      "tableID": "WTM:RandomCondition",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
+                      }
+                    }
+                  ],
+                  "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "CombatEffectGroup",
+                        "character": "Enemy",
+                        "groupID": "WTM:LBowDebuffs"
+                      },
+                      "modifiers": {
+                        "evasion": 10
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "LightBows2",
+                  "id": "LightBows2",
+                  "level": 2,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_LIGHT2"
+                  },
+                  "shiny": false,
+                  "order": [
+                    "e",
+                    "m"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    0
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "flatAdditionalPrimaryProductQuantity": [
+                        {
+                          "skillID": "melvorD:Fletching",
+                          "subcategoryID": "melvorF:Arrows",
+                          "value": 5
+                        }
+                      ]
+                    },
+                    "combatEffects": [
+                      {
+                        "appliesWhen": "EvadedAttack",
+                        "chance": 50,
+                        "effectID": "WTM:DOTVulnerability",
+                        "targetOverride": "Target"
+                      }
+                    ]
+                  },
+                  "combatEffects": [
+                    {
+                      "appliesWhen": "EvadedAttack",
+                      "chance": 50,
+                      "effectID": "WTM:DOTVulnerability",
+                      "targetOverride": "Target",
+                      "condition": {
+                        "type": "WeaponType",
+                        "weaponType": "WTM:LightBows"
+                      }
+                    }
+                  ],
+                  "modifiers": {
+                    "flatAdditionalPrimaryProductQuantity": [
+                      {
+                        "skillID": "melvorD:Fletching",
+                        "subcategoryID": "melvorF:Arrows",
+                        "value": 5
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "LightBows3",
+                  "id": "LightBows3",
+                  "level": 3,
+                  "shiny": true,
+                  "specAttack": "WTM:MultiShot",
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_LIGHT3"
+                  },
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_LBOW3",
+                        "description": "Unlock the Hail of Arrows Special Attack",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_LBOW32",
+                        "description": "+5% lifesteal per infused arrow on the enemy",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:LightBows"
@@ -6890,142 +7169,62 @@
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:LightBows"
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:FlameArrow"
                       },
                       "modifiers": {
-                        "evasion": 10
-                      }
-                    }
-                  ]
-                },
-                {
-                  "name": "LightBows2",
-                  "id": "LightBows2",
-                  "level": 2,
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_LIGHT21",
-                    "2": "MODIFIER_TOOLTIP_LIGHT22"
-                  },
-                  "shiny": true,
-                  "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "description": "Attacks have a 1% chance to inflict a random effect on the Enemy ",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
-                        },
-                        "modifiers": {}
-                      },
-                      {
-                        "description": "50% Chance to apply DOT Vulnerability on the Enemy after you Evade an Attack",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
-                        },
-                        "modifiers": {}
-                      }
-                    ],
-                    "combatEffects": [
-                      {
-                        "appliesWhen": "HitWithAttack",
-                        "chance": 5,
-                        "tableID": "WTM:RandomCondition",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
-                        }
-                      },
-                      {
-                        "appliesWhen": "HitWithAttack",
-                        "chance": 1,
-                        "tableID": "WTM:RandomCondition",
-                        "condition": {
-                          "type": "Every",
-                          "conditions": [
-                            {
-                              "type": "WeaponType",
-                              "weaponType": "WTM:LightBows"
-                            },
-                            {
-                              "type": "CombatEffectGroup",
-                              "target": "Target",
-                              "groupID": "melvorD:Slow"
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  },
-                  "combatEffects": [
-                    {
-                      "appliesWhen": "HitWithAttack",
-                      "chance": 1,
-                      "tableID": "WTM:RandomCondition",
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:LightBows"
+                        "rangedLifesteal": 5
                       }
                     },
                     {
-                      "appliesWhen": "EvadedAttack",
-                      "chance": 50,
-                      "effectID": "WTM:DOTVulnerability",
-                      "targetOverride": "Target",
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:LightBows"
-                      }
-                    }
-                  ],
-                  "modifiers": {
-                    "poisonLifesteal": 15
-                  }
-                },
-                {
-                  "name": "LightBows3",
-                  "id": "LightBows3",
-                  "level": 3,
-                  "shiny": false,
-                  "tooltip": {
-                    "1": "MODIFIER_TOOLTIP_LIGHT31"
-                  },
-                  "uiMods": {
-                    "conditionalModifiers": [
-                      {
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:LightBows"
-                        },
-                        "modifiers": {
-                          "flatAttackInterval": -100,
-                          "WTM:multiShotExtraShot": 5,
-                          "effectIgnoreChance": [
-                            {
-                              "effectGroupID": "melvorD:PoisonDOT",
-                              "value": 25
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  },
-                  "conditionalModifiers": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:LightBows"
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:PoisonArrow"
                       },
                       "modifiers": {
-                        "flatAttackInterval": -100,
-                        "WTM:multiShotExtraShot": 5,
-                        "effectIgnoreChance": [
-                          {
-                            "effectGroupID": "melvorD:PoisonDOT",
-                            "value": 25
-                          }
-                        ]
+                        "rangedLifesteal": 5
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:BarbedArrow"
+                      },
+                      "modifiers": {
+                        "rangedLifesteal": 5
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:TranqArrow"
+                      },
+                      "modifiers": {
+                        "rangedLifesteal": 5
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:SmokeArrow"
+                      },
+                      "modifiers": {
+                        "rangedLifesteal": 5
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:NullArrow"
+                      },
+                      "modifiers": {
+                        "rangedLifesteal": 5
                       }
                     }
                   ]
@@ -7035,92 +7234,229 @@
                   "id": "LightBows4",
                   "level": 4,
                   "shiny": false,
-                  "uiMods": {},
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_LIGHT4"
+                  },
+                  "changeFunc": "addMoreArrows",
+                  "order": [
+                    "c",
+                    "c",
+                    "m"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "uiMods": {
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_LBOW4",
+                        "description": "Unlock new infused arrows",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_LBOW42",
+                        "description": "Hail of Arrows Strikes +2 times per Infused Arrow on the enemy",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ],
+                    "modifiers": {
+                      "evasion": 3
+                    }
+                  },
                   "conditionalModifiers": [
                     {
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:LightBows"
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:FlameArrow"
                       },
                       "modifiers": {
-                        "maxHit": -50,
-                        "minHitBasedOnMaxHit": 50,
-                        "endOfTurnEvasion2": 50
+                        "WTM:multiShotExtraShot": 2
                       }
-                    }
-                  ],
-                  "combatEffects": [
-                    {
-                      "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:LightBows"
-                      },
-                      "appliesWhen": "HitWithAttack",
-                      "chance": 1,
-                      "tableID": "WTM:RandomCondition"
                     },
                     {
                       "condition": {
-                        "type": "WeaponType",
-                        "weaponType": "WTM:LightBows"
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:PoisonArrow"
                       },
-                      "appliesWhen": "HitWithAttack",
-                      "chance": 10,
-                      "tableID": "WTM:RandomCondition"
+                      "modifiers": {
+                        "WTM:multiShotExtraShot": 2
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:BarbedArrow"
+                      },
+                      "modifiers": {
+                        "WTM:multiShotExtraShot": 2
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:TranqArrow"
+                      },
+                      "modifiers": {
+                        "WTM:multiShotExtraShot": 2
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:SmokeArrow"
+                      },
+                      "modifiers": {
+                        "WTM:multiShotExtraShot": 2
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:NullArrow"
+                      },
+                      "modifiers": {
+                        "WTM:multiShotExtraShot": 2
+                      }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "evasion": 3
+                  }
                 },
                 {
                   "name": "LightBows5",
                   "id": "LightBows5",
                   "level": 5,
                   "shiny": true,
+                  "changeFunc": "doubleArrowLength",
                   "uiMods": {
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_LBOW5",
+                        "description": "+100% Duration and damage cap to infused arrows",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:LightBows"
                         },
                         "modifiers": {
-                          "WTM:multiShotExtraShot": 5,
-                          "rangedLifesteal": 10
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_LBOW52",
+                        "description": "-0.10s attack interval per infused arrow on the enemy",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      },
+                      {
+                        "descriptionLang": "WTM_LBOW53",
+                        "description": "Hail of Arrows strikes +10 times",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:LightBows"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
                         }
                       }
-                    ],
-                    "modifiers": {
-                      "rangedMinHitBasedOnMaxHitSlayerTask": 10,
-                      "flatAdditionalPrimaryProductQuantity": [
-                        {
-                          "skillID": "melvorD:Fletching",
-                          "subcategoryID": "melvorF:Arrows",
-                          "value": 10
-                        }
-                      ]
-                    }
+                    ]
                   },
                   "conditionalModifiers": [
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:FlameArrow"
+                      },
+                      "modifiers": {
+                        "flatAttackInterval": -100
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:PoisonArrow"
+                      },
+                      "modifiers": {
+                        "flatAttackInterval": -100
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:BarbedArrow"
+                      },
+                      "modifiers": {
+                        "flatAttackInterval": -100
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:TranqArrow"
+                      },
+                      "modifiers": {
+                        "flatAttackInterval": -100
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:SmokeArrow"
+                      },
+                      "modifiers": {
+                        "flatAttackInterval": -100
+                      }
+                    },
+                    {
+                      "condition": {
+                        "type": "CombatEffect",
+                        "character": "Enemy",
+                        "effectID": "WTM:NullArrow"
+                      },
+                      "modifiers": {
+                        "flatAttackInterval": -100
+                      }
+                    },
                     {
                       "condition": {
                         "type": "WeaponType",
                         "weaponType": "WTM:LightBows"
                       },
                       "modifiers": {
-                        "WTM:multiShotExtraShot": 5,
-                        "rangedLifesteal": 10
+                        "WTM:multiShotExtraShot": 10
                       }
                     }
-                  ],
-                  "modifiers": {
-                    "rangedMinHitBasedOnMaxHitSlayerTask": 10,
-                    "flatAdditionalPrimaryProductQuantity": [
-                      {
-                        "skillID": "melvorD:Fletching",
-                        "subcategoryID": "melvorF:Arrows",
-                        "value": 10
-                      }
-                    ]
-                  }
+                  ]
                 }
               ]
             },
@@ -7462,37 +7798,24 @@
               "type": "magic",
               "isPerWepMod": true,
               "wepModifiers": {
-                "modifiers": {}
+                "modifiers": {
+                  "magicDamageBonus": 5
+                }
               },
               "levels": [
                 {
                   "name": "Staves1",
                   "id": "Staves1",
                   "level": 1,
-                  "shiny": false,
+                  "shiny": true,
                   "tooltip": {
-                    "3": "MODIFIER_TOOLTIP_STAVES1"
+                    "1": "MODIFIER_TOOLTIP_STAVES1"
                   },
                   "uiMods": {
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_STAVES1",
                         "description": "Attune to an element at the Start of the Fight",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Staves"
-                        },
-                        "modifiers": {}
-                      },
-                      {
-                        "description": "Attuned element's spells gain +25% Max Hit",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Staves"
-                        },
-                        "modifiers": {}
-                      },
-                      {
-                        "description": "10% chance to apply an effect based on element",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Staves"
@@ -7520,15 +7843,26 @@
                   "tooltip": {
                     "1": "MODIFIER_TOOLTIP_STAVES2"
                   },
+                  "order": [
+                    "c",
+                    "m"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    0
+                  ],
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Gain a bonus based on attuned element",
+                        "descriptionLang": "WTM_STAVES2",
+                        "description": "Unlock a boon based on attuned element",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Thrown"
                         },
-                        "modifiers": {}
+                        "modifiers": {
+                          "magicMaxHit": 5
+                        }
                       }
                     ]
                   },
@@ -7642,7 +7976,10 @@
                         "burnDOTDamageTaken": 15
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "magicMaxHit": 5
+                  }
                 },
                 {
                   "name": "Staves3",
@@ -7655,15 +7992,8 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Gain a bonus based on attuned element",
-                        "condition": {
-                          "type": "WeaponType",
-                          "weaponType": "WTM:Thrown"
-                        },
-                        "modifiers": {}
-                      },
-                      {
-                        "description": "Attuning to an element surrounds you in a protective Aura that has effects when Hit by an Attack for 10 turns",
+                        "descriptionLang": "WTM_STAVES3",
+                        "description": "Attuning to an element surrounds you in a protective Aura",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Thrown"
@@ -7692,6 +8022,114 @@
                       "appliesWhen": "StartOfFight",
                       "effectID": "WTM:AuraAir"
                     },
+                    {
+                      "description": "Water",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Staves"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementWater"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:AuraWater"
+                    },
+                    {
+                      "description": "Earth",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Staves"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementEarth"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:AuraEarth"
+                    },
+                    {
+                      "description": "Fire",
+                      "condition": {
+                        "type": "Every",
+                        "conditions": [
+                          {
+                            "type": "WeaponType",
+                            "weaponType": "WTM:Staves"
+                          },
+                          {
+                            "type": "CombatEffect",
+                            "character": "Player",
+                            "effectID": "WTM:AttunementFire"
+                          }
+                        ]
+                      },
+                      "appliesWhen": "StartOfFight",
+                      "effectID": "WTM:AuraFire",
+                      "applyEffectWhenMerged": true
+                    }
+                  ]
+                },
+                {
+                  "name": "Staves4",
+                  "id": "Staves4",
+                  "level": 4,
+                  "shiny": false,
+                  "tooltip": {
+                    "1": "MODIFIER_TOOLTIP_STAVES4"
+                  },
+                  "order": [
+                    "c",
+                    "m",
+                    "m"
+                  ],
+                  "overwriteTypeIcons": [
+                    1,
+                    1,
+                    0
+                  ],
+                  "uiMods": {
+                    "modifiers": {
+                      "flatResistance": [
+                        {
+                          "damageTypeID": "melvorD:Normal",
+                          "value": 5
+                        }
+                      ],
+                      "flatHiddenSkillLevel": [
+                        {
+                          "skillID": "melvorD:Attack",
+                          "value": 6
+                        }
+                      ]
+                    },
+                    "conditionalModifiers": [
+                      {
+                        "descriptionLang": "WTM_STAVES4",
+                        "description": "Unlock a boon based on attuned element",
+                        "condition": {
+                          "type": "WeaponType",
+                          "weaponType": "WTM:Staves"
+                        },
+                        "modifiers": {
+                          "WTM:fakeModifierAddTextDescToWepType": 1
+                        }
+                      }
+                    ]
+                  },
+                  "combatEffects": [
                     {
                       "description": "Air",
                       "condition": {
@@ -7748,47 +8186,9 @@
                           }
                         ]
                       },
-                      "appliesWhen": "StartOfFight",
-                      "effectID": "WTM:AuraWater"
-                    },
-                    {
-                      "description": "Water",
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Staves"
-                          },
-                          {
-                            "type": "CombatEffect",
-                            "character": "Player",
-                            "effectID": "WTM:AttunementWater"
-                          }
-                        ]
-                      },
                       "appliesWhen": "HitWithAttack",
                       "effectID": "WTM:Vulnerability",
                       "targetOverride": "Target"
-                    },
-                    {
-                      "description": "Earth",
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Staves"
-                          },
-                          {
-                            "type": "CombatEffect",
-                            "character": "Player",
-                            "effectID": "WTM:AttunementEarth"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "StartOfFight",
-                      "effectID": "WTM:AuraEarth"
                     },
                     {
                       "description": "Earth",
@@ -7827,73 +8227,10 @@
                         ]
                       },
                       "appliesWhen": "StartOfFight",
-                      "effectID": "WTM:AuraFire",
-                      "applyEffectWhenMerged": true
-                    },
-                    {
-                      "description": "Fire",
-                      "condition": {
-                        "type": "Every",
-                        "conditions": [
-                          {
-                            "type": "WeaponType",
-                            "weaponType": "WTM:Staves"
-                          },
-                          {
-                            "type": "CombatEffect",
-                            "character": "Player",
-                            "effectID": "WTM:AttunementFire"
-                          }
-                        ]
-                      },
-                      "appliesWhen": "StartOfFight",
                       "effectID": "melvorD:Burn",
                       "targetOverride": "Target"
                     }
-                  ]
-                },
-                {
-                  "name": "Staves4",
-                  "id": "Staves4",
-                  "level": 4,
-                  "shiny": false,
-                  "overwriteTypeIcons": [
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1
                   ],
-                  "uiMods": {
-                    "modifiers": {
-                      "critMultiplier": 20,
-                      "hPRegenBasedOnMaxHP": 5,
-                      "flatResistance": [
-                        {
-                          "damageTypeID": "melvorD:Normal",
-                          "value": 5
-                        }
-                      ]
-                    },
-                    "conditionalModifiers": [
-                      {
-                        "condition": {
-                          "type": "Every",
-                          "conditions": [
-                            {
-                              "type": "CombatEffect",
-                              "character": "Enemy",
-                              "effectID": "melvorD:Burn"
-                            }
-                          ]
-                        },
-                        "modifiers": {
-                          "magicMaxHit": 10
-                        }
-                      }
-                    ]
-                  },
                   "conditionalModifiers": [
                     {
                       "condition": {
@@ -7901,8 +8238,6 @@
                         "weaponType": "WTM:Staves"
                       },
                       "modifiers": {
-                        "critMultiplier": 20,
-                        "hPRegenBasedOnMaxHP": 5,
                         "flatResistance": [
                           {
                             "damageTypeID": "melvorD:Normal",
@@ -7930,7 +8265,15 @@
                         "magicMaxHit": 10
                       }
                     }
-                  ]
+                  ],
+                  "modifiers": {
+                    "flatHiddenSkillLevel": [
+                      {
+                        "skillID": "melvorD:Attack",
+                        "value": 6
+                      }
+                    ]
+                  }
                 },
                 {
                   "name": "Staves5",
@@ -7943,7 +8286,8 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
-                        "description": "Gain a powerful bonus based on attuned element",
+                        "descriptionLang": "WTM_STAVES5",
+                        "description": "Unlock a powerful boon based on attuned element",
                         "condition": {
                           "type": "WeaponType",
                           "weaponType": "WTM:Staves"

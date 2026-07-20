@@ -1,5 +1,7 @@
 export const language = {
 
+
+    'WTM_HBOW0': "+20% critical hit multiplier",
     'WTM_HBOW1': "Unlock the Power Shot Special Attack",
     'WTM_HBOW2': "",
     'WTM_HBOW3': "",
@@ -7,11 +9,11 @@ export const language = {
     'WTM_HBOW5': "",
 
 
-    'WTM_STAVES1': "",
-    'WTM_STAVES2': "",
-    'WTM_STAVES3': "",
-    'WTM_STAVES4': "",
-    'WTM_STAVES5': "",
+    'WTM_STAVES1': "Attune to an element at the Start of the Fight",
+    'WTM_STAVES2': "Unlock a boon based on attuned element",
+    'WTM_STAVES3': "Attuning to an element surrounds you in a protective Aura",
+    'WTM_STAVES4': "Unlock a boon based on attuned element",
+    'WTM_STAVES5': "Unlock a powerful boon based on attuned element",
 
 
     'WTM_THRUST1': "Unlock Dueling Stance",
@@ -40,7 +42,7 @@ export const language = {
     'WTM_POLE4': "+25 Bonus to Slash, Stab, and Block Attack",
     'WTM_POLE42': "+25 Bonus to Melee, Magic, and Ranged Defence",
 
-    'WTM_BLUNT2': "+10% chance to apply Dazed when hitting an enemy with Broken",
+    'WTM_BLUNT2': "+25% chance to apply Dazed when hitting an enemy with Broken",
     'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack",
     'WTM_BLUNT4': "+10% chance to inflict Stun when hitting an enemy with Broken",
     'WTM_BLUNT5': "If Target is currently Stunned, +30% Damage Dealt",
@@ -80,12 +82,15 @@ export const language = {
     'WTM_CROSS5': "+15% Accuracy Rating while fighting Melee Enemies",
     'WTM_CROSS52': "+30% Ranged Max Hit while Enemy HP is ≥90%",
 
-    'WTM_LBOW1': "",
-    'WTM_LBOW2': "",
-    'WTM_LBOW3': "",
-    'WTM_LBOW4': "",
-    'WTM_LBOW5': "",
-
+    'WTM_LBOW1': "+5% chance on hit to shoot an infused arrow on the enemy",
+    'WTM_LBOW12': "While the enemy is afflicted by an infused arrow, +10% evasion chance",
+    'WTM_LBOW3': "Unlock the Hail of Arrows Special Attack",
+    'WTM_LBOW32': "+5% lifesteal per infused arrow on the enemy",
+    'WTM_LBOW4': "Unlock new infused arrows",
+    'WTM_LBOW42': "Hail of Arrows Strikes +2 times per Infused Arrow on the enemy",
+    'WTM_LBOW5': "+100% Duration and damage cap to infused arrows",
+    'WTM_LBOW52': "-0.10s attack interval per infused arrow on the enemy",
+    'WTM_LBOW53': "Hail of Arrows strikes +10 times",
 
     'WTM_THROWN1': "Cannot use Special Attacks",
     'WTM_THROWN2': "Start each fight with a Volley",
@@ -101,7 +106,7 @@ export const language = {
 
 
 
-    
+
     'WTM_EMTPY_EQUIP_NAME': 'Unarmed',
     'MODIFIER_DATA_increaseWeaponXPMelee': "${value}% Melee Weapon Mastery XP",
     'MODIFIER_DATA_increaseWeaponXPRanged': "${value}% Ranged Weapon Mastery XP",
@@ -136,7 +141,7 @@ export const language = {
     'MODIFIER_DATA_damageTaken25Stealth': "${value}% less Damage taken per 25 Stealth",
     'MODIFIER_DATA_maxHit25Stealth': "${value}% Maximum Hit per 25 Stealth",
     'MODIFIER_DATA_critMult25Stealth': "${value}% critical hit multiplier per 25 Stealth",
-    'MODIFIER_DATA_critDRPierce': "${value}% of enemy Damage Reduction bypassed on critical hit",
+    'MODIFIER_DATA_critDRPierce': "${value}% bypassed enemy Damage Reduction on critical hit",
     'MODIFIER_DATA_critChance10000Acc': "${value}% critical hit chance per 10000 Accuracy",
     'MODIFIER_DATA_critMult10000Acc': "${value}% critical hit multiplier per 10000 Accuracy",
 
@@ -193,23 +198,23 @@ export const language = {
 </div>
 `,
     'MODIFIER_TOOLTIP_AXES4': '<div class="text-center"><span class="text-success font-weight-bold">Hemorrhage</span><br>Deals up to 500% damage dealt over the course of 20 seconds</div>',
-    'MODIFIER_TOOLTIP_HEAVY1': '<div class="text-center"><span class="text-success font-weight-bold">Power Shot (20%)</span><br>Deal damage equal to 100% - 200% of Enemy DR. On hit, apply 1 stack of Arrowstruck.</div>',
-    'MODIFIER_TOOLTIP_HEAVY2': '<div class="text-center"><span class="text-success font-weight-bold">Arrowstruck</span><br>Per stack: +1% Attack Interval, +1% Damage Taken, up to 10 stacks. Lasts until end of the fight.</div>',
-    'MODIFIER_TOOLTIP_HEAVY3': '<div class="text-center"><span class="text-info font-weight-bold">Power Stance</span><br>+25% Ranged Critical Hit Chance, +100% Crit Multiplier, +50% Chance to ignore Enemy DR, and -100% Global Evasion. Modifiers decrease by 20% each time you are hit, removed after 5 times.</div>',
+    'MODIFIER_TOOLTIP_HEAVY2': '<div class="text-center"><span class="text-warning font-weight-bold">Killshot (15%)</span><br>Deal damage equal to 100% to 200% of Enemy DR. On hit, apply 1 stack of Pinned.<br><div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Pinned</span><br>+1% Attack Interval and +1% Damage Taken per stack, up to 10. Lasts until end of the fight.</div>',
     'MODIFIER_TOOLTIP_HEAVY4': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>+1% increased damage taken per stack, up to 25 stacks, flat -10% Flat Resistance</div>',
-    'MODIFIER_TOOLTIP_LIGHT21': '<div class="text-center"><span class="text-info font-weight-bold">Random Effects</span><br><Poison, Burn, Bleed, Slow, or Immobilize/div>',
-
-    'MODIFIER_TOOLTIP_LIGHT22': '<div class="text-center"><span class="text-success font-weight-bold">Vulnerability</span><br>Take 25% DoT Damage for 3 turns/div>',
+    'MODIFIER_TOOLTIP_HEAVY5': '<div class="text-center"><span class="text-success font-weight-bold">Hunter Stance</span><br>20% chance to ignore resistance, 10% critical hit chance and 50% critical hit multiplier<br> Effects weaken every time you are hit</div>',
 
 
+    'MODIFIER_TOOLTIP_LIGHT2': '<div class="text-center"><span class="text-success font-weight-bold">Overextended</span><br>+25% DoT Damage taken for 3 turns/div>',
+    'MODIFIER_TOOLTIP_LIGHT1': '<div class="text-center"><span class="text-info font-weight-bold">Arrow Infusions</span><br>All arrow Infusions last for 5 seconds<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Flame</span><br>Deal 6% of enemy\'s max health<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Poison</span><br>Deal 4% of enemy\'s max hp<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Tranq</span><br>+70% Interval on enemy<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Barbed</span><br>deal 200% normal damage to enemy</div>',
+    'MODIFIER_TOOLTIP_LIGHT4': '<div class="text-center"><span class="text-success font-weight-bold">Toxic Smoke</span><br>Deal 5% of enemy\'s max health<br>Give enemy -25% Accuracy Rating and Damage Dealt<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Nullify</span><br>Deal 3% of enemy\'s max health <br>Give enemy +25% Damage Taken and inability to buff self</div>',
     'MODIFIER_TOOLTIP_THROWN1': '<div class="text-center"><span class="text-success font-weight-bold">Alacrity</span><br>-1% Attack Interval per stack, up to 15</div>',
     'MODIFIER_TOOLTIP_THROWN2': '<div class="text-center"><span class="text-success font-weight-bold">Volley</span><br>-50% to Attack Interval and Max Hit, and Accuracy. Lasts for 3 turns</div>',
     'MODIFIER_TOOLTIP_THROWN4': '<div class="text-center"><span class="text-success font-weight-bold">Confused</span><br>Take 2% of remaining HP dealt on a successful attack (once per turn, up to 10,000 damage)</div>',
     'MODIFIER_TOOLTIP_THROWN5': '<div class="text-center"><span class="text-success font-weight-bold">The Drop</span><br>+30% Max Hit for the first turn of battle</div>',
 
-    'MODIFIER_TOOLTIP_STAVES1': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Evade, Daze, Can\'t Special Attack or Evade, enemy, 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Summon Attack, Heal, 150% of Max HP over 20s <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>On Being Hit, +50% of Current DR added as DR, for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>On Hit, Burn, enemy</div>',
+    'MODIFIER_TOOLTIP_STAVES1': '<div class="text-center"><span class="text-info font-weight-bold">Attuned Elmenets</span><br>Spells of the Attuned Element gain +25% Max Hit, all Attuned Elements have a 10% chance for an effect<br><div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Air</span><br>On Evade, Daze, Can\'t Special Attack or Evade, enemy, 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Summon Attack, Heal, 150% of Max HP over 20s <div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>On Being Hit, +50% of Current DR added as DR, for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>On Hit, Burn, enemy</div>',
     'MODIFIER_TOOLTIP_STAVES2': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>-15% Attack Interval which decays on hit and lasts 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>Heal for 5% of your Current HP every 2 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+5% Reflect Damage and 10% to inflict a 100% Bleed when Hit by an Attack<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>Enemy takes +15% Damage from Burn</div>',
-    'MODIFIER_TOOLTIP_STAVES3': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Crit, gain 1 stack of Concentration and 1 stack of Impact<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Hit, inflict 1 stack of Vulnerability<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>At the Start of the Fight, become Steadfast for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>At the Start of the Fight, inflict Burn on the enemy</div>',
+    'MODIFIER_TOOLTIP_STAVES3': '<div class="text-center"><span class="text-info font-weight-bold">Auras</span><br>All Auras have effects upon being hit and last 10 turns<br><span class="text-success font-weight-bold">Air</span><br>50% chance to stun the enemy<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>Slow enemy by 70%<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>Gain protection against ranged, and bleed enemy for 100% damage<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>Gain fire max hit, and burn enemy</div>',
+    'MODIFIER_TOOLTIP_STAVES4': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>On Crit, gain 1 stack of Concentration and 1 stack of Impact<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>On Hit, inflict 1 stack of Vulnerability<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>At the Start of the Fight, become Steadfast for 3 turns<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>At the Start of the Fight, inflict Burn on the enemy</div>',
     'MODIFIER_TOOLTIP_STAVES5': '<div class="text-center"><span class="text-success font-weight-bold">Air</span><br>+20% Dmg Dealt when enemy HP is ≤50%<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Water</span><br>+10% Dmg Dealt When Player HP is ≥50% and Heal for 10% Max HP on Evade<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Earth</span><br>+20% Chance to Ignore Fear, Sleep, Slow, and Stun, and +10% Dmg Dealt to Bleeding Targets<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Fire</span><br>10% Chance on Hit to inflict Burn Vulnerability to the enemy (x2 Dmg Taken from Burn)</div>',
     'MENU_TOOLTIPS_ARTEFACTS5': '<div class="text-center"><span class="text-success font-weight-bold">Triple-triple-charge</span><br>All effect damage and modifier values are amplified by 9×</div>',
 
@@ -270,16 +275,16 @@ export const language = {
     'COMBAT_EFFECT_NAME_ Terrify': "Terrify",
     'COMBAT_EFFECT_NAME_ Steadfast': "Steadfast",
     'COMBAT_EFFECT_NAME_ AuraAir': "Wind Aura",
-    'COMBAT_EFFECT_NAME_ AuraWater': "Chilly Aura",
+    'COMBAT_EFFECT_NAME_ AuraWater': "Chilled Aura",
     'COMBAT_EFFECT_NAME_ AuraEarth': "Earthen Aura",
-    'COMBAT_EFFECT_NAME_ AuraFire': "Fiery Aura",
+    'COMBAT_EFFECT_NAME_ AuraFire': "Burning Aura",
     'COMBAT_EFFECT_NAME_ AttunementAir': "Elemental Attunement — Air",
     'COMBAT_EFFECT_NAME_ AttunementWater': "Elemental Attunement — Water",
     'COMBAT_EFFECT_NAME_ AttunementEarth': "Elemental Attunement — Earth",
     'COMBAT_EFFECT_NAME_ AttunementFire': "Elemental Attunement — Fire",
     'COMBAT_EFFECT_NAME_ Volley': "Volley",
     'COMBAT_EFFECT_NAME_ SlinkIntoShadows': "Slink Into Shadows",
-    'COMBAT_EFFECT_NAME_ DOTVulnerability': "DOT Vulnerability",
+    'COMBAT_EFFECT_NAME_ DOTVulnerability': "Overextended",
     'COMBAT_EFFECT_NAME_ TakeAim0': "Take Aim",
     'COMBAT_EFFECT_NAME_ StraightShooter': "Straight Shooter",
     'COMBAT_EFFECT_NAME_ BarbaricStrength': "Barbaric Strength",
@@ -313,6 +318,14 @@ export const language = {
     'COMBAT_EFFECT_NAME_ Shrouded': "Shrouded",
     'COMBAT_EFFECT_NAME_ Blindsiding': "Blindsiding",
     'COMBAT_EFFECT_NAME_ TheDrop': "The Drop",
+    'COMBAT_EFFECT_NAME_ Arrowstruck': "Pinned",
+    'COMBAT_EFFECT_NAME_ TranqArrow': "Tranquilizer Arrow",
+    'COMBAT_EFFECT_NAME_ PoisonArrow': "Poison Arrow",
+    'COMBAT_EFFECT_NAME_ BarbedArrow': "Rupture Arrow",
+    'COMBAT_EFFECT_NAME_ FlameArrow': "Flame Arrow",
+    'COMBAT_EFFECT_NAME_ NullArrow': "Nullify Arrow",
+    'COMBAT_EFFECT_NAME_ SmokeArrow': "Toxic Smoke Arrow",
+    'COMBAT_EFFECT_NAME_ PowerStance': "Hunter Stance",
 
 
 
@@ -323,7 +336,7 @@ export const language = {
     'COMBAT_EFFECTGROUP_NAME_ Intimidation': "Intimidation",
     'COMBAT_EFFECTGROUP_NAME_ Terrify': "Terrify",
     'COMBAT_EFFECTGROUP_NAME_ Daze': "Daze",
-    'COMBAT_EFFECTGROUP_NAME_ LBowDebuffs': "Light Bow Debuffed",
+    'COMBAT_EFFECTGROUP_NAME_ LBowDebuffs': "Infused Arrows",
 
 
     'SPECIAL_ATTACK_NAME_ ChannelledPalmStrike': "Channeled Palm Strike",
@@ -352,19 +365,21 @@ export const language = {
     'SPECIAL_ATTACK_NAME_ Blindside': "Blindside",
     'SPECIAL_ATTACK_NAME_ EchoingPalmStrike': "Flowing Palm Wave",
     'SPECIAL_ATTACK_NAME_ MultiShot': "Hail of Arrows",
+    'SPECIAL_ATTACK_NAME_ PowerShot': "Killshot",
+
 
 
 
     'MODIFIER_TOOLTIP_GREAT3': '<div class="text-center"><span class="text-warning font-weight-bold">Devastating Slice (15%)</span><br>Deliver your blade unto the enemy with a wide, arching slash that strikes 2 times for up to 75% of your normal damage per hit.<br> On hit, has a 5% Chance to inflict Shaken for 5 turns.<div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Shaken</span><br>-5% Global Evasion and Resistance</div>',
     'MODIFIER_TOOLTIP_BLUNTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Concussive Smash (30%)</span><br>Smash into your enemy\'s armour, dealing up to 100 + (enemy\'s DR)% Normal damage. Avoidable. <br> Inflicts Daze for 2 turns and has a 20% chance to inflict Broken on a hit.</div>',
     'MODIFIER_TOOLTIP_CURVED3': '<div class="text-center"><span class="text-warning font-weight-bold">Mounted Strike (15%)</span><br>Attack normally, on hit instruct your companions to perform an unavoidable attack each</div>',
-    'MODIFIER_TOOLTIP_LIGHT3': '<div class="text-center"><span class="text-warning font-weight-bold">Take Aim (15%)</span><br>You find solid supports to brace your crossbow, gaining +25% of Maximum Hit added to Minimum Hit for 3 turns.<br> If buff is already active, perform a regular attack instead.</div>',
+    'MODIFIER_TOOLTIP_CROSS3': '<div class="text-center"><span class="text-warning font-weight-bold">Take Aim (15%)</span><br>You find solid supports to brace your crossbow, gaining +15% of Maximum Hit added to Minimum Hit for 3 turns.<br> If buff is already active, perform a regular attack instead.</div>',
     'MODIFIER_TOOLTIP_HTH3': '<div class="text-center"><span class="text-warning font-weight-bold">Channeled Palm Strike (10%)</span><br>Channel your inner strength and perform an avoidable normal attack. Deals 100% of your normal damage and inflicts Stun on the enemy for 1 turn on hit.</div>',
     'MENU_TOOLTIPS_ARTEFACTS3': '<div class="text-center"><span class="text-warning font-weight-bold">Pandora\'s Spark (15%)</span><br><span>Inflict a Triple-charged random effect on yourself and the enemy</span><div class="col-12 mb-1 dropdown-divider"></div><span class="text-success font-weight-bold">Triple-charge</span><br><span>All effect damage and modifier values are amplified by 3×</span></div>',
     'MODIFIER_TOOLTIP_THRUSTING3': '<div class="text-center"><span class="text-warning font-weight-bold">Practiced Lunge (15%)</span><br>Perform an unavoidable lunge that ignores enemy Resistance. Deals 50% Normal Damage</div>',
     'MODIFIER_TOOLTIP_DAGGER3': '<div class="text-center"><span class="text-warning font-weight-bold">Blindside (15%)</span><br>Exploit the enemy\'s blind spots.<br>Deal 1 + (Stealth/50) strikes, dealing 75% of your Normal damage. <br> Strikes have +30% critical hit multiplier.</div>',
     'MODIFIER_TOOLTIP_HTH5': '<div class="text-center"><span class="text-warning font-weight-bold">Flowing Palm Wave (10%)</span><br>Unleash a flurry of blows with your inner energy. Strikes 2 times, or 5 times if unburdened. <br> Deals 50% of your normal damage and has a 10% chance to Stun the Enemy for 2 turns on hit.</div>',
-    'MODIFIER_TOOLTIP_LIGHT1': '<div class="text-center"><span class="text-warning font-weight-bold">Hail of Arrows (25%)</span><br>Let loose a hail of 5 arrows aimed around the Enemy, each dealing 10% of your normal damage on hit.</div>',
+    'MODIFIER_TOOLTIP_LIGHT3': '<div class="text-center"><span class="text-warning font-weight-bold">Hail of Arrows (25%)</span><br>Let loose a hail of 10 arrows aimed around the Enemy, each dealing 15% of your normal damage on hit.</div>',
 
 
     'SPECIAL_ATTACK_DESC_ DeathApproaches': "Strike your enemy's weak spot, dealing ${attackDamageMaxValue0}% of their max HP.",
@@ -375,7 +390,6 @@ export const language = {
     'SPECIAL_ATTACK_DESC_ ConcussiveSmash': "Smash into your enemy's armour, dealing up to (100 + enemy DR)% Normal damage.<br> On a hit, inflicts Daze for 2 turns and has a ${onHitEffect1chance}% chance to inflict Broken. Avoidable.",
     'SPECIAL_ATTACK_DESC_ DevastatingSlice': "Deliver your blade unto the enemy with a wide, arching slash that strikes ${hitCount} times for up to ${attackDamageMaxValue0}% of your normal damage per hit. <br> On hit, has a ${onHitEffect0chance}% Chance to inflict Shaken (-${onHitEffect0modValue}% Global Evasion and -${onHitEffect0modValue1}% Total Resistance on the enemy for ${onHitEffect0turns} turns).",
     'SPECIAL_ATTACK_DESC_ ChannelledPalmStrike': "Channel your inner strength and perform an avoidable normal attack. Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the enemy for ${onHitEffect0turns} turn on hit.",
-    'SPECIAL_ATTACK_DESC_ Barrage': "Barrage the enemy with a hail of arrows that each deal ${attackDamageMaxValue0}% of your normal damage.<br> Arrows have a ${onHitEffect0chance}% to apply 1 stack of Hobbled (Attack Interval is increased by 1% per stack, up to 25 stacks).",
     'SPECIAL_ATTACK_DESC_ TakeAim': "You find solid supports to brace your crossbow, gaining +${preHitEffect0modValue0}% of Maximum Hit added to Minimum Hit for ${preHitEffect0turns} turns.<br> If buff is already active, perform a regular attack instead.",
     'SPECIAL_ATTACK_DESC_ BigSmash': "Smash the enemy for ${attackDamageMaxValue0}% of your normal damage. If you hit, you gain Barbaric Strength, giving you ${onHitEffect0modValue} stacking Flat Melee Max Hit until the End of the Fight.",
     'SPECIAL_ATTACK_DESC_ Eradication': "You snuff the life force out of the enemy, dealing damage equal to ${attackDamageMaxValue0}%-${attackDamageMaxValue1}% of their current HP, and heal for ${lifesteal}% of the damage dealt.<br> Uses Prayer Points.",
@@ -389,9 +403,10 @@ export const language = {
     'SPECIAL_ATTACK_DESC_ Shatterstrikes': "Harnessing crystalline power, make two swift strikes against the Target, each dealing ${attackDamageMaxValue0}% your maximum hit (doubled if the enemy is Crystallized).<br> On hit, ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for ${onHitEffect0turns} turn(s), and ${onHitEffect1chance}% chance to apply Crystal Sanction (Target's next attack deals no damage).",
     'SPECIAL_ATTACK_DESC_ CrystalStrike': "Focus crystalline energy into your knuckles to land a powerful strike.<br> On hit, deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for 1 turn.",
     'SPECIAL_ATTACK_DESC_ WhirlingManoeuvre': "Whirl your polearm around, attacking ${hitCount} times for ${attackDamageMaxValue0}% of your normal damage each.<br> While attacking, gain +${preHitEffect0modValue1}% Dodge Chance and reflect enemy attacks for ${preHitEffect0modValue0}% of their damage.",
-    'SPECIAL_ATTACK_DESC_ Blindside': "Exploit the enemy's blind spots, attacking 1 + (Stealth/50) times, dealing ${attackDamageMaxValue0}% of your Normal damage. <br> Strikes have +${preHitEffect0modValue0}% critical hit multiplier.",
-    'SPECIAL_ATTACK_DESC_ EchoingPalmStrike': "Unleash a flurry of blows with your inner energy. Strikes ${hitCount} times, or 5 times if unburdened. <br> Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the Enemy for ${onHitEffect0turns} turns on hit.",
+    'SPECIAL_ATTACK_DESC_ Blindside': "Exploit the enemy's blind spots, attacking ${hitCount} ( 1 + (Stealth/50) ) times. <br> Strikes deal ${attackDamageMaxValue0}% of your Normal damage and have +${preHitEffect0modValue0}% critical hit multiplier.",
+    'SPECIAL_ATTACK_DESC_ EchoingPalmStrike': "Unleash a flurry of blows with your inner energy. Strikes ${hitCount} times (more if unburdened). <br> Deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to Stun the Enemy for ${onHitEffect0turns} turns on hit.",
     'SPECIAL_ATTACK_DESC_ MultiShot': "Let loose a hail of ${hitCount} arrows aimed around the Enemy, each dealing ${attackDamageMaxValue0}% of your normal damage on hit.",
+    'SPECIAL_ATTACK_DESC_ PowerShot': "You loose a single fatal arrow with absolute certainty, dealing damage equal to ${attackDamageMinValue0}% to ${attackDamageMaxValue0}% of their DR. <br> If your Accuracy Rating is higher than ${minAccuracy} then this attack can't miss.<br> On a hit, inflict 1 stack of Pinned (+${onHitEffect0modValue0}% Attack Interval and +${onHitEffect0modValue1}% Damage Taken per stack, max 10 stacks) Damage Taken. Lasts until the End of the Fight.",
 
     'MENU_SETTINGS_TOOLTIP': 'Whether this Namespace\'s weapons should have Types or gain and contribute XP',
 

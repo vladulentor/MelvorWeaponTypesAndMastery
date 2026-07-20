@@ -12,7 +12,7 @@ export function addFunkyAttackCounts(){
  Object.defineProperty(ms, 'attackCount', {
         get() {
             const extrahits = game.modifiers.getValue("WTM:multiShotExtraShot", ModifierQuery.EMPTY);
-            return 1 + extrahits;
+            return 10 + extrahits;
         },
     });
 
