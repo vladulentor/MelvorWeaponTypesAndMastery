@@ -6772,6 +6772,7 @@
                   "uiMods": {
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_HBOW2",
                         "description": "Unlock the Killshot Special Attack",
                         "condition": {
                           "type": "WeaponType",
@@ -6817,6 +6818,7 @@
                     },
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_HBOW3",
                         "description": "+5% Chance To Double Loot in Combat when fighting Slayer Task monsters",
                         "condition": {
                           "type": "FightingSlayerTask"
@@ -6882,6 +6884,7 @@
                     ],
                     "conditionalModifiers": [
                       {
+                        "descriptionLang": "WTM_HBOW4",
                         "description": "+10% chance to trigger Killshot",
                         "condition": {
                           "type": "FightingSlayerTask"
@@ -6891,6 +6894,7 @@
                         }
                       },
                       {
+                        "descriptionLang": "WTM_HBOW42",
                         "description": "+25% critical hit multiplier when fighting Slayer Task monsters",
                         "condition": {
                           "type": "FightingSlayerTask"
@@ -7792,9 +7796,9 @@
                 "Rotten_Staff3",
                 "Water_Pulse_Staff3"
               ],
-              "media": "assets/staves.svg",
+              "media": "assets/staves.png",
               "mediaAlt": "assets/black_filled_svgs/staves.svg",
-              "mediaCol": "assets/filled_svgs/staves.svg",
+              "mediaCol": "assets/filled_svgs/staves.png",
               "type": "magic",
               "isPerWepMod": true,
               "wepModifiers": {

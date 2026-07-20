@@ -1,12 +1,18 @@
 export const language = {
 
 
+
+    'WTM_HBOW2': "Unlock the Killshot Special Attack",
+    'WTM_HBOW3': "+5% Chance To Double Loot in Combat when fighting Slayer Task monsters",
+    'WTM_HBOW4': "+10% chance to trigger Killshot",
+    'WTM_HBOW42': "+25% critical hit multiplier when fighting Slayer Task monsters",
+    'WTM_ARTF3': "Unlock the Pandora's Spark Special Attack",
+
+
+
+
     'WTM_HBOW0': "+20% critical hit multiplier",
     'WTM_HBOW1': "Unlock the Power Shot Special Attack",
-    'WTM_HBOW2': "",
-    'WTM_HBOW3': "",
-    'WTM_HBOW4': "",
-    'WTM_HBOW5': "",
 
 
     'WTM_STAVES1': "Attune to an element at the Start of the Fight",
@@ -75,8 +81,6 @@ export const language = {
 
     'WTM_BLUNT3': "Unlocks the Concussive Smash Special Attack.",
 
-
-
     'WTM_CROSS3': "Unlock the Take Aim Special Attack",
     'WTM_CROSS4': "Your first attack is an unavoidable critical hit",
     'WTM_CROSS5': "+15% Accuracy Rating while fighting Melee Enemies",
@@ -102,10 +106,6 @@ export const language = {
 
     'WTM_WANDS3': "Increase rune cost reduction of magic weapons",
     'WTM_WANDS4': "+1 All Defence Bonus per 4% of Damage Reduction",
-
-
-
-
 
     'WTM_EMTPY_EQUIP_NAME': 'Unarmed',
     'MODIFIER_DATA_increaseWeaponXPMelee': "${value}% Melee Weapon Mastery XP",
@@ -144,6 +144,20 @@ export const language = {
     'MODIFIER_DATA_critDRPierce': "${value}% bypassed enemy Damage Reduction on critical hit",
     'MODIFIER_DATA_critChance10000Acc': "${value}% critical hit chance per 10000 Accuracy",
     'MODIFIER_DATA_critMult10000Acc': "${value}% critical hit multiplier per 10000 Accuracy",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -329,6 +343,29 @@ export const language = {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     'COMBAT_EFFECTGROUP_NAME_ AttunementAir': "Elemental Attunement — Air",
     'COMBAT_EFFECTGROUP_NAME_ AttunementWater': "Elemental Attunement — Water",
     'COMBAT_EFFECTGROUP_NAME_ AttunementEarth': "Elemental Attunement — Earth",
@@ -453,4 +490,15 @@ export const language = {
     "WTM_WEAPON_FLAVORTEXT_Artefacts": "Instruments representing Magic at its ficklest, to be used with great care and greater caution",
     "WTM_WEAPON_FLAVORTEXT_Special": "Made for chores and not for combat, it's debatable whether these are even weapons",
     "WTM_MAX": "MAX"
+
+
+
+
+
+
+
+
+
+
+
 }    

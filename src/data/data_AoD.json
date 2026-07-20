@@ -186,6 +186,7 @@
                                     "uiMods": {
                                         "conditionalModifiers": [
                                             {
+                                                "descriptionLang":"WTM_ARTF3",
                                                 "description": "Unlock the Pandora's Spark Special Attack",
                                                 "condition": {
                                                     "type": "WeaponType",
