@@ -6500,6 +6500,7 @@
                     },
                     {
                       "condition": {
+                        "type": "Every",
                         "conditions": [
                           {
                             "type": "WeaponType",
