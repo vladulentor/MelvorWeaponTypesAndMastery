@@ -1,0 +1,95 @@
+{
+  "$schema": "https://melvoridle.com/assets/schema/gameData.json",
+  "namespace": "rielkConstruction",
+  "modifications": {
+    "skillData": [
+      {
+        "skillID": "melvorD:Agility",
+        "data": {
+          "weaponMasteries": [
+            {
+              "id": "WTM:ThrustingSwords",
+              "uniq": [
+                "Sword_of_the_Crusader5",
+                "Sinestral_Blade3",
+                "Chrysamere4",
+                "Sinweaver2",
+                "RugdumphSword2",
+                "IceBladeOfTheMonarch3",
+                "Dawnbreaker5",
+                "Umbra_Sword4"
+              ]
+            },
+            {
+              "id": "WTM:CurvedSwords",
+              "uniq": [
+                "Blades_Sword1",
+                "Ebony_Blade3",
+                "Daedric_Crescent5",
+                "Goldbrand4"
+              ]
+            },
+            {
+              "id": "WTM:Daggers",
+              "uniq": [
+                "Nightingale_Blade5",
+                "Mehrunes_Razor5"
+              ]
+            },
+            {
+              "id": "WTM:Blunts",
+              "uniq": [
+                "Mace_of_the_Crusader5",
+                "SkullCrusher4",
+                "GiantClub4",
+                "Mace_of_Molag_Bal5",
+                "Volendrung4"
+              ]
+            },
+            {
+              "id": "WTM:Polearms",
+              "uniq": [
+                "SpearOfBitterMercy3"
+              ]
+            },
+            {
+              "id": "WTM:LightBows",
+              "uniq": [
+                "Nightingale_Bow5"
+              ]
+            },
+            {
+              "id": "WTM:Staves",
+              "uniq": [
+                "Staff_of_Worms5",
+                "GoblinTotemStaff2",
+                "Wabbajack4",
+                "Skull_of_Corruption3",
+                "Sanguine_Rose3"
+              ]
+            },
+            {
+              "id": "WTM:Wands",
+              "uniq": [
+                "Nightingale_Orb5"
+              ]
+            },
+            {
+              "id": "WTM:Special",
+              "uniq": [
+                "Alikri_Fishing_Rod1",
+                "Dwarven_Fishing_Rod1",
+                "Fishing_Rod1",
+                "Argonian_Fishing_Rod1",
+                "Bard_Lute2",
+                "Bard_Flute2",
+                "Bard_Drum2",
+                "Calipers1"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,8 +1,7 @@
 const { loadModule } = mod.getContext(import.meta);
 const { skillBoostsCompatibility } = await loadModule('src/patches/modPatches/skillBoosts.mjs');
 const { tinyIconsCompatibility } = await loadModule('src/patches/modPatches/tinyIcons.mjs');
-
-
+// const { elderScrollsCompatibility } = await loadModule('src/patches/modPatches/elderScrolls.mjs');
 
 export function patchMods(ctx, modList) {
   /*  if (modList.includes('Skill Boosts')) {
@@ -12,6 +11,11 @@ export function patchMods(ctx, modList) {
     if (modList.includes('[Refurbished] Tiny Icons')) {
         tinyIconsCompatibility(ctx);
     }
+
+    if (modList.includes('The Elder Scrolls')) {
+        elderScrollsCompatibility(ctx);
+    }
+
     if (modList.includes('"The future is now..." Text remover')) {
     }
 

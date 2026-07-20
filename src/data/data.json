@@ -158,36 +158,7 @@
         "descriptionGenerator": "You make an attack that deals <damage>. On hit, <hitEffect>.",
         "usesRunesPerProc": false
       },
-      {
-        "id": "Eradication",
-        "defaultChance": 30,
-        "damage": [
-          {
-            "damageType": "Custom",
-            "character": "Target",
-            "minRoll": "CurrentHP",
-            "minPercent": 25,
-            "maxRoll": "CurrentHP",
-            "maxPercent": 75,
-            "roll": true
-          }
-        ],
-        "prehitEffects": [],
-        "onhitEffects": [],
-        "cantMiss": false,
-        "attackTypes": [
-          "magic"
-        ],
-        "attackCount": 1,
-        "attackInterval": 200,
-        "lifesteal": 10,
-        "usesPrayerPointsPerProc": true,
-        "name": "Eradication",
-        "description": "You snuff the life force out of the Enemy, dealing damage equal to ${attackDamageMaxValue0}%-${attackDamageMaxValue1}% of their current HP, and heal for ${lifesteal}% of the damage dealt. Uses Prayer Points.",
-        "descriptionGenerator": "Make an attack that deals <damage>.",
-        "usesRunesPerProc": true,
-        "canNormalAttack": false
-      },
+     
       {
         "id": "RelentlessFury",
         "defaultChance": 100,
@@ -546,37 +517,7 @@
         "usesRunesPerProc": false
       },
     
-      {
-        "id": "CrystalStrike",
-        "defaultChance": 25,
-        "damage": [
-          {
-            "damageType": "Normal",
-            "amplitude": 130
-          }
-        ],
-        "prehitEffects": [],
-        "onhitEffects": [
-          {
-            "chance": 5,
-            "effectID": "melvorD:Crystallize",
-            "initialParams": [
-              {
-                "name": "turns",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "cantMiss": false,
-        "attackCount": 1,
-        "attackInterval": 2000,
-        "lifesteal": 0,
-        "name": "Crystal Strike",
-        "description": "Focus crystalline energy into your knuckles to land a powerful strike.<br> On hit, deals ${attackDamageMaxValue0}% of your normal damage and has a ${onHitEffect0chance}% chance to apply Crystallization (Target is stunned and takes +50% Damage) for 1 turn.",
-        "descriptionGenerator": "Make an <avoidable> attack that deals <damage>. On hit, <hitEffect>.",
-        "usesRunesPerProc": false
-      },
+      
       {
         "id": "PandorasSpark",
         "damage": [],
