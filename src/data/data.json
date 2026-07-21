@@ -516,8 +516,6 @@
         "descriptionGenerator": "Surrounds <attacker> in wind for <duration>, while dealing <damage> <avoidable> damage <count> times. On use, <prehitEffect>.",
         "usesRunesPerProc": false
       },
-    
-      
       {
         "id": "PandorasSpark",
         "damage": [],
@@ -1825,6 +1823,7 @@
             }
           }
         ],
+        
         "effectGroups": [
           "melvorD:Debuff",
           "melvorD:Fear"
@@ -1857,6 +1856,19 @@
                   }
                 ],
                 "targetOverride": "Self"
+              }
+            ]
+          }
+        ],
+        "behaviours": [
+          {
+            "type": "ModifyParameter",
+            "chance": "sc.modifier.WTM.fearDurationIncreaseChance",
+            "paramName": "turns",
+            "newValue": "param.turns + 1",
+            "triggersOn": [
+              {
+                "type": "EffectApplied"
               }
             ]
           }
