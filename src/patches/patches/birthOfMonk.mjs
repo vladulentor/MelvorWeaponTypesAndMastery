@@ -15,6 +15,10 @@ export function birthOfMonk({ patch }) {
         if (item instanceof EquipmentItem) {
             this.attackType = item.attackType;
         }
+     
+        if (!this.attackType && item.id == "melvorD:Empty_Equipment")
+            this.attackType = "melee";
+
         return orig();
 
     })
