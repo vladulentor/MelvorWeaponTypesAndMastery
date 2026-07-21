@@ -1,6 +1,14 @@
 export const language = {
 
+    'WTM_MASTERY_TOOLTIP1':"무기 숙련도는 해당 무기 및 해당 유형의 무기 사용 경험을 나타냅니다.",
+    'WTM_MASTERY_TOOLTIP2':"무기 숙련도는 주로 해당 무기로 공격할 때 증가하며, 적을 처치할 때도 추가로 증가합니다.",
+    'WTM_MASTERY_TOOLTIP3':"다양한 요소 위에 마우스를 올려 무기 숙련도에 대해 자세히 알아보세요.",
     
+    'WTM_UNIQ_TOOLTIP1':"무기의 <span class='text-success'>고유성</span>은 해당 무기로 얻을 수 있는 훈련의 양을 결정합니다. 희귀하고 이색적인 무기일수록 더 고유합니다.",
+    'WTM_UNIQ_TOOLTIP2':"무기의 고유성은 무기의 위력과 관련이 없습니다.",
+
+    'WTM_CHECKTYPE':"무기 유형 및 숙련도",
+    'WTM_TYPELOCKEDCONSTR':'잠금 해제하려면 <span class="construction-victory">건설</span>에서 전투 가구를 구축하세요',
 'WTM_HBOW2': "특수 공격 「Killshot」 해제",
     'WTM_HBOW3': "슬레이어 과제 몬스터와 전투 시, 전투 전리품을 2배로 획득할 확률 +5%",
     'WTM_HBOW4': "「Killshot」 발동 확률 +10%",

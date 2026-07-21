@@ -1,5 +1,14 @@
 export const language = {
     
+    'WTM_MASTERY_TOOLTIP1':"Les maîtrises d'armes représentent votre pratique d'une arme et des armes de ce type.",
+    'WTM_MASTERY_TOOLTIP2':"La maîtrise d'une arme augmente principalement en attaquant avec elle, et dans une moindre mesure en éliminant des ennemis.",
+    'WTM_MASTERY_TOOLTIP3':"Survolez les différents éléments pour en savoir plus sur les maîtrises d'armes.",
+    
+    'WTM_UNIQ_TOOLTIP1':"L'aspect <span class='text-success'>Unique</span> d'une arme détermine le niveau d'entraînement qu'elle peut offrir. Les armes rares et insolites sont plus uniques.",
+    'WTM_UNIQ_TOOLTIP2':"L'aspect unique d'une arme n'a aucun lien avec sa puissance.",
+    'WTM_CHECKTYPE':"Types d'armes et maîtrise",
+    'WTM_TYPELOCKEDCONSTR':'Développez vos installations de combat dans <span class="construction-victory">Construction</span> pour débloquer',
+
     'WTM_HBOW2': "Débloque l'attaque spéciale « Killshot »",
     'WTM_HBOW3': "+5% de chances de doubler le butin en combat contre les monstres de tâche de Slayer",
     'WTM_HBOW4': "+10% de chances de déclencher « Killshot »",

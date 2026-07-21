@@ -1,6 +1,13 @@
 export const language = {
-
     
+    'WTM_MASTERY_TOOLTIP1':"武器精通度代表你使用某種武器以及該類型武器的熟練程度。",
+    'WTM_MASTERY_TOOLTIP2':"提升武器精通度的主要方式是使用其進行攻擊，其次是擊殺敵人。",
+    'WTM_MASTERY_TOOLTIP3':"將滑鼠懸停在不同元素上，可了解有關武器精通度的更多資訊。",
+    
+    'WTM_UNIQ_TOOLTIP1':"武器的<span class='text-success'>獨特度</span>決定了能從中獲得多少訓練經驗。罕見且不尋常的武器更為獨特。",
+    'WTM_UNIQ_TOOLTIP2':"武器的獨特度與其威力無關。",
+'WTM_CHECKTYPE':"武器類型與精通",
+    'WTM_TYPELOCKEDCONSTR':'在<span class="construction-victory">建造</span>中升級你的戰鬥傢俱以解鎖',    
 'WTM_HBOW2': "解鎖特殊攻擊「擊殺射擊」（Killshot）",
     'WTM_HBOW3': "與弒神者任務（Slayer Task）怪物戰鬥時，戰鬥掉落物翻倍的機率+5%",
     'WTM_HBOW4': "觸發「擊殺射擊」（Killshot）的機率+10%",

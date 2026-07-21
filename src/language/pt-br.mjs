@@ -1,4 +1,15 @@
-export const language = {'WTM_HBOW2': "Desbloqueia o ataque especial Killshot",
+export const language = {
+
+    'WTM_MASTERY_TOOLTIP1':"As maestrias de armas representam o seu uso com uma arma e armas desse tipo.",
+    'WTM_MASTERY_TOOLTIP2':"A maestria com uma arma aumenta principalmente ao atacar com ela e, em segundo lugar, ao derrotar inimigos.",
+    'WTM_MASTERY_TOOLTIP3':"Passe o cursor sobre os diferentes elementos para saber mais sobre as maestrias de armas.",
+    
+    'WTM_UNIQ_TOOLTIP1':"A <span class='text-success'>Singularidade</span> de uma arma determina quanto treino pode ser obtido dela. Armas raras e incomuns são mais singulares.",
+    'WTM_UNIQ_TOOLTIP2':"A singularidade de uma arma não tem relação com a sua força.",
+    'WTM_CHECKTYPE':"Tipos de Armas e Maestria",
+    'WTM_TYPELOCKEDCONSTR':'Melhore sua mobília de combate em <span class="construction-victory">Construção</span> para desbloquear',
+    
+    'WTM_HBOW2': "Desbloqueia o ataque especial Killshot",
     'WTM_HBOW3': "+5% de chance de duplicar o saque em combate ao lutar contra monstros de tarefas de Slayer",
     'WTM_HBOW4': "+10% de chance de ativar o Killshot",
     'WTM_HBOW42': "+25% de multiplicador de acerto crítico ao lutar contra monstros de tarefas de Slayer",

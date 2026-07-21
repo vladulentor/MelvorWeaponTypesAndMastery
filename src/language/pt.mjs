@@ -1,6 +1,13 @@
 export const language = {
     
+    'WTM_MASTERY_TOOLTIP1':"As maestrias de armas representam o teu uso de uma arma e de armas desse tipo.",
+    'WTM_MASTERY_TOOLTIP2':"A maestria com uma arma aumenta principalmente ao atacar com ela e, em segundo lugar, ao matar inimigos.",
+    'WTM_MASTERY_TOOLTIP3':"Passa o cursor sobre os diferentes elementos para saber mais sobre as maestrias de armas.",
     
+    'WTM_UNIQ_TOOLTIP1':"A <span class='text-success'>Singularidade</span> de uma arma determina quanto treino se pode obter dela. Armas raras e invulgares são mais singulares.",
+    'WTM_UNIQ_TOOLTIP2':"A singularidade de uma arma não tem relação com a sua força.",
+    'WTM_CHECKTYPE':"Tipos de Armas e Maestria",
+    'WTM_TYPELOCKEDCONSTR':'Aumenta a tua mobília de combate em <span class="construction-victory">Construção</span> para desbloquear',
     
     'WTM_HBOW2': "Desbloqueia o ataque especial Killshot",
     'WTM_HBOW3': "+5% de chance de duplicar o saque em combate ao lutar contra monstros de tarefas de Slayer",

@@ -1,4 +1,13 @@
 export const language = {
+
+    'WTM_MASTERY_TOOLTIP1':"Silah Ustalıkları, bir silahı ve o türdeki silahları kullanımınızı temsil eder.",
+    'WTM_MASTERY_TOOLTIP2':"Bir silahtaki ustalık öncelikle onunla saldırarak, ikincil olarak ise düşmanları öldürerek artar.",
+    'WTM_MASTERY_TOOLTIP3':"Silah ustalıkları hakkında daha fazla bilgi edinmek için farklı öğelerin üzerine gelin.",
+    
+    'WTM_UNIQ_TOOLTIP1':"Bir silahın <span class='text-success'>Eşsizliği</span>, ondan ne kadar eğitim kazanılabileceğini belirler. Nadir ve olağandışı silahlar daha eşsizdir.",
+    'WTM_UNIQ_TOOLTIP2':"Bir silahın eşsizliği, gücüyle ilişkili değildir.",
+    'WTM_CHECKTYPE':"Silah Türleri ve Ustalık",
+    'WTM_TYPELOCKEDCONSTR':'Kilit açmak için <span class="construction-victory">İnşa</span> modunda savaş mobilyalarınızı geliştirin',
 'WTM_HBOW2': "Ölümcül Vuruş Özel Saldırısını açar",
     'WTM_HBOW3': "Slayer Görevi canavarlarıyla savaşırken dövüşte ganimeti ikiye katlama şansı +%5",
     'WTM_HBOW4': "Ölümcül Vuruş tetikleme şansı +%10",

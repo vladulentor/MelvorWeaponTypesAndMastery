@@ -1,4 +1,13 @@
 export const language = {
+
+    'WTM_MASTERY_TOOLTIP1':"武器熟練度は、その武器および同タイプの武器の使用経験を表します。",
+    'WTM_MASTERY_TOOLTIP2':"武器熟練度は主にその武器で攻撃することで上昇し、敵を倒すことでも少し上昇します。",
+    'WTM_MASTERY_TOOLTIP3':"各要素にホバーすると、武器熟練度の詳細を確認できます。",
+    
+    'WTM_UNIQ_TOOLTIP1':"武器の<span class='text-success'>ユニーク度</span>によって、そこから得られるトレーニング量が決まります。希少で珍しい武器ほどユニーク度が高くなります。",
+    'WTM_UNIQ_TOOLTIP2':"武器のユニーク度は、その強さとは関係ありません。",
+    'WTM_CHECKTYPE':"武器タイプ＆熟練度",
+    'WTM_TYPELOCKEDCONSTR':'解除するには<span class="construction-victory">建設</span>で戦闘家具を拡張してください',
    'WTM_HBOW2': "特殊攻撃「Killshot」を解放",
     'WTM_HBOW3': "スレイヤータスクのモンスターとの戦闘時、戦闘での戦利品が2倍になる確率が+5%",
     'WTM_HBOW4': "「Killshot」の発動確率が+10%",

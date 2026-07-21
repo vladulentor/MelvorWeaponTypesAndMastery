@@ -1,6 +1,14 @@
 export const language = {
     
+'WTM_MASTERY_TOOLTIP1':"Waffenmeisterschaften repräsentieren Ihre Erfahrung mit einer Waffe und Waffen dieses Typs.",
+    'WTM_MASTERY_TOOLTIP2':"Die Meisterschaft mit einer Waffe erhöht sich in erster Linie durch Angriffe mit ihr und in zweiter Linie durch das Töten von Feinden.",
+    'WTM_MASTERY_TOOLTIP3':"Fahren Sie mit der Maus über verschiedene Elemente, um mehr über Waffenmeisterschaften zu erfahren.",
     
+    'WTM_UNIQ_TOOLTIP1':"Die <span class='text-success'>Einzigartigkeit</span> einer Waffe bestimmt, wie viel Training aus ihr gewonnen werden kann. Seltene und ungewöhnliche Waffen sind einzigartiger.",
+    'WTM_UNIQ_TOOLTIP2':"Die Einzigartigkeit einer Waffe steht in keinem Zusammenhang mit ihrer Stärke.",
+
+    'WTM_CHECKTYPE':"Waffentypen & Meisterschaft",
+    'WTM_TYPELOCKEDCONSTR':'Bauen Sie Ihre Kampfmöbel im Bereich <span class="construction-victory">Bauen</span> aus, um freizuschalten',
     'WTM_HBOW2': "Schaltet den Spezialangriff „Killshot“ frei",
     'WTM_HBOW3': "+5% Chance auf doppelte Beute im Kampf beim Gegenübertreten von Slayer-Aufgaben-Monstern",
     'WTM_HBOW4': "+10% Chance, „Killshot“ auszulösen",

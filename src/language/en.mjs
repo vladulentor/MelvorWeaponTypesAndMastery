@@ -1,6 +1,16 @@
 export const language = {
 
+    'WTM_MASTERY_TOOLTIP1':"Weapon Masteries represent your use with a weapon and weapons of that type.",
+    'WTM_MASTERY_TOOLTIP2':"Mastery with a weapon is increased primarily by attacking with it, and secondarily by killing enemies.",
+    'WTM_MASTERY_TOOLTIP3':"Hover over different elements to learn more about weapon masteries",
+    
+    'WTM_UNIQ_TOOLTIP1':"A weapon's <span class='text-success'>Uniqueness</span> determines how much training can be gotten out of it. Rare and unusual weapons are more unique.",
+    'WTM_UNIQ_TOOLTIP2':"A weapon's uniqueness is unrelated to its strength.",
 
+
+
+    'WTM_CHECKTYPE':"Weapon Types & Mastery",
+    'WTM_TYPELOCKEDCONSTR':'Construct combat furniture in <span class="construction-victory">Construction</span> to unlock',
 
     'WTM_HBOW2': "Unlock the Killshot Special Attack",
     'WTM_HBOW3': "+5% Chance To Double Loot in Combat when fighting Slayer Task monsters",

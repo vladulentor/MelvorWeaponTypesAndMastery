@@ -1,5 +1,14 @@
 export const language = {
     
+
+    'WTM_MASTERY_TOOLTIP1':"Le maestrie con le armi rappresentano la tua esperienza con un'arma e con le armi di quel tipo.",
+    'WTM_MASTERY_TOOLTIP2':"La maestria con un'arma aumenta principalmente attaccando con essa e, in secondo luogo, uccidendo i nemici.",
+    'WTM_MASTERY_TOOLTIP3':"Passa il cursore sui diversi elementi per scoprire di più sulle maestrie delle armi.",
+    
+    'WTM_UNIQ_TOOLTIP1':"La <span class='text-success'>Rarità</span> di un'arma determina quanto addestramento si può ottenere da essa. Le armi rare e insolite sono più uniche.",
+    'WTM_UNIQ_TOOLTIP2':"La rarità di un'arma non ha alcuna relazione con la sua forza.",
+    'WTM_CHECKTYPE':"Tipi di armi e maestria",
+    'WTM_TYPELOCKEDCONSTR':'Potenzia le tue strutture da combattimento in <span class="construction-victory">Costruzione</span> per sbloccare',
     'WTM_HBOW2': "Sblocca l'attacco speciale «Killshot»",
     'WTM_HBOW3': "+5% di probabilità di raddoppiare il bottino in combattimento contro i mostri degli incarichi Slayer",
     'WTM_HBOW4': "+10% di probabilità di attivare «Killshot»",

@@ -32,7 +32,8 @@ export function addWeaponMasteryUI(ctx) {
         };
     });
     ctx.patch(Player, "renderEquipment").after(function (_) {// This is where we make all the menus and stuff. I hope it can hold HP... well
-        if (!game.weaponMasteries.allObjects?.length || game.weaponMasteries.allObjects.every(mast => mast.levelCap == 0 )) return;
+        if (!game.weaponMasteries.allObjects?.length) return;
+        game.weaponMasteries.featuerUnlocked = game.weaponMasteries.allObjects.some(mast => mast.levelCap > 0)
         if (!combatMenus.weaponMastery) {
             // Top stuff
 
@@ -46,14 +47,17 @@ export function addWeaponMasteryUI(ctx) {
             coolbanner.className = "combat-menu-img border-rounded-equip p-1 m-1 pointer-enabled";
             coolbanner.style.marginLeft = "-1px"; // look man idk why but i need to scoot it over like one pixel to the right to make it look right
             coolbanner.id = "combat-menu-item-8";
-            coolbanner.src = ctx.getResourceUrl('assets/banner.png');
-            coolbanner.onclick = () => changeCombatMenu(8);
-            combatMenus.menuTabs.push(coolbanner)
+            coolbanner.unlsrc = ctx.getResourceUrl('assets/banner.png');
+            coolbanner.lsrc = ctx.getResourceUrl('assets/bannerlocked.png');
+            combatMenus.menuTabs.push(coolbanner);
+            combatMenus.WTMBanner = coolbanner;
+
             combatMenus.menuTabs[0].parentElement.insertBefore(coolbanner, combatMenus.menuTabs[1]);
+
             tippy(coolbanner, {
-                content: "View Weapon Types",
+                content: "-",
                 placement: 'bottom',
-                allowHTML: false,
+                allowHTML: true,
                 interactive: false,
                 animation: false,
 
@@ -85,6 +89,17 @@ export function addWeaponMasteryUI(ctx) {
             }; */
             // I don't know if it's more QoL to have this or not. Normally you'd think so but... in reality it seems kind of annoying. Idk 
         }
+        if (game.weaponMasteries.featuerUnlocked) {
+            combatMenus.WTMBanner.onclick = () => changeCombatMenu(8);
+            combatMenus.WTMBanner.src = combatMenus.WTMBanner.unlsrc;
+            combatMenus.WTMBanner._tippy.setContent(`<div class="text-center">${getRielkLangString("MENU_WEAPON_TYPES")}</div>`);
+
+        }
+        else {
+            combatMenus.WTMBanner.onclick = null;
+            combatMenus.WTMBanner.src = combatMenus.WTMBanner.lsrc;
+                        combatMenus.WTMBanner._tippy.setContent(`<div class="text-center">${getRielkLangString("WTM_TYPELOCKEDCONSTR")}</div>`);        }
+
         let weapon = this.equippedWeapon ?? this.equipment.getItemInSlot("melvorD:Weapon");
         if (weapon) { combatMenus.weaponMastery.setWeapon(weapon) }
         else waitForWeapon(this);

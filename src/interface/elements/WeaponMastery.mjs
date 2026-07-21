@@ -94,7 +94,7 @@ export class WeaponMasteryUI {
         const expl = createElement("div", {
             className: 'text-center text-size-sm mb-1 font-w400'
         });
-        expl.innerText = "Weapon Masteries represent your use with a weapon and weapons of that type.";
+        expl.innerText = getRielkLangString('WTM_MASTERY_TOOLTIP1'); 
         elem.tippyContent.appendChild(expl);
 
         elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
@@ -102,14 +102,14 @@ export class WeaponMasteryUI {
         const hint = createElement("div", {
             className: 'text-center text-size-sm font-w400 text-muted'
         });
-        hint.innerText = "Mastery with a weapon is increased primarily by attacking with it, and secondarily by killing enemies.";
+        hint.innerText = getRielkLangString('WTM_MASTERY_TOOLTIP2');
         elem.tippyContent.appendChild(hint);
         elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
 
         const hint2 = createElement("div", {
             className: 'text-center text-size-sm font-w400 text-muted'
         });
-        hint2.innerText = "Hover over different elements to learn more about weapon masteries";
+        hint2.innerText = getRielkLangString('WTM_MASTERY_TOOLTIP3');
         elem.tippyContent.appendChild(hint2);
         tippy(elem, {
             content: elem.tippyContent,
@@ -133,7 +133,7 @@ export class WeaponMasteryUI {
         const expl = createElement("div", {
             className: 'text-center text-size-sm mb-1 font-w400'
         });
-        expl.innerHTML = "A weapon's <span class='text-success'>Uniqueness</span> determines how much training can be gotten out of it. Rare and unusual weapons are more unique.";
+        expl.innerHTML = getRielkLangString('WTM_UNIQ_TOOLTIP1');
         elem.tippyContent.appendChild(expl);
 
         elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
@@ -141,7 +141,7 @@ export class WeaponMasteryUI {
         const hint = createElement("div", {
             className: 'text-center text-size-sm font-w400 text-muted'
         });
-        hint.innerText = "A weapon's uniqueness is unrelated to its strength.";
+        hint.innerText = getRielkLangString('WTM_UNIQ_TOOLTIP2');
         elem.tippyContent.appendChild(hint);
 
         elem.tippy = tippy(elem, {

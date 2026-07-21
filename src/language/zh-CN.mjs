@@ -1,5 +1,14 @@
 export const language = {
-'WTM_HBOW2': "解锁特殊攻击“击杀射击”（Killshot）",
+
+    'WTM_MASTERY_TOOLTIP1':"武器精通度代表你使用某种武器以及该类型武器的熟练程度。",
+    'WTM_MASTERY_TOOLTIP2':"提升武器精通度的主要方式是使用其进行攻击，其次是击杀敌人。",
+    'WTM_MASTERY_TOOLTIP3':"将鼠标悬停在不同元素上，可了解有关武器精通度的更多信息。",
+    
+    'WTM_UNIQ_TOOLTIP1':"武器的<span class='text-success'>独特度</span>决定了能从中获得多少训练经验。罕见且不寻常的武器更为独特。",
+    'WTM_UNIQ_TOOLTIP2':"武器的独特度与其威力无关。",
+'WTM_CHECKTYPE':"武器类型与精通",
+    'WTM_TYPELOCKEDCONSTR':'在<span class="construction-victory">建造</span>中升级你的战斗家具以解锁',
+    'WTM_HBOW2': "解锁特殊攻击“击杀射击”（Killshot）",
     'WTM_HBOW3': "与弑神者任务（Slayer Task）怪物战斗时，战斗掉落物翻倍的几率+5%",
     'WTM_HBOW4': "触发“击杀射击”（Killshot）的几率+10%",
     'WTM_HBOW42': "与弑神者任务（Slayer Task）怪物战斗时，暴击伤害倍率+25%",
