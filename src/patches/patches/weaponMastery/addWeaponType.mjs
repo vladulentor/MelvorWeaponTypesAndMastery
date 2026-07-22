@@ -51,7 +51,7 @@ export function addWeaponType(settings, namespaces) {
 
     Object.defineProperty(EquipmentItem.prototype, '_weaponXPSpeedMod', {
         get() {
-            return 2.313  // Note, changed to look prettier. The math is the same as before... whatever the math was before.
+            return 3  // Note, changed to look prettier. The math is the same as before... whatever the math was before.
         }
     });
     Object.defineProperty(EquipmentItem.prototype, 'weaponXPperSwing', { // These are UI values
@@ -61,7 +61,7 @@ export function addWeaponType(settings, namespaces) {
     });
     Object.defineProperty(EquipmentItem.prototype, 'weaponXPperKill', {
         get() {
-            return 4.6 + 4.6 * this._weaponXPBonus / 100 // This is a constant from 2 times our _weaponXPSpeedMod, remember to change when changing _weaponXPSpeedMod
+            return 6 + 6 * this._weaponXPBonus / 100 // This is a constant from 2 times our _weaponXPSpeedMod, remember to change when changing _weaponXPSpeedMod
         }
     });
     Object.defineProperty(EquipmentItem.prototype, '_weaponXP', {
