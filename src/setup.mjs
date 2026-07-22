@@ -30,12 +30,20 @@ export async function setup(ctx) {
         addWeaponType(ctx.settings.section('──⚔──'), typeMap);
         game.combat.player.equippedWeapon = game.combat.player.equipment.getItemInSlot("melvorD:Weapon"); // I don't think it's pretty either
         game.combat.player.equippedWeaponType = game.combat.player.equippedWeapon.weaponType ?? 0;
+        let stup = false;
+        try {
+            stup = ctx.settings.section('──⚔──').get('stupid-mode');
+        }
+        catch (e) { }
         for (const m of game.weaponMasteries.allObjects)
-            m.onLoad()
-        if (combatMenus.weaponMastery && game.combat.player.equippedWeaponType) {
-            combatMenus.weaponMastery.setWeapon(game.combat.player.equippedWeapon);
-            combatMenus.weaponMastery.highlightButton(game.combat.player.equippedWeaponType);
-            game.combat.computeAllStats();
+            m.onLoad(stup)
+        if (combatMenus.weaponMastery) {
+            combatMenus.weaponMastery.initSubMenus();
+            if (game.combat.player.equippedWeaponType) {
+                combatMenus.weaponMastery.setWeapon(game.combat.player.equippedWeapon);
+                combatMenus.weaponMastery.highlightButton(game.combat.player.equippedWeaponType);
+                game.combat.computeAllStats();
+            }
         }
 
     })

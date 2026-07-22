@@ -68,14 +68,16 @@ const MagicMaterial = ["Air", "Water", "Earth", "Fire", "Crystal", "Unholy", "My
 
 export class WeaponMastery extends RealmedObject {
     constructor(namespace, data, game) {
+       
         let stupid = false;
-        try {
-            stupid = ctx.settings.section('──⚔──').get('stupid-mode');
-        }
-        catch (e) { }
         super(namespace, data, game);
-        this.name = stupid && data.stupidName ? data.stupidName : getRielkLangString(`WTM_WEAPON_NAME_${this._localID}`);
-        this.flavorText = stupid && data.stupidFlavorText ? data.stupidFlavorText : getRielkLangString(`WTM_WEAPON_FLAVORTEXT_${this._localID}`);
+        this._normName = getRielkLangString(`WTM_WEAPON_NAME_${this._localID}`);
+        if(data.stupidName){
+            this._stupidName = data.stupidName
+        }
+        this._flavorText = getRielkLangString(`WTM_WEAPON_FLAVORTEXT_${this._localID}`);
+        if(data.stupidFlavorText)
+        {this._stupidFlavorText = data.stupidFlavorText}
 
         this._media = data.media;
         this._mediaAlt = data.mediaAlt;
@@ -242,7 +244,7 @@ export class WeaponMastery extends RealmedObject {
         this._curLvl += 1;
         this.computeProvidedStats(false);
     }
-    onLoad() {
+    onLoad(stupid) {
         this.maxXP = this.allWeapons.reduce((tot, w) => tot + w.weaponXPCap, 0);
         this._curLvl = this.level;
         this.computeProvidedStats(false);
@@ -251,7 +253,8 @@ export class WeaponMastery extends RealmedObject {
             combatSkillProgressTable.weaponTypesTable.updateLevel(this.game, this);
 
         }
-
+        this.name = stupid && this._stupidName ? this._stupidName : this._normName;
+        this.flavorText = stupid && this._stupidFlavorText ? this._stupidFlavorText : this._flavorText;
     }
     computeProvidedStats(updatePlayer = true) {
         this.providedStats.reset();

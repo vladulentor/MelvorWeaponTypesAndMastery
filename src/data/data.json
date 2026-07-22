@@ -7704,6 +7704,7 @@
                 "Water_Pulse_Staff3"
               ],
               "media": "assets/staves.png",
+              "stupidFlavorText":"Ooh yeah real scary magic dust walking sticks",
               "mediaAlt": "assets/black_filled_svgs/staves.svg",
               "mediaCol": "assets/filled_svgs/staves.png",
               "type": "magic",
@@ -8368,6 +8369,7 @@
                 "Imbued",
                 "Wand"
               ],
+              "stupidFlavorText":"Cosmo, change the weight of the atom!",
               "kind": "magic",
               "uniq": [
                 "Magic_Wand_Basic1",

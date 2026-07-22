@@ -46,11 +46,11 @@ export function patchWeaponTypeLogic({ patch }) {
         while (leftover >= 1) { toadd += 1; leftover -= 1; }
         giveWeaponMasteryXP(this.player.equippedWeapon, toadd);
     });
-    patch(Game, "onLoad").after(function (_) {
+   /* patch(Game, "onLoad").after(function (_) {
 
 
     })
-
+        */
     patch(BaseManager, "computeAllStats").before(function (_) { // Again not the best place to put it, but it should work, I forgot why this isn't going through our weaponMod like things, it is what it is I guess.
         const pl = game.combat.player;
 

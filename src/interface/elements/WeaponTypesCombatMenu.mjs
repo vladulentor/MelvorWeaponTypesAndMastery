@@ -82,7 +82,7 @@ window.customElements.define('type-button', typeButtonElement);
 
 
 class WeaponTypeMenuElement extends HTMLElement {
-    constructor(container, oType) {
+    constructor(container) {
         super();
         this._content = getTemplateNode('WeaponTypesMenuElement');
         this.types = [];
@@ -92,15 +92,14 @@ class WeaponTypeMenuElement extends HTMLElement {
         this.noticeContainer = getElementFromFragment(this._content, 'wtm-notice-container', 'div');
         this.noticeMessage = getElementFromFragment(this._content, 'wtm-notice-message', 'span');
     }
-    appendWepMenu(wepElem) {
-        this.weaponContainer.append(wepElem);
-    }
-    init(oType) {
+    init() {
         this.append(this._content);
-        this.oType = oType
         this.types = game.weaponMasteries.allObjects.filter(mast => mast.Wtype === this.oType.id); // nice capitalization jackass
         this.setWeaponTypes();
 
+    }
+    appendWepMenu(wepElem) {
+        this.weaponContainer.append(wepElem);
     }
 
     setWeaponTypes() {
@@ -278,7 +277,8 @@ export class WeaponTypesCombatMenu {
         const expl = createElement("div", {
             className: 'text-center text-size-sm mb-1 font-w400'
         });
-        expl.innerText = "Weapon Masteries represent your use with a weapon and weapons of that type.";
+
+        expl.innerText = getRielkLangString('WTM_MASTERY_TOOLTIP1');
         elem.tippyContent.appendChild(expl);
 
         elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
@@ -286,14 +286,14 @@ export class WeaponTypesCombatMenu {
         const hint = createElement("div", {
             className: 'text-center text-size-sm font-w400 text-muted'
         });
-        hint.innerText = "Mastery with a weapon is increased primarily by attacking with it, and secondarily by killing enemies.";
+        hint.innerText = getRielkLangString('WTM_MASTERY_TOOLTIP2');
         elem.tippyContent.appendChild(hint);
         elem.tippyContent.appendChild(createElement('div', { className: 'dropdown-divider' }));
 
         const hint2 = createElement("div", {
             className: 'text-center text-size-sm font-w400 text-muted'
         });
-        hint2.innerText = "Hover over different elements to learn more about them!";
+        hint2.innerText = getRielkLangString('WTM_MASTERY_TOOLTIP3');
         elem.tippyContent.appendChild(hint2);
 
         tippy(elem, {
@@ -644,6 +644,13 @@ export class WeaponTypesCombatMenu {
             animation: false,
         }));
     }
+    initSubMenus() {
+        for (const button of this.buttonList) {
+            if (button.menu) {
+                button.menu.init();
+            }
+        }
+    }
     init(game) {
         let firstWep = true;
         this.buttonList = [];
@@ -655,11 +662,12 @@ export class WeaponTypesCombatMenu {
             createElement('img', { parent: button, className: 'skill-icon-xs', attributes: [['src', overT.media]] });
             button.onclick = () => this.selectOType(game, overT, button);
             button.oType = overT.id;
+
             button.menu = createElement('weapon-types-menu', {
                 parent: this.weaponMenuPlace,
                 className: 'd-none'
             });
-            button.menu.init(overT);
+            button.menu.oType = overT;
             this.addTooltip(button, overT.name);
             if (firstWep) {
                 this.selectedButton = button;
